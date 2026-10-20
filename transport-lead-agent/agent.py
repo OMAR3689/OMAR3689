@@ -8,7 +8,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.message import EmailMessage
-from urllib.parse import quote_plus, unquote, urljoin, urlparse
+from urllib.parse import quote_plus, unquote, urljoin, urlparse, urlencode
 from urllib.request import Request, urlopen
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -83,6 +83,8 @@ NON_PROSPECT_DOMAINS = {
     "marketwatch.com", "seekingalpha.com", "macrotrends.net", "marketscreener.com",
     "tradingview.com", "barchart.com", "benzinga.com", "tipranks.com",
     "simplywall.st", "companiesmarketcap.com", "finance.yahoo.com",
+    "linkedin.com", "facebook.com", "instagram.com", "youtube.com", "wikipedia.org",
+    "glassdoor.com", "kerix.net", "marocannuaire.org", "kompass.com",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
@@ -109,6 +111,40 @@ def http_get(url, timeout=20):
     })
     with urlopen(req, timeout=timeout) as r:
         return r.read(700000).decode("utf-8", errors="ignore")
+
+
+# Public SearXNG instances are free to query but can rate-limit or disable JSON.
+# Try several; if unavailable, fall back to the other free search sources.
+SEARXNG_INSTANCES = (
+    "https://searx.ononoki.org",
+    "https://search.jeremyh.xyz",
+    "https://priv.au",
+)
+
+
+def searxng_search(q):
+    for base in SEARXNG_INSTANCES:
+        url = base.rstrip("/") + "/search?" + urlencode({
+            "q": q, "format": "json", "language": "fr-FR",
+            "categories": "general", "safesearch": 1,
+        })
+        try:
+            payload = json.loads(http_get(url, timeout=15))
+            results = []
+            for item in payload.get("results", []):
+                link = str(item.get("url", "")).strip()
+                title = re.sub(r"\\s+", " ", str(item.get("title", ""))).strip()
+                content = re.sub(r"\\s+", " ", str(item.get("content", ""))).strip()
+                if link.startswith(("http://", "https://")) and title:
+                    results.append({
+                        "title": title, "url": link, "content": content,
+                        "source": "searxng",
+                    })
+            if results:
+                return results[:10]
+        except Exception as e:
+            print(f"⚠️ SearXNG instance unavailable ({base}): {e}")
+    return []
 
 
 def bing_rss_search(q):
@@ -140,19 +176,32 @@ def ddg_html_search(q):
     return results[:10]
 
 
-def search_web(q):
-    try:
-        results = bing_rss_search(q)
-        if results:
-            return results, "bing-rss"
-    except Exception as e:
-        print(f"⚠️ Bing RSS unavailable: {e}")
-    try:
-        results = ddg_html_search(q)
-        if results:
-            return results, "duckduckgo"
-    except Exception as e:
-        print(f"⚠️ DuckDuckGo unavailable: {e}")
+def search_web(q, require_morocco=True):
+    # Prefer the free meta-search API; it combines available engines rather than
+    # relying on a single RSS endpoint that has returned unrelated results.
+    engines = (
+        ("searxng", searxng_search),
+        ("bing-rss", bing_rss_search),
+        ("duckduckgo", ddg_html_search),
+    )
+    for source, search_fn in engines:
+        try:
+            results = search_fn(q)
+            if not results:
+                continue
+            if not require_morocco:
+                return results, source
+            matched = [
+                item for item in results
+                if is_morocco_candidate(item.get("title", ""), item.get("content", ""), item.get("url", ""))
+                and not is_non_prospect_source(item.get("title", ""), item.get("content", ""), item.get("url", ""))
+            ]
+            if matched:
+                # Return the filtered set to keep downstream crawling focused.
+                return matched, source
+            print(f"⚠️ {source} returned no Morocco-matched results; trying next source")
+        except Exception as e:
+            print(f"⚠️ {source} unavailable: {e}")
     return [], "none"
 
 
@@ -236,7 +285,7 @@ def public_email(title, url):
         queries.append(f'site:{host} email')
     queries.append(f'"{title}" Maroc contact email')
     for q in queries:
-        results, _ = search_web(q)
+        results, _ = search_web(q, require_morocco=False)
         for item in results:
             candidate_url = item.get("url", "") or url
             blob = f"{item.get('title', '')} {item.get('content', '')}"
