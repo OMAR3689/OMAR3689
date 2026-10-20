@@ -204,7 +204,7 @@ def searxng_search(q):
             results = []
             for item in payload.get("results", []):
                 link = str(item.get("url", "")).strip()
-                title = re.sub(r"\\s+", " ", str(item.get("title", ""))).strip()
+                title = re.sub(r"\s+", " ", str(item.get("title", ""))).strip()
                 content = re.sub(r"\\s+", " ", str(item.get("content", ""))).strip()
                 if link.startswith(("http://", "https://")) and title:
                     results.append({
@@ -227,19 +227,19 @@ def ddgs_search(q):
         return []
 
     try:
-        with DDGS(timeout=12) as ddgs:
-            raw_results = ddgs.text(
+        ddgs = DDGS(timeout=12)
+        raw_results = ddgs.text(
                 q,
                 region="ma-fr",
                 safesearch="moderate",
                 max_results=10,
-                backend="auto",
-            )
+            backend="auto",
+        )
         results = []
         for item in raw_results or []:
             link = str(item.get("href") or item.get("url") or "").strip()
             title = re.sub(r"\\s+", " ", str(item.get("title", ""))).strip()
-            content = re.sub(r"\\s+", " ", str(item.get("body") or item.get("content") or "")).strip()
+            content = re.sub(r"\s+", " ", str(item.get("body") or item.get("content") or "")).strip()
             if link.startswith(("http://", "https://")) and title:
                 results.append({
                     "title": title, "url": link, "content": content,
