@@ -8,7 +8,6 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.message import EmailMessage
-from urllib.error import HTTPError, URLError
 from urllib.parse import quote_plus, unquote, urljoin, urlparse
 from urllib.request import Request, urlopen
 
@@ -20,16 +19,22 @@ MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/").strip()
 SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
 
-# Free web-search sources. No API key or paid credits required.
+# Free sources only. No Tavily/API credits required.
+# Queries focus on Moroccan companies likely to BUY transport/logistics,
+# rather than searching only for pages explicitly saying "need transport".
 QUERIES = [
-    '"demande de devis transport" Maroc entreprise',
-    '"besoin de transport" Maroc entreprise marchandises',
-    '"recherche prestataire" transport Maroc entreprise',
-    '"appel d offres" transport Maroc entreprise',
-    '"transport quotidien" Maroc entreprise salariés',
-    '"livraison" Maroc entreprise distribution',
-    '"affrètement" Maroc industriel chargeur',
-    '"location véhicules avec chauffeur" Maroc entreprise',
+    'site:.ma Maroc usine industriel entreprise contact transport logistique',
+    'site:.ma Maroc agroalimentaire usine entreprise contact',
+    'site:.ma Maroc automobile usine entreprise contact',
+    'site:.ma Maroc distribution grossiste entreprise contact logistique',
+    'site:.ma Maroc pharmaceutique laboratoire entreprise contact',
+    'site:.ma Maroc importateur exportateur entreprise contact logistique',
+    'site:.ma Maroc construction chantier entreprise contact transport',
+    'site:.ma Maroc retail supermarché entreprise contact livraison',
+    'site:.ma Maroc hôtel tourisme entreprise contact transport',
+    'site:.ma Maroc entrepôt plateforme entreprise contact logistique',
+    'site:.ma Maroc fabricant production entreprise contact livraison',
+    'site:.ma Maroc "appel d offres" transport logistique entreprise',
 ]
 
 GENERIC_EMAIL_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
@@ -54,7 +59,7 @@ PROVIDER_SIGNALS = (
     "transporteur international", "entreprise de transport", "transport & logistique",
     "transport et logistique", "prestataire logistique", "freight forwarder",
     "commissionnaire de transport", "notre flotte", "nos camions", "semi-remorques",
-    "camions 8x4", "services de transport",
+    "camions 8x4", "services de transport", "transporteur de marchandises",
 )
 DIRECTORY_SIGNALS = (
     "annuaire", "liste des fournisseurs", "top fournisseurs", "comparatif",
@@ -66,7 +71,7 @@ TARGET_SECTOR_SIGNALS = (
     "grossiste", "retail", "supermarché", "supermarche", "automobile", "pharmaceutique",
     "pharma", "construction", "chantier", "bâtiment", "batiment", "importateur",
     "exportateur", "fabrication", "production", "entrepôt", "entrepot", "zone industrielle",
-    "plateforme", "commerce", "hôtel", "hotel", "tourisme",
+    "plateforme", "commerce", "hôtel", "hotel", "tourisme", "laboratoire", "fabricant",
 )
 
 
@@ -76,7 +81,7 @@ def now_iso():
 
 def http_get(url, timeout=20):
     req = Request(url, headers={
-        "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/2.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/3.0)",
         "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
     })
     with urlopen(req, timeout=timeout) as r:
@@ -113,7 +118,6 @@ def ddg_html_search(q):
 
 
 def search_web(q):
-    # Bing RSS is the first free source because it already worked in the last run.
     try:
         results = bing_rss_search(q)
         if results:
@@ -181,10 +185,8 @@ def discover_email(url):
         return ""
     candidates = extract_emails(text)
     for link in links:
-        absolute = urljoin(url, link)
         if link.lower().startswith("mailto:"):
             candidates.extend(extract_emails(unquote(link[7:].split("?", 1)[0])))
-    # Crawl a small number of likely contact pages, not the whole website.
     checked = set()
     for link in links:
         absolute = urljoin(url, link)
@@ -230,9 +232,11 @@ def clean_company(title):
 def score(text):
     t = (text or "").lower()
     buyer = sum(15 for x in BUYER_SIGNALS if x in t)
-    sector = sum(8 for x in TARGET_SECTOR_SIGNALS if x in t)
-    provider = sum(25 for x in PROVIDER_SIGNALS if x in t)
-    directory = sum(40 for x in DIRECTORY_SIGNALS if x in t)
+    sector = sum(12 for x in TARGET_SECTOR_SIGNALS if x in t)
+    provider = sum(30 for x in PROVIDER_SIGNALS if x in t)
+    directory = sum(50 for x in DIRECTORY_SIGNALS if x in t)
+    # A sector company is a potential buyer even when the indexed page
+    # does not literally contain a phrase such as "demande de devis".
     return max(0, min(100, buyer + sector - provider - directory))
 
 
@@ -242,7 +246,8 @@ def is_bad_prospect(title, content, url):
         return True
     provider_hits = sum(1 for x in PROVIDER_SIGNALS if x in t)
     buyer_hits = sum(1 for x in BUYER_SIGNALS if x in t)
-    return provider_hits >= 2 and buyer_hits <= 2
+    sector_hits = sum(1 for x in TARGET_SECTOR_SIGNALS if x in t)
+    return provider_hits >= 2 and buyer_hits <= 2 and sector_hits < 2
 
 
 def detect_need(content):
@@ -360,7 +365,7 @@ def main():
             if is_bad_prospect(title, content, url):
                 continue
             s = score(combined)
-            if s < 30:
+            if s < 24:
                 continue
             company = clean_company(title)
             email = discover_email(url)
@@ -383,9 +388,8 @@ def main():
         if len(all_leads) >= 30:
             break
 
-    # Highest-quality leads first; only public business emails are eligible for outreach.
     all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
-    qualified = [x for x in all_leads if x["email"] and x["score"] >= 45]
+    qualified = [x for x in all_leads if x["email"] and x["score"] >= 35]
     sent = 0
     smtp_failures = 0
 
