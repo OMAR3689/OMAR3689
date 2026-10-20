@@ -28,6 +28,8 @@ jobs:
       MAX_EMAILS_PER_RUN: '3'
       MAX_EMAILS_PER_HOUR: '3'
       PRESENTATION_URL: 'https://trmb.ma/'
+      PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
+      PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
       SMTP_RETRIES: '3'
 
     steps:
