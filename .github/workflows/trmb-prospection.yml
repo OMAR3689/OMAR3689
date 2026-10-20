@@ -1,0 +1,39 @@
+name: TRMB AI Prospection
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  prospect:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests
+      - name: Run TRMB prospecting agent
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          SEND_EMAILS: ${{ secrets.SEND_EMAILS }}
+          MAX_SENDS_PER_RUN: ${{ secrets.MAX_SENDS_PER_RUN }}
+          MIN_SCORE: ${{ secrets.MIN_SCORE }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+        run: python prospection/trmb_agent.py
+      - name: Save lead log
+        run: |
+          git config user.name 'TRMB AI Agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add prospection/
+          git diff --cached --quiet || git commit -m 'chore: update TRMB prospect leads'
+          git push
