@@ -2,6 +2,7 @@ import csv, json, os, re, smtplib
 from datetime import datetime, timezone
 from email.message import EmailMessage
 from urllib.error import HTTPError, URLError
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 TAVILY_KEY = os.environ.get("TAVILY_API_KEY", "").strip()
@@ -10,33 +11,60 @@ HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/")
 
-# Morocco only: concrete B2B transport/logistics intent.
+# Morocco only. Focus on BUYERS/CHARGEURS with concrete transport/logistics needs,
+# not transport companies that are likely competitors.
 QUERIES = [
-    '"recherche transporteur" Maroc entreprise',
-    '"prestataire transport" Maroc entreprise',
-    '"besoin transport" Maroc entreprise',
-    '"sous-traitant transport" Maroc entreprise',
-    '"affrètement" Maroc entreprise transport',
-    '"appel d offres" transport logistique Maroc',
-    '"demande de devis" transport Maroc entreprise',
-    '"transporteur" "Maroc" "besoin" logistique',
+    '"recherche transporteur" Maroc entreprise -transporteur -logistique',
+    '"besoin de transport" Maroc entreprise marchandises -transporteur',
+    '"demande de devis" "transport" Maroc industriel',
+    '"appel d offres" "transport" Maroc marchandises entreprise',
+    '"sous-traitance" "transport" Maroc marchandises',
+    '"location de véhicules avec chauffeur" Maroc entreprise',
+    '"transport de marchandises" "besoin" Maroc entreprise',
+    '"prestataire logistique" Maroc "demande" entreprise',
+    '"transport quotidien" Maroc usine entreprise',
+    '"livraison" Maroc entreprise "prestataire transport"',
+    '"flotte" Maroc entreprise "transport" besoin',
+    '"affrètement" Maroc "chargeur" entreprise',
 ]
 
-SIGNALS = {
+POSITIVE_SIGNALS = {
     "recherche transporteur": 40,
-    "prestataire transport": 40,
-    "besoin transport": 35,
-    "appel d'offres": 30,
-    "appel d offres": 30,
+    "besoin de transport": 40,
     "demande de devis": 35,
-    "sous-traitant transport": 35,
-    "affrètement": 25,
-    "transporteur": 15,
-    "logistique": 10,
+    "appel d'offres": 35,
+    "appel d offres": 35,
+    "sous-traitance": 30,
+    "location de véhicules avec chauffeur": 30,
+    "transport de marchandises": 20,
+    "transport quotidien": 25,
+    "besoin": 10,
+    "marchandises": 10,
+    "chargeur": 15,
+    "logistique": 8,
+}
+
+# Penalize pages that describe transport/logistics providers themselves.
+COMPETITOR_SIGNALS = {
+    "commissionnaire de transport": 45,
+    "société de transport": 35,
+    "transporteur": 25,
+    "freight forwarder": 30,
+    "freight forwarding": 30,
+    "prestataire transport": 25,
+    "solution de transport": 15,
+    "flotte de camions": 25,
+    "camions disponibles": 25,
+    "bourse de fret": 30,
 }
 
 GENERIC_EMAIL_PREFIXES = {
     "noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon",
+}
+GENERIC_PROVIDER_DOMAINS = {
+    "linkedin.com", "facebook.com", "instagram.com", "youtube.com",
+    "procurement.ma", "datao.ma", "kerix-export.net", "kerix.net",
+    "google.com", "gmail.com", "yahoo.com", "outlook.com", "hotmail.com",
 }
 
 
@@ -67,10 +95,11 @@ def tavily_search(query):
 
 def score(text):
     t = text.lower()
-    points = sum(v for k, v in SIGNALS.items() if k in t)
-    if any(x in t for x in ["2026", "2027", "urgent", "immediate", "besoin", "demande de devis"]):
+    points = sum(v for k, v in POSITIVE_SIGNALS.items() if k in t)
+    points -= sum(v for k, v in COMPETITOR_SIGNALS.items() if k in t)
+    if any(x in t for x in ["2026", "2027", "urgent", "immédiat", "immediate", "en cours"]):
         points += 10
-    return min(points, 100)
+    return max(0, min(points, 100))
 
 
 def extract_emails(text):
@@ -85,33 +114,66 @@ def extract_emails(text):
     return result
 
 
+def source_domain(url):
+    try:
+        return (urlparse(url).hostname or "").lower().removeprefix("www.")
+    except Exception:
+        return ""
+
+
+def usable_email(email, url):
+    if not email or "@" not in email:
+        return False
+    domain = email.split("@", 1)[1].lower()
+    if domain in GENERIC_PROVIDER_DOMAINS:
+        return False
+    src = source_domain(url)
+    # If the page belongs to a directory/platform, do not email the directory.
+    if src in GENERIC_PROVIDER_DOMAINS:
+        return False
+    return True
+
+
+def looks_stale(text):
+    t = text.lower()
+    years = [int(y) for y in re.findall(r"\b20\d{2}\b", t)]
+    if years and max(years) < datetime.now(timezone.utc).year - 1:
+        return True
+    return False
+
+
 def rule_based_qualify(title, content, url):
     text = f"{title} {content}"
     s = score(text)
-    emails = extract_emails(text)
+    emails = [e for e in extract_emails(text) if usable_email(e, url)]
     email = emails[0] if emails else ""
-    qualified = s >= 50 and bool(email)
+    stale = looks_stale(text)
+    qualified = s >= 50 and bool(email) and not stale
 
     need = re.sub(r"\s+", " ", content).strip()
     need = need[:500]
     body = (
         "Bonjour,\n\n"
-        "Nous avons identifié votre besoin en transport/logistique à partir de votre publication. "
+        "Nous avons identifié un besoin potentiel en transport/logistique lié à votre activité. "
         "TRMB SERVICES peut vous accompagner avec des solutions de transport et de logistique adaptées à vos opérations au Maroc.\n\n"
         f"Besoin identifié : {need}\n\n"
-        f"Vous pouvez découvrir TRMB SERVICES ici : {PRESENTATION_URL}\n\n"
+        f"Présentation TRMB SERVICES : {PRESENTATION_URL}\n\n"
         "Si ce besoin est toujours d’actualité, nous pouvons vous transmettre rapidement une proposition adaptée.\n\n"
         "Bien cordialement,\n"
         "TRMB SERVICES\n"
         "https://trmb.ma/"
+    )
+    reason = (
+        f"score={s}; email public={'oui' if email else 'non'}; "
+        f"prospect acheteur={'oui' if s >= 50 else 'non'}; stale={'oui' if stale else 'non'}"
     )
     return {
         "qualified": qualified,
         "company": title,
         "email": email,
         "contact_name": "",
-        "reason": f"Qualification automatique: score={s}; email public={'oui' if email else 'non'}",
-        "subject": "Proposition de partenariat transport – TRMB SERVICES",
+        "reason": reason,
+        "subject": "Proposition de transport & logistique – TRMB SERVICES",
         "body": body,
     }
 
@@ -153,7 +215,6 @@ def send_email(to_addr, subject, body):
     msg["Subject"] = subject
     msg.set_content(body)
 
-    # Port 465 uses implicit TLS (SMTP_SSL). Port 587 uses STARTTLS.
     try:
         if port == 465:
             with smtplib.SMTP_SSL(host, port, timeout=30) as server:
@@ -177,7 +238,7 @@ def main():
     known = history_keys(history)
     leads = {}
 
-    print(f"Starting Morocco-only discovery with {len(QUERIES)} Tavily queries...")
+    print(f"Starting Morocco-only B2B discovery with {len(QUERIES)} Tavily queries...")
     for q in QUERIES:
         print(f"Searching: {q}")
         try:
@@ -193,7 +254,8 @@ def main():
             text = f"{title} {content}"
             key = url or title.lower()
             emails = extract_emails(text)
-            email_key = emails[0] if emails else ""
+            usable_emails = [e for e in emails if usable_email(e, url)]
+            email_key = usable_emails[0] if usable_emails else ""
 
             if not key or key in known or (email_key and email_key in known):
                 continue
@@ -201,6 +263,7 @@ def main():
             lower = text.lower()
             if "maroc" not in lower and ".ma" not in url.lower():
                 continue
+
             s = score(text)
             if s < 30:
                 continue
@@ -231,7 +294,7 @@ def main():
         })
 
         if not lead["qualified"]:
-            lead["email_status"] = "not_sent_no_qualified_public_email"
+            lead["email_status"] = "not_sent_not_qualified"
             continue
 
         email = lead["email"].lower()
@@ -256,7 +319,7 @@ def main():
         json.dump(rows, f, ensure_ascii=False, indent=2)
 
     with open(os.path.join(OUT_DIR, "leads.csv"), "w", encoding="utf-8", newline="") as f:
-        fields = ["company_or_title", "company", "email", "qualified", "score", "email_status", "need", "source_url", "country_hint", "found_at"]
+        fields = ["company_or_title", "company", "email", "qualified", "score", "email_status", "reason", "need", "source_url", "country_hint", "found_at"]
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
