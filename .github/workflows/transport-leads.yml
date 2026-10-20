@@ -22,7 +22,6 @@ jobs:
     timeout-minutes: 20
     env:
       TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USER: ${{ secrets.SMTP_USER }}
@@ -30,6 +29,7 @@ jobs:
       SMTP_FROM: ${{ secrets.SMTP_FROM }}
       MAX_EMAILS_PER_RUN: '5'
       PRESENTATION_URL: 'https://trmb.ma/'
+      SMTP_RETRIES: '3'
 
     steps:
       - uses: actions/checkout@v5
@@ -43,27 +43,13 @@ jobs:
           if [ -n "$TAVILY_API_KEY" ]; then
             echo "✅ TAVILY_API_KEY détectée — utilisée en priorité"
           else
-            echo "ℹ️ TAVILY_API_KEY absente — recherche de secours sans clé activée"
+            echo "ℹ️ TAVILY_API_KEY absente — fallback sans clé activé"
           fi
           if [ -n "$SMTP_HOST" ] && [ -n "$SMTP_USER" ] && [ -n "$SMTP_PASSWORD" ]; then
             echo "✅ SMTP détecté — envoi automatique activé"
           else
             echo "⚠️ SMTP incomplet — aucun email ne sera envoyé"
           fi
-
-      - name: Corriger le message avant envoi
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('transport-lead-agent/agent.py')
-          s = p.read_text(encoding='utf-8')
-          old = '''    body = (\n        "Bonjour,\\n\\n"\n        "Je me permets de vous contacter au nom de TRMB SERVICES.\\n\\n"\n        f"Nous accompagnons les entreprises au Maroc sur leurs besoins de {need}.\\n\\n"\n        f"En consultant les informations publiques concernant {company}, nous avons identifié un besoin potentiel lié à {need}. "\n        "Nous pouvons étudier vos flux, vos fréquences et vos contraintes afin de vous proposer une solution de transport adaptée.\\n\\n"\n        f"Présentation : {PRESENTATION_URL}\\n\\n"\n        "Si vous avez un besoin actuel ou à venir, envoyez-nous simplement votre trajet, la marchandise "\n        "ou le nombre de personnes à transporter, et nous vous répondrons rapidement.\\n\\n"\n        "Bien cordialement,\\n"\n        "TRMB SERVICES\\n"\n        f"{PRESENTATION_URL}"\n    )'''
-          new = '''    body = (\n        "Bonjour,\\n\\n"\n        "Je me permets de vous contacter au nom de TRMB SERVICES, société spécialisée dans les solutions de transport et de logistique au Maroc.\\n\\n"\n        f"Nous proposons des solutions adaptées pour {need}, selon vos trajets, volumes, fréquences et contraintes opérationnelles.\\n\\n"\n        "Nous serions ravis d'échanger avec votre équipe afin de comprendre vos besoins et, si pertinent, vous transmettre une proposition adaptée.\\n\\n"\n        f"Présentation : {PRESENTATION_URL}\\n\\n"\n        "Si vous avez un besoin actuel ou à venir, vous pouvez simplement nous communiquer votre besoin (trajet, fréquence, marchandise ou nombre de personnes à transporter). Nous vous répondrons rapidement.\\n\\n"\n        "Bien cordialement,\\n"\n        "TRMB SERVICES\\n"\n        f"{PRESENTATION_URL}"\n    )'''
-          if old not in s:
-              raise SystemExit('❌ Bloc message introuvable — aucun envoi effectué')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
-          print('✅ Message TRMB corrigé avant envoi')
-          PY
 
       - name: Discover leads and outreach
         run: python transport-lead-agent/agent.py
