@@ -7,7 +7,7 @@ on:
     paths-ignore:
       - 'transport-lead-agent/data/**'
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 */2 * * *'
 
 permissions:
   contents: write
