@@ -1,0 +1,26 @@
+name: Transport Lead Agent
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover leads
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: python transport-lead-agent/agent.py
+      - name: Commit lead files
+        run: |
+          git config user.name 'AI Transport Lead Agent'
+          git config user.email 'actions@github.com'
+          git add transport-lead-agent/data/leads.json transport-lead-agent/data/leads.csv
+          git diff --cached --quiet || git commit -m 'Update transport leads'
+          git push
