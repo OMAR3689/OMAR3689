@@ -92,7 +92,6 @@ def rule_based_qualify(title, content, url):
     email = emails[0] if emails else ""
     qualified = s >= 50 and bool(email)
 
-    # Personalize from the public evidence instead of inventing a contact/person.
     need = re.sub(r"\s+", " ", content).strip()
     need = need[:500]
     body = (
@@ -141,7 +140,7 @@ def history_keys(history):
 
 def send_email(to_addr, subject, body):
     host = os.environ.get("SMTP_HOST", "").strip()
-    port = int(os.environ.get("SMTP_PORT", "587"))
+    port = int(os.environ.get("SMTP_PORT", "465"))
     user = os.environ.get("SMTP_USER", "").strip()
     password = os.environ.get("SMTP_PASSWORD", "")
     sender = os.environ.get("SMTP_FROM", user).strip()
@@ -153,10 +152,22 @@ def send_email(to_addr, subject, body):
     msg["To"] = to_addr
     msg["Subject"] = subject
     msg.set_content(body)
-    with smtplib.SMTP(host, port, timeout=30) as server:
-        server.starttls()
-        server.login(user, password)
-        server.send_message(msg)
+
+    # Port 465 uses implicit TLS (SMTP_SSL). Port 587 uses STARTTLS.
+    try:
+        if port == 465:
+            with smtplib.SMTP_SSL(host, port, timeout=30) as server:
+                server.login(user, password)
+                server.send_message(msg)
+        else:
+            with smtplib.SMTP(host, port, timeout=30) as server:
+                server.ehlo()
+                server.starttls()
+                server.ehlo()
+                server.login(user, password)
+                server.send_message(msg)
+    except (smtplib.SMTPException, OSError) as e:
+        return False, f"SMTP error: {e}"
     return True, "sent"
 
 
@@ -187,7 +198,6 @@ def main():
             if not key or key in known or (email_key and email_key in known):
                 continue
 
-            # Keep only concrete transport/logistics intent and Moroccan evidence.
             lower = text.lower()
             if "maroc" not in lower and ".ma" not in url.lower():
                 continue
