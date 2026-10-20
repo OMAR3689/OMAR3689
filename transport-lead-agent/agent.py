@@ -2,7 +2,7 @@ import csv, json, os, re, smtplib
 from datetime import datetime, timezone
 from email.message import EmailMessage
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, unquote
 from urllib.request import Request, urlopen
 
 TAVILY_KEY = os.environ.get("TAVILY_API_KEY", "").strip()
@@ -87,18 +87,57 @@ def fetch_page(url):
 def discover_contact_email(url):
     if not url:
         return ""
-    base = f"{urlparse(url).scheme}://{urlparse(url).netloc}/"
     candidates = [url]
-    _, links = fetch_page(url)
+    text, links = fetch_page(url)
+
+    # First inspect mailto links. The previous version only inspected visible page text,
+    # so public emails hidden in href="mailto:..." were missed.
+    for link in links:
+        if link.lower().startswith("mailto:"):
+            raw_email = unquote(link[7:].split("?", 1)[0]).strip()
+            for email in extract_emails(raw_email):
+                if usable_email(email, url):
+                    return email
+
+    # Then inspect common contact/legal pages.
     for link in links:
         absolute = urljoin(url, link)
-        path = urlparse(absolute).path.lower().strip("/")
+        parsed = urlparse(absolute)
+        if parsed.scheme not in ("http", "https"):
+            continue
+        path = parsed.path.lower().strip("/")
         if path in CONTACT_PATHS or any(path.endswith("/" + p) for p in CONTACT_PATHS):
             candidates.append(absolute)
-    for candidate in candidates[:5]:
-        text, _ = fetch_page(candidate)
-        for email in extract_emails(text):
+
+    for candidate in list(dict.fromkeys(candidates))[:8]:
+        page_text, page_links = fetch_page(candidate)
+        for email in extract_emails(page_text):
             if usable_email(email, candidate):
+                return email
+        for link in page_links:
+            if link.lower().startswith("mailto:"):
+                raw_email = unquote(link[7:].split("?", 1)[0]).strip()
+                for email in extract_emails(raw_email):
+                    if usable_email(email, candidate):
+                        return email
+    return ""
+
+
+def tavily_find_public_email(title, url):
+    """Fallback: ask Tavily for a public business contact email when the website
+    does not expose it directly. Never invent an address and reject generic providers."""
+    domain = source_domain(url)
+    target = f"site:{domain} contact email" if domain else f'"{title}" Maroc contact email'
+    try:
+        results = tavily_search(target)
+    except RuntimeError as e:
+        print(f"⚠️ Email lookup skipped for {title}: {e}")
+        return ""
+    for item in results:
+        result_url = item.get("url", "")
+        text = f"{item.get('title', '')} {item.get('content', '')}"
+        for email in extract_emails(text):
+            if usable_email(email, result_url or url):
                 return email
     return ""
 
@@ -113,7 +152,7 @@ def score(text):
 
 
 def extract_emails(text):
-    found = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
+    found = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text or "")
     result = []
     for email in found:
         email = email.lower().strip(".,;:()[]<>")
@@ -232,6 +271,8 @@ def main():
             email_key = emails[0] if emails else ""
             if not email_key and url:
                 email_key = discover_contact_email(url)
+            if not email_key:
+                email_key = tavily_find_public_email(title, url)
             if not key or key in known or (email_key and email_key in known): continue
             lower = text.lower()
             if "maroc" not in lower and ".ma" not in url.lower(): continue
@@ -242,12 +283,16 @@ def main():
                           "country_hint": "Maroc", "found_at": datetime.now(timezone.utc).isoformat()}
 
     rows = sorted(leads.values(), key=lambda x: x["score"], reverse=True); sent = 0
+    qualified_count = 0; email_failures = 0; no_email = 0
     for lead in rows:
         if sent >= MAX_EMAILS: break
         ai = rule_based_qualify(lead["company_or_title"], lead["need"], lead["source_url"], lead.get("email_found", ""))
         lead.update({"qualified": bool(ai["qualified"]), "company": ai["company"], "email": ai["email"], "reason": ai["reason"]})
+        if not lead["email"]:
+            no_email += 1
         if not lead["qualified"]:
             lead["email_status"] = "not_sent_not_qualified"; continue
+        qualified_count += 1
         email = lead["email"].lower()
         if email in known:
             lead["email_status"] = "not_sent_duplicate"; continue
@@ -256,6 +301,7 @@ def main():
             history[lead["source_url"] or lead["company_or_title"]] = {"email": email, "company": lead["company"], "sent_at": datetime.now(timezone.utc).isoformat()}
             known.update({email, lead["source_url"] or lead["company_or_title"]}); sent += 1
         else:
+            email_failures += 1
             print(f"⚠️ Email failed for {email}: {status}")
 
     save_history(history)
@@ -263,7 +309,7 @@ def main():
     with open(os.path.join(OUT_DIR, "leads.csv"), "w", encoding="utf-8", newline="") as f:
         fields = ["company_or_title", "company", "email", "qualified", "score", "email_status", "reason", "need", "source_url", "country_hint", "found_at"]
         w = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore"); w.writeheader(); w.writerows(rows)
-    print(f"Found {len(rows)} leads; sent {sent} emails")
+    print(f"Found {len(rows)} leads; qualified {qualified_count}; sent {sent} emails; SMTP failures {email_failures}; no email {no_email}")
 
 
 if __name__ == "__main__": main()
