@@ -10,21 +10,33 @@ HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/")
 
+# Morocco only: concrete B2B transport/logistics intent.
 QUERIES = [
-    '"recherche transporteur" OR "prestataire transport" Maroc',
-    '"besoin transport" OR "sous-traitant transport" Maroc entreprise',
-    '"appel d offres" transporteur logistique Maroc',
-    '"recherche transporteur" France logistique',
-    '"prestataire transport" Belgique logistique',
-    '"carrier needed" OR "transport provider" Germany',
-    '"freight tender" OR "transport tender" Europe',
+    '"recherche transporteur" Maroc entreprise',
+    '"prestataire transport" Maroc entreprise',
+    '"besoin transport" Maroc entreprise',
+    '"sous-traitant transport" Maroc entreprise',
+    '"affrètement" Maroc entreprise transport',
+    '"appel d offres" transport logistique Maroc',
+    '"demande de devis" transport Maroc entreprise',
+    '"transporteur" "Maroc" "besoin" logistique',
 ]
 
 SIGNALS = {
-    "recherche transporteur": 35, "prestataire transport": 35,
-    "appel d'offres": 30, "appel d offres": 30, "freight tender": 30,
-    "transport tender": 30, "carrier needed": 35, "transport provider": 30,
-    "sous-traitant": 20, "affrètement": 20, "subcontractor": 20,
+    "recherche transporteur": 40,
+    "prestataire transport": 40,
+    "besoin transport": 35,
+    "appel d'offres": 30,
+    "appel d offres": 30,
+    "demande de devis": 35,
+    "sous-traitant transport": 35,
+    "affrètement": 25,
+    "transporteur": 15,
+    "logistique": 10,
+}
+
+GENERIC_EMAIL_PREFIXES = {
+    "noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon",
 }
 
 
@@ -43,19 +55,14 @@ def http_json(url, payload, headers):
 def tavily_search(query):
     if not TAVILY_KEY:
         raise RuntimeError("TAVILY_API_KEY is required")
-
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {TAVILY_KEY}",
-    }
+    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {TAVILY_KEY}"}
     payload = {
         "query": query,
         "search_depth": "advanced",
         "max_results": 10,
         "include_answer": False,
     }
-    data = http_json("https://api.tavily.com/search", payload, headers)
-    return data.get("results", [])
+    return http_json("https://api.tavily.com/search", payload, headers).get("results", [])
 
 
 def score(text):
@@ -66,39 +73,56 @@ def score(text):
     return min(points, 100)
 
 
-def rule_based_qualify(title, content, url):
-    """Qualify a lead without OpenAI API credits.
+def extract_emails(text):
+    found = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
+    result = []
+    for email in found:
+        email = email.lower().strip(".,;:()[]<>")
+        if email.split("@", 1)[0] in GENERIC_EMAIL_PREFIXES:
+            continue
+        if email not in result:
+            result.append(email)
+    return result
 
-    The email is accepted only when it is explicitly present in the public
-    Tavily result content/title. No address or person is invented.
-    """
+
+def rule_based_qualify(title, content, url):
     text = f"{title} {content}"
     s = score(text)
-    emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
-    email = emails[0].lower() if emails else ""
-    qualified = s >= 50
+    emails = extract_emails(text)
+    email = emails[0] if emails else ""
+    qualified = s >= 50 and bool(email)
+
+    # Personalize from the public evidence instead of inventing a contact/person.
+    need = re.sub(r"\s+", " ", content).strip()
+    need = need[:500]
+    body = (
+        "Bonjour,\n\n"
+        "Nous avons identifié votre besoin en transport/logistique à partir de votre publication. "
+        "TRMB SERVICES peut vous accompagner avec des solutions de transport et de logistique adaptées à vos opérations au Maroc.\n\n"
+        f"Besoin identifié : {need}\n\n"
+        f"Vous pouvez découvrir TRMB SERVICES ici : {PRESENTATION_URL}\n\n"
+        "Si ce besoin est toujours d’actualité, nous pouvons vous transmettre rapidement une proposition adaptée.\n\n"
+        "Bien cordialement,\n"
+        "TRMB SERVICES\n"
+        "https://trmb.ma/"
+    )
     return {
         "qualified": qualified,
         "company": title,
         "email": email,
         "contact_name": "",
-        "reason": f"Rule-based qualification: score={s}; public email={'found' if email else 'not found'}",
+        "reason": f"Qualification automatique: score={s}; email public={'oui' if email else 'non'}",
         "subject": "Proposition de partenariat transport – TRMB SERVICES",
-        "body": (
-            f"Bonjour,\n\n"
-            f"Nous avons identifié votre besoin potentiel en transport/logistique et souhaitons vous proposer les services de TRMB SERVICES.\n\n"
-            f"Nous pouvons vous accompagner sur vos opérations de transport et de logistique au Maroc et à l'international.\n\n"
-            f"Présentation : {PRESENTATION_URL}\n\n"
-            f"Bien cordialement,\nTRMB SERVICES"
-        ),
+        "body": body,
     }
 
 
 def load_history():
     try:
         with open(HISTORY_FILE, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except (FileNotFoundError, json.JSONDecodeError):
         return {}
 
 
@@ -107,12 +131,20 @@ def save_history(history):
         json.dump(history, f, ensure_ascii=False, indent=2)
 
 
+def history_keys(history):
+    keys = set(history.keys())
+    for value in history.values():
+        if isinstance(value, dict) and value.get("email"):
+            keys.add(value["email"].lower())
+    return keys
+
+
 def send_email(to_addr, subject, body):
-    host = os.environ.get("SMTP_HOST", "")
+    host = os.environ.get("SMTP_HOST", "").strip()
     port = int(os.environ.get("SMTP_PORT", "587"))
-    user = os.environ.get("SMTP_USER", "")
+    user = os.environ.get("SMTP_USER", "").strip()
     password = os.environ.get("SMTP_PASSWORD", "")
-    sender = os.environ.get("SMTP_FROM", user)
+    sender = os.environ.get("SMTP_FROM", user).strip()
     if not all([host, user, password, sender]):
         return False, "SMTP credentials not configured"
 
@@ -131,33 +163,45 @@ def send_email(to_addr, subject, body):
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
+    known = history_keys(history)
     leads = {}
 
-    print(f"Starting discovery with {len(QUERIES)} Tavily queries...")
+    print(f"Starting Morocco-only discovery with {len(QUERIES)} Tavily queries...")
     for q in QUERIES:
         print(f"Searching: {q}")
-        for item in tavily_search(q):
+        try:
+            results = tavily_search(q)
+        except RuntimeError as e:
+            print(f"⚠️ Tavily query skipped: {e}")
+            continue
+
+        for item in results:
             title = item.get("title", "").strip()
             url = item.get("url", "").strip()
             content = item.get("content", "")
+            text = f"{title} {content}"
             key = url or title.lower()
-            if not key or key in history:
+            emails = extract_emails(text)
+            email_key = emails[0] if emails else ""
+
+            if not key or key in known or (email_key and email_key in known):
                 continue
 
-            text = f"{title} {content}"
+            # Keep only concrete transport/logistics intent and Moroccan evidence.
+            lower = text.lower()
+            if "maroc" not in lower and ".ma" not in url.lower():
+                continue
             s = score(text)
             if s < 30:
                 continue
 
             leads[key] = {
                 "company_or_title": title,
-                "need": content[:1500].replace("\n", " "),
+                "need": re.sub(r"\s+", " ", content).strip()[:1500],
                 "score": s,
                 "source_url": url,
-                "country_hint": next(
-                    (c for c in ["Maroc", "France", "Belgique", "Germany", "Allemagne", "Spain", "Italy"] if c.lower() in text.lower()),
-                    "",
-                ),
+                "email_found": email_key,
+                "country_hint": "Maroc",
                 "found_at": datetime.now(timezone.utc).isoformat(),
             }
 
@@ -168,7 +212,6 @@ def main():
         if sent >= MAX_EMAILS:
             break
 
-        # No OpenAI call: qualification and email extraction are local.
         ai = rule_based_qualify(lead["company_or_title"], lead["need"], lead["source_url"])
         lead.update({
             "qualified": bool(ai.get("qualified")),
@@ -177,23 +220,25 @@ def main():
             "reason": ai.get("reason", ""),
         })
 
-        if not lead["qualified"] or not re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", lead["email"]):
+        if not lead["qualified"]:
+            lead["email_status"] = "not_sent_no_qualified_public_email"
             continue
 
-        subject = ai.get("subject") or "Proposition de partenariat transport – TRMB SERVICES"
-        body = ai.get("body") or (
-            f"Bonjour,\n\nNous avons identifié un besoin potentiel de transport/logistique. "
-            f"TRMB SERVICES peut vous accompagner sur vos opérations de transport.\n\n"
-            f"Présentation : {PRESENTATION_URL}\n\nBien cordialement,\nTRMB SERVICES"
-        )
+        email = lead["email"].lower()
+        if email in known:
+            lead["email_status"] = "not_sent_duplicate"
+            continue
 
-        ok, status = send_email(lead["email"], subject, body)
+        ok, status = send_email(email, ai["subject"], ai["body"])
         lead["email_status"] = status
         if ok:
             history[lead["source_url"] or lead["company_or_title"]] = {
-                "email": lead["email"],
+                "email": email,
+                "company": lead["company"],
                 "sent_at": datetime.now(timezone.utc).isoformat(),
             }
+            known.add(email)
+            known.add(lead["source_url"] or lead["company_or_title"])
             sent += 1
 
     save_history(history)
