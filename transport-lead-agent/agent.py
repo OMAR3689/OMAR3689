@@ -8,12 +8,10 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.message import EmailMessage
-from email.utils import formatdate, make_msgid
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin, urlparse, unquote, quote_plus
+from urllib.parse import quote_plus, unquote, urljoin, urlparse
 from urllib.request import Request, urlopen
 
-TAVILY_KEY = os.environ.get("TAVILY_API_KEY", "").strip()
 OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 LEADS_JSON = os.path.join(OUT_DIR, "leads.json")
@@ -22,27 +20,27 @@ MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/").strip()
 SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
 
+# Free web-search sources. No API key or paid credits required.
 QUERIES = [
-    '"demande de devis transport" Maroc usine industriel distribution',
-    '"besoin de transport" Maroc entreprise marchandises usine',
+    '"demande de devis transport" Maroc entreprise',
+    '"besoin de transport" Maroc entreprise marchandises',
     '"recherche prestataire" transport Maroc entreprise',
-    '"appel d offres" transport Maroc entreprise industriel',
-    '"transport quotidien" Maroc usine salariés personnel',
-    '"livraison" Maroc entreprise distribution marchandises',
-    '"affrètement" Maroc industriel chargeur importateur',
+    '"appel d offres" transport Maroc entreprise',
+    '"transport quotidien" Maroc entreprise salariés',
+    '"livraison" Maroc entreprise distribution',
+    '"affrètement" Maroc industriel chargeur',
     '"location véhicules avec chauffeur" Maroc entreprise',
 ]
 
 GENERIC_EMAIL_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
 BAD_DOMAINS = {
     "linkedin.com", "facebook.com", "instagram.com", "youtube.com",
-    "gmail.com", "yahoo.com", "outlook.com", "hotmail.com",
+    "gmail.com", "yahoo.com", "outlook.com", "hotmail.com", "live.com",
 }
 CONTACT_PATHS = (
-    "contact", "contact-us", "nous-contacter", "mentions-legales",
-    "a-propos", "about", "contactez-nous",
+    "contact", "contact-us", "nous-contacter", "contactez-nous",
+    "mentions-legales", "mentions-légales", "a-propos", "about",
 )
-
 BUYER_SIGNALS = (
     "demande de devis", "demander un devis", "besoin de transport", "besoin transport",
     "recherche prestataire", "recherche un prestataire", "appel d'offre", "appel d offres",
@@ -51,28 +49,24 @@ BUYER_SIGNALS = (
     "transport des salariés", "transport du personnel", "flux de marchandises",
     "approvisionnement", "expédition", "importation", "exportation",
 )
-
 PROVIDER_SIGNALS = (
     "société de transport", "societe de transport", "transporteur routier",
     "transporteur international", "entreprise de transport", "transport & logistique",
     "transport et logistique", "prestataire logistique", "freight forwarder",
-    "commissionnaire de transport", "notre flotte", "notre flotte de camions",
-    "nos camions", "semi-remorques", "camions 8x4", "transport national et international",
-    "solution de transport", "services de transport",
+    "commissionnaire de transport", "notre flotte", "nos camions", "semi-remorques",
+    "camions 8x4", "services de transport",
 )
-
 DIRECTORY_SIGNALS = (
-    "fournisseurs transport maroc", "annuaire", "liste des fournisseurs", "top fournisseurs",
-    "comparatif", "magazine", "actualités", "actualites", "procurement.ma/fournisseurs",
-    "mordorintelligence", "guide", "fiche fournisseur", "directory", "yellow pages",
+    "annuaire", "liste des fournisseurs", "top fournisseurs", "comparatif",
+    "magazine", "actualités", "actualites", "guide", "fiche fournisseur",
+    "directory", "yellow pages", "fournisseurs transport maroc",
 )
-
 TARGET_SECTOR_SIGNALS = (
-    "usine", "industriel", "industrie", "agroalimentaire", "agricole", "ferme",
-    "distribution", "grossiste", "retail", "supermarché", "supermarche", "automobile",
-    "pharmaceutique", "pharma", "construction", "chantier", "bâtiment", "batiment",
-    "importateur", "exportateur", "fabrication", "production", "entrepôt", "entrepot",
-    "zone industrielle", "plateforme", "commerce", "hôtel", "hotel", "tourisme",
+    "usine", "industriel", "industrie", "agroalimentaire", "agricole", "distribution",
+    "grossiste", "retail", "supermarché", "supermarche", "automobile", "pharmaceutique",
+    "pharma", "construction", "chantier", "bâtiment", "batiment", "importateur",
+    "exportateur", "fabrication", "production", "entrepôt", "entrepot", "zone industrielle",
+    "plateforme", "commerce", "hôtel", "hotel", "tourisme",
 )
 
 
@@ -82,33 +76,11 @@ def now_iso():
 
 def http_get(url, timeout=20):
     req = Request(url, headers={
-        "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/2.0)",
         "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
     })
     with urlopen(req, timeout=timeout) as r:
-        return r.read(500000).decode("utf-8", errors="ignore")
-
-
-def http_json(url, payload, headers):
-    req = Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")
-    try:
-        with urlopen(req, timeout=45) as r:
-            return json.loads(r.read().decode())
-    except HTTPError as e:
-        detail = e.read().decode(errors="replace")[:300]
-        raise RuntimeError(f"HTTP {e.code}: {detail}")
-    except URLError as e:
-        raise RuntimeError(f"Network error: {e.reason}")
-
-
-def tavily_search(q):
-    if not TAVILY_KEY:
-        raise RuntimeError("TAVILY_API_KEY not configured")
-    return http_json(
-        "https://api.tavily.com/search",
-        {"query": q, "search_depth": "basic", "max_results": 8, "include_answer": False},
-        {"Content-Type": "application/json", "Authorization": f"Bearer {TAVILY_KEY}"},
-    ).get("results", [])
+        return r.read(700000).decode("utf-8", errors="ignore")
 
 
 def bing_rss_search(q):
@@ -117,13 +89,13 @@ def bing_rss_search(q):
     root = ET.fromstring(raw)
     results = []
     for item in root.findall(".//item"):
-        title = re.sub(r"\s+", " ", (item.findtext("title") or "")).strip()
+        title = re.sub(r"\s+", " ", item.findtext("title") or "").strip()
         link = (item.findtext("link") or "").strip()
         desc = re.sub(r"<[^>]+>", " ", item.findtext("description") or "")
         desc = re.sub(r"\s+", " ", desc).strip()
         if link:
             results.append({"title": title, "url": link, "content": desc, "source": "bing-rss"})
-    return results[:8]
+    return results[:10]
 
 
 def ddg_html_search(q):
@@ -135,29 +107,25 @@ def ddg_html_search(q):
         link = unquote(m.group(1))
         title = re.sub(r"<[^>]+>", " ", m.group(2))
         title = re.sub(r"\s+", " ", title).strip()
-        results.append({"title": title, "url": link, "content": "", "source": "duckduckgo"})
-    return results[:8]
+        if link:
+            results.append({"title": title, "url": link, "content": "", "source": "duckduckgo"})
+    return results[:10]
 
 
 def search_web(q):
-    if TAVILY_KEY:
-        try:
-            results = tavily_search(q)
-            return results, "tavily"
-        except Exception as e:
-            print(f"⚠️ Tavily unavailable ({e}); fallback activated")
+    # Bing RSS is the first free source because it already worked in the last run.
     try:
         results = bing_rss_search(q)
         if results:
             return results, "bing-rss"
     except Exception as e:
-        print(f"⚠️ Bing fallback unavailable: {e}")
+        print(f"⚠️ Bing RSS unavailable: {e}")
     try:
         results = ddg_html_search(q)
         if results:
             return results, "duckduckgo"
     except Exception as e:
-        print(f"⚠️ DuckDuckGo fallback unavailable: {e}")
+        print(f"⚠️ DuckDuckGo unavailable: {e}")
     return [], "none"
 
 
@@ -173,18 +141,9 @@ def fetch_page(url):
     try:
         raw = http_get(url, timeout=12)
         links = re.findall(r'href=["\']([^"\']+)["\']', raw, flags=re.I)
-        return strip_html(raw)[:100000], links
+        return strip_html(raw)[:120000], links
     except Exception:
         return "", []
-
-
-def extract_emails(text):
-    out = []
-    for email in re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text or ""):
-        email = email.lower().strip(".,;:()[]<>")
-        if email.split("@", 1)[0] not in GENERIC_EMAIL_PREFIXES and email not in out:
-            out.append(email)
-    return out
 
 
 def domain(url):
@@ -192,6 +151,15 @@ def domain(url):
         return (urlparse(url).hostname or "").lower().removeprefix("www.")
     except Exception:
         return ""
+
+
+def extract_emails(text):
+    found = []
+    for email in re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text or ""):
+        email = email.lower().strip(".,;:()[]<>")
+        if email.split("@", 1)[0] not in GENERIC_EMAIL_PREFIXES and email not in found:
+            found.append(email)
+    return found
 
 
 def usable_email(email, url=""):
@@ -202,25 +170,33 @@ def usable_email(email, url=""):
         return False
     host = host.lower()
     page_domain = domain(url)
-    return host not in BAD_DOMAINS and (not page_domain or page_domain == host or host.endswith("." + page_domain) or page_domain.endswith("." + host))
+    if host in BAD_DOMAINS:
+        return False
+    return not page_domain or host == page_domain or host.endswith("." + page_domain) or page_domain.endswith("." + host)
 
 
 def discover_email(url):
     text, links = fetch_page(url)
     if not text and not links:
         return ""
-    candidates = []
-    for email in extract_emails(text):
-        if usable_email(email, url):
-            candidates.append(email)
+    candidates = extract_emails(text)
     for link in links:
         absolute = urljoin(url, link)
         if link.lower().startswith("mailto:"):
             candidates.extend(extract_emails(unquote(link[7:].split("?", 1)[0])))
+    # Crawl a small number of likely contact pages, not the whole website.
+    checked = set()
+    for link in links:
+        absolute = urljoin(url, link)
         path = urlparse(absolute).path.lower().strip("/")
         if path in CONTACT_PATHS or any(path.endswith("/" + x) for x in CONTACT_PATHS):
+            if absolute in checked:
+                continue
+            checked.add(absolute)
             page_text, _ = fetch_page(absolute)
             candidates.extend(extract_emails(page_text))
+            if len(checked) >= 3:
+                break
     for email in candidates:
         if usable_email(email, url):
             return email
@@ -229,20 +205,25 @@ def discover_email(url):
 
 def public_email(title, url):
     host = domain(url)
-    q = f'site:{host} contact email Maroc' if host else f'"{title}" Maroc contact email'
-    results, _ = search_web(q)
-    for item in results:
-        candidate_url = item.get("url", "") or url
-        for email in extract_emails(f"{item.get('title', '')} {item.get('content', '')}"):
-            if usable_email(email, candidate_url):
-                return email
+    queries = []
+    if host:
+        queries.append(f'site:{host} "@" contact')
+        queries.append(f'site:{host} email')
+    queries.append(f'"{title}" Maroc contact email')
+    for q in queries:
+        results, _ = search_web(q)
+        for item in results:
+            candidate_url = item.get("url", "") or url
+            blob = f"{item.get('title', '')} {item.get('content', '')}"
+            for email in extract_emails(blob):
+                if usable_email(email, candidate_url):
+                    return email
     return ""
 
 
 def clean_company(title):
-    t = re.sub(r"\s+", " ", (title or "")).strip()
+    t = re.sub(r"\s+", " ", title or "").strip()
     t = re.sub(r"\s*[|–—-]\s*(Accueil|Home|Contact|Site officiel|Official).*?$", "", t, flags=re.I)
-    t = re.sub(r"^(Accueil|Home|Contact)\s*[-|:]\s*", "", t, flags=re.I)
     return t[:100] or "votre entreprise"
 
 
@@ -285,7 +266,7 @@ def build_message(company, need):
         f"Nous accompagnons les entreprises pour leurs besoins de {need}, avec des solutions adaptées aux trajets, volumes, fréquences et contraintes opérationnelles.\n\n"
         f"Nous avons identifié un besoin potentiel chez {company}. Nous serions ravis d'échanger avec votre équipe afin de comprendre votre besoin actuel ou à venir et de vous proposer une solution adaptée.\n\n"
         f"Présentation : {PRESENTATION_URL}\n\n"
-        "Si vous avez un besoin de transport, envoyez-nous simplement le trajet, la fréquence et la nature de la marchandise (ou le nombre de personnes à transporter). Nous vous répondrons rapidement.\n\n"
+        "Si vous avez un besoin actuel ou à venir, envoyez-nous simplement les informations disponibles. Nous vous répondrons rapidement.\n\n"
         "Bien cordialement,\n"
         "TRMB SERVICES\n"
         f"{PRESENTATION_URL}"
@@ -308,17 +289,6 @@ def save_history(data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def history_keys(data):
-    keys = set()
-    for key, value in data.items():
-        keys.add(str(key).lower())
-        if isinstance(value, dict):
-            for field in ("email", "domain"):
-                if value.get(field):
-                    keys.add(str(value[field]).lower())
-    return keys
-
-
 def send_email(to_addr, subject, body):
     host = os.environ.get("SMTP_HOST", "").strip()
     port = int(os.environ.get("SMTP_PORT", "465"))
@@ -327,145 +297,141 @@ def send_email(to_addr, subject, body):
     sender = os.environ.get("SMTP_FROM", "").strip() or user
     if not all([host, user, password, sender]):
         return False, "SMTP credentials not configured"
-
     msg = EmailMessage()
     msg["From"] = sender
     msg["To"] = to_addr
     msg["Subject"] = subject
-    msg["Date"] = formatdate(localtime=False)
-    msg["Message-ID"] = make_msgid()
-    msg["Reply-To"] = sender
     msg.set_content(body)
-
-    last_error = "unknown SMTP error"
     for attempt in range(1, SMTP_RETRIES + 1):
         try:
             if port == 465:
                 context = ssl.create_default_context()
-                with smtplib.SMTP_SSL(host, port, timeout=30, context=context) as smtp:
+                with smtplib.SMTP_SSL(host, port, context=context, timeout=30) as smtp:
                     smtp.login(user, password)
-                    refused = smtp.send_message(msg, from_addr=sender, to_addrs=[to_addr])
+                    smtp.send_message(msg)
             else:
                 with smtplib.SMTP(host, port, timeout=30) as smtp:
                     smtp.ehlo()
-                    smtp.starttls(context=ssl.create_default_context())
-                    smtp.ehlo()
+                    if port in (587, 25):
+                        smtp.starttls(context=ssl.create_default_context())
+                        smtp.ehlo()
                     smtp.login(user, password)
-                    refused = smtp.send_message(msg, from_addr=sender, to_addrs=[to_addr])
-            if refused:
-                return False, f"SMTP refused recipient: {refused}"
-            return True, "EMAIL SENT"
+                    smtp.send_message(msg)
+            return True, "sent"
         except Exception as e:
-            last_error = str(e)
             if attempt < SMTP_RETRIES:
                 time.sleep(2 * attempt)
-    return False, last_error
-
-
-def write_leads(rows):
-    os.makedirs(OUT_DIR, exist_ok=True)
-    with open(LEADS_JSON, "w", encoding="utf-8") as f:
-        json.dump(rows, f, ensure_ascii=False, indent=2)
-    fields = ["timestamp", "company", "email", "domain", "need", "score", "source", "url", "qualified", "status", "reason"]
-    with open(LEADS_CSV, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow({k: row.get(k, "") for k in fields})
+            else:
+                return False, str(e)
+    return False, "unknown SMTP error"
 
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
-    known = history_keys(history)
-    leads = {}
-    searched = 0
-    sources = {}
+    contacted = {str(k).lower() for k in history.keys()}
+    for value in history.values():
+        if isinstance(value, dict):
+            for field in ("email", "domain"):
+                if value.get(field):
+                    contacted.add(str(value[field]).lower())
 
-    print(f"Starting Morocco-only B2B buyer discovery with {len(QUERIES)} queries...")
-    for query in QUERIES:
-        searched += 1
-        print(f'Searching: "{query}"')
-        results, source = search_web(query)
-        sources[source] = sources.get(source, 0) + 1
+    all_leads = []
+    seen = set()
+    source_counts = {}
+    print("Starting Morocco-only B2B buyer discovery with free search sources...")
+
+    for q in QUERIES:
+        print(f"Searching: {q}")
+        results, source = search_web(q)
+        source_counts[source] = source_counts.get(source, 0) + 1
         for item in results:
-            title = clean_company(item.get("title", ""))
-            url = item.get("url", "")
+            url = item.get("url", "").strip()
+            title = item.get("title", "").strip()
+            content = item.get("content", "").strip()
             if not url or not title:
                 continue
-            host = domain(url)
-            if not host or host in BAD_DOMAINS:
+            d = domain(url)
+            key = d or url
+            if key in seen or key in contacted:
                 continue
-            # Never qualify a search snippet alone: inspect the actual company page first.
-            page_text, _ = fetch_page(url)
-            content = page_text or item.get("content", "") or ""
+            seen.add(key)
             combined = f"{title} {content} {url}"
             if is_bad_prospect(title, content, url):
                 continue
             s = score(combined)
-            buyer_hits = sum(1 for x in BUYER_SIGNALS if x in combined.lower())
-            sector_hit = any(x in combined.lower() for x in TARGET_SECTOR_SIGNALS)
-            if buyer_hits == 0 or not sector_hit or s < 20:
+            if s < 30:
                 continue
+            company = clean_company(title)
             email = discover_email(url)
             if not email:
-                email = public_email(title, url)
-            key = email.lower() if email else host
-            if key in known or key in leads:
-                continue
-            need = detect_need(content)
-            leads[key] = {
+                email = public_email(company, url)
+            lead = {
                 "timestamp": now_iso(),
-                "company": title,
+                "company": company,
                 "email": email,
-                "domain": host,
-                "need": need,
+                "domain": d,
+                "url": url,
+                "need": detect_need(combined),
                 "score": s,
                 "source": source,
-                "url": url,
-                "qualified": False,
-                "status": "email_found" if email else "no_email",
-                "reason": f"buyer_signals={buyer_hits}; sector={'yes' if sector_hit else 'no'}; score={s}",
+                "status": "qualified" if email else "no_email",
             }
+            all_leads.append(lead)
+            if len(all_leads) >= 30:
+                break
+        if len(all_leads) >= 30:
+            break
 
-    rows = sorted(leads.values(), key=lambda x: x.get("score", 0), reverse=True)
-    qualified_count = 0
+    # Highest-quality leads first; only public business emails are eligible for outreach.
+    all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
+    qualified = [x for x in all_leads if x["email"] and x["score"] >= 45]
     sent = 0
-    email_failures = 0
-    no_email = 0
+    smtp_failures = 0
 
-    for row in rows:
-        if row.get("email") and sent < MAX_EMAILS:
-            qualified_count += 1
-            row["qualified"] = True
-            subject, body = build_message(row["company"], row["need"])
-            ok, status = send_email(row["email"], subject, body)
-            if ok:
-                sent += 1
-                row["status"] = "sent"
-                row["sent_at"] = now_iso()
-                history[row["email"].lower()] = {
-                    "email": row["email"].lower(),
-                    "domain": row["domain"],
-                    "company": row["company"],
-                    "sent_at": row["sent_at"],
-                }
-                known.add(row["email"].lower())
-                known.add(row["domain"].lower())
-                print(f"✅ EMAIL SENT: {row['company']} -> {row['email']}")
-            else:
-                email_failures += 1
-                row["status"] = "smtp_failed"
-                row["error"] = status
-                print(f"❌ EMAIL FAILED: {row['email']}: {status}")
-        elif not row.get("email"):
-            no_email += 1
-            row["status"] = "no_email"
+    for lead in qualified:
+        if sent >= MAX_EMAILS:
+            break
+        email = lead["email"].lower()
+        if email in contacted or lead["domain"] in contacted:
+            continue
+        subject, body = build_message(lead["company"], lead["need"])
+        ok, detail = send_email(email, subject, body)
+        if ok:
+            sent += 1
+            lead["status"] = "sent"
+            lead["sent_at"] = now_iso()
+            history[email] = {
+                "company": lead["company"],
+                "domain": lead["domain"],
+                "sent_at": lead["sent_at"],
+                "subject": subject,
+            }
+            contacted.add(email)
+            if lead["domain"]:
+                contacted.add(lead["domain"])
+            print(f"✅ Email sent: {lead['company']} <{email}>")
+        else:
+            smtp_failures += 1
+            lead["status"] = "smtp_error"
+            lead["smtp_error"] = detail
+            print(f"⚠️ SMTP failed for {email}: {detail}")
+
+    with open(LEADS_JSON, "w", encoding="utf-8") as f:
+        json.dump(all_leads, f, ensure_ascii=False, indent=2)
+
+    fields = ["timestamp", "company", "email", "domain", "url", "need", "score", "source", "status", "sent_at", "smtp_error"]
+    with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(all_leads)
 
     save_history(history)
-    write_leads(rows)
-    source_summary = ", ".join(f"{k}={v}" for k, v in sorted(sources.items())) or "none"
-    print(f"Searched {searched} queries ({source_summary}); Found {len(rows)} buyer leads; qualified {qualified_count}; sent {sent} emails; SMTP failures {email_failures}; no email {no_email}")
+    print(
+        f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
+        f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; sent {sent} emails; "
+        f"SMTP failures {smtp_failures}; no email {sum(1 for x in all_leads if not x.get('email'))}"
+    )
 
 
 if __name__ == "__main__":
