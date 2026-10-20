@@ -218,6 +218,39 @@ def searxng_search(q):
     return []
 
 
+def ddgs_search(q):
+    """Search through the free DDGS metasearch library; no API key required."""
+    try:
+        from ddgs import DDGS
+    except ImportError:
+        print("⚠️ ddgs package not installed; continuing with fallback search")
+        return []
+
+    try:
+        with DDGS(timeout=12) as ddgs:
+            raw_results = ddgs.text(
+                q,
+                region="ma-fr",
+                safesearch="moderate",
+                max_results=10,
+                backend="auto",
+            )
+        results = []
+        for item in raw_results or []:
+            link = str(item.get("href") or item.get("url") or "").strip()
+            title = re.sub(r"\\s+", " ", str(item.get("title", ""))).strip()
+            content = re.sub(r"\\s+", " ", str(item.get("body") or item.get("content") or "")).strip()
+            if link.startswith(("http://", "https://")) and title:
+                results.append({
+                    "title": title, "url": link, "content": content,
+                    "source": "ddgs",
+                })
+        return results[:10]
+    except Exception as e:
+        print(f"⚠️ DDGS search unavailable: {e}")
+        return []
+
+
 def bing_rss_search(q):
     url = "https://www.bing.com/search?format=rss&q=" + quote_plus(q)
     raw = http_get(url, timeout=20)
@@ -251,9 +284,12 @@ def search_web(q, require_morocco=True):
     # Prefer the free meta-search API; it combines available engines rather than
     # relying on a single RSS endpoint that has returned unrelated results.
     engines = (
-        ("searxng", searxng_search),
+        # DDGS rotates across public search backends and is less brittle than scraping
+        # one search engine's HTML directly. No key or paid search credits required.
+        ("ddgs", ddgs_search),
         ("bing-rss", bing_rss_search),
         ("duckduckgo", ddg_html_search),
+        ("searxng", searxng_search),
     )
     for source, search_fn in engines:
         try:
