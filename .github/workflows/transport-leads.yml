@@ -12,9 +12,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: transport-lead-agent
+  cancel-in-progress: false
+
 jobs:
   discover:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -27,16 +32,19 @@ jobs:
       PRESENTATION_URL: 'https://trmb.ma/'
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
-      - name: Vérifier les clés et la configuration
+      - name: Vérifier la configuration
         run: |
-          test -n "$TAVILY_API_KEY" || { echo "❌ TAVILY_API_KEY manquante"; exit 1; }
-          echo "✅ TAVILY_API_KEY détectée"
+          if [ -n "$TAVILY_API_KEY" ]; then
+            echo "✅ TAVILY_API_KEY détectée — utilisée en priorité"
+          else
+            echo "ℹ️ TAVILY_API_KEY absente — recherche de secours sans clé activée"
+          fi
           if [ -n "$SMTP_HOST" ] && [ -n "$SMTP_USER" ] && [ -n "$SMTP_PASSWORD" ]; then
             echo "✅ SMTP détecté — envoi automatique activé"
           else
