@@ -133,22 +133,59 @@ def history_keys(d):
         if isinstance(v,dict) and v.get("email"): keys.add(v["email"].lower())
     return keys
 
+def _imap_folder_name(raw_name):
+    """Extract a mailbox name from an IMAP LIST response, including quoted/unquoted names."""
+    line=raw_name.decode(errors="replace") if isinstance(raw_name,(bytes,bytearray)) else str(raw_name)
+    m=re.search(r'\)\s+(?:"[^"]*"|[^\s]+)\s+(.+)$',line)
+    if not m: return ""
+    name=m.group(1).strip()
+    if len(name)>=2 and name[0]=='"' and name[-1]=='"':
+        name=name[1:-1].replace('\\"','"').replace('\\\\','\\')
+    return name
+
+def _imap_listed_folders(imap):
+    """Return (name, flags) for all mailboxes exposed by the server."""
+    folders=[]
+    status,names=imap.list("","*")
+    if status!="OK": return folders
+    for raw_name in names or []:
+        line=raw_name.decode(errors="replace") if isinstance(raw_name,(bytes,bytearray)) else str(raw_name)
+        flag_match=re.match(r'^\(([^)]*)\)',line)
+        flags=(flag_match.group(1).lower().split() if flag_match else [])
+        name=_imap_folder_name(raw_name)
+        if name: folders.append((name,flags,line))
+    return folders
+
 def save_to_sent(raw):
-    host=os.environ.get("IMAP_HOST",os.environ.get("SMTP_HOST","")).strip(); port=int(os.environ.get("IMAP_PORT","993")); user=os.environ.get("IMAP_USER",os.environ.get("SMTP_USER","")).strip(); password=os.environ.get("IMAP_PASSWORD",os.environ.get("SMTP_PASSWORD",""))
+    host=os.environ.get("IMAP_HOST",os.environ.get("SMTP_HOST","")).strip()
+    port=int(os.environ.get("IMAP_PORT","993"))
+    user=os.environ.get("IMAP_USER",os.environ.get("SMTP_USER","")).strip()
+    password=os.environ.get("IMAP_PASSWORD",os.environ.get("SMTP_PASSWORD",""))
     if not all([host,user,password]): return False,"IMAP not configured"
     wanted=[x.strip() for x in os.environ.get("IMAP_SENT_FOLDER","Sent,INBOX.Sent,INBOX/Sent").split(",") if x.strip()]
     try:
         with imaplib.IMAP4_SSL(host,port) as imap:
-            imap.login(user,password); status,names=imap.list(); available=[]
-            if status=="OK":
-                for raw_name in names or []:
-                    line=raw_name.decode(errors="ignore"); m=re.search(r'"([^"]+)"\s*$',line)
-                    if m: available.append(m.group(1))
-            target=next((x for x in wanted if x in available),None)
-            if not target: target=next((x for x in available if x.lower() in {"sent","sent items","inbox.sent","inbox/sent"}),None)
-            if not target: return False,"Sent folder not found"
+            imap.login(user,password)
+            folders=_imap_listed_folders(imap)
+            wanted_lower={x.lower() for x in wanted}
+            target=None
+            for name,flags,_ in folders:
+                if name.lower() in wanted_lower:
+                    target=name; break
+            if not target:
+                for name,flags,_ in folders:
+                    if "\\sent" in flags or "\\sent" in name.lower():
+                        target=name; break
+            if not target:
+                aliases={"sent","sent items","sent mail","sent messages","outbox"}
+                for name,flags,_ in folders:
+                    base=name.rsplit("/",1)[-1].rsplit(".",1)[-1].strip().lower()
+                    if base in aliases:
+                        target=name; break
+            if not target:
+                return False,"Sent folder not found (IMAP LIST checked)"
             ok,_=imap.append(target,"\\Seen",imaplib.Time2Internaldate(time.time()),raw)
-            return ok=="OK",("saved to Sent" if ok=="OK" else "IMAP append failed")
+            return ok=="OK",("saved to Sent: "+target if ok=="OK" else "IMAP append failed: "+target)
     except Exception as e: return False,f"IMAP Sent save error: {e}"
 
 def send_email(to_addr,subject,body):
