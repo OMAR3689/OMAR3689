@@ -552,7 +552,89 @@ def save_to_sent_folder(msg):
                 if not row:
                     continue
                 decoded = row.decode("utf-8", errors="ignore")
-                match = re.search(r'\(([^)]*)\)\s+(?:"[^"]*"|NIL)\s+(.+)
+                match = re.search(r'\(([^)]*)\)\s+(?:"[^"]*"|NIL)\s+(.+)$', decoded)
+                if not match:
+                    continue
+                flags = match.group(1).lower()
+                raw_name = match.group(2).strip()
+                if raw_name.startswith('"') and raw_name.endswith('"'):
+                    raw_name = raw_name[1:-1].replace(r'\"', '"')
+                folders.append((raw_name, flags))
+
+            for name, flags in folders:
+                if r"\sent" in flags:
+                    folder = name
+                    break
+            if not folder:
+                preferred = ("sent", "inbox.sent", "sent messages", "sent items", "envoyés", "envoyÃ©s")
+                for name, _flags in folders:
+                    if name.lower() in preferred:
+                        folder = name
+                        break
+            if not folder:
+                return False, "Could not identify Sent folder; set IMAP_SENT_FOLDER GitHub secret"
+
+        status, response = client.append(
+            folder,
+            r"\Seen",
+            imaplib.Time2Internaldate(time.time()),
+            msg.as_bytes(),
+        )
+        if status != "OK":
+            return False, f"IMAP APPEND failed: {response}"
+        return True, folder
+    except Exception as e:
+        return False, str(e)
+    finally:
+        if client is not None:
+            try:
+                client.logout()
+            except Exception:
+                pass
+
+
+def send_email(to_addr, subject, body):
+    host = os.environ.get("SMTP_HOST", "").strip()
+    port = int(os.environ.get("SMTP_PORT", "465"))
+    user = os.environ.get("SMTP_USER", "").strip()
+    password = os.environ.get("SMTP_PASSWORD", "")
+    sender = os.environ.get("SMTP_FROM", "").strip() or user
+    if not all([host, user, password, sender]):
+        return False, "SMTP credentials not configured"
+    msg = EmailMessage()
+    msg["From"] = sender
+    msg["To"] = to_addr
+    msg["Subject"] = subject
+    msg.set_content(body)
+    for attempt in range(1, SMTP_RETRIES + 1):
+        try:
+            if port == 465:
+                context = ssl.create_default_context()
+                with smtplib.SMTP_SSL(host, port, context=context, timeout=30) as smtp:
+                    smtp.login(user, password)
+                    smtp.send_message(msg)
+            else:
+                with smtplib.SMTP(host, port, timeout=30) as smtp:
+                    smtp.ehlo()
+                    if port in (587, 25):
+                        smtp.starttls(context=ssl.create_default_context())
+                        smtp.ehlo()
+                    smtp.login(user, password)
+                    smtp.send_message(msg)
+
+            saved, folder_or_error = save_to_sent_folder(msg)
+            if saved:
+                print(f"📨 Copy saved to IMAP Sent folder: {folder_or_error}")
+            else:
+                print(f"⚠️ Email accepted by SMTP, but copy not saved to Sent: {folder_or_error}")
+            return True, "accepted_by_smtp"
+        except Exception as e:
+            if attempt < SMTP_RETRIES:
+                time.sleep(2 * attempt)
+            else:
+                return False, str(e)
+    return False, "unknown SMTP error"
+
 
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
