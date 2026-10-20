@@ -1,3 +1,1 @@
-timestamp,company,email,domain,need,score,source,url,qualified,status,reason
-2026-10-20T20:31:35.170622+00:00,Transport - Wikipedia,,en.wikipedia.org,livraison / distribution,71,bing-rss,https://en.wikipedia.org/wiki/Transport,False,no_email,buyer_signals=1; sector=yes; score=71
-2026-10-20T20:31:39.697026+00:00,LIVRAISON in English - Cambridge Dictionary,,dictionary.cambridge.org,livraison / distribution,23,bing-rss,https://dictionary.cambridge.org/dictionary/french-english/livraison,False,no_email,buyer_signals=1; sector=yes; score=23
+﻿timestamp,company,email,domain,url,need,score,source,status,sent_at,smtp_error
