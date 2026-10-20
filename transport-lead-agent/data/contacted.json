@@ -43,5 +43,26 @@
     "email": "madonna@huaxialed.com",
     "company": "Entreprises Transports et logistique en Maroc - Kompass",
     "sent_at": "2026-10-20T18:30:29.916055+00:00"
+  },
+  "https://www.aomaroc.com/offres/qualification/d-8.html": {
+    "email": "notifs@aomaroc.com",
+    "company": "Appels d'offres qualification D.8 — marchés publics | AO Maroc",
+    "message_id": "<179252215326.2079.8200216206847326330@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:16.926048+00:00"
+  },
+  "https://fr.scribd.com/presentation/709797155/Systeme-de-transport-au-Maroc": {
+    "email": "info@bestwebsite.com",
+    "company": "Système de transport au Maroc | PDF | Finance et gestion monétaire",
+    "message_id": "<179252215692.2079.10523105969616952093@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:19.824136+00:00"
+  },
+  "https://www.bav.admin.ch/fr/autorisations-de-transport-de-marchandises": {
+    "email": "lizenz@bav.admin.ch",
+    "company": "Autorisations de transport de marchandises - OFT",
+    "message_id": "<179252215982.2079.14702478058371538089@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:22.686739+00:00"
   }
 }
