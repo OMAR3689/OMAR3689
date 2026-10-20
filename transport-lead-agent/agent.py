@@ -3,6 +3,7 @@ import json
 import os
 import re
 import smtplib
+import imaplib
 import ssl
 import time
 import xml.etree.ElementTree as ET
@@ -518,6 +519,254 @@ def save_history(data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
+def save_to_sent_folder(msg):
+    """Append a copy of an SMTP-submitted message to the account's IMAP Sent folder."""
+    host = os.environ.get("IMAP_HOST", "").strip() or os.environ.get("SMTP_HOST", "").strip()
+    port = int(os.environ.get("IMAP_PORT", "993"))
+    user = os.environ.get("SMTP_USER", "").strip()
+    password = os.environ.get("SMTP_PASSWORD", "")
+    explicit_folder = os.environ.get("IMAP_SENT_FOLDER", "").strip()
+
+    if not all([host, user, password]):
+        return False, "IMAP credentials not configured"
+
+    client = None
+    try:
+        context = ssl.create_default_context()
+        if port == 993:
+            client = imaplib.IMAP4_SSL(host, port, ssl_context=context, timeout=25)
+        else:
+            client = imaplib.IMAP4(host, port, timeout=25)
+            if port == 143:
+                client.starttls(ssl_context=context)
+
+        client.login(user, password)
+
+        folder = explicit_folder
+        if not folder:
+            status, rows = client.list()
+            if status != "OK":
+                return False, "IMAP could not list mail folders"
+            folders = []
+            for row in rows or []:
+                if not row:
+                    continue
+                decoded = row.decode("utf-8", errors="ignore")
+                match = re.search(r'\(([^)]*)\)\s+(?:"[^"]*"|NIL)\s+(.+)
+
+def main():
+    os.makedirs(OUT_DIR, exist_ok=True)
+    history = load_history()
+    contacted = {str(k).lower() for k in history.keys()}
+    for value in history.values():
+        if isinstance(value, dict):
+            for field in ("email", "domain"):
+                if value.get(field):
+                    contacted.add(str(value[field]).lower())
+
+    all_leads = []
+    seen = set()
+    source_counts = {}
+    print("Starting Morocco-only B2B buyer discovery with free search sources...")
+
+    for q, sector_hint in QUERIES:
+        print(f"Searching: {q}")
+        results, source = search_web(q)
+        source_counts[source] = source_counts.get(source, 0) + 1
+        for item in results:
+            url = item.get("url", "").strip()
+            title = item.get("title", "").strip()
+            content = item.get("content", "").strip()
+            if not url or not title:
+                continue
+            d = domain(url)
+            key = d or url
+            if key in seen or key in contacted:
+                continue
+
+            # Search-engine RSS can return unrelated global results for Morocco queries.
+            # Filter known finance/media domains before visiting or contacting them.
+            if is_non_prospect_source(title, content, url):
+                print(f"⏭️ Rejected non-prospect/finance result: {title[:90]}")
+                continue
+            if not is_morocco_candidate(title, content, url):
+                print(f"⏭️ Rejected non-Morocco result: {title[:90]}")
+                continue
+
+            # Confirm actual page evidence; never use the query's sector hint as proof.
+            site_text, _ = fetch_page(url)
+            evidence = f"{title} {content} {url} {site_text[:40000]}"
+            if is_non_prospect_source(title, evidence, url):
+                print(f"⏭️ Rejected finance/media page: {title[:90]}")
+                continue
+            if not is_morocco_candidate(title, evidence, url):
+                print(f"⏭️ Rejected page without Morocco evidence: {title[:90]}")
+                continue
+            if not has_real_sector_evidence(evidence):
+                print(f"⏭️ Rejected page without sector evidence: {title[:90]}")
+                continue
+            if is_bad_prospect(title, evidence, url):
+                print(f"⏭️ Rejected transport provider/directory: {title[:90]}")
+                continue
+
+            s = score(evidence)
+            if s < 15:
+                continue
+            seen.add(key)
+            company = clean_company(title)
+            email = discover_email(url)
+            if not email:
+                email = public_email(company, url)
+            lead = {
+                "timestamp": now_iso(),
+                "company": company,
+                "email": email,
+                "domain": d,
+                "url": url,
+                "need": detect_need(evidence),
+                "sector_hint": sector_hint,
+                "score": s,
+                "source": source,
+                "status": "qualified" if email else "no_email",
+            }
+            all_leads.append(lead)
+            if len(all_leads) >= 30:
+                break
+        if len(all_leads) >= 30:
+            break
+
+
+    # Add verified official-contact fallbacks when search engines return little or no data.
+    # Skip every company or email already contacted; never re-send on later scheduled runs.
+    seeded_added = 0
+    existing_domains_with_email = {
+        x.get("domain", "").lower() for x in all_leads if x.get("email")
+    }
+    existing_emails = {x.get("email", "").lower() for x in all_leads if x.get("email")}
+    for seed in SEEDED_PUBLIC_CONTACTS:
+        email = seed["email"].lower()
+        d = seed["domain"].lower()
+        if email in contacted or d in contacted or email in existing_emails or d in existing_domains_with_email:
+            continue
+        lead = {
+            "timestamp": now_iso(),
+            **seed,
+            "source": "verified-official-contact-fallback",
+            "status": "qualified",
+        }
+        all_leads.append(lead)
+        existing_emails.add(email)
+        existing_domains_with_email.add(d)
+        seeded_added += 1
+    print(f"Added {seeded_added} verified official-contact fallback prospects")
+
+    all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
+    qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
+    sent = 0
+    smtp_failures = 0
+    sent_last_hour = count_sends_in_last_hour(history)
+    if sent_last_hour >= MAX_EMAILS_PER_HOUR:
+        print(
+            f"⏸️ Hourly safety limit already reached "
+            f"({sent_last_hour}/{MAX_EMAILS_PER_HOUR}); no emails will be sent this run"
+        )
+
+    for lead in qualified:
+        if sent >= MAX_EMAILS:
+            break
+        if sent_last_hour >= MAX_EMAILS_PER_HOUR:
+            print(
+                f"⏸️ Hourly safety limit reached "
+                f"({sent_last_hour}/{MAX_EMAILS_PER_HOUR}); remaining leads kept for a later run"
+            )
+            break
+        email = lead["email"].lower()
+        if email in contacted or lead["domain"] in contacted:
+            continue
+        subject, body = build_message(lead["company"], lead["need"])
+        ok, detail = send_email(email, subject, body)
+        if ok:
+            sent += 1
+            lead["status"] = "sent"
+            lead["sent_at"] = now_iso()
+            history[email] = {
+                "company": lead["company"],
+                "domain": lead["domain"],
+                "sent_at": lead["sent_at"],
+                "subject": subject,
+            }
+            contacted.add(email)
+            sent_last_hour += 1
+            if lead["domain"]:
+                contacted.add(lead["domain"])
+            print(f"✅ Email accepted by SMTP: {lead['company']} <{email}>")
+        else:
+            smtp_failures += 1
+            lead["status"] = "smtp_error"
+            lead["smtp_error"] = detail
+            print(f"⚠️ SMTP failed for {email}: {detail}")
+
+    with open(LEADS_JSON, "w", encoding="utf-8") as f:
+        json.dump(all_leads, f, ensure_ascii=False, indent=2)
+
+    fields = ["timestamp", "company", "email", "domain", "url", "need", "sector_hint", "score", "source", "email_source_url", "status", "sent_at", "smtp_error"]
+    with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(all_leads)
+
+    save_history(history)
+    print(
+        f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
+        f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; sent {sent} emails; "
+        f"SMTP failures {smtp_failures}; no email {sum(1 for x in all_leads if not x.get('email'))}"
+    )
+
+
+if __name__ == "__main__":
+    main()
+, decoded)
+                if not match:
+                    continue
+                flags = match.group(1).lower()
+                raw_name = match.group(2).strip()
+                if raw_name.startswith('"') and raw_name.endswith('"'):
+                    raw_name = raw_name[1:-1].replace(r'\"', '"')
+                folders.append((raw_name, flags))
+
+            # Prefer the server's special-use Sent mailbox if it advertises one.
+            for name, flags in folders:
+                if r"\sent" in flags:
+                    folder = name
+                    break
+            if not folder:
+                for name, _flags in folders:
+                    lname = name.lower()
+                    if lname in ("sent", "inbox.sent", "sent messages", "sent items", "envoyés", "envoyÃ©s"):
+                        folder = name
+                        break
+            if not folder:
+                return False, "Could not identify Sent folder; set IMAP_SENT_FOLDER GitHub secret"
+
+        status, response = client.append(
+            folder,
+            r"\Seen",
+            imaplib.Time2Internaldate(time.time()),
+            msg.as_bytes(),
+        )
+        if status != "OK":
+            return False, f"IMAP APPEND failed: {response}"
+        return True, folder
+    except Exception as e:
+        return False, str(e)
+    finally:
+        if client is not None:
+            try:
+                client.logout()
+            except Exception:
+                pass
+
+
 def send_email(to_addr, subject, body):
     host = os.environ.get("SMTP_HOST", "").strip()
     port = int(os.environ.get("SMTP_PORT", "465"))
@@ -546,7 +795,15 @@ def send_email(to_addr, subject, body):
                         smtp.ehlo()
                     smtp.login(user, password)
                     smtp.send_message(msg)
-            return True, "sent"
+
+            # SMTP acceptance and recipient delivery are different statuses. Save a
+            # copy in Roundcube's Sent folder separately; do not fail sending if IMAP fails.
+            saved, folder_or_error = save_to_sent_folder(msg)
+            if saved:
+                print(f"📨 Copy saved to IMAP Sent folder: {folder_or_error}")
+            else:
+                print(f"⚠️ Email accepted by SMTP, but copy not saved to Sent: {folder_or_error}")
+            return True, "accepted_by_smtp"
         except Exception as e:
             if attempt < SMTP_RETRIES:
                 time.sleep(2 * attempt)
