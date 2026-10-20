@@ -76,6 +76,27 @@ TARGET_SECTOR_SIGNALS = (
     "plateforme", "commerce", "hôtel", "hotel", "tourisme", "laboratoire", "fabricant",
 )
 
+# Hard blocks for search results that are clearly financial content, media, or directories.
+# These are never legitimate TRMB transport buyers, even if a broad search returns them.
+NON_PROSPECT_DOMAINS = {
+    "stockanalysis.com", "zacks.com", "marketbeat.com", "investing.com",
+    "marketwatch.com", "seekingalpha.com", "macrotrends.net", "marketscreener.com",
+    "tradingview.com", "barchart.com", "benzinga.com", "tipranks.com",
+    "simplywall.st", "companiesmarketcap.com", "finance.yahoo.com",
+}
+FINANCE_NOISE = (
+    "stock price", "stock price today", "stock price & overview", "stock market",
+    "stock quote", "share price", "price target", "analyst rating", "analyst ratings",
+    "marketbeat", "zacks", "stockanalysis", "earnings per share", "market capitalization",
+    "nasdaq", "nyse", "ticker symbol", "investment research", "dividend history",
+)
+MOROCCO_SIGNALS = (
+    "maroc", "morocco", "casablanca", "rabat", "tanger", "tangier", "marrakech",
+    "marrakesh", "agadir", "kenitra", "kénitra", "fes", "fès", "meknes", "meknès",
+    "oujda", "tetouan", "tétouan", "mohammedia", "safi", "el jadida", "berrechid",
+    "benguerir", "benguérir",
+)
+
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
@@ -220,7 +241,8 @@ def public_email(title, url):
             candidate_url = item.get("url", "") or url
             blob = f"{item.get('title', '')} {item.get('content', '')}"
             for email in extract_emails(blob):
-                if usable_email(email, candidate_url):
+                # Keep public-email search constrained to the original company domain.
+                if usable_email(email, url):
                     return email
     return ""
 
@@ -250,6 +272,27 @@ def is_bad_prospect(title, content, url):
     buyer_hits = sum(1 for x in BUYER_SIGNALS if x in t)
     sector_hits = sum(1 for x in TARGET_SECTOR_SIGNALS if x in t)
     return provider_hits >= 2 and buyer_hits <= 2 and sector_hits < 2
+
+
+def is_non_prospect_source(title, content, url):
+    host = domain(url)
+    if host in NON_PROSPECT_DOMAINS or any(host.endswith("." + x) for x in NON_PROSPECT_DOMAINS):
+        return True
+    text = f"{title} {content} {url}".lower()
+    return any(signal in text for signal in FINANCE_NOISE)
+
+
+def is_morocco_candidate(title, content, url):
+    host = domain(url)
+    if host.endswith(".ma"):
+        return True
+    text = f"{title} {content} {url}".lower()
+    return any(signal in text for signal in MOROCCO_SIGNALS)
+
+
+def has_real_sector_evidence(text):
+    t = (text or "").lower()
+    return any(x in t for x in TARGET_SECTOR_SIGNALS) or any(x in t for x in BUYER_SIGNALS)
 
 
 def detect_need(content):
@@ -362,12 +405,33 @@ def main():
             key = d or url
             if key in seen or key in contacted:
                 continue
-            combined = f"{title} {content} {url}"
-            if is_bad_prospect(title, content, url):
+
+            # Search-engine RSS can return unrelated global results for Morocco queries.
+            # Filter known finance/media domains before visiting or contacting them.
+            if is_non_prospect_source(title, content, url):
+                print(f"⏭️ Rejected non-prospect/finance result: {title[:90]}")
                 continue
-            # Include the sector we intentionally searched for, because RSS
-            # snippets frequently return a company name with little description.
-            s = score(f"{combined} {sector_hint}")
+            if not is_morocco_candidate(title, content, url):
+                print(f"⏭️ Rejected non-Morocco result: {title[:90]}")
+                continue
+
+            # Confirm actual page evidence; never use the query's sector hint as proof.
+            site_text, _ = fetch_page(url)
+            evidence = f"{title} {content} {url} {site_text[:40000]}"
+            if is_non_prospect_source(title, evidence, url):
+                print(f"⏭️ Rejected finance/media page: {title[:90]}")
+                continue
+            if not is_morocco_candidate(title, evidence, url):
+                print(f"⏭️ Rejected page without Morocco evidence: {title[:90]}")
+                continue
+            if not has_real_sector_evidence(evidence):
+                print(f"⏭️ Rejected page without sector evidence: {title[:90]}")
+                continue
+            if is_bad_prospect(title, evidence, url):
+                print(f"⏭️ Rejected transport provider/directory: {title[:90]}")
+                continue
+
+            s = score(evidence)
             if s < 15:
                 continue
             seen.add(key)
@@ -381,7 +445,7 @@ def main():
                 "email": email,
                 "domain": d,
                 "url": url,
-                "need": detect_need(combined),
+                "need": detect_need(evidence),
                 "sector_hint": sector_hint,
                 "score": s,
                 "source": source,
