@@ -25,6 +25,30 @@ jobs:
       - name: Check Python syntax
         run: python -m py_compile transport-lead-agent/agent.py
 
+      - name: Verify official presentation PDF is downloadable
+        run: |
+          python - <<'PY'
+          import os
+          from urllib.request import Request, urlopen
+
+          url = "https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018"
+          req = Request(
+              url,
+              headers={
+                  "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-PDF-Check/1.0)",
+                  "Accept": "application/pdf,*/*;q=0.8",
+              },
+          )
+          with urlopen(req, timeout=25) as response:
+              data = response.read(10 * 1024 * 1024 + 1)
+              content_type = response.headers.get("Content-Type", "")
+              status = response.status
+          assert status == 200, f"Unexpected HTTP status: {status}"
+          assert len(data) <= 10 * 1024 * 1024, "PDF is larger than the 10 MB limit"
+          assert data.startswith(b"%PDF-"), f"Response is not a PDF: {content_type}"
+          print(f"✅ Official presentation PDF is reachable ({len(data)} bytes, {content_type}).")
+          PY
+
       - name: Smoke-test safety helpers (no emails sent)
         run: |
           python - <<'PY'
