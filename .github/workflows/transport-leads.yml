@@ -14,6 +14,13 @@ jobs:
     env:
       TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      MAX_EMAILS_PER_RUN: '5'
+      PRESENTATION_URL: 'https://trmb.ma/'
 
     steps:
       - uses: actions/checkout@v4
@@ -22,17 +29,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Vérifier les clés API
+      - name: Vérifier les clés et la configuration
         run: |
           test -n "$TAVILY_API_KEY" || { echo "❌ TAVILY_API_KEY manquante"; exit 1; }
           echo "✅ TAVILY_API_KEY détectée"
-          if [ -n "$OPENAI_API_KEY" ]; then
-            echo "✅ OPENAI_API_KEY détectée"
+          if [ -n "$SMTP_HOST" ] && [ -n "$SMTP_USER" ] && [ -n "$SMTP_PASSWORD" ]; then
+            echo "✅ SMTP détecté — envoi automatique activé"
           else
-            echo "⚠️ OPENAI_API_KEY absente — qualification IA désactivée"
+            echo "⚠️ SMTP incomplet — aucun email ne sera envoyé"
           fi
 
-      - name: Discover leads
+      - name: Discover leads and outreach
         run: python transport-lead-agent/agent.py
 
       - name: Commit lead files
@@ -40,5 +47,5 @@ jobs:
           git config user.name 'AI Transport Lead Agent'
           git config user.email 'actions@github.com'
           git add transport-lead-agent/data/leads.json transport-lead-agent/data/leads.csv transport-lead-agent/data/contacted.json
-          git diff --cached --quiet || git commit -m 'Update transport leads'
+          git diff --cached --quiet || git commit -m 'Update transport leads and outreach log'
           git push
