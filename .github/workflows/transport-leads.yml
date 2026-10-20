@@ -5,22 +5,40 @@ on:
   schedule:
     - cron: '0 8 * * *'
 
+permissions:
+  contents: write
+
 jobs:
   discover:
     runs-on: ubuntu-latest
+    env:
+      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
+      - name: Vérifier les clés API
+        run: |
+          test -n "$TAVILY_API_KEY" || { echo "❌ TAVILY_API_KEY manquante"; exit 1; }
+          echo "✅ TAVILY_API_KEY détectée"
+          if [ -n "$OPENAI_API_KEY" ]; then
+            echo "✅ OPENAI_API_KEY détectée"
+          else
+            echo "⚠️ OPENAI_API_KEY absente — qualification IA désactivée"
+          fi
+
       - name: Discover leads
-        env:
-          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         run: python transport-lead-agent/agent.py
+
       - name: Commit lead files
         run: |
           git config user.name 'AI Transport Lead Agent'
           git config user.email 'actions@github.com'
-          git add transport-lead-agent/data/leads.json transport-lead-agent/data/leads.csv
+          git add transport-lead-agent/data/leads.json transport-lead-agent/data/leads.csv transport-lead-agent/data/contacted.json
           git diff --cached --quiet || git commit -m 'Update transport leads'
           git push
