@@ -2,10 +2,6 @@ name: Transport Lead Agent
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths-ignore:
-      - 'transport-lead-agent/data/**'
   schedule:
     - cron: '0 */2 * * *'
 
@@ -26,7 +22,8 @@ jobs:
       SMTP_USER: ${{ secrets.SMTP_USER }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       SMTP_FROM: ${{ secrets.SMTP_FROM }}
-      MAX_EMAILS_PER_RUN: '5'
+      MAX_EMAILS_PER_RUN: '3'
+      MAX_EMAILS_PER_HOUR: '3'
       PRESENTATION_URL: 'https://trmb.ma/'
       SMTP_RETRIES: '3'
 
@@ -58,4 +55,5 @@ jobs:
           git config user.email 'actions@github.com'
           git add transport-lead-agent/data/leads.json transport-lead-agent/data/leads.csv transport-lead-agent/data/contacted.json
           git diff --cached --quiet || git commit -m 'Update transport leads and outreach log'
+          git pull --rebase origin main
           git push
