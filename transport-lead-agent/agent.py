@@ -19,7 +19,16 @@ LEADS_CSV = os.path.join(OUT_DIR, "leads.csv")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "3"))
 MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "3"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/").strip()
+PRESENTATION_PDF_URL = os.environ.get(
+    "PRESENTATION_PDF_URL",
+    "https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018",
+).strip()
+PRESENTATION_PDF_FILENAME = os.environ.get(
+    "PRESENTATION_PDF_FILENAME", "Presentation_TRMB_SERVICES_2026.pdf"
+).strip()
 SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
+_PRESENTATION_PDF_CACHE = None
+_PRESENTATION_PDF_ERROR = None
 
 # Free sources only. No Tavily/API credits required.
 # Queries focus on Moroccan companies likely to BUY transport/logistics,
@@ -473,7 +482,8 @@ def build_message(company, need):
         "Je me permets de vous contacter au nom de TRMB SERVICES, société spécialisée dans les solutions de transport et de logistique au Maroc.\n\n"
         f"Nous accompagnons les entreprises pour leurs besoins de {need}, avec des solutions adaptées aux trajets, volumes, fréquences et contraintes opérationnelles.\n\n"
         f"Nous contactons {company} pour vous présenter nos solutions et vérifier si elles peuvent répondre à vos besoins actuels ou futurs. Nous serions ravis d'échanger avec votre équipe et de vous proposer une offre adaptée si cela vous intéresse.\n\n"
-        f"Présentation : {PRESENTATION_URL}\n\n"
+        "Vous trouverez notre présentation commerciale TRMB SERVICES en PDF en pièce jointe.\n\n"
+        f"Site web : {PRESENTATION_URL}\n\n"
         "Si vous avez un besoin actuel ou à venir, envoyez-nous simplement les informations disponibles. Nous vous répondrons rapidement.\n\n"
         "Bien cordialement,\n"
         "TRMB SERVICES\n"
@@ -593,6 +603,113 @@ def save_to_sent_folder(msg):
                 pass
 
 
+def load_presentation_pdf():
+    """Download and validate the official TRMB Services presentation PDF once per run."""
+    global _PRESENTATION_PDF_CACHE, _PRESENTATION_PDF_ERROR
+    if _PRESENTATION_PDF_CACHE is not None:
+        return _PRESENTATION_PDF_CACHE, ""
+    if _PRESENTATION_PDF_ERROR is not None:
+        return None, _PRESENTATION_PDF_ERROR
+
+    if not PRESENTATION_PDF_URL.startswith(("https://", "http://")):
+        _PRESENTATION_PDF_ERROR = "PRESENTATION_PDF_URL must be an HTTP(S) URL"
+        return None, _PRESENTATION_PDF_ERROR
+
+    req = Request(
+        PRESENTATION_PDF_URL,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/3.0)",
+            "Accept": "application/pdf,*/*;q=0.8",
+        },
+    )
+    try:
+        with urlopen(req, timeout=25) as response:
+            data = response.read(10 * 1024 * 1024 + 1)
+        if len(data) > 10 * 1024 * 1024:
+            raise ValueError("presentation PDF exceeds the 10 MB attachment limit")
+        if not data.startswith(b"%PDF-"):
+            raise ValueError("downloaded presentation is not a valid PDF file")
+        _PRESENTATION_PDF_CACHE = data
+        print(f"📎 Official presentation PDF ready ({len(data)} bytes)")
+        return data, ""
+    except Exception as e:
+        _PRESENTATION_PDF_ERROR = str(e)
+        print(f"❌ Presentation PDF unavailable; no email will be sent without it: {_PRESENTATION_PDF_ERROR}")
+        return None, _PRESENTATION_PDF_ERROR
+
+
+def save_to_sent_folder(msg):
+    """Try to save a copy into the mailbox's IMAP Sent folder; SMTP success is independent."""
+    host = os.environ.get("IMAP_HOST", "").strip() or os.environ.get("SMTP_HOST", "").strip()
+    port = int(os.environ.get("IMAP_PORT", "993"))
+    user = os.environ.get("SMTP_USER", "").strip()
+    password = os.environ.get("SMTP_PASSWORD", "")
+    explicit_folder = os.environ.get("IMAP_SENT_FOLDER", "").strip()
+    if not all([host, user, password]):
+        return False, "IMAP credentials not configured"
+
+    client = None
+    try:
+        context = ssl.create_default_context()
+        if port == 993:
+            client = imaplib.IMAP4_SSL(host, port, ssl_context=context, timeout=25)
+        else:
+            client = imaplib.IMAP4(host, port, timeout=25)
+            if port == 143:
+                client.starttls(ssl_context=context)
+        client.login(user, password)
+
+        folder = explicit_folder
+        if not folder:
+            status, rows = client.list()
+            if status != "OK":
+                return False, "IMAP could not list mailbox folders"
+            folders = []
+            for row in rows or []:
+                if not row:
+                    continue
+                decoded = row.decode("utf-8", errors="ignore")
+                match = re.search(r'\(([^)]*)\)\s+(?:"[^"]*"|NIL)\s+(.+)$', decoded)
+                if not match:
+                    continue
+                flags = match.group(1).lower()
+                raw_name = match.group(2).strip()
+                if raw_name.startswith('"') and raw_name.endswith('"'):
+                    raw_name = raw_name[1:-1].replace(r'\"', '"')
+                folders.append((raw_name, flags))
+
+            for name, flags in folders:
+                if r"\sent" in flags:
+                    folder = name
+                    break
+            if not folder:
+                preferred = ("sent", "inbox.sent", "sent messages", "sent items", "envoyés", "envoyÃ©s")
+                for name, _flags in folders:
+                    if name.lower() in preferred:
+                        folder = name
+                        break
+            if not folder:
+                return False, "Sent folder not identified; set IMAP_SENT_FOLDER secret"
+
+        status, response = client.append(
+            folder,
+            r"\Seen",
+            imaplib.Time2Internaldate(time.time()),
+            msg.as_bytes(),
+        )
+        if status != "OK":
+            return False, f"IMAP APPEND failed: {response}"
+        return True, folder
+    except Exception as e:
+        return False, str(e)
+    finally:
+        if client is not None:
+            try:
+                client.logout()
+            except Exception:
+                pass
+
+
 def send_email(to_addr, subject, body):
     host = os.environ.get("SMTP_HOST", "").strip()
     port = int(os.environ.get("SMTP_PORT", "465"))
@@ -601,11 +718,23 @@ def send_email(to_addr, subject, body):
     sender = os.environ.get("SMTP_FROM", "").strip() or user
     if not all([host, user, password, sender]):
         return False, "SMTP credentials not configured"
+
+    pdf_bytes, pdf_error = load_presentation_pdf()
+    if pdf_bytes is None:
+        return False, f"Presentation PDF unavailable; message not sent: {pdf_error}"
+
     msg = EmailMessage()
     msg["From"] = sender
     msg["To"] = to_addr
     msg["Subject"] = subject
     msg.set_content(body)
+    msg.add_attachment(
+        pdf_bytes,
+        maintype="application",
+        subtype="pdf",
+        filename=PRESENTATION_PDF_FILENAME,
+    )
+
     for attempt in range(1, SMTP_RETRIES + 1):
         try:
             if port == 465:
@@ -624,9 +753,9 @@ def send_email(to_addr, subject, body):
 
             saved, folder_or_error = save_to_sent_folder(msg)
             if saved:
-                print(f"📨 Copy saved to IMAP Sent folder: {folder_or_error}")
+                print(f"📨 Copy with PDF saved to IMAP Sent folder: {folder_or_error}")
             else:
-                print(f"⚠️ Email accepted by SMTP, but copy not saved to Sent: {folder_or_error}")
+                print(f"⚠️ Email accepted by SMTP, but Sent copy not saved: {folder_or_error}")
             return True, "accepted_by_smtp"
         except Exception as e:
             if attempt < SMTP_RETRIES:
