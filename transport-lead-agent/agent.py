@@ -22,19 +22,21 @@ SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
 # Free sources only. No Tavily/API credits required.
 # Queries focus on Moroccan companies likely to BUY transport/logistics,
 # rather than searching only for pages explicitly saying "need transport".
+# Each query carries a target-sector hint. The hint helps classify a potential buyer
+# even if Bing's short RSS snippet omits the sector words.
 QUERIES = [
-    'site:.ma Maroc usine industriel entreprise contact transport logistique',
-    'site:.ma Maroc agroalimentaire usine entreprise contact',
-    'site:.ma Maroc automobile usine entreprise contact',
-    'site:.ma Maroc distribution grossiste entreprise contact logistique',
-    'site:.ma Maroc pharmaceutique laboratoire entreprise contact',
-    'site:.ma Maroc importateur exportateur entreprise contact logistique',
-    'site:.ma Maroc construction chantier entreprise contact transport',
-    'site:.ma Maroc retail supermarché entreprise contact livraison',
-    'site:.ma Maroc hôtel tourisme entreprise contact transport',
-    'site:.ma Maroc entrepôt plateforme entreprise contact logistique',
-    'site:.ma Maroc fabricant production entreprise contact livraison',
-    'site:.ma Maroc "appel d offres" transport logistique entreprise',
+    ('entreprises agroalimentaires Maroc fabricants site officiel contact', 'agroalimentaire industrie'),
+    ('usines industrielles Maroc site officiel contact entreprise', 'industrie'),
+    ('fabricants pièces automobiles Maroc entreprise contact site officiel', 'automobile industrie'),
+    ('grossistes distributeurs Maroc entreprise site officiel contact', 'distribution grossiste'),
+    ('laboratoires pharmaceutiques Maroc entreprise contact site officiel', 'pharmaceutique'),
+    ('importateurs exportateurs Maroc entreprise site officiel contact', 'importateur exportateur'),
+    ('entreprises BTP construction Maroc site officiel contact', 'construction chantier'),
+    ('supermarchés commerce distribution Maroc entreprises contact', 'retail distribution'),
+    ('hôtels groupes hôteliers Maroc site officiel contact', 'hôtel tourisme'),
+    ('entrepôts plateformes industrielles Maroc entreprises contact', 'entrepôt logistique'),
+    ('fabricants producteurs Maroc usine entreprise contact', 'fabrication production'),
+    ('entreprises Maroc transport marchandises appel offres logistique', 'transport marchandises'),
 ]
 
 GENERIC_EMAIL_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
@@ -232,12 +234,12 @@ def clean_company(title):
 def score(text):
     t = (text or "").lower()
     buyer = sum(15 for x in BUYER_SIGNALS if x in t)
-    sector = sum(12 for x in TARGET_SECTOR_SIGNALS if x in t)
+    sector = sum(20 for x in TARGET_SECTOR_SIGNALS if x in t)
     provider = sum(30 for x in PROVIDER_SIGNALS if x in t)
-    directory = sum(50 for x in DIRECTORY_SIGNALS if x in t)
-    # A sector company is a potential buyer even when the indexed page
-    # does not literally contain a phrase such as "demande de devis".
-    return max(0, min(100, buyer + sector - provider - directory))
+    directory = sum(60 for x in DIRECTORY_SIGNALS if x in t)
+    # For outbound prospecting, verified sector fit is sufficient; a company
+    # need not publish a literal request for transport on its website.
+    return max(0, min(100, buyer + sector - provider - directory)
 
 
 def is_bad_prospect(title, content, url):
@@ -269,7 +271,7 @@ def build_message(company, need):
         "Bonjour,\n\n"
         "Je me permets de vous contacter au nom de TRMB SERVICES, société spécialisée dans les solutions de transport et de logistique au Maroc.\n\n"
         f"Nous accompagnons les entreprises pour leurs besoins de {need}, avec des solutions adaptées aux trajets, volumes, fréquences et contraintes opérationnelles.\n\n"
-        f"Nous avons identifié un besoin potentiel chez {company}. Nous serions ravis d'échanger avec votre équipe afin de comprendre votre besoin actuel ou à venir et de vous proposer une solution adaptée.\n\n"
+        f"Nous contactons {company} pour vous présenter nos solutions et vérifier si elles peuvent répondre à vos besoins actuels ou futurs. Nous serions ravis d'échanger avec votre équipe et de vous proposer une offre adaptée si cela vous intéresse.\n\n"
         f"Présentation : {PRESENTATION_URL}\n\n"
         "Si vous avez un besoin actuel ou à venir, envoyez-nous simplement les informations disponibles. Nous vous répondrons rapidement.\n\n"
         "Bien cordialement,\n"
@@ -346,7 +348,7 @@ def main():
     source_counts = {}
     print("Starting Morocco-only B2B buyer discovery with free search sources...")
 
-    for q in QUERIES:
+    for q, sector_hint in QUERIES:
         print(f"Searching: {q}")
         results, source = search_web(q)
         source_counts[source] = source_counts.get(source, 0) + 1
@@ -360,13 +362,15 @@ def main():
             key = d or url
             if key in seen or key in contacted:
                 continue
-            seen.add(key)
             combined = f"{title} {content} {url}"
             if is_bad_prospect(title, content, url):
                 continue
-            s = score(combined)
-            if s < 24:
+            # Include the sector we intentionally searched for, because RSS
+            # snippets frequently return a company name with little description.
+            s = score(f"{combined} {sector_hint}")
+            if s < 15:
                 continue
+            seen.add(key)
             company = clean_company(title)
             email = discover_email(url)
             if not email:
@@ -378,6 +382,7 @@ def main():
                 "domain": d,
                 "url": url,
                 "need": detect_need(combined),
+                "sector_hint": sector_hint,
                 "score": s,
                 "source": source,
                 "status": "qualified" if email else "no_email",
@@ -389,7 +394,7 @@ def main():
             break
 
     all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
-    qualified = [x for x in all_leads if x["email"] and x["score"] >= 35]
+    qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
     sent = 0
     smtp_failures = 0
 
@@ -424,7 +429,7 @@ def main():
     with open(LEADS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_leads, f, ensure_ascii=False, indent=2)
 
-    fields = ["timestamp", "company", "email", "domain", "url", "need", "score", "source", "status", "sent_at", "smtp_error"]
+    fields = ["timestamp", "company", "email", "domain", "url", "need", "sector_hint", "score", "source", "status", "sent_at", "smtp_error"]
     with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
