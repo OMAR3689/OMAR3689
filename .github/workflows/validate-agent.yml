@@ -1,0 +1,56 @@
+name: Validate Transport Lead Agent
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'transport-lead-agent/agent.py'
+      - '.github/workflows/validate-agent.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Check Python syntax
+        run: python -m py_compile transport-lead-agent/agent.py
+
+      - name: Smoke-test safety helpers (no emails sent)
+        run: |
+          python - <<'PY'
+          import importlib.util
+          from datetime import datetime, timedelta, timezone
+
+          spec = importlib.util.spec_from_file_location(
+              "transport_agent", "transport-lead-agent/agent.py"
+          )
+          agent = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(agent)
+
+          now = datetime.now(timezone.utc)
+          history = {
+              "recent@example.ma": {
+                  "sent_at": (now - timedelta(minutes=20)).isoformat()
+              },
+              "old@example.ma": {
+                  "sent_at": (now - timedelta(hours=2)).isoformat()
+              },
+              "missing@example.ma": {"company": "No timestamp"},
+          }
+          assert agent.count_sends_in_last_hour(history, now=now) == 1
+
+          subject, body = agent.build_message("Exemple SARL", "transport et logistique")
+          assert "TRMB SERVICES" in subject
+          assert "Exemple SARL" in body
+          print("✅ Syntax, rolling hourly limit and email-template checks passed.")
+          PY
