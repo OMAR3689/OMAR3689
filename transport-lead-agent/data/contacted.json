@@ -33,5 +33,15 @@
     "email": "boumara@boumaratrans.com",
     "company": "Transport international routier Maroc – Belgique",
     "sent_at": "2026-10-20T18:09:09.809456+00:00"
+  },
+  "https://tcltransport.com/transport-marchandise-maroc": {
+    "email": "contact@tcl.ma",
+    "company": "Transport de marchandises Maroc - TCL Transport",
+    "sent_at": "2026-10-20T18:30:28.332977+00:00"
+  },
+  "https://ma.kompass.com/s/transports-et-logistique/10": {
+    "email": "madonna@huaxialed.com",
+    "company": "Entreprises Transports et logistique en Maroc - Kompass",
+    "sent_at": "2026-10-20T18:30:29.916055+00:00"
   }
 }
