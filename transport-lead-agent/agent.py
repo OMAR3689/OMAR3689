@@ -5,7 +5,6 @@ from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 TAVILY_KEY = os.environ.get("TAVILY_API_KEY", "").strip()
-OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "").strip()
 OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
@@ -45,8 +44,6 @@ def tavily_search(query):
     if not TAVILY_KEY:
         raise RuntimeError("TAVILY_API_KEY is required")
 
-    # Tavily's current API authentication uses the Authorization header.
-    # Do not put the secret in the JSON body.
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {TAVILY_KEY}",
@@ -69,43 +66,32 @@ def score(text):
     return min(points, 100)
 
 
-def openai_qualify(title, content, url):
-    if not OPENAI_KEY:
-        return {
-            "qualified": score(title + " " + content) >= 50,
-            "company": title,
-            "email": "",
-            "reason": "Rule-based qualification (OpenAI key not configured)",
-        }
+def rule_based_qualify(title, content, url):
+    """Qualify a lead without OpenAI API credits.
 
-    prompt = f'''Tu es l'agent commercial de TRMB SERVICES, société marocaine de transport/logistique. Analyse ce prospect trouvé en ligne.
-Titre: {title}
-Contenu: {content[:5000]}
-URL: {url}
-Retourne UNIQUEMENT JSON avec: qualified (bool), company (string), email (string si clairement public dans le contenu sinon vide), contact_name (string), reason (string), subject (string), body (string).
-Ne jamais inventer une adresse email ou un nom. Le message doit être professionnel, court, personnalisé et proposer les services de transport/logistique de TRMB SERVICES avec le site {PRESENTATION_URL}.'''
-
-    data = http_json(
-        "https://api.openai.com/v1/responses",
-        {
-            "model": os.environ.get("OPENAI_MODEL", "gpt-5-mini"),
-            "input": prompt,
-        },
-        {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {OPENAI_KEY}",
-        },
-    )
-    text = data.get("output_text", "")
-    try:
-        return json.loads(text)
-    except Exception:
-        return {
-            "qualified": False,
-            "company": title,
-            "email": "",
-            "reason": "AI returned invalid JSON",
-        }
+    The email is accepted only when it is explicitly present in the public
+    Tavily result content/title. No address or person is invented.
+    """
+    text = f"{title} {content}"
+    s = score(text)
+    emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", text)
+    email = emails[0].lower() if emails else ""
+    qualified = s >= 50
+    return {
+        "qualified": qualified,
+        "company": title,
+        "email": email,
+        "contact_name": "",
+        "reason": f"Rule-based qualification: score={s}; public email={'found' if email else 'not found'}",
+        "subject": "Proposition de partenariat transport – TRMB SERVICES",
+        "body": (
+            f"Bonjour,\n\n"
+            f"Nous avons identifié votre besoin potentiel en transport/logistique et souhaitons vous proposer les services de TRMB SERVICES.\n\n"
+            f"Nous pouvons vous accompagner sur vos opérations de transport et de logistique au Maroc et à l'international.\n\n"
+            f"Présentation : {PRESENTATION_URL}\n\n"
+            f"Bien cordialement,\nTRMB SERVICES"
+        ),
+    }
 
 
 def load_history():
@@ -182,7 +168,8 @@ def main():
         if sent >= MAX_EMAILS:
             break
 
-        ai = openai_qualify(lead["company_or_title"], lead["need"], lead["source_url"])
+        # No OpenAI call: qualification and email extraction are local.
+        ai = rule_based_qualify(lead["company_or_title"], lead["need"], lead["source_url"])
         lead.update({
             "qualified": bool(ai.get("qualified")),
             "company": ai.get("company", lead["company_or_title"]),
