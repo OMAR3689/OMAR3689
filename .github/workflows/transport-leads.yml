@@ -22,6 +22,9 @@ jobs:
       SMTP_USER: ${{ secrets.SMTP_USER }}
       SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      IMAP_HOST: ${{ secrets.IMAP_HOST }}
+      IMAP_PORT: ${{ secrets.IMAP_PORT }}
+      IMAP_SENT_FOLDER: ${{ secrets.IMAP_SENT_FOLDER }}
       MAX_EMAILS_PER_RUN: '3'
       MAX_EMAILS_PER_HOUR: '3'
       PRESENTATION_URL: 'https://trmb.ma/'
