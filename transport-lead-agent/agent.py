@@ -229,16 +229,16 @@ def ddgs_search(q):
     try:
         ddgs = DDGS(timeout=12)
         raw_results = ddgs.text(
-                q,
-                region="ma-fr",
-                safesearch="moderate",
-                max_results=10,
+            q,
+            region="ma-fr",
+            safesearch="moderate",
+            max_results=10,
             backend="auto",
         )
         results = []
         for item in raw_results or []:
             link = str(item.get("href") or item.get("url") or "").strip()
-            title = re.sub(r"\\s+", " ", str(item.get("title", ""))).strip()
+            title = re.sub(r"\s+", " ", str(item.get("title", ""))).strip()
             content = re.sub(r"\s+", " ", str(item.get("body") or item.get("content") or "")).strip()
             if link.startswith(("http://", "https://")) and title:
                 results.append({
