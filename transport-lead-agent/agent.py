@@ -1,4 +1,4 @@
-import csv, json, os, re, smtplib, ssl, time, imaplib
+import json, os, re, smtplib, ssl, time, imaplib
 from datetime import datetime, timezone
 from email.message import EmailMessage
 from email.utils import formatdate, make_msgid
@@ -10,10 +10,10 @@ TAVILY_KEY=os.environ.get("TAVILY_API_KEY","").strip()
 OUT_DIR=os.path.join(os.path.dirname(__file__),"data")
 HISTORY_FILE=os.path.join(OUT_DIR,"contacted.json")
 MAX_EMAILS=int(os.environ.get("MAX_EMAILS_PER_RUN","5"))
-PRESENTATION_URL=os.environ.get("PRESENTATION_URL","https://trmb.ma/")
+PRESENTATION_URL=os.environ.get("PRESENTATION_URL","https://trmb.ma/").strip()
 SMTP_RETRIES=int(os.environ.get("SMTP_RETRIES","3"))
 
-# Fewer, more targeted searches = less Tavily usage and fewer transport-company results.
+# Target buyers, not transport companies/directories.
 QUERIES=[
     '"demande de devis transport" Maroc usine OR industriel OR distribution',
     '"besoin de transport" Maroc entreprise marchandises usine',
@@ -29,7 +29,6 @@ GENERIC_EMAIL_PREFIXES={"noreply","no-reply","donotreply","do-not-reply","mailer
 BAD_DOMAINS={"linkedin.com","facebook.com","instagram.com","youtube.com","gmail.com","yahoo.com","outlook.com","hotmail.com"}
 CONTACT_PATHS=("contact","contact-us","nous-contacter","mentions-legales","a-propos","about")
 
-# Signals that indicate a company may actually BUY transport/logistics services.
 BUYER_SIGNALS=(
     "demande de devis", "demander un devis", "besoin de transport", "besoin transport",
     "recherche prestataire", "recherche un prestataire", "appel d'offre", "appel d offres",
@@ -39,21 +38,19 @@ BUYER_SIGNALS=(
     "approvisionnement", "expédition", "importation", "exportation"
 )
 
-# Strong signs that the discovered page is itself a transport/logistics provider.
 PROVIDER_SIGNALS=(
     "société de transport", "societe de transport", "transporteur routier",
     "transporteur international", "entreprise de transport", "transport & logistique",
     "transport et logistique", "prestataire logistique", "freight forwarder",
     "commissionnaire de transport", "notre flotte", "notre flotte de camions",
-    "nos camions", "semi-remorques", "camions 8x4", "transport de marchandises",
-    "transport national et international", "solution de transport", "services de transport"
+    "nos camions", "semi-remorques", "camions 8x4", "transport national et international",
+    "solution de transport", "services de transport"
 )
 
-# Directory/media/lead-list pages are not prospects themselves.
 DIRECTORY_SIGNALS=(
     "fournisseurs transport maroc", "annuaire", "liste des fournisseurs",
     "top fournisseurs", "comparatif", "magazine", "actualités", "actualites",
-    "procurement.ma/fournisseurs", "mordorintelligence", "guide"
+    "procurement.ma/fournisseurs", "mordorintelligence", "guide", "fiche fournisseur"
 )
 
 TARGET_SECTOR_SIGNALS=(
@@ -61,7 +58,7 @@ TARGET_SECTOR_SIGNALS=(
     "distribution", "grossiste", "retail", "supermarché", "supermarche", "automobile",
     "pharmaceutique", "pharma", "construction", "chantier", "bâtiment", "batiment",
     "importateur", "exportateur", "fabrication", "production", "entrepôt", "entrepot",
-    "zone industrielle", "plateforme", "commerce"
+    "zone industrielle", "plateforme", "commerce", "hôtel", "hotel", "tourisme"
 )
 
 def now_iso(): return datetime.now(timezone.utc).isoformat()
@@ -142,17 +139,10 @@ def score(text):
 def is_bad_prospect(title,content,url):
     t=f"{title} {content} {url}".lower()
     if any(x in t for x in DIRECTORY_SIGNALS):return True
-    # Do not pitch a transport provider as if it were a transport buyer.
     provider_hits=sum(1 for x in PROVIDER_SIGNALS if x in t)
     buyer_hits=sum(1 for x in BUYER_SIGNALS if x in t)
     if provider_hits >= 2 and buyer_hits <= 2:return True
     return False
-
-def clean_context(content):
-    text=re.sub(r"[#*_]+"," ",content or "")
-    text=re.sub(r"\s+"," ",text).strip()
-    # Keep only a compact, readable snippet for the email.
-    return text[:500]
 
 def detect_need(content):
     t=(content or "").lower()
@@ -162,6 +152,11 @@ def detect_need(content):
     if any(x in t for x in ("importation","exportation","expédition")):return "transport lié aux flux import/export"
     return "transport et logistique"
 
+def clean_company(title):
+    t=re.sub(r"\s+"," ",(title or "")).strip()
+    t=re.sub(r"\s*[|–—-]\s*(Accueil|Home|Contact|Site officiel|Official).*?$","",t,flags=re.I)
+    return t[:100] or "votre entreprise"
+
 def qualify(title,content,url,email):
     text=f"{title} {content}";t=text.lower();s=score(text)
     intent=any(x in t for x in BUYER_SIGNALS)
@@ -170,11 +165,10 @@ def qualify(title,content,url,email):
     email=email or ""
     ok=bool(email and usable_email(email,url) and intent and not bad and (sector or s>=35))
     need=detect_need(content)
-    context=clean_context(content)
-    company=title.strip() or "votre entreprise"
+    company=clean_company(title)
     body=(
         f"Bonjour,\n\n"
-        f"Je me permets de vous contacter au nom de TRMB SERVICES. "
+        f"Je me permets de vous contacter au nom de TRMB SERVICES.\n\n"
         f"Nous accompagnons les entreprises au Maroc sur leurs besoins de {need}.\n\n"
         f"En consultant les informations publiques concernant {company}, nous avons identifié un besoin potentiel lié à {need}. "
         f"Nous pouvons étudier vos flux, vos fréquences et vos contraintes afin de vous proposer une solution de transport adaptée.\n\n"
@@ -240,11 +234,11 @@ def send_email(to_addr,subject,body):
     return False,"SMTP failed",{}
 
 def main():
-    os.makedirs(OUT_DIR,exist_ok=True);history=load_history();known=history_keys(history);leads={};searched=0
-    print(f"Starting Morocco-only B2B discovery with {len(QUERIES)} targeted Tavily queries...")
+    os.makedirs(OUT_DIR,exist_ok=True)
+    history=load_history();known=history_keys(history);leads={};searched=0
+    print(f"Starting Morocco-only B2B buyer discovery with {len(QUERIES)} targeted Tavily queries...")
     for q in QUERIES:
-        searched+=1
-        print(f"Searching: {q}")
+        searched+=1;print(f"Searching: {q}")
         try:results=tavily_search(q)
         except Exception as e:print(f"⚠️ query skipped: {e}");continue
         for item in results:
@@ -255,20 +249,27 @@ def main():
             if not any(x in text.lower() for x in BUYER_SIGNALS):continue
             email=next((e for e in extract_emails(text) if usable_email(e,url)),"") or discover_email(url) or public_email(title,url)
             if email and email in known:continue
-            leads[key]={"company_or_title":title,"need":re.sub(r"\s+"," ",content).strip()[:1500],"score":score(text),"source_url":url,"domain":d,"email_found":email,"country_hint":"Maroc","found_at":now_iso()}
-    rows=sorted(leads.values(),key=lambda x:x["score"],reverse=True);sent=qualified_count=email_failures=no_email=0
-    used_domains=set()
+            need=detect_need(content)
+            leads[key]={"company_or_title":clean_company(title),"need":need,"score":score(text),"source_url":url,"domain":d,"email_found":email,"country_hint":"Maroc","found_at":now_iso()}
+    rows=sorted(leads.values(),key=lambda x:x["score"],reverse=True)
+    sent=qualified_count=email_failures=no_email=0;used_domains=set()
     for lead in rows:
         if sent>=MAX_EMAILS:break
         d=lead.get("domain","")
         if d and d in used_domains:continue
-        ok,email,reason,body=qualify(lead["company_or_title"],lead["need"],lead["source_url"],lead.get("email_found",""));lead.update({"qualified":ok,"company":lead["company_or_title"],"email":email,"reason":reason})
+        ok,email,reason,body=qualify(lead["company_or_title"],lead["need"],lead["source_url"],lead.get("email_found",""))
+        lead.update({"qualified":ok,"company":lead["company_or_title"],"email":email,"reason":reason})
         if not email:no_email+=1
         if not ok:continue
         qualified_count+=1
-        success,status,details=send_email(email,"Proposition de transport & logistique – TRMB SERVICES",body);lead["email_status"]=status;lead["message_id"]=details.get("message_id","");lead["sender"]=details.get("sender","");lead["sent_folder"]=details.get("sent_folder","")
+        success,status,details=send_email(email,"Proposition de transport & logistique – TRMB SERVICES",body)
+        lead["email_status"]=status;lead["message_id"]=details.get("message_id","");lead["sender"]=details.get("sender","");lead["sent_folder"]=details.get("sent_folder","")
         if success:
-            history[lead["source_url"] or lead["company_or_title"]]={"email":email,"company":lead["company"],"domain":d,"message_id":details.get("message_id",""),"sender":details.get("sender",""),"sent_at":now_iso()};known.update({email,lead["source_url"] or lead["company_or_title"],d} if d else {email,lead["source_url"] or lead["company_or_title"]});used_domains.add(d);sent+=1;print(f"✅ EMAIL SENT: {details.get('sender','')} -> {email} | {details.get('message_id','')}")
+            history[lead["source_url"] or lead["company_or_title"]]={"email":email,"company":lead["company"],"domain":d,"message_id":details.get("message_id",""),"sender":details.get("sender",""),"sent_at":now_iso()}
+            known.update({email,lead["source_url"] or lead["company_or_title"],d} if d else {email,lead["source_url"] or lead["company_or_title"]})
+            if d:used_domains.add(d)
+            sent+=1
+            print(f"✅ EMAIL SENT: {details.get('sender','')} -> {email} | {details.get('message_id','')}")
         else:
             email_failures+=1;print(f"❌ EMAIL FAILED: {email}: {status}")
     save_history(history)
