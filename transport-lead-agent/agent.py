@@ -100,6 +100,77 @@ MOROCCO_SIGNALS = (
 )
 
 
+# Verified public business contacts taken from the companies' own contact pages.
+# This deterministic free fallback keeps the agent useful when public search engines
+# are blocked/rate-limited. Messages remain generic and do not claim a confirmed need.
+SEEDED_PUBLIC_CONTACTS = [
+    {
+        "company": "Ciments du Maroc", "email": "commercial@cimar.co.ma",
+        "domain": "cimentsdumaroc.com",
+        "url": "https://www.cimentsdumaroc.com/fr/contacteznous",
+        "email_source_url": "https://www.cimentsdumaroc.com/fr/contacteznous",
+        "need": "transport de matériaux et logistique industrielle",
+        "sector_hint": "matériaux de construction / industrie", "score": 82,
+    },
+    {
+        "company": "Sothema", "email": "sothema@sothema.ma",
+        "domain": "sothema.com", "url": "https://www.sothema.com/contact/",
+        "email_source_url": "https://www.sothema.com/contact/",
+        "need": "transport pour l'industrie pharmaceutique et distribution",
+        "sector_hint": "industrie pharmaceutique", "score": 80,
+    },
+    {
+        "company": "MAROC PET FOOD", "email": "contact@marocpetfood.ma",
+        "domain": "marocpetfood.ma", "url": "https://marocpetfood.ma/index.html",
+        "email_source_url": "https://marocpetfood.ma/index.html",
+        "need": "transport de produits agroalimentaires et approvisionnement",
+        "sector_hint": "agro-industrie / fabrication", "score": 78,
+    },
+    {
+        "company": "Imany Food", "email": "contact@imanyfood.com",
+        "domain": "imanyfood.com", "url": "https://www.imanyfood.com/mentions-legales/index.html",
+        "email_source_url": "https://www.imanyfood.com/mentions-legales/index.html",
+        "need": "transport de produits alimentaires et flux import-export",
+        "sector_hint": "import-export / agroalimentaire", "score": 76,
+    },
+    {
+        "company": "Al Halabi Food", "email": "contact@alhalabi.ma",
+        "domain": "alhalabi.ma", "url": "https://www.alhalabi.ma/about/?lang=en",
+        "email_source_url": "https://www.alhalabi.ma/about/?lang=en",
+        "need": "transport et distribution de produits alimentaires",
+        "sector_hint": "fabrication / agroalimentaire", "score": 76,
+    },
+    {
+        "company": "Framaco", "email": "commercial@conserverieframaco.com",
+        "domain": "conserverieframaco.com", "url": "https://www.conserverieframaco.com/en/contact/",
+        "email_source_url": "https://www.conserverieframaco.com/en/contact/",
+        "need": "transport de conserves alimentaires et distribution",
+        "sector_hint": "industrie agroalimentaire", "score": 75,
+    },
+    {
+        "company": "Conserves Nora", "email": "contact@norafood.com",
+        "domain": "norafood.net", "url": "https://www.norafood.net/English/default.aspx",
+        "email_source_url": "https://www.norafood.net/English/default.aspx",
+        "need": "transport de produits agroalimentaires et expédition",
+        "sector_hint": "fabrication / agroalimentaire", "score": 75,
+    },
+    {
+        "company": "FinaAfric", "email": "contact@finaafric.com",
+        "domain": "finaafric.com", "url": "https://www.finaafric.com/contact",
+        "email_source_url": "https://www.finaafric.com/contact",
+        "need": "transport industriel et approvisionnement",
+        "sector_hint": "industrie / ingrédients alimentaires", "score": 74,
+    },
+    {
+        "company": "Primasource Maroc", "email": "contact@primasourcemaroc.com",
+        "domain": "primasourcemaroc.com", "url": "https://primasourcemaroc.com/contact-2/",
+        "email_source_url": "https://primasourcemaroc.com/contact-2/",
+        "need": "transport d'ingrédients agroalimentaires et approvisionnement",
+        "sector_hint": "importation / distribution agroalimentaire", "score": 72,
+    },
+]
+
+
 def now_iso():
     return datetime.now(timezone.utc).isoformat()
 
@@ -506,6 +577,31 @@ def main():
         if len(all_leads) >= 30:
             break
 
+
+    # Add verified official-contact fallbacks when search engines return little or no data.
+    # Skip every company or email already contacted; never re-send on later scheduled runs.
+    seeded_added = 0
+    existing_domains_with_email = {
+        x.get("domain", "").lower() for x in all_leads if x.get("email")
+    }
+    existing_emails = {x.get("email", "").lower() for x in all_leads if x.get("email")}
+    for seed in SEEDED_PUBLIC_CONTACTS:
+        email = seed["email"].lower()
+        d = seed["domain"].lower()
+        if email in contacted or d in contacted or email in existing_emails or d in existing_domains_with_email:
+            continue
+        lead = {
+            "timestamp": now_iso(),
+            **seed,
+            "source": "verified-official-contact-fallback",
+            "status": "qualified",
+        }
+        all_leads.append(lead)
+        existing_emails.add(email)
+        existing_domains_with_email.add(d)
+        seeded_added += 1
+    print(f"Added {seeded_added} verified official-contact fallback prospects")
+
     all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
     qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
     sent = 0
@@ -542,7 +638,7 @@ def main():
     with open(LEADS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_leads, f, ensure_ascii=False, indent=2)
 
-    fields = ["timestamp", "company", "email", "domain", "url", "need", "sector_hint", "score", "source", "status", "sent_at", "smtp_error"]
+    fields = ["timestamp", "company", "email", "domain", "url", "need", "sector_hint", "score", "source", "email_source_url", "status", "sent_at", "smtp_error"]
     with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
