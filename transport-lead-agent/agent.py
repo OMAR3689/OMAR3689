@@ -239,7 +239,7 @@ def score(text):
     directory = sum(60 for x in DIRECTORY_SIGNALS if x in t)
     # For outbound prospecting, verified sector fit is sufficient; a company
     # need not publish a literal request for transport on its website.
-    return max(0, min(100, buyer + sector - provider - directory)
+    return max(0, min(100, buyer + sector - provider - directory))
 
 
 def is_bad_prospect(title, content, url):
