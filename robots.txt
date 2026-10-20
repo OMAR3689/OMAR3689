@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /gestion/
+Disallow: /wp/wp-admin/
+Disallow: /wp/wp-login.php
+Disallow: /wp/wp-includes/
+Disallow: /wp/wp-content/cache/
+Sitemap: https://trmb.ma/sitemap.xml

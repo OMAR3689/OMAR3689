@@ -1,0 +1,13 @@
+TRMB SERVICES — Correctif images + contraste
+
+Ce ZIP est un correctif ciblé à extraire à la racine de public_html. Il contient uniquement index.html et les fichiers images WebP ajoutés/remplacés. Il ne contient aucun fichier gestion/ ni aucun code de base de données.
+
+Améliorations :
+- Images de présentation adaptatives en 480, 768 et 960 px, encodées depuis les JPG d'origine. Le navigateur peut sélectionner 768 px pour les écrans mobiles haute densité au lieu de télécharger systématiquement 960 px.
+- Logo WebP 306 × 126, adapté au logo affiché dans la navigation et le pied de page.
+- Contraste augmenté pour le petit texte de support du pied de page.
+- Les JPG originaux sont conservés comme liens vers les images en grand format. Les URL sont versionnées pour éviter de réutiliser les anciennes images en cache.
+
+Avant remplacement : télécharger une copie de public_html/index.html. Après extraction, vérifier l'accueil, le bouton PDF de présentation, le menu, les formulaires et les images. Refaire PageSpeed Insights Mobile pour confirmer les mesures.
+
+Note : le score Performance actuel communiqué était de 100/100. Ce patch cible les économies image restantes et l'accessibilité ; le score final exact dépend du test Lighthouse après mise en ligne.

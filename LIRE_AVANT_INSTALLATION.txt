@@ -1,0 +1,22 @@
+TRMB SERVICES — PUBLIC SITE REPAIR PATCH
+
+CONTENU
+- Pages HTML publiques mises à jour
+- presentation-trmb-2026.pdf (présentation à ouvrir publiquement)
+
+CORRECTIONS
+- Bouton « Voir la présentation » disponible sur la page d'accueil (ouvre le PDF dans un nouvel onglet)
+- Header responsive : les boutons restent sur une ligne sur grand écran, menu hamburger sur tablette
+- Le bouton « Connexion » du site public mène à /gestion/ au lieu de l'assistant d'installation WordPress sous /wp/
+- Les coordonnées publiques conservées sont 0607 515 430 (ligne directe / WhatsApp) et 0675 542 451 (ligne directe)
+- Référence au numéro 0664 658 581 supprimée des pages HTML publiques et du PDF livré
+
+INSTALLATION SÛRE
+1. Dans cPanel > File Manager, ouvrez public_html.
+2. Téléchargez une copie de sauvegarde des fichiers HTML actuels et du PDF, au minimum index.html et presentation-trmb-2026.pdf.
+3. Uploadez ce ZIP et choisissez Extract dans public_html (PAS dans le dossier gestion).
+4. Acceptez le remplacement des fichiers qui portent le même nom.
+5. Ouvrez https://trmb.ma/ puis faites Ctrl+F5. Testez aussi le bouton Voir la présentation et le bouton Connexion.
+
+IMPORTANT
+Ce ZIP est un patch de fichiers publics uniquement. Il ne contient pas les dossiers assets, gestion ou wp et ne les remplace pas. Les chemins assets déjà présents sur le serveur sont réutilisés. Le sous-dossier /wp/ reste inchangé; le site public ne renvoie plus son bouton Connexion vers son assistant d'installation.

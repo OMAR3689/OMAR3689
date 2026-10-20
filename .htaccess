@@ -1,0 +1,53 @@
+# TRMB SERVICES — production rules
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# Never expose development archives / backups if one is accidentally uploaded.
+<FilesMatch "(?i)(\.zip|backup|ancien|old|\.sql|\.log|^README.*|^php\.ini$|^\.user\.ini$|^config\..*|^\.)">
+  Require all denied
+</FilesMatch>
+
+# Keep the existing PHP 8.1 handler.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>
+
+
+# Block common server-side/config artifacts if accidentally uploaded.
+<FilesMatch "(?i)\.(bak|dist|fla|ini|inc|conf|env|sh|ps1|sqlite|db)$">
+  Require all denied
+</FilesMatch>
+
+# TRMB PERFORMANCE: compression for text-based static responses
+<IfModule mod_deflate.c>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/ld+json image/svg+xml
+  </IfModule>
+</IfModule>
+
+# TRMB PERFORMANCE: browser cache policy for stable static files
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType text/javascript "access plus 30 days"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(?:css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  <FilesMatch "\.(?:webp|jpe?g|png|svg)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
