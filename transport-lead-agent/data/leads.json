@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "timestamp": "2026-10-20T20:31:35.170622+00:00",
+    "company": "Transport - Wikipedia",
+    "email": "",
+    "domain": "en.wikipedia.org",
+    "need": "livraison / distribution",
+    "score": 71,
+    "source": "bing-rss",
+    "url": "https://en.wikipedia.org/wiki/Transport",
+    "qualified": false,
+    "status": "no_email",
+    "reason": "buyer_signals=1; sector=yes; score=71"
+  },
+  {
+    "timestamp": "2026-10-20T20:31:39.697026+00:00",
+    "company": "LIVRAISON in English - Cambridge Dictionary",
+    "email": "",
+    "domain": "dictionary.cambridge.org",
+    "need": "livraison / distribution",
+    "score": 23,
+    "source": "bing-rss",
+    "url": "https://dictionary.cambridge.org/dictionary/french-english/livraison",
+    "qualified": false,
+    "status": "no_email",
+    "reason": "buyer_signals=1; sector=yes; score=23"
+  }
+]
