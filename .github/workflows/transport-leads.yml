@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USER: ${{ secrets.SMTP_USER }}
@@ -40,11 +39,7 @@ jobs:
 
       - name: Vérifier la configuration
         run: |
-          if [ -n "$TAVILY_API_KEY" ]; then
-            echo "✅ TAVILY_API_KEY détectée — utilisée en priorité"
-          else
-            echo "ℹ️ TAVILY_API_KEY absente — fallback sans clé activé"
-          fi
+          echo "✅ Recherche web gratuite activée — aucun crédit Tavily requis"
           if [ -n "$SMTP_HOST" ] && [ -n "$SMTP_USER" ] && [ -n "$SMTP_PASSWORD" ]; then
             echo "✅ SMTP détecté — envoi automatique activé"
           else
