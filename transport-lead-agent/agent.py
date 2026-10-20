@@ -15,7 +15,8 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 LEADS_JSON = os.path.join(OUT_DIR, "leads.json")
 LEADS_CSV = os.path.join(OUT_DIR, "leads.csv")
-MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "5"))
+MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "3"))
+MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "3"))
 PRESENTATION_URL = os.environ.get("PRESENTATION_URL", "https://trmb.ma/").strip()
 SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
 
@@ -489,6 +490,28 @@ def load_history():
         return {}
 
 
+def count_sends_in_last_hour(history, now=None):
+    """Count successful SMTP submissions recorded in the rolling last hour."""
+    now = now or datetime.now(timezone.utc)
+    cutoff = now.timestamp() - 3600
+    count = 0
+    for value in history.values():
+        if not isinstance(value, dict):
+            continue
+        sent_at = value.get("sent_at")
+        if not sent_at:
+            continue
+        try:
+            parsed = datetime.fromisoformat(str(sent_at).replace("Z", "+00:00"))
+            if parsed.tzinfo is None:
+                parsed = parsed.replace(tzinfo=timezone.utc)
+            if parsed.astimezone(timezone.utc).timestamp() >= cutoff:
+                count += 1
+        except (TypeError, ValueError, OverflowError):
+            continue
+    return count
+
+
 def save_history(data):
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
@@ -642,9 +665,21 @@ def main():
     qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
     sent = 0
     smtp_failures = 0
+    sent_last_hour = count_sends_in_last_hour(history)
+    if sent_last_hour >= MAX_EMAILS_PER_HOUR:
+        print(
+            f"⏸️ Hourly safety limit already reached "
+            f"({sent_last_hour}/{MAX_EMAILS_PER_HOUR}); no emails will be sent this run"
+        )
 
     for lead in qualified:
         if sent >= MAX_EMAILS:
+            break
+        if sent_last_hour >= MAX_EMAILS_PER_HOUR:
+            print(
+                f"⏸️ Hourly safety limit reached "
+                f"({sent_last_hour}/{MAX_EMAILS_PER_HOUR}); remaining leads kept for a later run"
+            )
             break
         email = lead["email"].lower()
         if email in contacted or lead["domain"] in contacted:
@@ -662,9 +697,10 @@ def main():
                 "subject": subject,
             }
             contacted.add(email)
+            sent_last_hour += 1
             if lead["domain"]:
                 contacted.add(lead["domain"])
-            print(f"✅ Email sent: {lead['company']} <{email}>")
+            print(f"✅ Email accepted by SMTP: {lead['company']} <{email}>")
         else:
             smtp_failures += 1
             lead["status"] = "smtp_error"
