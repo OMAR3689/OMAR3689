@@ -25,8 +25,8 @@ jobs:
       IMAP_HOST: ${{ secrets.IMAP_HOST }}
       IMAP_PORT: ${{ secrets.IMAP_PORT || '993' }}
       IMAP_SENT_FOLDER: ${{ secrets.IMAP_SENT_FOLDER }}
-      MAX_EMAILS_PER_RUN: '3'
-      MAX_EMAILS_PER_HOUR: '3'
+      MAX_EMAILS_PER_RUN: '50'
+      MAX_EMAILS_PER_HOUR: '100'
       PRESENTATION_URL: 'https://trmb.ma/'
       PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
       PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
