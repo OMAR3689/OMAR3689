@@ -106,12 +106,17 @@ NON_PROSPECT_DOMAINS = {
     "fournilink.com", "datao.ma", "europages.fr", "yelo.ma", "procurement.ma",
     "mordorintelligence.com", "freshtrack.ma", "startupmedias.net", "bav.admin.ch",
     "comfortgateway.ma", "tilditours.ma", "msotransports.com", "innovaimport.ma",
+    "sonix.ai", "scribd.com", "aomaroc.com", "bestwebsite.com",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
     "stock quote", "share price", "price target", "analyst rating", "analyst ratings",
     "marketbeat", "zacks", "stockanalysis", "earnings per share", "market capitalization",
     "nasdaq", "nyse", "ticker symbol", "investment research", "dividend history",
+)
+NON_PROSPECT_SIGNALS = (
+    "audio transcription", "transcribe audio", "microsoft copilot", "speech-to-text",
+    "speech to text", "transcription audio", "transcription d'audio",
 )
 MOROCCO_SIGNALS = (
     "maroc", "morocco", "casablanca", "rabat", "tanger", "tangier", "marrakech",
@@ -188,6 +193,76 @@ SEEDED_PUBLIC_CONTACTS = [
         "email_source_url": "https://primasourcemaroc.com/contact-2/",
         "need": "transport d'ingrédients agroalimentaires et approvisionnement",
         "sector_hint": "importation / distribution agroalimentaire", "score": 72,
+    },
+    {
+        "company": "Oland Group", "email": "contact@olandgroup.ma",
+        "domain": "olandgroup.ma", "url": "https://olandgroup.ma/a-propos/",
+        "email_source_url": "https://olandgroup.ma/a-propos/",
+        "need": "transport de produits laitiers et distribution agroalimentaire",
+        "sector_hint": "fabrication agroalimentaire / production industrielle", "score": 80,
+    },
+    {
+        "company": "Remora", "email": "m.filali@remora.ma",
+        "domain": "remora.ma", "url": "https://remora.ma/contact/",
+        "email_source_url": "https://remora.ma/contact/",
+        "need": "transport industriel lié aux équipements et lignes de production agroalimentaire",
+        "sector_hint": "fabrication industrielle / équipements de production", "score": 76,
+    },
+    {
+        "company": "MTN Maroc", "email": "contact@mtn.co.ma",
+        "domain": "mtn.co.ma", "url": "https://mtn.co.ma/contact/",
+        "email_source_url": "https://mtn.co.ma/contact/",
+        "need": "transport d'équipements et approvisionnement industriel",
+        "sector_hint": "fabrication mécanique / maintenance industrielle", "score": 74,
+    },
+    {
+        "company": "Industrial Manufacturing and Services Maroc", "email": "info@imsmaroc.ma",
+        "domain": "imsmaroc.ma", "url": "https://imsmaroc.ma/contact",
+        "email_source_url": "https://imsmaroc.ma/contact",
+        "need": "transport d'équipements et flux de production industrielle",
+        "sector_hint": "fabrication et services industriels", "score": 76,
+    },
+    {
+        "company": "MACOBATE", "email": "contact@macobate.com",
+        "domain": "macobate.ma", "url": "https://macobate.ma/fr/contact",
+        "email_source_url": "https://macobate.ma/fr/contact",
+        "need": "transport lié aux projets et équipements industriels",
+        "sector_hint": "ingénierie industrielle / projets", "score": 75,
+    },
+    {
+        "company": "APRO INDUSTRIE", "email": "contact@apro-industrie.ma",
+        "domain": "apro-industrie.ma", "url": "https://apro-industrie.ma/contactez-nous/",
+        "email_source_url": "https://apro-industrie.ma/contactez-nous/",
+        "need": "transport de fournitures et équipements industriels",
+        "sector_hint": "fournitures industrielles / B2B", "score": 72,
+    },
+    {
+        "company": "Concept Industries", "email": "info@concept-industries.ma",
+        "domain": "concept-industries.ma", "url": "https://concept-industries.ma/contact/",
+        "email_source_url": "https://concept-industries.ma/contact/",
+        "need": "transport d'équipements et approvisionnement industriel",
+        "sector_hint": "industrie / fabrication", "score": 74,
+    },
+    {
+        "company": "Comptoir Équipements Industriel Maroc", "email": "contact@cei.ma",
+        "domain": "cei.ma", "url": "https://cei.ma/contact",
+        "email_source_url": "https://cei.ma/contact",
+        "need": "transport de matériel industriel, pièces BTP et équipements de manutention",
+        "sector_hint": "distribution industrielle / BTP / manutention", "score": 75,
+    },
+    {
+        "company": "Agrimatco Maroc", "email": "agrimatco.maroc@agrimatco-af.com",
+        "domain": "agrimatco.ma", "url": "https://www.agrimatco.ma/contact/",
+        "email_source_url": "https://www.agrimatco.ma/contact/",
+        "need": "transport de fournitures agricoles et approvisionnement",
+        "sector_hint": "importation / distribution agricole", "score": 74,
+    },
+    {
+        "company": "MEGA SOURCINGINDUSTRY", "email": "commercial@megasourcingindustry.ma",
+        "domain": "megaindustry.ma", "url": "https://www.megaindustry.ma/contact",
+        "email_source_url": "https://www.megaindustry.ma/contact",
+        "need": "transport de fournitures et équipements industriels importés",
+        "sector_hint": "importation / distribution industrielle", "score": 74,
     },
 ]
 
@@ -477,7 +552,10 @@ def is_non_prospect_source(title, content, url):
     if host in NON_PROSPECT_DOMAINS or any(host.endswith("." + x) for x in NON_PROSPECT_DOMAINS):
         return True
     text = f"{title} {content} {url}".lower()
-    return any(signal in text for signal in FINANCE_NOISE)
+    return (
+        any(signal in text for signal in FINANCE_NOISE)
+        or any(signal in text for signal in NON_PROSPECT_SIGNALS)
+    )
 
 
 def is_morocco_candidate(title, content, url):
