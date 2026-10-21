@@ -78,6 +78,10 @@ DIRECTORY_SIGNALS = (
     "annuaire", "liste des fournisseurs", "top fournisseurs", "comparatif",
     "magazine", "actualités", "actualites", "guide", "fiche fournisseur",
     "directory", "yellow pages", "fournisseurs transport maroc",
+    "base de données b2b", "base de donnees b2b", "fournisseurs b2b",
+    "plateforme des annonces des appels d'offres", "appels d'offres transport",
+    "appels d'offres logistique", "appels d'offres au maroc",
+    "appel d'offres transport", "market intelligence", "market research",
 )
 TARGET_SECTOR_SIGNALS = (
     "usine", "industriel", "industrie", "agroalimentaire", "agricole", "distribution",
@@ -96,6 +100,12 @@ NON_PROSPECT_DOMAINS = {
     "simplywall.st", "companiesmarketcap.com", "finance.yahoo.com",
     "linkedin.com", "facebook.com", "instagram.com", "youtube.com", "wikipedia.org",
     "glassdoor.com", "kerix.net", "marocannuaire.org", "kompass.com",
+    # Directories, tender aggregators, media/research pages, and transport competitors
+    # observed in prior runs; do not treat these as transport buyers.
+    "maroccontact.com", "wuripay.com", "lesoffres.ma", "industriemaroc.com",
+    "fournilink.com", "datao.ma", "europages.fr", "yelo.ma", "procurement.ma",
+    "mordorintelligence.com", "freshtrack.ma", "startupmedias.net", "bav.admin.ch",
+    "comfortgateway.ma", "tilditours.ma", "msotransports.com", "innovaimport.ma",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
