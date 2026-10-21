@@ -223,5 +223,23 @@
     "status": "delivery_failure_reported",
     "suppressed_at": "2026-10-21T01:47:00+00:00",
     "note": "Temporarily suppressed after user reported a delivery failure; verify before re-enabling."
+  },
+  "contact@giga-steel.ma": {
+    "company": "Fabrication mécanique Maroc - Précision et Usinage Industriel",
+    "domain": "giga-steel.ma",
+    "sent_at": "2026-10-21T02:22:38.669527+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@rzindustrie.ma": {
+    "company": "RZ Industrie - Solution Globale en usinage industriel.",
+    "domain": "rzindustrie.ma",
+    "sent_at": "2026-10-21T02:22:43.676471+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@onssa.gov.ma": {
+    "company": "Listes établissements agrées/autorisés - ONSSA",
+    "domain": "onssa.gov.ma",
+    "sent_at": "2026-10-21T02:22:49.438738+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
