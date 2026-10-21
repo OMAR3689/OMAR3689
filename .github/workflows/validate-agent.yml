@@ -108,5 +108,10 @@ jobs:
               "Transport de personnel", "",
               "https://msotransports.com/"
           )
+          assert agent.is_non_prospect_source(
+              "Office National de Sécurité Sanitaire des Produits Alimentaires",
+              "",
+              "https://onssa.gov.ma/"
+          )
           print("✅ Syntax, default mail ports, hourly limit, email template and prospect filters passed.")
           PY
