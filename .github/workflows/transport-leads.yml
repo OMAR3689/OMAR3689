@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   discover:
-    if: github.event_name != 'push' || hashFiles('transport-lead-agent/run-now.trigger') != ''
+    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[run-now]')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
