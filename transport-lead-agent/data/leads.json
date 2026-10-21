@@ -1,32 +1,6 @@
 [
   {
-    "timestamp": "2026-10-21T22:10:19.568746+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-21T22:11:12.792601+00:00",
-    "company": "Conserves Nora",
-    "email": "contact@norafood.com",
-    "domain": "norafood.net",
-    "url": "https://www.norafood.net/English/default.aspx",
-    "email_source_url": "https://www.norafood.net/English/default.aspx",
-    "need": "transport de produits agroalimentaires et expédition",
-    "sector_hint": "fabrication / agroalimentaire",
-    "score": 75,
-    "source": "verified-official-contact-fallback",
-    "status": "sent",
-    "sent_at": "2026-10-21T22:11:52.688705+00:00"
-  },
-  {
-    "timestamp": "2026-10-21T22:10:10.939649+00:00",
+    "timestamp": "2026-10-21T23:28:40.984206+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -34,6 +8,30 @@
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-21T23:29:44.198570+00:00",
+    "company": "Microsoft Copilot peut-il transcrire des fichiers audio ...",
+    "email": "",
+    "domain": "sonix.ai",
+    "url": "https://sonix.ai/ai/fr/microsoft-copilot-peut-il-transcrire-des-fichiers-audio/",
+    "need": "transport lié aux flux import/export",
+    "sector_hint": "entrepôt logistique",
+    "score": 35,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-21T23:29:14.163284+00:00",
+    "company": "CAPRAM",
+    "email": "",
+    "domain": "capram.ma",
+    "url": "https://capram.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }

@@ -1,4 +1,4 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-21T22:10:19.568746+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-21T22:11:12.792601+00:00,Conserves Nora,contact@norafood.com,norafood.net,https://www.norafood.net/English/default.aspx,transport de produits agroalimentaires et expédition,fabrication / agroalimentaire,75,verified-official-contact-fallback,https://www.norafood.net/English/default.aspx,sent,2026-10-21T22:11:52.688705+00:00,
-2026-10-21T22:10:10.939649+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-21T23:28:40.984206+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-21T23:29:44.198570+00:00,Microsoft Copilot peut-il transcrire des fichiers audio ...,,sonix.ai,https://sonix.ai/ai/fr/microsoft-copilot-peut-il-transcrire-des-fichiers-audio/,transport lié aux flux import/export,entrepôt logistique,35,bing-rss,,no_email,,
+2026-10-21T23:29:14.163284+00:00,CAPRAM,,capram.ma,https://capram.ma/,transport et logistique,automobile industrie,20,ddgs,,no_email,,
