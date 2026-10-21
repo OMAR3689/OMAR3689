@@ -216,5 +216,12 @@
     "domain": "pharmis.ma",
     "sent_at": "2026-10-20T21:22:45.852846+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@africainerayonnagefroid.com": {
+    "company": "Africain Rayonnage Froid",
+    "domain": "africainerayonnagefroid.com",
+    "status": "delivery_failure_reported",
+    "suppressed_at": "2026-10-21T01:47:00+00:00",
+    "note": "Temporarily suppressed after user reported a delivery failure; verify before re-enabling."
   }
 }
