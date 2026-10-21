@@ -94,5 +94,19 @@ jobs:
           subject, body = agent.build_message("Exemple SARL", "transport et logistique")
           assert "TRMB SERVICES" in subject
           assert "Exemple SARL" in body
-          print("✅ Syntax, default mail ports, rolling hourly limit and email-template checks passed.")
+
+          # Regression checks for noisy directory/tender/competitor results found in prior runs.
+          assert agent.is_non_prospect_source(
+              "Base de données B2B Maroc", "",
+              "https://maroccontact.com/"
+          )
+          assert agent.is_non_prospect_source(
+              "Appels d'offres transport", "",
+              "https://datao.ma/"
+          )
+          assert agent.is_non_prospect_source(
+              "Transport de personnel", "",
+              "https://msotransports.com/"
+          )
+          print("✅ Syntax, default mail ports, hourly limit, email template and prospect filters passed.")
           PY
