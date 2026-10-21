@@ -125,5 +125,13 @@ jobs:
               "",
               "https://onssa.gov.ma/"
           )
-          print("✅ Syntax, config ports, rolling hourly limit, template and prospect filters passed.")
+          assert agent.is_non_prospect_source(
+              "Microsoft Copilot peut-il transcrire des fichiers audio",
+              "",
+              "https://sonix.ai/ai/fr/microsoft-copilot-peut-il-transcrire-des-fichiers-audio/"
+          )
+          fallback_names = {item["company"] for item in agent.SEEDED_PUBLIC_CONTACTS}
+          assert "Oland Group" in fallback_names
+          assert "Remora" in fallback_names
+          print("✅ Syntax, config ports, rolling hourly limit, template, prospect filters and fallback contacts passed.")
           PY
