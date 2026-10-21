@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'transport-lead-agent/agent.py'
+      - '.github/workflows/transport-leads.yml'
       - '.github/workflows/validate-agent.yml'
   workflow_dispatch:
 
@@ -25,10 +26,21 @@ jobs:
       - name: Check Python syntax
         run: python -m py_compile transport-lead-agent/agent.py
 
+      - name: Verify schedule and sending caps
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          workflow = Path(".github/workflows/transport-leads.yml").read_text(encoding="utf-8")
+          assert "cron: '*/30 * * * *'" in workflow, "Expected 30-minute schedule"
+          assert "MAX_EMAILS_PER_RUN: '50'" in workflow, "Expected max 50 attempts per run"
+          assert "MAX_EMAILS_PER_HOUR: '100'" in workflow, "Expected max 100 emails per rolling hour"
+          print("✅ Schedule is every 30 minutes; caps are 50 per run and 100 per hour.")
+          PY
+
       - name: Verify official presentation PDF is downloadable
         run: |
           python - <<'PY'
-          import os
           from urllib.request import Request, urlopen
 
           url = "https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018"
@@ -113,5 +125,5 @@ jobs:
               "",
               "https://onssa.gov.ma/"
           )
-          print("✅ Syntax, default mail ports, hourly limit, email template and prospect filters passed.")
+          print("✅ Syntax, config ports, rolling hourly limit, template and prospect filters passed.")
           PY
