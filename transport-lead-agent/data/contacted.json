@@ -240,6 +240,9 @@
     "company": "Listes établissements agrées/autorisés - ONSSA",
     "domain": "onssa.gov.ma",
     "sent_at": "2026-10-21T02:22:49.438738+00:00",
-    "subject": "Proposition transport & logistique – TRMB SERVICES"
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "status": "suppressed_public_authority",
+    "suppressed_at": "2026-10-21T02:22:00+00:00",
+    "note": "Excluded from future automated commercial outreach: Moroccan government/public authority domain."
   }
 }
