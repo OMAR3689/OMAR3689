@@ -186,6 +186,23 @@ def now_iso():
     return datetime.now(timezone.utc).isoformat()
 
 
+def configured_port(env_name, default):
+    """Read a valid TCP port from environment, falling back when missing or blank."""
+    raw = os.environ.get(env_name, "").strip()
+    if not raw:
+        print(f"ℹ️ {env_name} is empty; using default port {default}")
+        return default
+    try:
+        port = int(raw)
+    except ValueError:
+        print(f"⚠️ {env_name}={raw!r} is not a number; using default port {default}")
+        return default
+    if not 1 <= port <= 65535:
+        print(f"⚠️ {env_name}={raw!r} is outside the valid port range; using {default}")
+        return default
+    return port
+
+
 def http_get(url, timeout=20):
     req = Request(url, headers={
         "User-Agent": "Mozilla/5.0 (compatible; TRMB-Services-Lead-Agent/3.0)",
@@ -532,7 +549,7 @@ def save_history(data):
 def save_to_sent_folder(msg):
     """Append a copy of an SMTP-submitted message to the account's IMAP Sent folder."""
     host = os.environ.get("IMAP_HOST", "").strip() or os.environ.get("SMTP_HOST", "").strip()
-    port = int(os.environ.get("IMAP_PORT", "993"))
+    port = configured_port("IMAP_PORT", 993)
     user = os.environ.get("SMTP_USER", "").strip()
     password = os.environ.get("SMTP_PASSWORD", "")
     explicit_folder = os.environ.get("IMAP_SENT_FOLDER", "").strip()
@@ -712,7 +729,7 @@ def save_to_sent_folder(msg):
 
 def send_email(to_addr, subject, body):
     host = os.environ.get("SMTP_HOST", "").strip()
-    port = int(os.environ.get("SMTP_PORT", "465"))
+    port = configured_port("SMTP_PORT", 465)
     user = os.environ.get("SMTP_USER", "").strip()
     password = os.environ.get("SMTP_PASSWORD", "")
     sender = os.environ.get("SMTP_FROM", "").strip() or user
@@ -874,6 +891,7 @@ def main():
     all_leads.sort(key=lambda x: (x["score"], bool(x["email"])), reverse=True)
     qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
     sent = 0
+    attempted = 0
     smtp_failures = 0
     sent_last_hour = count_sends_in_last_hour(history)
     if sent_last_hour >= MAX_EMAILS_PER_HOUR:
@@ -883,7 +901,10 @@ def main():
         )
 
     for lead in qualified:
-        if sent >= MAX_EMAILS:
+        # The per-run cap applies to attempts as well as successes. Otherwise a bad
+        # SMTP configuration could try every qualified address despite a low cap.
+        if attempted >= MAX_EMAILS:
+            print(f"⏸️ Per-run attempt limit reached ({attempted}/{MAX_EMAILS})")
             break
         if sent_last_hour >= MAX_EMAILS_PER_HOUR:
             print(
@@ -895,6 +916,7 @@ def main():
         if email in contacted or lead["domain"] in contacted:
             continue
         subject, body = build_message(lead["company"], lead["need"])
+        attempted += 1
         ok, detail = send_email(email, subject, body)
         if ok:
             sent += 1
@@ -929,8 +951,9 @@ def main():
     save_history(history)
     print(
         f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
-        f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; sent {sent} emails; "
-        f"SMTP failures {smtp_failures}; no email {sum(1 for x in all_leads if not x.get('email'))}"
+        f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; attempts {attempted}; "
+        f"sent {sent} emails; SMTP failures {smtp_failures}; "
+        f"no email {sum(1 for x in all_leads if not x.get('email'))}"
     )
 
 
