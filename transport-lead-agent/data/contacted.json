@@ -244,5 +244,35 @@
     "status": "suppressed_public_authority",
     "suppressed_at": "2026-10-21T02:22:00+00:00",
     "note": "Excluded from future automated commercial outreach: Moroccan government/public authority domain."
+  },
+  "bonjour@waimarie.ma": {
+    "company": "Waimarie SARL - Société commerciale de Casablanca, Maroc",
+    "domain": "waimarie.ma",
+    "sent_at": "2026-10-21T03:10:16.603059+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@businex.ma": {
+    "company": "BUSINEX IMPORT EXPORT & CONSULTING – Porte à porte tout compris !",
+    "domain": "businex.ma",
+    "sent_at": "2026-10-21T03:10:20.705795+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@tourtra.ma": {
+    "company": "Tourtra - Entreprise de Construction & BTP au Maroc",
+    "domain": "tourtra.ma",
+    "sent_at": "2026-10-21T03:10:25.060268+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@laprophan.com": {
+    "company": "Contact - Laprophan",
+    "domain": "laprophan.com",
+    "sent_at": "2026-10-21T03:10:29.351958+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "administratif@chopinos.ma": {
+    "company": "chopinos – Sté Marocaine De Distribution",
+    "domain": "chopinos.ma",
+    "sent_at": "2026-10-21T03:10:33.653367+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
