@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-21T18:50:40.800979+00:00",
+    "timestamp": "2026-10-21T22:10:19.568746+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-21T22:11:12.792601+00:00",
     "company": "Conserves Nora",
     "email": "contact@norafood.com",
     "domain": "norafood.net",
@@ -10,18 +22,18 @@
     "sector_hint": "fabrication / agroalimentaire",
     "score": 75,
     "source": "verified-official-contact-fallback",
-    "status": "smtp_error",
-    "smtp_error": "{'contact@norafood.com': (451, b'Temporary local problem - please try later')}"
+    "status": "sent",
+    "sent_at": "2026-10-21T22:11:52.688705+00:00"
   },
   {
-    "timestamp": "2026-10-21T18:50:28.434613+00:00",
-    "company": "Kenzi Hotels Group",
+    "timestamp": "2026-10-21T22:10:10.939649+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
+    "sector_hint": "automobile industrie",
+    "score": 40,
     "source": "ddgs",
     "status": "no_email"
   }
