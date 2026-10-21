@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '*/30 * * * *'
+  push:
+    paths:
+      - 'transport-lead-agent/run-now.trigger'
 
 permissions:
   contents: write
@@ -14,6 +17,7 @@ concurrency:
 
 jobs:
   discover:
+    if: github.event_name != 'push' || hashFiles('transport-lead-agent/run-now.trigger') != ''
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
