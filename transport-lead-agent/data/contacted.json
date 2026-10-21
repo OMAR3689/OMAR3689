@@ -274,5 +274,23 @@
     "domain": "chopinos.ma",
     "sent_at": "2026-10-21T03:10:33.653367+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "sales@mia-hotels.com": {
+    "company": "MIA Hôtels – Votre expérience hôtelière d’exception au Maroc",
+    "domain": "mia-hotels.com",
+    "sent_at": "2026-10-21T08:22:58.671545+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "info@kenzi-hotels.com": {
+    "company": "Morocco All Inclusive Hotels",
+    "domain": "kenzi-hotels.com",
+    "sent_at": "2026-10-21T08:23:04.236864+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "houda.skali@risma.com": {
+    "company": "Accueil - RISMA",
+    "domain": "risma.com",
+    "sent_at": "2026-10-21T08:23:09.070982+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
