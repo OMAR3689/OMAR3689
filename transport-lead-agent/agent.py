@@ -470,6 +470,10 @@ def is_bad_prospect(title, content, url):
 
 def is_non_prospect_source(title, content, url):
     host = domain(url)
+    # Government portals/regulators need a formal procurement context; do not
+    # treat public-authority contact pages as ordinary commercial prospects.
+    if host.endswith(".gov.ma") or host == "gov.ma":
+        return True
     if host in NON_PROSPECT_DOMAINS or any(host.endswith("." + x) for x in NON_PROSPECT_DOMAINS):
         return True
     text = f"{title} {content} {url}".lower()
