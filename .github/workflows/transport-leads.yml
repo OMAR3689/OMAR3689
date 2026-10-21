@@ -2,6 +2,11 @@ name: Transport Lead Agent
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'transport-lead-agent/agent.py'
+      - '.github/workflows/transport-leads.yml'
   schedule:
     - cron: '2/5 * * * *'
 
