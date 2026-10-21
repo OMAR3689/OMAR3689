@@ -1,6 +1,10 @@
 name: Transport Lead Agent
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'transport-lead-agent/run-now.trigger'
   workflow_dispatch:
   schedule:
     - cron: '0 */2 * * *'
