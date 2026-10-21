@@ -53,6 +53,7 @@ jobs:
         run: |
           python - <<'PY'
           import importlib.util
+          import os
           from datetime import datetime, timedelta, timezone
 
           spec = importlib.util.spec_from_file_location(
@@ -73,8 +74,25 @@ jobs:
           }
           assert agent.count_sends_in_last_hour(history, now=now) == 1
 
+          original_smtp_port = os.environ.pop("SMTP_PORT", None)
+          original_imap_port = os.environ.pop("IMAP_PORT", None)
+          try:
+              assert agent.configured_port("SMTP_PORT", 465) == 465
+              assert agent.configured_port("IMAP_PORT", 993) == 993
+              os.environ["SMTP_PORT"] = "not-a-number"
+              assert agent.configured_port("SMTP_PORT", 465) == 465
+          finally:
+              if original_smtp_port is not None:
+                  os.environ["SMTP_PORT"] = original_smtp_port
+              else:
+                  os.environ.pop("SMTP_PORT", None)
+              if original_imap_port is not None:
+                  os.environ["IMAP_PORT"] = original_imap_port
+              else:
+                  os.environ.pop("IMAP_PORT", None)
+
           subject, body = agent.build_message("Exemple SARL", "transport et logistique")
           assert "TRMB SERVICES" in subject
           assert "Exemple SARL" in body
-          print("✅ Syntax, rolling hourly limit and email-template checks passed.")
+          print("✅ Syntax, default mail ports, rolling hourly limit and email-template checks passed.")
           PY
