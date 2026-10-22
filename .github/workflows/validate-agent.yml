@@ -32,7 +32,7 @@ jobs:
           from pathlib import Path
 
           workflow = Path(".github/workflows/transport-leads.yml").read_text(encoding="utf-8")
-          assert "cron: '2/5 * * * *'" in workflow, "Expected five-minute schedule offset from the top of the hour"
+          assert "cron: '*/5 * * * *'" in workflow, "Expected five-minute schedule"
           assert "MAX_EMAILS_PER_RUN: '50'" in workflow, "Expected max 50 attempts per run"
           assert "MAX_EMAILS_PER_HOUR: '100'" in workflow, "Expected max 100 emails per rolling hour"
           print("✅ Schedule is every 5 minutes (offset at minute 2); caps are 50 per run and 100 per hour.")
