@@ -141,18 +141,12 @@ jobs:
               source_host = (urlparse(source).hostname or "").lower().removeprefix("www.")
               company_host = (urlparse(str(lead.get("url", ""))).hostname or "").lower().removeprefix("www.")
               email = str(lead.get("email", "")).strip().lower()
-              local = email.split("@", 1)[0].split("+", 1)[0]
               if (
                   urlparse(source).scheme != "https"
                   or not source_host
                   or source_host != company_host
-                  or (
-                      local not in sources.GENERIC_PREFIXES
-                      and not (
-                          (email.split("@", 1)[-1] or "").lower() in sources.FREE_MAIL_HOSTS
-                          and local not in sources.NON_CONTACT_PREFIXES
-                          and len(local) >= 3
-                      )
+                  or not sources.is_public_business_email(
+                      email, site_domain=company_host, allow_external_domain=True
                   )
                   or int(lead.get("score", 0) or 0) < 20
               ):
