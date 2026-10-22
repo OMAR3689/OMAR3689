@@ -2,8 +2,6 @@ name: TRMB Lead Agent V2 - Verified Outreach
 # Intentional [send-v2] commits run the guarded send mode only after the Python tests pass.
 
 on:
-  schedule:
-    - cron: '2-59/5 * * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -25,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: trmb-agent-v2
@@ -167,3 +166,20 @@ jobs:
           )
           print(f"📑 Official public-tender candidates saved separately: {len(tenders)}.")
           PY
+
+      - name: Queue the next verified V2 cycle
+        if: ${{ success() && env.DRY_RUN == 'false' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          echo "⏳ Queue the next send cycle after a short pause."
+          sleep 90
+          curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data '{"ref":"trmb-agent-v2","inputs":{"mode":"send"}}' \
+            "https://api.github.com/repos/${GH_REPOSITORY}/actions/workflows/transport-leads-v2.yml/dispatches"
+          echo "✅ Next verified V2 cycle queued."
