@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "title": "TRANSPORT DE MATERIEL DIVERS",
+    "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T14:27:58.412120+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "location de véhicules pour transport du personnel de la commune",
+    "buyer": "Commune rurale de RAS EL OUED",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T14:28:01.759060+00:00",
+    "index_engine": "Bing RSS"
+  }
+]
