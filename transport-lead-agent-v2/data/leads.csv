@@ -1,2 +1,4 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T07:47:46.316841+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,100,False,WARM,bing-rss,,no_email,,,,
+2026-10-22T07:52:08.800369+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,100,False,WARM,bing-rss,,no_email,,,,
+2026-10-22T07:52:27.893482+00:00,"EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",ediman.sarl@hotmail.com,ediman.ma,https://ediman.ma/,transport et logistique,construction chantier,20,False,STANDARD,ddgs,https://ediman.ma/,sent,2026-10-22T07:53:39.258575+00:00,,,
+2026-10-22T07:52:49.754707+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,

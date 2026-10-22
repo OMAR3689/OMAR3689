@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T07:47:46.316841+00:00",
+    "timestamp": "2026-10-22T07:52:08.800369+00:00",
     "company": "UPM - Grossiste Pharmaceutique",
     "email": "",
     "domain": "upm-grossiste.ma",
@@ -11,6 +11,37 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T07:52:27.893482+00:00",
+    "company": "EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",
+    "email": "ediman.sarl@hotmail.com",
+    "domain": "ediman.ma",
+    "url": "https://ediman.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "construction chantier",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://ediman.ma/",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:53:39.258575+00:00"
+  },
+  {
+    "timestamp": "2026-10-22T07:52:49.754707+00:00",
+    "company": "Kenzi Hotels Group",
+    "email": "",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }
