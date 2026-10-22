@@ -1,55 +1,30 @@
 [
   {
-    "timestamp": "2026-10-22T08:23:34.342498+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T08:29:26.344420+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "need": "transport et logistique",
+    "sector_hint": "retail distribution",
+    "score": 60,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T08:23:39.140870+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T08:28:50.524833+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T08:24:08.861142+00:00",
-    "company": "Accueil - ALH Hospitality",
-    "email": "recrutement@alh-hospitality.ma",
-    "domain": "alh-hospitality.ma",
-    "url": "https://www.alh-hospitality.ma/",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T08:24:28.712737+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T08:24:00.416495+00:00",
-    "company": "EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",
-    "email": "",
-    "domain": "ediman.ma",
-    "url": "https://ediman.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "construction chantier",
-    "score": 20,
+    "sector_hint": "automobile industrie",
+    "score": 40,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T08:24:13.475478+00:00",
+    "timestamp": "2026-10-22T08:29:39.807405+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -57,7 +32,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
