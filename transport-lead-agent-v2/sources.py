@@ -24,7 +24,11 @@ MAX_HTML_BYTES = 2_000_000
 
 # URL officielle vérifiée du portail; la recherche avancée utilise le paramètre keyWord.
 MP_SEARCH_URL = "https://www.marchespublics.gov.ma/index.php"
-MP_KEYWORDS = ("transport", "logistique", "convoyage", "flotte", "marchandises", "livraison")
+MP_KEYWORDS = (
+    "transport", "logistique", "convoyage", "flotte", "marchandises", "livraison",
+    "prestations de transport", "transport du personnel", "organisation logistique",
+    "location de camions", "affrètement",
+)
 CONTACT_HINTS = (
     "contact", "nous-contacter", "contactez", "contact-us",
     "a-propos", "about", "mentions-legales", "mentions-légales",

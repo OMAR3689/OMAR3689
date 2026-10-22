@@ -20,6 +20,18 @@ class SourcesTests(unittest.TestCase):
         with patch("sources.urllib.request.urlopen", side_effect=error):
             self.assertTrue(sources.allowed_by_robots("https://example.ma/contact"))
 
+    def test_public_procurement_keywords_cover_common_transport_service_notices(self):
+        expected = {
+            "transport",
+            "logistique",
+            "prestations de transport",
+            "transport du personnel",
+            "organisation logistique",
+            "location de camions",
+            "affrètement",
+        }
+        self.assertTrue(expected.issubset(set(sources.MP_KEYWORDS)))
+
     def test_forbidden_robots_txt_fails_closed(self):
         error = urllib.error.HTTPError(
             "https://example.ma/robots.txt", 403, "Forbidden", {}, None
