@@ -1,80 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T16:28:17.727351+00:00",
-    "company": "Fournitures industrielles pour usines au Maroc | AR Magreb",
-    "email": "info@armagreb.com",
-    "domain": "armagreb.com",
-    "url": "https://armagreb.com/fournitures-industrielles-maroc/",
-    "need": "livraison / distribution",
-    "sector_hint": "industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T16:29:24.166393+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T16:28:32.647776+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T16:28:40.316238+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T16:28:47.146350+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T16:28:10.724026+00:00",
-    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
-    "email": "contact@alaqindustry.com",
-    "domain": "alaqindustry.com",
-    "url": "https://alaqindustry.com/",
-    "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 60,
-    "source": "ddgs",
-    "status": "smtp_error",
-    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
-  },
-  {
-    "timestamp": "2026-10-22T16:28:24.261374+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T16:29:17.619323+00:00",
+    "timestamp": "2026-10-22T16:33:58.122066+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -82,7 +8,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
