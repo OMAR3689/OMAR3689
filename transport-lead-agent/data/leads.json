@@ -1,19 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T07:21:38.543913+00:00",
-    "company": "CONTACT - zenithpharma.ma",
-    "email": "contact@zenithpharma.ma",
-    "domain": "zenithpharma.ma",
-    "url": "https://www.zenithpharma.ma/contact/",
-    "need": "transport et logistique",
-    "sector_hint": "pharmaceutique",
-    "score": 100,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T07:22:29.705843+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T07:21:24.720103+00:00",
+    "timestamp": "2026-10-22T07:26:55.058516+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -21,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:21:31.615226+00:00",
+    "timestamp": "2026-10-22T07:27:01.613361+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -33,11 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:21:57.805697+00:00",
+    "timestamp": "2026-10-22T07:27:21.680777+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -49,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:21:13.090130+00:00",
+    "timestamp": "2026-10-22T07:26:43.679741+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -61,7 +48,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:22:10.119712+00:00",
+    "timestamp": "2026-10-22T07:26:31.063656+00:00",
+    "company": "Groupe Lesieur Cristal - Leader agro-industriel au Maroc",
+    "email": "",
+    "domain": "lesieur-cristal.com",
+    "url": "https://lesieur-cristal.com/",
+    "need": "transport et logistique",
+    "sector_hint": "agroalimentaire industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T07:27:33.915260+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
