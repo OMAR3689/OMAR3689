@@ -1,2 +1,3 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T10:09:42.786658+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T10:13:38.622854+00:00,Conception et installation d’usines au Maroc - ALAQ INDUSTRY,contact@alaqindustry.com,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,False,WARM,bing-rss,https://alaqindustry.com/,smtp_error,,"{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}",,
+2026-10-22T10:14:30.277858+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
