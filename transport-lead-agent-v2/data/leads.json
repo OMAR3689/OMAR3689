@@ -1,6 +1,38 @@
 [
   {
-    "timestamp": "2026-10-22T05:24:57.517113+00:00",
+    "timestamp": "2026-10-22T05:27:37.131448+00:00",
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
+    "email": "info@hangarmaroc.com",
+    "domain": "hangarmaroc.com",
+    "url": "https://hangarmaroc.com/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "https://hangarmaroc.com/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T05:26:55.966416+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:28:15.980911+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -15,7 +47,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:24:57.517183+00:00",
+    "timestamp": "2026-10-22T05:28:15.980974+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -30,7 +62,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:24:57.517260+00:00",
+    "timestamp": "2026-10-22T05:28:15.981018+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -45,7 +77,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:24:57.517319+00:00",
+    "timestamp": "2026-10-22T05:28:15.981064+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -60,22 +92,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:23:32.720113+00:00",
-    "company": "Nos sites - Cimat",
-    "email": "",
-    "domain": "cimat.ma",
-    "url": "https://www.cimat.ma/fr/pages/nos-sites",
-    "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 40,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T05:24:17.781014+00:00",
+    "timestamp": "2026-10-22T05:27:28.497644+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
