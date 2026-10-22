@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T07:05:53.987080+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T07:06:06.845957+00:00",
+    "timestamp": "2026-10-22T07:10:58.430563+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:06:13.371667+00:00",
+    "timestamp": "2026-10-22T07:11:07.628302+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -36,27 +24,28 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T07:06:43.736230+00:00",
-    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
-    "email": "",
-    "domain": "hangarmaroc.com",
-    "url": "https://hangarmaroc.com/",
+    "timestamp": "2026-10-22T07:11:43.433835+00:00",
+    "company": "Rayonnage Maroc - Produits de stockage - maghreb rayonnage",
+    "email": "contact@maghreb-rayonnage.ma",
+    "domain": "maghreb-rayonnage.ma",
+    "url": "https://maghreb-rayonnage.ma/",
     "need": "transport et logistique",
     "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
+    "score": 95,
+    "source": "ddgs",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:11:59.342164+00:00"
   },
   {
-    "timestamp": "2026-10-22T07:05:44.565075+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-22T07:11:38.497691+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
