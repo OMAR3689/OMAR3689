@@ -432,6 +432,48 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(merged[0]["title"], "Future transport service")
         self.assertEqual(merged[0]["index_engine"], "Bing RSS")
 
+    def test_tender_archive_preserves_known_deadline_and_buyer_on_incomplete_refresh(self):
+        known = {
+            "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib",
+            "buyer": "POSTE MAROC",
+            "deadline": "10/11/2026",
+            "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre",
+            "status": "date_limite_future_a_verifier",
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
+        }
+        incomplete_refresh = {
+            "title": known["title"],
+            "buyer": "",
+            "deadline": "",
+            "status": "date_limite_inconnue_a_verifier",
+            "url": known["url"],
+            "index_engine": "DDGS",
+        }
+        merged = agent.merge_tender_archive(
+            [known], [incomplete_refresh], today=date(2026, 10, 22)
+        )
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["buyer"], "POSTE MAROC")
+        self.assertEqual(merged[0]["deadline"], "10/11/2026")
+        self.assertEqual(merged[0]["status"], "date_limite_future_a_verifier")
+        self.assertTrue(merged[0]["deadline_source_url"].startswith("https://marchefacile.ma/"))
+        self.assertEqual(merged[0]["index_engine"], "DDGS")
+
+    def test_tender_archive_drops_expired_deadline_discovered_after_unknown_history(self):
+        url = "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/456"
+        older_unknown = {
+            "title": "Transport du personnel", "buyer": "Commune Exemple",
+            "deadline": "", "status": "date_limite_inconnue_a_verifier", "url": url,
+        }
+        newly_expired = {
+            "title": "Transport du personnel", "buyer": "Commune Exemple",
+            "deadline": "01/01/2020", "status": "date_limite_future", "url": url,
+        }
+        merged = agent.merge_tender_archive(
+            [older_unknown], [newly_expired], today=date(2026, 10, 22)
+        )
+        self.assertEqual(merged, [])
+
     def test_persist_outreach_state_saves_sent_history_and_retry_queue(self):
         history = {
             "sent@example.ma": {
