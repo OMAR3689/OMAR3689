@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T05:28:18.652401+00:00",
+    "timestamp": "2026-10-22T05:33:19.880099+00:00",
     "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
     "domain": "3skpartsauto.com",
@@ -12,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:28:31.867857+00:00",
+    "timestamp": "2026-10-22T05:33:31.895089+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,11 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:28:38.925228+00:00",
+    "timestamp": "2026-10-22T05:33:38.711887+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -32,11 +32,23 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:28:59.360042+00:00",
+    "timestamp": "2026-10-22T05:33:45.674475+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:34:07.399105+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -48,7 +60,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:28:10.344820+00:00",
+    "timestamp": "2026-10-22T05:33:09.084593+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -60,20 +72,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:27:51.424065+00:00",
-    "company": "Agroalimentaire Maroc | Télécontact - Référence des professionnels",
-    "email": "commercial@telecontact.ma",
-    "domain": "telecontact.ma",
-    "url": "https://www.telecontact.ma/maroc/agroalimentaire.html",
-    "need": "transport et logistique",
-    "sector_hint": "agroalimentaire industrie",
-    "score": 20,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T05:29:25.350932+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T05:29:08.273606+00:00",
+    "timestamp": "2026-10-22T05:34:15.756791+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
