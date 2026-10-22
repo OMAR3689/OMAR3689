@@ -327,6 +327,28 @@ def _tender_search_url(keyword):
     return MP_SEARCH_URL + "?" + urllib.parse.urlencode(params)
 
 
+def _is_transport_service_tender(tender):
+    """Reject public purchases where delivery is incidental to unrelated goods."""
+    title = _normal_text(str(tender.get("title", "") or ""))
+    irrelevant_goods_signals = (
+        "titres de transport", "billets sans contact", "supports de communication",
+        "support de communication", "climatiseur", "climatiseurs",
+        "stores enrouleurs", "switchs",
+    )
+    if any(signal in title for signal in irrelevant_goods_signals):
+        return False
+    service_terms = (
+        "transport", "logistique", "convoyage", "flotte", "marchandises",
+        "vehicule", "camion", "navette", "demenagement", "affretement",
+        "acheminement", "fret", "transport routier", "transport de personnes",
+        "transport du personnel", "transport scolaire", "transport de marchandises",
+        "transport frigorifique", "livraison express", "livraison de colis",
+        "livraison de marchandises", "prestations de livraison",
+        "services de livraison", "organisation logistique",
+    )
+    return any(term in title for term in service_terms)
+
+
 def _parse_tender_row(row, keyword, listing_url):
     row_text = row.get("text", "")
     normal = _normal_text(row_text)
@@ -482,56 +504,22 @@ def _parse_indexed_tender(item, keyword):
             return None
         title = objective[:500]
 
-    # Re-check relevance AFTER the real object replaces generic portal labels.
-    # This prevents portal metadata such as category="flotte" from turning purchases
-    # for switches, blinds, or unrelated equipment into logistics opportunities.
-    normalized_final_title = _normal_text(title)
-    # Purchasing a product that happens to include delivery is not the same as
-    # outsourcing transport. Accept only explicit freight/logistics service evidence.
-    tender_service_terms = (
-        "transport", "logistique", "convoyage", "flotte", "marchandises",
-        "vehicule", "camion", "navette", "demenagement", "affretement",
-        "acheminement", "fret", "transport routier", "transport de personnes",
-        "transport du personnel", "transport scolaire", "transport de marchandises",
-        "transport frigorifique", "livraison express", "livraison de colis",
-        "livraison de marchandises", "prestations de livraison",
-        "services de livraison", "organisation logistique",
-    )
-    irrelevant_goods_signals = (
-        "titres de transport", "billets sans contact", "supports de communication",
-        "support de communication", "climatiseur", "climatiseurs",
-        "stores enrouleurs", "switchs",
-    )
-    if any(signal in normalized_final_title for signal in irrelevant_goods_signals):
-        return None
-    final_title_relevant = any(
-        term in normalized_final_title for term in tender_service_terms
-    )
-
+    # Check the actual object title, not the query keyword or buyer metadata.
+    # Generic purchase notices may reveal their object only in the indexed snippet.
     if generic_purchase_title and description_has_relevance:
-        # Some indexed purchase notices omit the "Objet:" label. Use the relevant
-        # text prefix before buyer/publication metadata as a descriptive fallback.
         prefix_match = re.search(
-            r"^(.+?)(?=\s*(?:Acheteur public|Date mise en ligne|Date de mise en ligne|"
+            r"^(.+?)(?=\\s*(?:Acheteur public|Date mise en ligne|Date de mise en ligne|"
             r"Date publication|Date de publication|Type d'annonce|Procedure|"
-            r"Categorie principale)\b)",
+            r"Categorie principale)\\b)",
             description,
             flags=re.IGNORECASE,
         )
         if prefix_match:
-            prefix = re.sub(r"\s+", " ", prefix_match.group(1)).strip(" :-")
-            normalized_prefix = _normal_text(prefix)
-            if any(signal in normalized_prefix for signal in irrelevant_goods_signals):
-                return None
-            if any(term in normalized_prefix for term in tender_service_terms):
+            prefix = re.sub(r"\\s+", " ", prefix_match.group(1)).strip(" :-")
+            if _is_transport_service_tender({"title": prefix}):
                 title = prefix[:500]
-                normalized_final_title = _normal_text(title)
-                final_title_relevant = True
 
-
-    # Buyer identity or a matching portal category alone is not sufficient. Require
-    # the parsed/provisional object itself to describe transport/logistics.
-    if not final_title_relevant:
+    if not _is_transport_service_tender({"title": title}):
         return None
 
     deadline_match = re.search(
@@ -761,7 +749,7 @@ def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
         count_for_keyword = 0
         for row in parser.rows:
             tender = _parse_tender_row(row, keyword, listing_url)
-            if not tender:
+            if not tender or not _is_transport_service_tender(tender):
                 continue
             dedup_key = _normal_text(tender["title"]) + "|" + _normal_text(tender["buyer"]) + "|" + tender["deadline"]
             if dedup_key not in found:
@@ -772,6 +760,8 @@ def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
 
     if not found:
         for tender in _find_indexed_tenders(keywords):
+            if not _is_transport_service_tender(tender):
+                continue
             dedup_key = _normal_text(tender["title"]) + "|" + _normal_text(tender["buyer"]) + "|" + tender["deadline"]
             found.setdefault(dedup_key, tender)
 

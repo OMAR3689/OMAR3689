@@ -213,6 +213,28 @@ class SourcesTests(unittest.TestCase):
             "source_url": "https://example.ma/contact",
         }])
 
+    def test_direct_portal_parser_rejects_delivery_incidental_to_air_conditioners(self):
+        html = """
+        <table><tr>
+          <td>Objet : Acquisition, livraison, installation et mise en service de climatiseurs</td>
+          <td>Acheteur public : Faculté des Sciences juridiques, économiques et sociales Agdal</td>
+          <td>Date limite de remise des plis : 31/12/2099</td>
+          <td><a href="/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=378751">Détail consultation</a></td>
+        </tr></table>
+        """
+        with patch("sources.polite_get", return_value=html),              patch("sources._find_indexed_tenders", return_value=[]):
+            tenders = sources.find_tenders(keywords=("livraison",))
+        self.assertEqual(tenders, [])
+
+    def test_transport_service_title_is_kept_by_central_gate(self):
+        tender = {"title": "Transport de marchandises entre sites"}
+        self.assertTrue(sources._is_transport_service_tender(tender))
+        self.assertFalse(
+            sources._is_transport_service_tender(
+                {"title": "Acquisition, livraison et installation de climatiseurs"}
+            )
+        )
+
     def test_tender_fallback_uses_ddgs_when_official_portal_is_unreachable(self):
         item = {
             "title": "Avis de consultation - Transport de marchandises",
