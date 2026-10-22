@@ -100,6 +100,33 @@ class SourcesTests(unittest.TestCase):
             "source_url": "https://example.ma/contact",
         }])
 
+    def test_tender_fallback_uses_ddgs_when_official_portal_is_unreachable(self):
+        item = {
+            "title": "Avis de consultation - Transport de marchandises",
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailConsultation&id=456",
+            "content": "Acheteur public : Commune Exemple Date limite de remise des plis : 31/12/2099",
+        }
+        with patch("sources.polite_get", return_value=None), \
+             patch("sources._ddgs_index_search", return_value=[item]), \
+             patch("sources._bing_rss_index_search", return_value=[]), \
+             patch("sources._duckduckgo_html_index_search", return_value=[]):
+            tenders = sources.find_tenders(keywords=("transport",))
+        self.assertEqual(len(tenders), 1)
+        self.assertEqual(tenders[0]["index_engine"], "DDGS")
+        self.assertEqual(tenders[0]["buyer"], "Commune Exemple")
+
+    def test_duckduckgo_html_parser_extracts_public_result_link(self):
+        html = (
+            '<a class="result__a" href="https://www.marchespublics.gov.ma/'
+            'index.php?page=entreprise.EntrepriseDetailConsultation&amp;id=456">'
+            'Avis de consultation transport</a>'
+        )
+        parser = sources._SearchResultLinkParser()
+        parser.feed(html)
+        self.assertEqual(len(parser.results), 1)
+        self.assertIn("marchespublics.gov.ma", parser.results[0]["url"])
+        self.assertIn("transport", parser.results[0]["title"].lower())
+
 
 if __name__ == "__main__":
     unittest.main()
