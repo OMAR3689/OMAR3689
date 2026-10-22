@@ -1,3 +1,8 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T03:24:26.443269+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-22T03:23:45.271175+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-22T03:29:47.550278+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T03:29:53.621761+00:00,ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité,,ibraparts.ma,https://ibraparts.ma/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T03:30:52.780978+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,95,ddgs,,no_email,,
+2026-10-22T03:31:45.925409+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,transport et logistique,distribution grossiste,60,ddgs,,no_email,,
+2026-10-22T03:32:14.414011+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T03:29:38.434747+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-22T03:29:31.707933+00:00,CAPRAM,contact@capram.ma,capram.ma,https://capram.ma/,transport et logistique,automobile industrie,20,bing-rss,,sent,2026-10-22T03:32:59.727029+00:00,
