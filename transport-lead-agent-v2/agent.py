@@ -1298,8 +1298,12 @@ def main():
                 "Send preflight blocked before any email was sent; missing GitHub secrets: "
                 + ", ".join(missing)
             )
-        if not qualified:
-            raise SystemExit("Send preflight blocked before any email was sent: no verified generic contacts.")
+        min_sendable = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "7")))
+        if len(qualified) < min_sendable:
+            raise SystemExit(
+                "Send preflight blocked before any email was sent: "
+                f"{len(qualified)} verified generic contacts found; at least {min_sendable} required."
+            )
         pdf_bytes, pdf_error = load_presentation_pdf()
         if pdf_bytes is None:
             raise SystemExit(
