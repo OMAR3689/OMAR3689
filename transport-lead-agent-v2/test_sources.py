@@ -42,6 +42,19 @@ class SourcesTests(unittest.TestCase):
         emails = sources.extract_generic_emails(html, "example.ma")
         self.assertEqual(emails, ["contact@example.ma", "info@example.ma"])
 
+    def test_public_company_gmail_is_allowed_only_when_published_on_official_site(self):
+        html = """
+        contact@example.ma info@example.ma
+        companylogistique@gmail.com
+        no-reply@gmail.com
+        contact@other.ma
+        """
+        emails = sources.extract_generic_emails(html, "example.ma")
+        self.assertEqual(
+            emails,
+            ["companylogistique@gmail.com", "contact@example.ma", "info@example.ma"],
+        )
+
     def test_tender_parser_extracts_future_transport_opportunity(self):
         row = {
             "text": (
