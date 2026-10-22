@@ -1,0 +1,53 @@
+name: TRMB Lead Agent V2 - Manual Dry Run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trmb-agent-v2
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      DRY_RUN: 'true'
+      MAX_EMAILS_PER_RUN: '10'
+      MAX_EMAILS_PER_HOUR: '20'
+      PRESENTATION_URL: 'https://trmb.ma/'
+      PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
+      PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Verify isolated V2 and live V1 history
+        run: |
+          echo "✅ V2 manual preview mode — no emails are sent."
+          git fetch origin main
+          git show origin/main:transport-lead-agent/data/contacted.json > "$RUNNER_TEMP/v1-contacted.json"
+          echo "V1_HISTORY_FILE=$RUNNER_TEMP/v1-contacted.json" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install free search engine
+        run: python -m pip install --disable-pip-version-check --no-warn-script-location ddgs
+
+      - name: Validate Python syntax
+        run: python -m py_compile transport-lead-agent-v2/agent.py
+
+      - name: Discover and preview prospects (no sending)
+        run: python transport-lead-agent-v2/agent.py
+
+      - name: Commit V2 preview data only
+        run: |
+          git config user.name 'TRMB Lead Agent V2'
+          git config user.email 'actions@github.com'
+          git add transport-lead-agent-v2/data/leads.json transport-lead-agent-v2/data/leads.csv transport-lead-agent-v2/data/contacted.json
+          git diff --cached --quiet || git commit -m 'Update TRMB Lead Agent V2 preview data'
+          git push origin HEAD:trmb-agent-v2
