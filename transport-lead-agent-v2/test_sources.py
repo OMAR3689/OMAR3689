@@ -157,6 +157,44 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(tender["deadline"], "")
         self.assertEqual(tender["status"], "date_limite_inconnue_a_verifier")
 
+    def test_tender_parser_rejects_generic_search_listing_url(self):
+        item = {
+            "title": (
+                "CONCOURS ARCHITECTURAL POUR LA CONCEPTION ET LE SUIVI DES TRAVAUX "
+                "DE CONSTRUCTION DU NOUVEAU SIEGE DE LA DIRECTION REGIONALE DE "
+                "L'EQUIPEMENT, DU TRANSPORT ET DE LA LOGISTIQUE"
+            ),
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&WithCritere&searchAnnCons",
+            "content": "Catégorie principale : Transport et logistique",
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "logistique"))
+
+    def test_tender_parser_rejects_generic_portal_title_without_object(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1044305",
+            "content": "Acheteur public : Commune Exemple Type d'annonce : Annonce de consultation",
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "transport"))
+
+    def test_buyer_field_excludes_publication_date_metadata(self):
+        item = {
+            "title": "Détails de l'avis d'achat #19/EXP/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394009",
+            "content": (
+                "Transport de marchandises Acheteur public : "
+                "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD "
+                "Date mise en ligne 15/10/2026 09:46"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(
+            tender["buyer"],
+            "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD",
+        )
+        self.assertNotIn("Date mise en ligne", tender["buyer"])
+
 
 if __name__ == "__main__":
     unittest.main()
