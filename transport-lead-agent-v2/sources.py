@@ -109,7 +109,7 @@ def _normal_text(value):
 
 
 def allowed_by_robots(url):
-    """Fail closed, avec timeout explicite pour ne pas bloquer une exécution."""
+    """Check published crawl rules; retry one transient timeout, then fail closed."""
     parts = urllib.parse.urlsplit(url)
     if parts.scheme not in ("http", "https") or not parts.netloc:
         return False
@@ -120,30 +120,42 @@ def allowed_by_robots(url):
             robots_url,
             headers={"User-Agent": USER_AGENT, "Accept": "text/plain,*/*;q=0.1"},
         )
-        try:
-            with urllib.request.urlopen(req, timeout=8) as resp:
-                raw = resp.read(100_000).decode("utf-8", errors="replace")
-            rp = robotparser.RobotFileParser()
-            rp.set_url(robots_url)
-            rp.parse(raw.splitlines())
-            _robots_cache[base] = rp
-        except urllib.error.HTTPError as exc:
-            if exc.code in (404, 410):
-                # An absent robots.txt is "unavailable", not "disallow all":
-                # treat the site as having no published robot rules.
+        for attempt in range(2):
+            try:
+                with urllib.request.urlopen(req, timeout=6) as resp:
+                    raw = resp.read(100_000).decode("utf-8", errors="replace")
                 rp = robotparser.RobotFileParser()
                 rp.set_url(robots_url)
-                rp.parse([])
+                rp.parse(raw.splitlines())
                 _robots_cache[base] = rp
-                print(f"ℹ️ robots.txt absent (HTTP {exc.code}); no crawl rules published by {base}")
-            else:
-                # Keep the conservative fail-closed policy for 401/403/429/5xx.
-                print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: HTTP {exc.code}")
+                break
+            except urllib.error.HTTPError as exc:
+                if exc.code in (404, 410):
+                    # An absent robots.txt is "unavailable", not "disallow all":
+                    # treat the site as having no published robot rules.
+                    rp = robotparser.RobotFileParser()
+                    rp.set_url(robots_url)
+                    rp.parse([])
+                    _robots_cache[base] = rp
+                    print(f"ℹ️ robots.txt absent (HTTP {exc.code}); no crawl rules published by {base}")
+                else:
+                    # Keep the conservative fail-closed policy for 401/403/429/5xx.
+                    print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: HTTP {exc.code}")
+                    _robots_cache[base] = None
+                break
+            except (urllib.error.URLError, TimeoutError, OSError) as exc:
+                if attempt == 0:
+                    print(f"⏳ robots.txt timeout/network error for {base}; retrying once: {exc}")
+                    time.sleep(1)
+                    continue
+                # After a bounded retry, never assume permission to crawl.
+                print(f"⏭️ robots.txt inaccessible after retry; crawl désactivé pour {base}: {exc}")
                 _robots_cache[base] = None
-        except Exception as exc:
-            # Timeout or unknown network error: do not assume permission.
-            print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: {exc}")
-            _robots_cache[base] = None
+            except Exception as exc:
+                # Unknown errors are not retried and never treated as permission.
+                print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: {exc}")
+                _robots_cache[base] = None
+                break
     rp = _robots_cache[base]
     if rp is None:
         return False
