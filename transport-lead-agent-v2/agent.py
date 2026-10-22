@@ -654,6 +654,27 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "acier / industrie métallurgique",
         "score": 80,
     },
+
+    {
+        "company": "Managem Group",
+        "email": "procurement@managemgroup.com",
+        "domain": "managemgroup.com",
+        "url": "https://www.managemgroup.com/",
+        "email_source_url": "https://www.managemgroup.com/achats",
+        "need": "transport d'équipements miniers, consommables industriels et flux entre sites",
+        "sector_hint": "mines / industrie lourde / achats",
+        "score": 86,
+    },
+    {
+        "company": "COLORADO S.A.",
+        "email": "contact@colorado.ma",
+        "domain": "colorado.ma",
+        "url": "https://www.colorado.ma/",
+        "email_source_url": "https://www.colorado.ma/corporate/fr/politique-de-confidentialite-application-mobile-colorado-reporting",
+        "need": "transport de peintures, approvisionnement des matières premières et distribution B2B",
+        "sector_hint": "fabrication / matériaux de construction / peinture",
+        "score": 78,
+    },
 ]
 
 
