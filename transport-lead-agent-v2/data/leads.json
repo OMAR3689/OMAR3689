@@ -1,16 +1,16 @@
 [
   {
-    "timestamp": "2026-10-22T07:16:19.050825+00:00",
-    "company": "UPM - Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T07:20:56.332939+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "upm-grossiste.ma",
-    "url": "https://upm-grossiste.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
     "direct_intent": false,
-    "priority": "WARM",
-    "source": "bing-rss",
+    "priority": "STANDARD",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }
