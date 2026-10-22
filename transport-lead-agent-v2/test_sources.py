@@ -73,7 +73,7 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(tender["buyer"], "Commune Exemple")
         self.assertEqual(tender["deadline"], "31/12/2099")
         self.assertEqual(tender["status"], "date_limite_future")
-        self.assertIn("Index Bing", tender["source"])
+        self.assertIn("Index public", tender["source"])
 
     def test_indexed_tender_parser_rejects_external_directory_results(self):
         item = {
@@ -126,6 +126,36 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(len(parser.results), 1)
         self.assertIn("marchespublics.gov.ma", parser.results[0]["url"])
         self.assertIn("transport", parser.results[0]["title"].lower())
+
+    def test_indexed_tender_prefers_object_and_parses_buyer_cleanly(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1044305",
+            "content": (
+                "Objet : Transport de marchandises entre sites. "
+                "Acheteur public : M6 / CTSA - Casablanca Transport en Site Aménagé SA "
+                "Type d'annonce : Annonce de consultation "
+                "Procédure : Appel d'offres ouvert "
+                "Date limite de remise des plis : 31/12/2099"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(tender["title"], "Transport de marchandises entre sites.")
+        self.assertEqual(tender["buyer"], "M6 / CTSA - Casablanca Transport en Site Aménagé SA")
+        self.assertEqual(tender["deadline"], "31/12/2099")
+        self.assertEqual(tender["source"], "Index public du Portail Marocain des Marchés Publics")
+
+    def test_indexed_tender_does_not_mistake_publication_date_for_deadline(self):
+        item = {
+            "title": "Avis de consultation - Transport de marchandises",
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailConsultation&id=789",
+            "content": "Publication : 01/01/2025. Acheteur public : Commune Exemple",
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(tender["deadline"], "")
+        self.assertEqual(tender["status"], "date_limite_inconnue_a_verifier")
 
 
 if __name__ == "__main__":
