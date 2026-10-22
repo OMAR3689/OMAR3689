@@ -562,11 +562,27 @@ def score(text):
 
 
 def is_bad_prospect(title, content, url):
-    t = f"{title} {content} {url}".lower()
-    if any(x in t for x in DIRECTORY_SIGNALS):
+    # Reject obvious transport/logistics providers from the result title immediately.
+    # V2 is intended to find companies that BUY transport, not competitors selling it.
+    title_text = re.sub(r"\\s+", " ", title or "").lower().replace("’", "'")
+    provider_title_signals = (
+        "société de transport", "societe de transport",
+        "société de transports", "societe de transports",
+        "transporteur routier", "transporteur international",
+        "entreprise de transport", "transport et logistique",
+        "transport & logistique", "transport/logistique",
+        "freight forwarder", "commissionnaire de transport",
+        "transport de marchandises", "transport international",
+        "transport routier", "nos camions", "notre flotte",
+    )
+    if any(signal in title_text for signal in provider_title_signals):
         return True
-    provider_hits = sum(1 for x in PROVIDER_SIGNALS if x in t)
-    buyer_hits = sum(1 for x in BUYER_SIGNALS if x in t)
+
+    t = f"{title} {content} {url}".lower().replace("’", "'")
+    if any(x.replace("’", "'") in t for x in DIRECTORY_SIGNALS):
+        return True
+    provider_hits = sum(1 for x in PROVIDER_SIGNALS if x.replace("’", "'") in t)
+    buyer_hits = sum(1 for x in BUYER_SIGNALS if x.replace("’", "'") in t)
     sector_hits = sum(1 for x in TARGET_SECTOR_SIGNALS if x in t)
     return provider_hits >= 2 and buyer_hits <= 2 and sector_hits < 2
 
