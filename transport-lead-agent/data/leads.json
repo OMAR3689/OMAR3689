@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T17:55:40.678966+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T17:56:01.142529+00:00",
+    "timestamp": "2026-10-22T18:01:24.037360+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T17:56:07.436922+00:00",
+    "timestamp": "2026-10-22T18:01:32.384800+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -36,45 +24,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T17:56:17.074389+00:00",
-    "company": "ISIO LABORATOIRES | Maroc",
-    "email": "contact@isiolaboratoires.com",
-    "domain": "isiolaboratoires.com",
-    "url": "http://isiolaboratoires.com/",
-    "need": "transport lié aux flux import/export",
-    "sector_hint": "pharmaceutique",
-    "score": 95,
-    "source": "ddgs",
-    "status": "smtp_error",
-    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
-  },
-  {
-    "timestamp": "2026-10-22T17:56:30.772008+00:00",
-    "company": "ASMEX – Confédération Marocaine des Exportateurs",
+    "timestamp": "2026-10-22T18:01:01.523138+00:00",
+    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
     "email": "",
-    "domain": "asmex.org",
-    "url": "https://asmex.org/",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
-    "sector_hint": "importateur exportateur",
-    "score": 80,
+    "sector_hint": "industrie",
+    "score": 60,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T17:56:14.432501+00:00",
-    "company": "LABORATOIRES PHARMACEUTIQUES PRODISPHAR",
-    "email": "info@prodisphar.com",
-    "domain": "prodisphar.com",
-    "url": "https://www.prodisphar.com/",
-    "need": "transport et logistique",
-    "sector_hint": "pharmaceutique",
-    "score": 60,
-    "source": "ddgs",
-    "status": "smtp_error",
-    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
-  },
-  {
-    "timestamp": "2026-10-22T17:56:43.772187+00:00",
+    "timestamp": "2026-10-22T18:02:04.564093+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -86,7 +48,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T17:55:48.755346+00:00",
+    "timestamp": "2026-10-22T18:01:12.827735+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -94,6 +56,18 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T18:02:26.522001+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "bing-rss",
     "status": "no_email"
   }
