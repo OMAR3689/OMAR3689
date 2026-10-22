@@ -1,1 +1,2 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
+2026-10-22T07:47:46.316841+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,100,False,WARM,bing-rss,,no_email,,,,
