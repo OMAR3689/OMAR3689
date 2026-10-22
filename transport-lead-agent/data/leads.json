@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T21:43:22.319075+00:00",
+    "timestamp": "2026-10-22T21:48:14.728453+00:00",
     "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
     "domain": "3skpartsauto.com",
@@ -12,7 +12,31 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T21:43:30.567154+00:00",
+    "timestamp": "2026-10-22T21:48:25.912207+00:00",
+    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
+    "email": "",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T21:48:38.580374+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T21:48:47.914929+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,23 +44,23 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T21:43:07.301049+00:00",
-    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
+    "timestamp": "2026-10-22T21:49:22.618344+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
-    "domain": "alaqindustry.com",
-    "url": "https://alaqindustry.com/",
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
     "need": "transport et logistique",
-    "sector_hint": "industrie",
+    "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T21:43:13.805860+00:00",
+    "timestamp": "2026-10-22T21:48:06.060885+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -45,30 +69,6 @@
     "sector_hint": "automobile industrie",
     "score": 55,
     "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T21:43:59.235401+00:00",
-    "company": "Kenzi Hotels Group",
-    "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T21:44:12.161422+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "ddgs",
     "status": "no_email"
   }
 ]
