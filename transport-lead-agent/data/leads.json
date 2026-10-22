@@ -1,44 +1,7 @@
 [
   {
-    "timestamp": "2026-10-22T06:56:08.017010+00:00",
-    "company": "Entrepôts - Rayonnage Maroc & Stockage - Kollirama Maroc",
-    "email": "contact@kollirama.ma",
-    "domain": "kollirama.ma",
-    "url": "https://kollirama.ma/portfolio-filter/entrepots/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T06:56:22.264161+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T06:55:24.825360+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T06:55:34.782260+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T06:55:40.361500+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T07:00:37.678552+00:00",
+    "company": "Bumageco - Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
@@ -49,7 +12,43 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T06:55:59.462364+00:00",
+    "timestamp": "2026-10-22T07:00:45.387523+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T07:00:52.179789+00:00",
+    "company": "Globaldis - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T07:01:32.902459+00:00",
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
+    "email": "",
+    "domain": "hangarmaroc.com",
+    "url": "https://hangarmaroc.com/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T07:01:18.687106+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -58,18 +57,6 @@
     "sector_hint": "retail distribution",
     "score": 60,
     "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T06:55:17.445771+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
     "status": "no_email"
   }
 ]
