@@ -36,7 +36,7 @@ jobs:
   preview:
     # Code pushes are checked by the isolated CI workflow; only manual preview/send
     # dispatches and an intentional [send-v2] activation run the discovery pipeline.
-    if: (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[send-v2]'))) && github.ref == 'refs/heads/trmb-agent-v2'
+    if: (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (contains(github.event.head_commit.message, '[send-v2]') || contains(github.event.head_commit.message, '[preview-v2]')))) && github.ref == 'refs/heads/trmb-agent-v2'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
