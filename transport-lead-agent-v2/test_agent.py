@@ -192,5 +192,30 @@ class AgentTests(unittest.TestCase):
                 self.assertTrue(agent.is_sendable_contact(contact), contact)
 
 
+    def test_search_web_keeps_com_candidate_until_official_page_geography_check(self):
+        candidate = [{
+            "title": "Alpha Food Industries",
+            "url": "https://alphafood.example.com/contact",
+            "content": "Food manufacturer and national distribution",
+        }]
+        with (
+            patch.object(agent, "ddgs_search", return_value=candidate),
+            patch.object(agent, "bing_rss_search", return_value=[]),
+            patch.object(agent, "ddg_html_search", return_value=[]),
+            patch.object(agent, "searxng_search", return_value=[]),
+        ):
+            results, source = agent.search_web("fabricants agroalimentaires Maroc")
+
+        self.assertEqual(source, "ddgs")
+        self.assertEqual(len(results), 1)
+        # The result is not yet a validated lead; main() must still fetch the page
+        # and verify Morocco evidence before accepting or contacting the company.
+        self.assertFalse(
+            agent.is_morocco_candidate(
+                results[0]["title"], results[0]["content"], results[0]["url"]
+            )
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -737,8 +737,8 @@ def _duckduckgo_html_index_search(query):
 
 def _keyword_for_indexed_tender(item, keywords):
     """Choose a transport keyword from the actual notice object, not its metadata."""
-    title = re.sub(r"\\s+", " ", str(item.get("title", "") or "")).strip()
-    description = re.sub(r"\\s+", " ", str(item.get("content", "") or "")).strip()
+    title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip()
+    description = re.sub(r"\s+", " ", str(item.get("content", "") or "")).strip()
     object_title = _extract_indexed_tender_object(title, description) or title
     normalized_object = _normal_text(object_title)
     normalized_description = _normal_text(description)
@@ -773,38 +773,41 @@ def _keyword_for_indexed_tender(item, keywords):
 
 def _find_indexed_tenders(keywords):
     """
-    Find official procurement notices from public indexes if the portal is unreachable.
-    Query all transport terms in three broad, bounded searches instead of repeating
-    up to 99 requests (11 keywords x 3 variants x 3 engines). Accept only official
-    portal detail URLs; parsing still checks the notice object and expiry date.
+    Find specific official procurement notices via public search indexes when the
+    government portal times out. Use short, intent-specific queries instead of one
+    oversized OR expression; accept only official detail URLs with a parsed object.
     """
     found = {}
+    # Bing RSS has been the most reliable source in CI; retain free fallbacks.
     engines = (
-        ("DDGS", _ddgs_index_search),
         ("Bing RSS", _bing_rss_index_search),
         ("DuckDuckGo HTML", _duckduckgo_html_index_search),
+        ("DDGS", _ddgs_index_search),
+    )
+    query_variants = (
+        f'site:{MP_HOST}/bdc/entreprise/consultation/show "transport"',
+        f'site:{MP_HOST} "transport de marchandises" "Acheteur public"',
+        f'site:{MP_HOST} "transport du personnel" "Date limite"',
+        f'site:{MP_HOST} "organisation logistique" "Acheteur public"',
+        f'site:{MP_HOST} ("location de camions" OR "affrètement")',
+        f'site:{MP_HOST} "prestations de transport" "consultation"',
     )
     unique_keywords = list(dict.fromkeys(
         str(keyword).strip() for keyword in keywords if str(keyword).strip()
     ))
-    quoted_terms = " OR ".join(f'"{keyword}"' for keyword in unique_keywords)
-    query_variants = (
-        f"site:{MP_HOST}/bdc/entreprise/consultation/show ({quoted_terms})",
-        f'site:{MP_HOST} ("Acheteur public" OR "Objet" OR "Date limite") ({quoted_terms})',
-        f"site:{MP_HOST} ({quoted_terms})",
-    )
 
     for query_index, query in enumerate(query_variants, start=1):
         query_had_valid_notice = False
-        # For each broad query, try the next engine only if the current engine
-        # returns no valid official notice. This caps the fallback at 9 calls.
+        # At most 6 targeted queries x 3 free indexes = 18 bounded requests.
         for engine_name, search_fn in engines:
             try:
                 items = search_fn(query)
             except Exception as exc:
                 print(f"⚠️ Index public indisponible ({engine_name}, query {query_index}): {exc}")
                 continue
+
             accepted = []
+            valid_notice_found = False
             for item in items or []:
                 keyword = _keyword_for_indexed_tender(item, unique_keywords)
                 if not keyword:
@@ -812,6 +815,8 @@ def _find_indexed_tenders(keywords):
                 tender = _parse_indexed_tender(item, keyword)
                 if not tender:
                     continue
+
+                valid_notice_found = True
                 dedup_key = (
                     _normal_text(tender["title"]) + "|"
                     + _normal_text(tender["buyer"]) + "|"
@@ -821,19 +826,24 @@ def _find_indexed_tenders(keywords):
                     tender["index_engine"] = engine_name
                     found[dedup_key] = tender
                     accepted.append(tender)
-            if accepted:
-                print(
-                    f"📑 {engine_name}: {len(accepted)} avis officiels indexés "
-                    f"(recherche groupée {query_index})."
-                )
+
+            # A duplicate valid notice still proves this engine handled the query;
+            # don't waste the other engines on the same query.
+            if valid_notice_found:
+                if accepted:
+                    print(
+                        f"📑 {engine_name}: {len(accepted)} avis officiels indexés "
+                        f"(recherche ciblée {query_index})."
+                    )
                 query_had_valid_notice = True
                 break
+
         if not query_had_valid_notice:
-            print(f"⚠️ Aucun avis officiel qualifié par la recherche groupée {query_index}; suite du fallback.")
+            print(f"⚠️ Aucun avis officiel qualifié par la recherche ciblée {query_index}; suite du fallback.")
 
     print(
         f"📑 Index public du portail officiel: {len(found)} opportunités candidates "
-        "sur DDGS, Bing RSS et DuckDuckGo HTML; dates/éligibilité à vérifier."
+        "sur Bing RSS, DuckDuckGo HTML et DDGS; dates/éligibilité à vérifier."
     )
     return list(found.values())
 

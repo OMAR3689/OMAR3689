@@ -3,8 +3,8 @@
 V2 researches Moroccan companies that may need transport/logistics services, records official business contact evidence, and stores public procurement notices separately from commercial prospects.
 
 ## Operating mode and safety
-- The scheduled workflow is configured for a five-minute cadence; GitHub may delay scheduled runs under load.
-- Scheduled runs send only to new, verified business contacts; manual workflow dispatch defaults to preview and offers an explicit send mode.
+- Manual workflow dispatch defaults to preview and offers an explicit send mode.
+- After an intentional, successful send-mode activation, each validated send run queues the next V2 cycle with a 90-second pause; actual cadence depends on the Actions run duration and GitHub queueing. The workflow does not guarantee an exact one-minute interval.
 - Sending is capped at 10 emails per run and 20 per rolling hour. If there are no new verified contacts, the run succeeds without sending. Explicit SMTP 4xx temporary rejections are put in a persistent retry queue and retried in the next cycle; permanent/non-transient failures remain visible as run errors.
 - Every candidate must have a public contact address found on its official HTTPS site. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
 - V2 writes prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
@@ -24,8 +24,9 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Lead metadata `direct_intent` and `priority` (`HOT`, `WARM`, `STANDARD`).
 - Priority-aware ordering and expanded CSV export for review.
 - More robust filtering of transport providers, company lookup sites, and tender directories.
-- Search providers are retried when an engine returns only directories or competitors; the official-contact fallback list is expanded with additional Moroccan industrial distributors, manufacturers and B2B suppliers.
+- Search providers are retried when an engine returns only directories or competitors; Moroccan .com candidates are retained until the official page is fetched and its Morocco evidence is checked. The official-contact fallback list is expanded with additional Moroccan industrial distributors, manufacturers and B2B suppliers.
 - Search-index public procurement titles are cleaned using the official notice object so metadata is not mislabeled as the tender subject.
+- When the official portal is unreachable, tender discovery uses six short, targeted public-index queries instead of an oversized combined OR query; results remain limited to official notice-detail URLs.
 - Separate V2 prospect/contact files from public procurement opportunities.
 
 ## Run a preview

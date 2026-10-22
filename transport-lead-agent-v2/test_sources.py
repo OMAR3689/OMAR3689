@@ -317,7 +317,15 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(len(tenders), 1)
         self.assertEqual(tenders[0]["index_engine"], "DDGS")
         self.assertEqual(tenders[0]["buyer"], "Commune Exemple")
-        self.assertLessEqual(ddgs.call_count, 3, "indexed fallback should use grouped bounded queries")
+        self.assertLessEqual(ddgs.call_count, 6, "indexed fallback should use six bounded query groups at most")
+        self.assertTrue(
+            all(len(call.args[0]) < 250 for call in ddgs.call_args_list),
+            "procurement fallback should not send oversized OR queries",
+        )
+        self.assertTrue(
+            any('"transport de marchandises"' in call.args[0] for call in ddgs.call_args_list),
+            "procurement fallback should search a specific freight-service phrase",
+        )
 
     def test_duckduckgo_html_parser_extracts_public_result_link(self):
         html = (

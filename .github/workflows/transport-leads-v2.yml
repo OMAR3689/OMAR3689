@@ -41,6 +41,7 @@ jobs:
       MAX_EMAILS_PER_RUN: '10'
       MAX_EMAILS_PER_HOUR: '20'
       MIN_SENDABLE_LEADS: '1'
+      MIN_PREVIEW_LEADS: '5'
       PRESENTATION_URL: 'https://trmb.ma/'
       PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
       PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
@@ -113,7 +114,8 @@ jobs:
           leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
           tenders = json.loads((out / "tenders.json").read_text(encoding="utf-8"))
           dry_run = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
-          minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "7")))
+          minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
+          preview_minimum = max(1, int(os.environ.get("MIN_PREVIEW_LEADS", "5")))
           expected_status = "dry_run_preview" if dry_run else "sent"
           outcomes = [x for x in leads if x.get("status") == expected_status]
 
@@ -129,8 +131,11 @@ jobs:
                       f"Validation failed: {len(outcomes)} verified {expected_status} records; "
                       f"at least {minimum} required."
                   )
-          elif not outcomes:
-              print("ℹ️ Preview succeeded: no new verified contacts this cycle; no emails sent.")
+          elif len(outcomes) < preview_minimum:
+              raise SystemExit(
+                  f"Validation failed: only {len(outcomes)} verified preview contact(s); "
+                  f"at least {preview_minimum} required before enabling sending."
+              )
 
           emails = [str(x.get("email", "")).strip().lower() for x in outcomes]
           if any(not email for email in emails) or len(emails) != len(set(emails)):

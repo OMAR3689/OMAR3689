@@ -694,8 +694,9 @@ def search_web(q, require_morocco=True):
                 continue
             if is_bad_prospect(title, content, url):
                 continue
-            if require_morocco and not is_morocco_candidate(title, content, url):
-                continue
+            # Search snippets frequently omit country context for Moroccan .com sites.
+            # Defer this decision until the official page is fetched under robots rules;
+            # main() still rejects the page unless its own content confirms Morocco.
             parts = urlparse(url)
             key = (parts.hostname or "").lower().removeprefix("www.") + parts.path.rstrip("/").lower()
             if not key or key in seen_urls:
