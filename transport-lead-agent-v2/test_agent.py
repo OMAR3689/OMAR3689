@@ -421,6 +421,12 @@ class AgentTests(unittest.TestCase):
                 "title": "Fake mirror", "buyer": "Unknown", "deadline": "31/12/2099",
                 "url": "https://example.ma/tender/123",
             },
+            {
+                "title": 'Avis de Vente Publique des Véhicules et Matériels Divers Administratifs Réformés',
+                "buyer": "SNTL",
+                "deadline": "31/12/2099",
+                "url": "https://www.marchespublics.gov.ma/?page=entreprise.SuiviConsultation&refConsultation=939027&orgAcronyme=o8p",
+            },
         ]
         new_rows = [{
             "title": "Future transport service", "buyer": "New Commune", "deadline": "31/12/2099",
