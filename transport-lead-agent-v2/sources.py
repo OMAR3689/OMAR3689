@@ -486,8 +486,26 @@ def _parse_indexed_tender(item, keyword):
     # This prevents portal metadata such as category="flotte" from turning purchases
     # for switches, blinds, or unrelated equipment into logistics opportunities.
     normalized_final_title = _normal_text(title)
+    # Purchasing a product that happens to include delivery is not the same as
+    # outsourcing transport. Accept only explicit freight/logistics service evidence.
+    tender_service_terms = (
+        "transport", "logistique", "convoyage", "flotte", "marchandises",
+        "vehicule", "camion", "navette", "demenagement", "affretement",
+        "acheminement", "fret", "transport routier", "transport de personnes",
+        "transport du personnel", "transport scolaire", "transport de marchandises",
+        "transport frigorifique", "livraison express", "livraison de colis",
+        "livraison de marchandises", "prestations de livraison",
+        "services de livraison", "organisation logistique",
+    )
+    irrelevant_goods_signals = (
+        "titres de transport", "billets sans contact", "supports de communication",
+        "support de communication", "climatiseur", "climatiseurs",
+        "stores enrouleurs", "switchs",
+    )
+    if any(signal in normalized_final_title for signal in irrelevant_goods_signals):
+        return None
     final_title_relevant = any(
-        term in normalized_final_title for term in title_relevance_terms
+        term in normalized_final_title for term in tender_service_terms
     )
 
     if generic_purchase_title and description_has_relevance:

@@ -127,6 +127,38 @@ class SourcesTests(unittest.TestCase):
         }
         self.assertIsNone(sources._parse_indexed_tender(item, "flotte"))
 
+    def test_indexed_tender_rejects_delivery_of_communication_materials(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/381414",
+            "content": (
+                "Objet : Conception, impression et livraison de supports de communication "
+                "pour la promotion du Pass Jeunes "
+                "Acheteur public : DIRECTEUR REGIONAL DU MINISTERE DE LA JEUNESSE "
+                "Catégorie principale : Livraison"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
+
+    def test_indexed_tender_rejects_delivery_and_installation_of_air_conditioners(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/378751",
+            "content": (
+                "Objet : Acquisition, livraison, installation et mise en service de climatiseurs "
+                "Acheteur public : FACULTE DES SCIENCES JURIDIQUES ECONOMIQUES ET SOCIALES AGDAL"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
+
+    def test_delivery_word_alone_does_not_qualify_as_transport_service(self):
+        item = {
+            "title": "Avis de consultation - Livraison de lots de fournitures de bureau",
+            "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailConsultation&id=987",
+            "content": "Acheteur public : Commune Exemple Date limite de remise des plis : 31/12/2099",
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
+
     def test_generic_purchase_with_transport_evidence_gets_descriptive_title(self):
         item = {
             "title": "Détails de l'avis d'achat #19/EXP/2026",
