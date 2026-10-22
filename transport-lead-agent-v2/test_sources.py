@@ -42,7 +42,6 @@ class SourcesTests(unittest.TestCase):
 
     def test_robots_timeout_fails_closed(self):
         with patch("sources.urllib.request.urlopen", side_effect=TimeoutError("timeout")), patch("sources.time.sleep"):
-             patch("sources.time.sleep"):
             self.assertFalse(sources.allowed_by_robots("https://example.ma/contact"))
 
     def test_robots_transient_timeout_retries_once_then_respects_published_rules(self):
