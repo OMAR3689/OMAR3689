@@ -689,5 +689,6 @@
     "sent_at": "2026-10-22T09:03:25.757787+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
   },
-  "_pending_retry_queue": []
+  "_pending_retry_queue": [],
+  "_permanent_rejects": []
 }
