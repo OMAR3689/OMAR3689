@@ -1,21 +1,40 @@
 [
   {
-    "timestamp": "2026-10-22T05:11:32.730047+00:00",
-    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
-    "email": "",
-    "domain": "autoplus.net.ma",
-    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
+    "timestamp": "2026-10-22T05:17:16.661339+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "email": "banasenmaroc@outlook.com",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "importateur exportateur",
     "score": 100,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
-    "email_source_url": "",
-    "status": "no_email"
+    "source": "bing-rss",
+    "email_source_url": "https://banasenmaroc.site/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T05:13:01.926671+00:00",
+    "timestamp": "2026-10-22T05:17:50.456445+00:00",
+    "company": "Commerce International Maroc – Votre partenaire pour réussir ...",
+    "email": "contact@commerceinternationalmaroc.com",
+    "domain": "commerceinternationalmaroc.com",
+    "url": "https://commerceinternationalmaroc.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "importateur exportateur",
+    "score": 85,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "https://commerceinternationalmaroc.com/contact/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T05:19:08.009242+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -30,7 +49,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:13:01.926736+00:00",
+    "timestamp": "2026-10-22T05:19:08.009313+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -45,7 +64,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:13:01.926785+00:00",
+    "timestamp": "2026-10-22T05:19:08.009368+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -60,7 +79,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:13:01.926838+00:00",
+    "timestamp": "2026-10-22T05:19:08.009428+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -75,9 +94,26 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:11:02.820996+00:00",
+    "timestamp": "2026-10-22T05:16:51.437452+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "ihssanpa@hotmail.com",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 55,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://ihssanpa.ma/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T05:16:26.035829+00:00",
     "company": "Nos sites - Cimat",
-    "email": "",
+    "email": "contact@cimat.ma",
     "domain": "cimat.ma",
     "url": "https://www.cimat.ma/fr/pages/nos-sites",
     "need": "transport et logistique",
@@ -85,27 +121,14 @@
     "score": 40,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "status": "no_email"
+    "source": "bing-rss",
+    "email_source_url": "https://www.cimat.ma/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T05:11:15.748861+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T05:12:15.076707+00:00",
+    "timestamp": "2026-10-22T05:18:16.585617+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
