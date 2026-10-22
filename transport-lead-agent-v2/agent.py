@@ -1359,6 +1359,7 @@ def save_tender_files(items):
     print(f"📑 Saved {len(items)} public tender opportunities separately from sales prospects.")
 
 
+# Live outreach is enabled only after successful V2 preview and official-contact validation.
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
