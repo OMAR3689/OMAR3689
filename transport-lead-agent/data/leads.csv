@@ -1,8 +1,3 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T15:23:37.479227+00:00,ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité,,ibraparts.ma,https://ibraparts.ma/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T15:24:34.544627+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,95,ddgs,,no_email,,
-2026-10-22T15:25:28.848564+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,transport et logistique,distribution grossiste,60,ddgs,,no_email,,
-2026-10-22T15:25:59.907814+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-22T15:23:30.815909+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
-2026-10-22T15:25:50.563910+00:00,"EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",,ediman.ma,https://ediman.ma/,transport et logistique,construction chantier,20,ddgs,,no_email,,
-2026-10-22T15:26:31.704315+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-22T15:28:18.646046+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T15:28:41.089838+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
