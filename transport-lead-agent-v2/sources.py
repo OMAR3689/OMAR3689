@@ -404,7 +404,8 @@ def _parse_indexed_tender(item, keyword):
         for value in query_params.get(key, [])
     )
     is_named_detail_page = (
-        "detailconsultation" in page_type or "suiviconsultation" in page_type
+        ("detail" in page_type and "consultation" in page_type)
+        or ("suivi" in page_type and "consultation" in page_type)
     )
     # A search/listing URL itself is not an opportunity. Require a concrete
     # purchase-detail path or a consultation/detail ID on an official page.
