@@ -379,6 +379,34 @@ class SourcesTests(unittest.TestCase):
             "procurement fallback should search a specific freight-service phrase",
         )
 
+    def test_indexed_fallback_supplements_partial_official_portal_results(self):
+        direct = {
+            "title": "Transport de marchandises entre sites",
+            "buyer": "Commune Exemple",
+            "deadline": "30/11/2026",
+            "keyword": "transport",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/401",
+            "source": "Official portal",
+        }
+        indexed = {
+            "title": "Transport du personnel",
+            "buyer": "Office Exemple",
+            "deadline": "01/12/2026",
+            "keyword": "transport",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/402",
+            "source": "Public index",
+        }
+        with patch("sources.polite_get", return_value="<html></html>"), \
+             patch("sources._TableRowParser") as parser_factory, \
+             patch("sources._parse_tender_row", return_value=direct), \
+             patch("sources._is_transport_service_tender", return_value=True), \
+             patch("sources._find_indexed_tenders", return_value=[indexed]) as fallback:
+            parser_factory.return_value.rows = [{}]
+            tenders = sources.find_tenders(keywords=("transport",))
+
+        self.assertEqual({item["url"] for item in tenders}, {direct["url"], indexed["url"]})
+        fallback.assert_called_once_with(("transport",))
+
     def test_duckduckgo_html_parser_extracts_public_result_link(self):
         html = (
             '<a class="result__a" href="https://www.marchespublics.gov.ma/'
@@ -489,6 +517,7 @@ class SourcesTests(unittest.TestCase):
         self.assertIn("location de véhicules avec chauffeur", query_text)
         self.assertIn("barid al maghrib", query_text)
         self.assertIn("autoroutes du maroc", query_text)
+        self.assertIn("Date limite de remise des plis", query_text)
         self.assertIn("transport de personnel", sources.MP_INDEX_EXTRA_KEYWORDS)
 
 
