@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "title": "Détails de l'avis d'achat #19/EXP/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394009",
+    "source": "Index Bing du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T03:46:05.409243+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Marchés publics électroniques",
+    "buyer": "M6 / CTSA - CASABLANCA TRANSPORT EN SITE AMENAGE SA Type d'annonce : Annonce de consultation Procédure : Appel d'offres ouvert | Sur offre de prix Catégorie principale ...",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1044305&orgAcronyme=g3h",
+    "source": "Index Bing du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T03:46:05.411038+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Marchés publics électroniques",
+    "buyer": "M3 / SNTL - SOCIETE NATIONALE DES TRANSPORTS ET DE LA LOGISTIQUE Type d'annonce : Annonce de consultation Procédure : Appel d'offres ouvert | Sur offre de prix Catégorie principale ...",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "logistique",
+    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.SuiviConsultation&refConsultation=1042476&orgAcronyme=o8p",
+    "source": "Index Bing du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T03:46:07.278716+00:00",
+    "index_engine": "DDGS"
+  }
+]

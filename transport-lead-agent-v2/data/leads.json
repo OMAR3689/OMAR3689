@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T03:39:58.967772+00:00",
+    "timestamp": "2026-10-22T03:46:39.903909+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -10,12 +10,27 @@
     "score": 100,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T03:41:26.693897+00:00",
+    "timestamp": "2026-10-22T03:46:47.910330+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.019594+00:00",
     "company": "Zalar Holding",
     "email": "info@zalar.ma",
     "domain": "zalar.ma",
@@ -32,7 +47,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.693837+00:00",
+    "timestamp": "2026-10-22T03:48:21.019534+00:00",
     "company": "DISLOG Group",
     "email": "contact@dislogroup.ma",
     "domain": "dislogroup.com",
@@ -49,7 +64,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.693942+00:00",
+    "timestamp": "2026-10-22T03:48:21.019640+00:00",
     "company": "Maroc Ingrédients",
     "email": "info@marocingredients.com",
     "domain": "marocingredients.com",
@@ -66,7 +81,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.693984+00:00",
+    "timestamp": "2026-10-22T03:48:21.019684+00:00",
     "company": "SIOF",
     "email": "info@siofgroup.com",
     "domain": "siofgroup.com",
@@ -83,7 +98,58 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.694024+00:00",
+    "timestamp": "2026-10-22T03:48:21.019855+00:00",
+    "company": "Mutandis",
+    "email": "contact@mutandis.com",
+    "domain": "mutandis.com",
+    "url": "https://mutandis.com/contact/",
+    "email_source_url": "https://mutandis.com/contact/",
+    "need": "transport de produits de grande consommation, détergents, produits de la mer et jus",
+    "sector_hint": "industrie / biens de consommation",
+    "score": 82,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.019897+00:00",
+    "company": "COPAG",
+    "email": "info@copag.ma",
+    "domain": "copag.ma",
+    "url": "https://www.copag.ma/fr/delight-contact",
+    "email_source_url": "https://www.copag.ma/fr/delight-contact",
+    "need": "transport et distribution de produits laitiers et agroalimentaires",
+    "sector_hint": "coopérative agroalimentaire / production",
+    "score": 82,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.019939+00:00",
+    "company": "ABC Dis",
+    "email": "contact@abcdis.ma",
+    "domain": "abcdis.ma",
+    "url": "https://abcdis.ma/contact/",
+    "email_source_url": "https://abcdis.ma/contact/",
+    "need": "transport et distribution B2B de produits alimentaires et FMCG",
+    "sector_hint": "distribution agroalimentaire / FMCG",
+    "score": 82,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.019727+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -100,7 +166,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.694064+00:00",
+    "timestamp": "2026-10-22T03:48:21.019770+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -117,7 +183,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:41:26.694104+00:00",
+    "timestamp": "2026-10-22T03:48:21.019813+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -134,22 +200,67 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:39:40.066488+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
+    "timestamp": "2026-10-22T03:48:21.020024+00:00",
+    "company": "TBI Maroc",
+    "email": "info@tbi.ma",
+    "domain": "tbi.ma",
+    "url": "https://www.tbi.ma/contact/",
+    "email_source_url": "https://www.tbi.ma/contact/",
+    "need": "transport d'ingrédients et approvisionnement avec flux import-export",
+    "sector_hint": "distribution B2B / ingrédients industriels",
+    "score": 76,
     "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "status": "no_email"
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T03:40:44.102321+00:00",
+    "timestamp": "2026-10-22T03:48:21.020067+00:00",
+    "company": "Agrin Maroc",
+    "email": "agrin@agrinmaroc.ma",
+    "domain": "agrinmaroc.ma",
+    "url": "https://agrinmaroc.ma/fr/contact-us-fr/",
+    "email_source_url": "https://agrinmaroc.ma/fr/contact-us-fr/",
+    "need": "transport de produits agricoles, herbes, épices et semences",
+    "sector_hint": "agro-industrie / import-export",
+    "score": 76,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.020110+00:00",
+    "company": "SOFALIM",
+    "email": "contact@sofalim.ma",
+    "domain": "sofalim.ma",
+    "url": "https://www.sofalim.ma/fr/contact",
+    "email_source_url": "https://www.sofalim.ma/fr/contact",
+    "need": "transport et approvisionnement de produits pour l'élevage et l'agriculture",
+    "sector_hint": "agro-industrie / alimentation animale",
+    "score": 76,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T03:48:21.019981+00:00",
+    "company": "Alimexia",
+    "email": "contact@alimexia.ma",
+    "domain": "alimexia.ma",
+    "url": "https://alimexia.ma/",
+    "email_source_url": "https://alimexia.ma/",
+    "need": "transport de matières premières, ingrédients et équipements pour l'industrie alimentaire",
+    "sector_hint": "fournitures industrielles agroalimentaires",
+    "score": 74,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T03:47:22.666067+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -159,7 +270,22 @@
     "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T03:47:40.305805+00:00",
+    "company": "GRUP XALUCA | Maroc",
+    "email": "",
+    "domain": "xaluca.com",
+    "url": "https://xaluca.com/fr/maroc",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
     "email_source_url": "",
     "status": "no_email"
   }
