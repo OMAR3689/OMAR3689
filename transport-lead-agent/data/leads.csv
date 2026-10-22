@@ -1,7 +1,4 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T08:54:44.629203+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T08:54:57.439029+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T08:55:47.350991+00:00,Industriel — Construction & BTP au Maroc · BauIndustrie,,bau-industrie.com,https://bau-industrie.com/services/industriel/,transport et logistique,entrepôt logistique,100,bing-rss,,no_email,,
-2026-10-22T08:55:26.795683+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-22T08:54:34.976526+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
-2026-10-22T08:56:02.709746+00:00,"Maroc - Mobilité, transport - Appels d'offres, marchés ...",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?cat=mobilite-transport,transport et logistique,transport marchandises,20,ddgs,,no_email,,
+2026-10-22T08:59:55.624154+00:00,ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité,,ibraparts.ma,https://ibraparts.ma/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-22T09:00:33.894060+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-22T08:59:47.348323+00:00,Contact | AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/nous-contacter,livraison / distribution,automobile industrie,55,ddgs,,no_email,,

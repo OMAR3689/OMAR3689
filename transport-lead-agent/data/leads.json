@@ -1,10 +1,10 @@
 [
   {
-    "timestamp": "2026-10-22T08:54:44.629203+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-22T08:59:55.624154+00:00",
+    "company": "ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "ibraparts.ma",
+    "url": "https://ibraparts.ma/",
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 100,
@@ -12,31 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T08:54:57.439029+00:00",
-    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
-    "email": "",
-    "domain": "autoplus.net.ma",
-    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T08:55:47.350991+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
-    "email": "",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T08:55:26.795683+00:00",
+    "timestamp": "2026-10-22T09:00:33.894060+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -44,30 +20,18 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T08:54:34.976526+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-22T08:59:47.348323+00:00",
+    "company": "Contact | AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/nous-contacter",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T08:56:02.709746+00:00",
-    "company": "Maroc - Mobilité, transport - Appels d'offres, marchés ...",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?cat=mobilite-transport",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
+    "score": 55,
     "source": "ddgs",
     "status": "no_email"
   }
