@@ -587,7 +587,7 @@ def extract_emails(text):
     return found
 
 
-def usable_email(email, url=""):
+def usable_email(email, url="", allow_public_free_mail=False):
     if not email or "@" not in email:
         return False
     local, host = email.rsplit("@", 1)
@@ -595,6 +595,12 @@ def usable_email(email, url=""):
         return False
     host = host.lower()
     page_domain = domain(url)
+    if host in {"linkedin.com", "facebook.com", "instagram.com", "youtube.com"}:
+        return False
+    if host in sources.FREE_MAIL_HOSTS:
+        # Consumer email providers are allowed only when callers have found the
+        # address on an official company page or an indexed result from that host.
+        return bool(allow_public_free_mail and local.lower() not in sources.NON_CONTACT_PREFIXES)
     if host in BAD_DOMAINS:
         return False
     return not page_domain or host == page_domain or host.endswith("." + page_domain) or page_domain.endswith("." + host)
@@ -610,7 +616,7 @@ def discover_email_record(url):
     for item in candidates:
         email = str(item.get("email", "")).strip().lower()
         source_url = str(item.get("source_url", "")).strip()
-        if usable_email(email, url) and source_url and domain(source_url) == domain(url):
+        if usable_email(email, url, allow_public_free_mail=True) and source_url and domain(source_url) == domain(url):
             return email, source_url
     return "", ""
 
@@ -640,9 +646,15 @@ def public_email(title, url):
             blob = f"{item.get('title', '')} {item.get('content', '')}"
             for email in extract_emails(blob):
                 prefix = email.split("@", 1)[0].lower()
-                if prefix not in sources.GENERIC_PREFIXES:
+                email_host = email.rsplit("@", 1)[-1].lower()
+                is_public_free_mail = (
+                    email_host in sources.FREE_MAIL_HOSTS
+                    and prefix not in sources.NON_CONTACT_PREFIXES
+                    and len(prefix) >= 3
+                )
+                if prefix not in sources.GENERIC_PREFIXES and not is_public_free_mail:
                     continue
-                if usable_email(email, url):
+                if usable_email(email, url, allow_public_free_mail=True):
                     return email, source_url
     return "", ""
 
@@ -657,7 +669,15 @@ def is_sendable_contact(lead):
         return False
     local, email_host = email.rsplit("@", 1)
     prefix = local.split("+", 1)[0]
-    if prefix not in sources.GENERIC_PREFIXES or email_host in BAD_DOMAINS:
+    is_public_free_mail = (
+        email_host in sources.FREE_MAIL_HOSTS
+        and prefix not in sources.NON_CONTACT_PREFIXES
+        and len(prefix) >= 3
+    )
+    if (
+        (prefix not in sources.GENERIC_PREFIXES and not is_public_free_mail)
+        or (email_host in BAD_DOMAINS and not is_public_free_mail)
+    ):
         return False
     source_host = domain(source_url)
     company_host = domain(company_url)
