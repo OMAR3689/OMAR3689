@@ -7,7 +7,7 @@ import imaplib
 import ssl
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from email.message import EmailMessage
 
 import sources
@@ -65,6 +65,10 @@ QUERIES = [
     ('entreprises produits chimiques Maroc usine contact officiel', 'chimie / industrie'),
     ('grossistes équipements industriels Maroc import export contact officiel', 'distribution industrielle'),
     ('entreprises e-commerce Maroc distribution entrepôt logistique contact', 'e-commerce / distribution'),
+    ('minoteries Maroc farine production export site officiel contact', 'minoterie / agroalimentaire'),
+    ('fabricants chocolat confiserie Maroc usine export contact site officiel', 'confiserie / agroalimentaire'),
+    ('fabricants pâtes alimentaires couscous Maroc production export contact officiel', 'pâtes alimentaires / agroalimentaire'),
+    ('conserveries Maroc fruits légumes olives export site officiel contact', 'conserves / agroalimentaire'),
 ]
 
 GENERIC_EMAIL_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
@@ -535,6 +539,56 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport de fournitures industrielles et pièces automobiles",
         "sector_hint": "distribution industrielle / pièces automobiles",
         "score": 78,
+    },
+    {
+        "company": "Cartier Saada",
+        "email": "contact@cartiersaada.com",
+        "domain": "cartiersaada.com",
+        "url": "https://cartiersaada.com/en/contact/",
+        "email_source_url": "https://cartiersaada.com/en/contact/",
+        "need": "transport de conserves alimentaires, approvisionnement et expédition export",
+        "sector_hint": "agroalimentaire / conserves export",
+        "score": 82,
+    },
+    {
+        "company": "Fandy",
+        "email": "info@fandygroup.com",
+        "domain": "fandy.ma",
+        "url": "https://www.fandy.ma/fr/contact",
+        "email_source_url": "https://www.fandy.ma/fr/contact",
+        "need": "transport de farine, approvisionnement de minoterie et distribution multi-sites",
+        "sector_hint": "minoterie / agroalimentaire",
+        "score": 82,
+    },
+    {
+        "company": "MICHOC",
+        "email": "contact@michoc.ma",
+        "domain": "michoc.com",
+        "url": "https://www.michoc.com/nous-contacter/",
+        "email_source_url": "https://www.michoc.com/nous-contacter/",
+        "need": "transport de chocolats et confiseries, distribution et export",
+        "sector_hint": "confiserie / agroalimentaire",
+        "score": 81,
+    },
+    {
+        "company": "DARI COUSPATE",
+        "email": "info@couscousdari.com",
+        "domain": "couscousdari.com",
+        "url": "https://couscousdari.com/contactez-nous",
+        "email_source_url": "https://couscousdari.com/contactez-nous",
+        "need": "transport de couscous, pâtes alimentaires, distribution et export",
+        "sector_hint": "industrie agroalimentaire / export",
+        "score": 85,
+    },
+    {
+        "company": "Moony",
+        "email": "export@moony.ma",
+        "domain": "moony.ma",
+        "url": "https://moony.ma/contactez-nous",
+        "email_source_url": "https://moony.ma/contactez-nous",
+        "need": "transport de produits alimentaires, acheminement et distribution/export",
+        "sector_hint": "agroalimentaire / fabrication / export",
+        "score": 80,
     },
 ]
 
@@ -1127,6 +1181,53 @@ def is_transient_smtp_failure(detail):
     return any(400 <= code < 500 for code in codes)
 
 
+def retry_backoff_minutes(retry_count):
+    """Exponential retry delay: 5, 10, 20, ... minutes, capped at six hours."""
+    try:
+        count = max(1, int(retry_count or 1))
+    except (TypeError, ValueError):
+        count = 1
+    return min(360, 5 * (2 ** min(count - 1, 7)))
+
+
+def retry_is_due(lead, now=None):
+    """Legacy queue entries without a retry_after timestamp are eligible immediately."""
+    raw = str((lead or {}).get("retry_after", "") or "").strip()
+    if not raw:
+        return True
+    try:
+        due_at = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        if due_at.tzinfo is None:
+            due_at = due_at.replace(tzinfo=timezone.utc)
+        now = now or datetime.now(timezone.utc)
+        if now.tzinfo is None:
+            now = now.replace(tzinfo=timezone.utc)
+        return due_at.astimezone(timezone.utc) <= now.astimezone(timezone.utc)
+    except (TypeError, ValueError, OverflowError):
+        return True
+
+
+def make_retry_record(lead, detail, now=None):
+    """Persist a transient SMTP retry without losing verified-source evidence."""
+    now = now or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    record = dict(lead or {})
+    try:
+        retry_count = max(0, int(record.get("retry_count", 0) or 0)) + 1
+    except (TypeError, ValueError):
+        retry_count = 1
+    record.update({
+        "email": str(record.get("email", "") or "").strip().lower(),
+        "email_verified": record.get("email_verified") is True,
+        "retry_count": retry_count,
+        "retry_after": (now + timedelta(minutes=retry_backoff_minutes(retry_count))).isoformat(),
+        "retry_reason": str(detail or "Temporary SMTP rejection")[:1000],
+        "status": "smtp_retry_pending",
+    })
+    return record
+
+
 def is_permanent_recipient_rejection(detail, email):
     """Detect a recipient-specific 550-559 refusal without misclassifying SMTP auth errors."""
     message = str(detail or "").lower()
@@ -1191,10 +1292,10 @@ def persist_outreach_state(history, pending_queue, permanently_rejected):
 def lead_csv_fields(leads):
     """Stable CSV columns plus any operational fields used by retry/error records."""
     fields = [
-        "timestamp", "company", "email", "domain", "url", "need", "sector_hint",
-        "score", "direct_intent", "priority", "source", "email_source_url",
-        "status", "sent_at", "smtp_error", "smtp_rejection", "retry_reason",
-        "retry_count", "preview_subject", "preview_note",
+        "timestamp", "run_id", "company", "email", "domain", "url", "need", "sector_hint",
+        "score", "direct_intent", "priority", "source", "email_source_url", "email_verified",
+        "status", "sent_at", "smtp_error", "smtp_rejection", "retry_reason", "retry_count",
+        "retry_after", "preview_subject", "preview_note",
     ]
     extra = sorted({
         key for item in leads for key in item.keys()
@@ -1445,17 +1546,160 @@ def send_email(to_addr, subject, body):
     return False, "unknown SMTP error"
 
 
-def save_tender_files(items):
-    """Save public procurement opportunities separately from commercial buyer leads."""
+def read_json_list(path):
+    """Read a JSON list safely, returning an empty list for missing or invalid files."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            value = json.load(f)
+        return value if isinstance(value, list) else []
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return []
+
+
+def lead_archive_key(lead):
+    """Use one record per company domain so a later email enriches an earlier no-email lead."""
+    url = str((lead or {}).get("url", "") or "").strip()
+    host = domain(url) if url else ""
+    if not host:
+        host = str((lead or {}).get("domain", "") or "").strip().lower().removeprefix("www.")
+    if host:
+        return "domain:" + host
+    email = str((lead or {}).get("email", "") or "").strip().lower()
+    if email:
+        return "email:" + email
+    return ""
+
+
+def merge_lead_archive(previous, current, max_records=3000):
+    """Merge a current-cycle result into bounded persistent company history."""
+    ordered = {}
+    for item in previous or []:
+        if not isinstance(item, dict):
+            continue
+        key = lead_archive_key(item)
+        if key:
+            ordered[key] = dict(item)
+    for item in current or []:
+        if not isinstance(item, dict):
+            continue
+        new_item = dict(item)
+        key = lead_archive_key(new_item)
+        if not key:
+            continue
+        old_item = ordered.pop(key, None)
+        if old_item and old_item.get("status") == "sent" and new_item.get("status") != "sent":
+            merged = {**new_item, **old_item}
+        elif old_item and old_item.get("email_verified") is True and not new_item.get("email"):
+            merged = {**new_item, **old_item}
+        else:
+            merged = {**(old_item or {}), **new_item}
+        ordered[key] = merged
+    return list(ordered.values())[-max(1, int(max_records)):]
+
+
+def sent_history_archive_records():
+    """Backfill historical sent contacts from V2's own record without inventing source URLs."""
+    history = {}
+    try:
+        with open(HISTORY_FILE, encoding="utf-8") as f:
+            raw = json.load(f)
+        history = raw if isinstance(raw, dict) else {}
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return []
+    out = []
+    for key, value in history.items():
+        if not isinstance(value, dict) or not value.get("sent_at"):
+            continue
+        email = str(value.get("email", "") or "").strip().lower()
+        if not email and "@" in str(key):
+            email = str(key).strip().lower()
+        url = str(value.get("url", "") or "").strip()
+        if not url and str(key).startswith(("http://", "https://")):
+            url = str(key).strip()
+        target_domain = str(value.get("domain", "") or "").strip().lower().removeprefix("www.")
+        if not target_domain and url:
+            target_domain = domain(url)
+        if not target_domain:
+            continue
+        out.append({
+            "company": str(value.get("company", "") or target_domain),
+            "email": email,
+            "domain": target_domain,
+            "url": url,
+            "source": str(value.get("source", "") or "sent-history"),
+            "status": "sent",
+            "sent_at": str(value.get("sent_at", "")),
+        })
+    return out
+
+
+def save_lead_files(items):
+    """Persist current results in the archive while keeping current-cycle run IDs identifiable."""
     os.makedirs(OUT_DIR, exist_ok=True)
+    current = [dict(item) for item in items if isinstance(item, dict)]
+    run_id = os.environ.get("GITHUB_RUN_ID", "").strip()
+    for item in current:
+        item["run_id"] = run_id
+    previous = read_json_list(LEADS_JSON)
+    previous.extend(sent_history_archive_records())
+    archived = merge_lead_archive(previous, current, max_records=3000)
+    with open(LEADS_JSON, "w", encoding="utf-8") as f:
+        json.dump(archived, f, ensure_ascii=False, indent=2)
+    fields = lead_csv_fields(archived)
+    with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(archived)
+    print(f"📋 Saved {len(current)} current-cycle leads; archive now holds {len(archived)} unique company records.")
+
+
+def merge_tender_archive(previous, current, max_records=1000, today=None):
+    """Keep deduplicated, non-expired notices from the official Moroccan procurement portal."""
+    today = today or datetime.now(timezone.utc).date()
+    ordered = {}
+    for item in list(previous or []) + list(current or []):
+        if not isinstance(item, dict):
+            continue
+        url = str(item.get("url", "") or "").strip()
+        if domain(url) != "marchespublics.gov.ma":
+            continue
+        deadline = str(item.get("deadline", "") or "").strip()
+        deadline_date = None
+        if deadline:
+            for fmt in ("%d/%m/%Y", "%Y-%m-%d", "%d-%m-%Y"):
+                try:
+                    deadline_date = datetime.strptime(deadline, fmt).date()
+                    break
+                except ValueError:
+                    continue
+        if deadline_date and deadline_date < today:
+            continue
+        title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip().lower()
+        buyer = re.sub(r"\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
+        key = "url:" + url.rstrip("/").lower() if url else ""
+        if not key:
+            key = "notice:" + "|".join((title, buyer, deadline))
+        old = ordered.pop(key, None)
+        ordered[key] = {**(old or {}), **dict(item)}
+    return list(ordered.values())[-max(1, int(max_records)):]
+
+
+def save_tender_files(items):
+    """Save active public-procurement opportunities separately from commercial prospects."""
+    os.makedirs(OUT_DIR, exist_ok=True)
+    previous = read_json_list(TENDERS_JSON)
+    archived = merge_tender_archive(previous, items)
     with open(TENDERS_JSON, "w", encoding="utf-8") as f:
-        json.dump(items, f, ensure_ascii=False, indent=2)
+        json.dump(archived, f, ensure_ascii=False, indent=2)
     fields = ["retrieved_at", "title", "buyer", "deadline", "status", "keyword", "url", "source", "index_engine"]
     with open(TENDERS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
-        writer.writerows(items)
-    print(f"📑 Saved {len(items)} public tender opportunities separately from sales prospects.")
+        writer.writerows(archived)
+    print(
+        f"📑 Current run found {len(items)} tender candidate(s); "
+        f"{len(archived)} active official notices remain in the archive."
+    )
 
 
 # Live outreach is enabled only after successful V2 preview and official-contact validation.
@@ -1478,14 +1722,38 @@ def main():
 
     all_leads = []
     seen = set()
-    # Retry deferred 4xx rejections before seeking the next batch.
-    for email, old_lead in pending_queue.items():
+    # Retry deferred 4xx rejections when due, re-verifying legacy queue entries safely.
+    for email, old_lead in list(pending_queue.items()):
         lead = dict(old_lead)
         lead["email"] = email
-        lead["email_verified"] = bool(old_lead.get("email_verified", False))
+        lead["email_verified"] = old_lead.get("email_verified") is True
+        d = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
+        if not retry_is_due(lead):
+            lead["status"] = "smtp_retry_wait"
+            all_leads.append(lead)
+            if d:
+                seen.add(d)
+            continue
+
+        if not lead["email_verified"]:
+            verified_source = verify_public_email_source(email, lead.get("email_source_url", ""), lead.get("url", ""))
+            if verified_source:
+                lead["email_verified"] = True
+                lead["email_source_url"] = verified_source
+                pending_queue[email] = lead
+            else:
+                lead["status"] = "smtp_retry_wait"
+                lead["retry_after"] = (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat()
+                lead["retry_reason"] = "Could not currently re-verify the public email on its official HTTPS page."
+                pending_queue[email] = lead
+                all_leads.append(lead)
+                if d:
+                    seen.add(d)
+                print(f"⏸️ Retry held safely until official email verification is available: {email}")
+                continue
+
         lead["status"] = "smtp_retry_pending"
         all_leads.append(lead)
-        d = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
         if d:
             seen.add(d)
     source_counts = {}
@@ -1656,6 +1924,8 @@ def main():
         and x.get("email_verified") is True
         and str(x.get("email", "")).strip().lower() not in permanently_rejected
         and int(x.get("score", 0) or 0) >= 20
+        and x.get("status") != "smtp_retry_wait"
+        and retry_is_due(x)
         and is_sendable_contact(x)
     ]
     if not DRY_RUN:
@@ -1749,15 +2019,7 @@ def main():
                 smtp_deferred += 1
                 lead["status"] = "smtp_retry_pending"
                 lead["retry_reason"] = detail
-                pending_queue[email] = {
-                    key: lead.get(key)
-                    for key in (
-                        "company", "email", "domain", "url", "need", "sector_hint",
-                        "score", "direct_intent", "priority", "source", "email_source_url",
-                        "retry_reason",
-                    )
-                }
-                pending_queue[email]["status"] = "smtp_retry_pending"
+                pending_queue[email] = make_retry_record(lead, detail)
                 persist_outreach_state(history, pending_queue, permanently_rejected)
                 print(f"⏳ Temporary SMTP rejection for {email}; safely deferred to the next V2 cycle: {detail}")
             elif is_permanent_recipient_rejection(detail, email):
@@ -1776,15 +2038,7 @@ def main():
                 persist_outreach_state(history, pending_queue, permanently_rejected)
                 print(f"⚠️ SMTP/service failure for {email}: {detail}")
 
-    with open(LEADS_JSON, "w", encoding="utf-8") as f:
-        json.dump(all_leads, f, ensure_ascii=False, indent=2)
-
-    fields = lead_csv_fields(all_leads)
-    with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fields)
-        writer.writeheader()
-        writer.writerows(all_leads)
-
+    save_lead_files(all_leads)
     persist_outreach_state(history, pending_queue, permanently_rejected)
     print(
         f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "

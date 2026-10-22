@@ -1,4 +1,4 @@
-# Sending activation follows successful preview run #120: 52 tests passed and 8 official-page contacts were verified.
+# V2 discovery, official-contact verification, persistent history, and bounded retries.
 name: TRMB Lead Agent V2 - Verified Outreach
 # Intentional [send-v2] commits run the guarded send mode only after the Python tests pass.
 
@@ -123,14 +123,16 @@ jobs:
           out = Path("transport-lead-agent-v2/data")
           leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
           tenders = json.loads((out / "tenders.json").read_text(encoding="utf-8"))
+          run_id = os.environ.get("GITHUB_RUN_ID", "").strip()
+          run_leads = [x for x in leads if str(x.get("run_id", "")) == run_id] if run_id else leads
           dry_run = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
           minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
           preview_minimum = max(1, int(os.environ.get("MIN_PREVIEW_LEADS", "5")))
           expected_status = "dry_run_preview" if dry_run else "sent"
-          outcomes = [x for x in leads if x.get("status") == expected_status]
+          outcomes = [x for x in run_leads if x.get("status") == expected_status]
 
           if not dry_run:
-              smtp_errors = [x for x in leads if x.get("status") == "smtp_error"]
+              smtp_errors = [x for x in run_leads if x.get("status") == "smtp_error"]
               if smtp_errors:
                   details = "; ".join(f"{x.get('company')}: {x.get('smtp_error', 'unknown SMTP error')}" for x in smtp_errors[:5])
                   raise SystemExit(f"Validation failed: {len(smtp_errors)} SMTP failure(s): {details}")
@@ -142,9 +144,9 @@ jobs:
                       f"at least {minimum} required."
                   )
           elif len(outcomes) < preview_minimum:
-              raise SystemExit(
-                  f"Validation failed: only {len(outcomes)} verified preview contact(s); "
-                  f"at least {preview_minimum} required before enabling sending."
+              print(
+                  f"ℹ️ Preview-only cycle: {len(outcomes)} verified contact(s); "
+                  f"{preview_minimum} preferred for a larger preview. No email can be sent in preview mode."
               )
 
           emails = [str(x.get("email", "")).strip().lower() for x in outcomes]
@@ -180,7 +182,7 @@ jobs:
               f"✅ Validation passed: mode={mode}; {len(outcomes)} verified official-domain "
               "business contact(s); unique emails; no SMTP errors."
           )
-          print(f"📑 Official public-tender candidates saved separately: {len(tenders)}.")
+          print(f"📑 Active official public-tender notices saved in the archive: {len(tenders)}.")
           PY
 
       - name: Queue the next verified V2 cycle

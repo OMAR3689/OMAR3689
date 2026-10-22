@@ -9,6 +9,8 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Every contact must be visibly found on an official HTTPS company page; a search-engine snippet alone is not sufficient. Placeholder/test addresses such as `exemple@gmail.com` are rejected, and the validation stage requires the explicit `email_verified=true` evidence flag.
 - The scoring rubric distinguishes direct stated transport intent from ordinary sector fit, so generic manufacturer pages no longer all receive a saturated score of 100. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
 - V2 writes prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
+- Lead and tender exports are cumulative archives with duplicate company/notice merging; expired dated tender notices are removed. Each lead row carries `run_id` so workflow validation checks only the current run while retaining prior records.
+- Temporary SMTP 4xx rejects retain the verified official-page evidence and use a bounded exponential retry schedule (5 minutes, 10 minutes, 20 minutes, up to six hours). Legacy retry rows without verification evidence are re-verified against the official HTTPS page before being eligible for sending.
 - The contact history is used to suppress repeat outreach to previously contacted addresses/domains.
 
 ## Sources and crawl etiquette
@@ -29,6 +31,7 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Search-index public procurement titles are cleaned using the official notice object so metadata is not mislabeled as the tender subject.
 - When the official portal is unreachable, tender discovery uses six short, targeted public-index queries instead of an oversized combined OR query; results remain limited to official notice-detail URLs.
 - Separate V2 prospect/contact files from public procurement opportunities.
+- Additional research queries cover Moroccan flour mills, confectionery manufacturers, pasta/couscous producers, and canneries; official contacts are verified again at runtime before use.
 
 ## Run a preview
 Open GitHub Actions, select **TRMB Lead Agent V2 - Manual Dry Run**, choose branch `trmb-agent-v2`, then click **Run workflow**. Review:

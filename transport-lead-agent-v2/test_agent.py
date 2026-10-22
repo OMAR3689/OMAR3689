@@ -1,5 +1,6 @@
 import sys
 import unittest
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -219,12 +220,90 @@ class AgentTests(unittest.TestCase):
  
     def test_lead_csv_fields_keeps_retry_and_smtp_rejection_columns(self):
         fields = agent.lead_csv_fields([
-            {"company": "Alpha", "retry_reason": "451 Temporary"},
-            {"company": "Beta", "smtp_rejection": "550 mailbox unavailable"},
+            {"company": "Alpha", "retry_reason": "451 Temporary", "retry_after": "2026-10-22T10:00:00+00:00"},
+            {"company": "Beta", "smtp_rejection": "550 mailbox unavailable", "run_id": "123"},
         ])
         self.assertIn("retry_reason", fields)
+        self.assertIn("retry_after", fields)
+        self.assertIn("retry_count", fields)
+        self.assertIn("email_verified", fields)
+        self.assertIn("run_id", fields)
         self.assertIn("smtp_rejection", fields)
         self.assertEqual(len(fields), len(set(fields)))
+
+
+    def test_retry_record_preserves_official_verification_and_uses_backoff(self):
+        now = datetime(2026, 10, 22, 12, 0, tzinfo=timezone.utc)
+        original = {
+            "company": "Alpha",
+            "email": "contact@alpha.ma",
+            "domain": "alpha.ma",
+            "url": "https://alpha.ma/",
+            "email_source_url": "https://alpha.ma/contact",
+            "email_verified": True,
+            "score": 80,
+        }
+        first = agent.make_retry_record(original, "(451, temporary local problem)", now=now)
+        self.assertTrue(first["email_verified"])
+        self.assertEqual(first["email_source_url"], original["email_source_url"])
+        self.assertEqual(first["retry_count"], 1)
+        self.assertEqual(datetime.fromisoformat(first["retry_after"]), now + timedelta(minutes=5))
+        self.assertFalse(agent.retry_is_due(first, now=now + timedelta(minutes=4)))
+        self.assertTrue(agent.retry_is_due(first, now=now + timedelta(minutes=5)))
+        second = agent.make_retry_record(first, "(451, temporary local problem)", now=now + timedelta(minutes=5))
+        self.assertEqual(second["retry_count"], 2)
+        self.assertEqual(datetime.fromisoformat(second["retry_after"]), now + timedelta(minutes=15))
+
+
+    def test_lead_archive_enriches_no_email_company_record_without_losing_sent_history(self):
+        old_rows = [{
+            "company": "Alpha", "domain": "alpha.ma", "url": "https://alpha.ma/",
+            "status": "no_email",
+        }]
+        updated_rows = [{
+            "company": "Alpha", "domain": "alpha.ma", "url": "https://alpha.ma/contact",
+            "email": "contact@alpha.ma", "email_verified": True, "status": "qualified", "run_id": "987",
+        }]
+        merged = agent.merge_lead_archive(old_rows, updated_rows)
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["email"], "contact@alpha.ma")
+        self.assertEqual(merged[0]["run_id"], "987")
+
+        sent_row = {**updated_rows[0], "status": "sent", "sent_at": "2026-10-22T11:00:00+00:00"}
+        downgraded = agent.merge_lead_archive(
+            [sent_row],
+            [{**updated_rows[0], "email": "", "email_verified": False, "status": "no_email"}],
+        )
+        self.assertEqual(len(downgraded), 1)
+        self.assertEqual(downgraded[0]["status"], "sent")
+        self.assertEqual(downgraded[0]["email"], "contact@alpha.ma")
+
+
+    def test_tender_archive_deduplicates_official_notices_and_drops_expired_items(self):
+        old_rows = [
+            {
+                "title": "Old transport service", "buyer": "Old Commune", "deadline": "01/01/2020",
+                "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/old",
+            },
+            {
+                "title": "Future transport service", "buyer": "New Commune", "deadline": "31/12/2099",
+                "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/123",
+                "status": "date_limite_future",
+            },
+            {
+                "title": "Fake mirror", "buyer": "Unknown", "deadline": "31/12/2099",
+                "url": "https://example.ma/tender/123",
+            },
+        ]
+        new_rows = [{
+            "title": "Future transport service", "buyer": "New Commune", "deadline": "31/12/2099",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/123",
+            "index_engine": "Bing RSS",
+        }]
+        merged = agent.merge_tender_archive(old_rows, new_rows, today=date(2026, 10, 22))
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["title"], "Future transport service")
+        self.assertEqual(merged[0]["index_engine"], "Bing RSS")
 
     def test_persist_outreach_state_saves_sent_history_and_retry_queue(self):
         history = {
