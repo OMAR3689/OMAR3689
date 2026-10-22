@@ -31,7 +31,7 @@ class AgentTests(unittest.TestCase):
         with patch.object(agent, "search_web", return_value=results):
             self.assertEqual(agent.public_email("Company", "https://company.ma/"), ("", ""))
 
-    def test_sendable_contact_requires_generic_email_on_official_https_page(self):
+    def test_sendable_contact_accepts_published_role_and_named_mailboxes_on_official_https_page(self):
         valid = {
             "email": "contact@example.ma",
             "domain": "example.ma",
@@ -42,7 +42,13 @@ class AgentTests(unittest.TestCase):
         self.assertTrue(agent.is_sendable_contact(valid))
 
         named_mailbox = {**valid, "email": "omar.rebbani@example.ma"}
-        self.assertFalse(agent.is_sendable_contact(named_mailbox))
+        self.assertTrue(agent.is_sendable_contact(named_mailbox))
+
+        export_mailbox = {**valid, "email": "export@example.ma"}
+        self.assertTrue(agent.is_sendable_contact(export_mailbox))
+
+        specialized_mailbox = {**valid, "email": "pharmacovigilance@example.ma"}
+        self.assertFalse(agent.is_sendable_contact(specialized_mailbox))
 
         off_domain_source = {**valid, "email_source_url": "https://directory.example/contact/"}
         self.assertFalse(agent.is_sendable_contact(off_domain_source))
@@ -50,8 +56,11 @@ class AgentTests(unittest.TestCase):
         http_source = {**valid, "email_source_url": "http://example.ma/contact/"}
         self.assertFalse(agent.is_sendable_contact(http_source))
 
-        file_source = {**valid, "email_source_url": "https://example.ma/contact.pdf"}
-        self.assertFalse(agent.is_sendable_contact(file_source))
+        file_source = {**valid, "email_source_url": "https://example.ma/catalogue.pdf"}
+        self.assertTrue(agent.is_sendable_contact(file_source))
+
+        image_source = {**valid, "email_source_url": "https://example.ma/contact.png"}
+        self.assertFalse(agent.is_sendable_contact(image_source))
 
     def test_official_domain_mailbox_is_preferred_over_public_gmail(self):
         records = [

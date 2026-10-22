@@ -133,6 +133,7 @@ NON_PROSPECT_DOMAINS = {
     "sonix.ai", "scribd.com", "aomaroc.com", "bestwebsite.com",
     # Company lookup tools and tender aggregators are not themselves freight buyers.
     "icemorocco.com", "francemarches.com", "welipro.com",
+    "hangarmaroc.com", "hangarmaroc.ma",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
@@ -679,14 +680,9 @@ def public_email(title, url):
                 continue
             blob = f"{item.get('title', '')} {item.get('content', '')}"
             for email in extract_emails(blob):
-                prefix = email.split("@", 1)[0].lower()
-                email_host = email.rsplit("@", 1)[-1].lower()
-                is_public_free_mail = (
-                    email_host in sources.FREE_MAIL_HOSTS
-                    and prefix not in sources.NON_CONTACT_PREFIXES
-                    and len(prefix) >= 3
-                )
-                if prefix not in sources.GENERIC_PREFIXES and not is_public_free_mail:
+                if not sources.is_public_business_email(
+                    email, site_domain=host, allow_external_domain=True
+                ):
                     continue
                 if usable_email(email, url, allow_public_free_mail=True):
                     return email, source_url
@@ -695,23 +691,11 @@ def public_email(title, url):
 
 
 def is_sendable_contact(lead):
-    """Require a public generic mailbox listed on the company's own HTTPS site."""
+    """Require a public business mailbox published on the company's own HTTPS site."""
     email = str(lead.get("email", "") or "").strip().lower()
     source_url = str(lead.get("email_source_url", "") or "").strip()
     company_url = str(lead.get("url", "") or "").strip()
     if not email or "@" not in email or not source_url.startswith("https://"):
-        return False
-    local, email_host = email.rsplit("@", 1)
-    prefix = local.split("+", 1)[0]
-    is_public_free_mail = (
-        email_host in sources.FREE_MAIL_HOSTS
-        and prefix not in sources.NON_CONTACT_PREFIXES
-        and len(prefix) >= 3
-    )
-    if (
-        (prefix not in sources.GENERIC_PREFIXES and not is_public_free_mail)
-        or (email_host in BAD_DOMAINS and not is_public_free_mail)
-    ):
         return False
     source_host = domain(source_url)
     company_host = domain(company_url)
@@ -720,8 +704,13 @@ def is_sendable_contact(lead):
         return False
     if declared_domain and declared_domain != company_host:
         return False
+    if not sources.is_public_business_email(
+        email, site_domain=company_host, allow_external_domain=True
+    ):
+        return False
     path = urlparse(source_url).path.lower()
-    if any(path.endswith(ext) for ext in (".pdf", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
+    # Public official PDFs (e.g. company catalogues) can be a valid contact source.
+    if any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
         return False
     return True
 

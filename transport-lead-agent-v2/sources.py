@@ -43,6 +43,13 @@ FREE_MAIL_HOSTS = {
     "proton.me", "protonmail.com",
 }
 NON_CONTACT_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
+UNSUITABLE_LOCAL_TOKENS = {
+    "pharmacovigilance", "vigilance", "pv", "recruitment", "recrutement",
+    "recruiting", "jobs", "job", "careers", "career", "privacy", "dpo",
+    "legal", "juridique", "presse", "press", "media", "webmaster", "abuse",
+    "security", "newsletter", "billing", "facturation", "accounting",
+    "comptabilite", "comptabilité", "rh", "hr", "helpdesk",
+}
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 BAD_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".css", ".js")
 MP_HOST = "www.marchespublics.gov.ma"
@@ -239,11 +246,43 @@ class _TableRowParser(HTMLParser):
             self._row = None
 
 
+def is_public_business_email(email, site_domain="", allow_external_domain=False):
+    """
+    Validate a publicly listed business mailbox. The caller must independently
+    confirm the source page is on the company's HTTPS site. Corporate role-based
+    and named mailboxes are allowed; automated, recruitment, privacy/legal, and
+    pharmaceutical safety inboxes are not.
+    """
+    email = str(email or "").strip().lower().strip(".,;:()[]<>")
+    if not EMAIL_RE.fullmatch(email):
+        return False
+    local, _, host = email.partition("@")
+    local_base = local.split("+", 1)[0]
+    host = host.lower().removeprefix("www.")
+    if len(local_base) < 2 or len(host) < 3 or "." not in host:
+        return False
+    if local_base in NON_CONTACT_PREFIXES:
+        return False
+    local_tokens = {x for x in re.split(r"[._+-]+", local_base) if x}
+    if local_tokens & UNSUITABLE_LOCAL_TOKENS:
+        return False
+    if host in {"linkedin.com", "facebook.com", "instagram.com", "youtube.com"}:
+        return False
+    if host in FREE_MAIL_HOSTS:
+        return len(local_base) >= 3
+    if site_domain:
+        site_host = _host("https://" + site_domain) if "://" not in site_domain else _host(site_domain)
+        if host == site_host or host.endswith("." + site_host):
+            return True
+        return bool(allow_external_domain)
+    return bool(allow_external_domain)
+
+
 def extract_generic_emails(html, site_domain):
     """
-    Extract public business mailboxes from a page already fetched on the official
-    company domain. Accept domain-based generic mailboxes, plus Gmail/Outlook/Yahoo
-    addresses published on that same official site (a common SME contact pattern).
+    Extract public business emails from a page fetched on the official company
+    domain. Includes role-based and named corporate mailboxes, plus free-mail
+    addresses visibly published on that same official website.
     """
     site_domain = _host("https://" + site_domain) if "://" not in site_domain else _host(site_domain)
     found = set()
@@ -251,14 +290,7 @@ def extract_generic_emails(html, site_domain):
         email = email.lower().strip(".,;:()[]<>")
         if email.endswith(BAD_SUFFIXES):
             continue
-        local, _, dom = email.partition("@")
-        dom = dom.lower().removeprefix("www.")
-        same_domain = dom == site_domain or dom.endswith("." + site_domain)
-        if same_domain and local in GENERIC_PREFIXES:
-            found.add(email)
-        elif dom in FREE_MAIL_HOSTS and local not in NON_CONTACT_PREFIXES and len(local) >= 3:
-            # The calling code only invokes this on a page from the official company
-            # host, so this proves the free-mail address was publicly listed there.
+        if is_public_business_email(email, site_domain=site_domain, allow_external_domain=False):
             found.add(email)
     return sorted(found)
 

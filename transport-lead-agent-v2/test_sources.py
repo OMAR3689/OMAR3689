@@ -31,16 +31,36 @@ class SourcesTests(unittest.TestCase):
         with patch("sources.urllib.request.urlopen", side_effect=TimeoutError("timeout")):
             self.assertFalse(sources.allowed_by_robots("https://example.ma/contact"))
 
-    def test_only_same_domain_generic_business_emails_are_extracted(self):
+    def test_public_business_emails_from_official_domain_include_role_and_named_addresses(self):
         html = """
-        contact@example.ma info@example.ma
-        pharmacovigilance@example.ma
+        contact@example.ma info@example.ma export@example.ma malika.ouchhal@example.ma
+        pharmacovigilance@example.ma jobs@example.ma
         contact@agency.example
         contact@other.ma
         contact@img.example.ma.png
         """
         emails = sources.extract_generic_emails(html, "example.ma")
-        self.assertEqual(emails, ["contact@example.ma", "info@example.ma"])
+        self.assertEqual(
+            emails,
+            [
+                "contact@example.ma",
+                "export@example.ma",
+                "info@example.ma",
+                "malika.ouchhal@example.ma",
+            ],
+        )
+
+    def test_public_business_email_validator_blocks_non_sales_mailboxes(self):
+        self.assertTrue(sources.is_public_business_email("export@example.ma", "example.ma"))
+        self.assertTrue(sources.is_public_business_email("malika.ouchhal@example.ma", "example.ma"))
+        self.assertFalse(sources.is_public_business_email("pharmacovigilance@example.ma", "example.ma"))
+        self.assertFalse(sources.is_public_business_email("jobs@example.ma", "example.ma"))
+        self.assertTrue(
+            sources.is_public_business_email("contact.mcip@gmail.com", "example.ma")
+        )
+        self.assertFalse(
+            sources.is_public_business_email("contact@other.ma", "example.ma")
+        )
 
     def test_public_company_gmail_is_allowed_only_when_published_on_official_site(self):
         html = """

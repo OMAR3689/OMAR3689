@@ -1,14 +1,14 @@
-# TRMB Lead Agent V2 - isolated preview
+# TRMB Lead Agent V2 - verified outreach
 
-This is a separate development copy of the working V1 agent.
+V2 researches Moroccan companies that may need transport/logistics services, records official business contact evidence, and stores public procurement notices separately from commercial prospects.
 
-## Safety and isolation
-- V1 remains unchanged on `main`; its five-minute run chain is untouched.
-- V2 runs only on branch `trmb-agent-v2`.
-- V2 defaults to `DRY_RUN=true`: it collects prospects and previews planned messages but does not submit email.
-- The workflow intentionally does not provide SMTP credentials, adding a second barrier against accidental sending.
-- V2 writes independent prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
-- Each run imports the latest V1 `contacted.json` as a suppression history so the preview skips addresses and domains already contacted by V1.
+## Operating mode and safety
+- The scheduled workflow is configured for a five-minute cadence; GitHub may delay scheduled runs under load.
+- Scheduled runs send only to new, verified business contacts; manual workflow dispatch defaults to preview and offers an explicit send mode.
+- Sending is capped at 10 emails per run and 20 per rolling hour. If there are no new verified contacts, the run succeeds without sending.
+- Every candidate must have a public contact address found on its official HTTPS site. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
+- V2 writes prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
+- The contact history is used to suppress repeat outreach to previously contacted addresses/domains.
 
 ## Sources and crawl etiquette
 - Uses free search providers for commercial company research.
@@ -32,4 +32,4 @@ Open GitHub Actions, select **TRMB Lead Agent V2 - Manual Dry Run**, choose bran
 - `transport-lead-agent-v2/data/tenders.csv`
 - the run logs
 
-Do not enable outbound sending until the preview quality has been reviewed and any V1/V2 suppression-history race condition is prevented. The present workflow intentionally sends no email.
+Scheduled sends are enabled through the workflow on the default branch. Review the latest workflow run and the saved CSV/JSON files after changes to scoring or contact-validation rules.
