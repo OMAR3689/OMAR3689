@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T04:04:06.684820+00:00",
+    "timestamp": "2026-10-22T04:43:21.534970+00:00",
     "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
     "domain": "3skpartsauto.com",
@@ -15,7 +15,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T04:04:16.502088+00:00",
+    "timestamp": "2026-10-22T04:43:32.284031+00:00",
     "company": "ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité",
     "email": "",
     "domain": "ibraparts.ma",
@@ -30,7 +30,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T04:04:31.853562+00:00",
+    "timestamp": "2026-10-22T04:43:47.312452+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -45,7 +45,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T04:04:42.046373+00:00",
+    "timestamp": "2026-10-22T04:43:59.069449+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -60,7 +60,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T04:04:53.095754+00:00",
+    "timestamp": "2026-10-22T04:44:09.976025+00:00",
     "company": "UPM - Grossiste Pharmaceutique",
     "email": "",
     "domain": "upm-grossiste.ma",
@@ -75,7 +75,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375320+00:00",
+    "timestamp": "2026-10-22T04:45:13.236148+00:00",
     "company": "Zalar Holding",
     "email": "info@zalar.ma",
     "domain": "zalar.ma",
@@ -87,12 +87,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:20.526555+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375261+00:00",
+    "timestamp": "2026-10-22T04:45:13.236092+00:00",
     "company": "DISLOG Group",
     "email": "contact@dislogroup.ma",
     "domain": "dislogroup.com",
@@ -104,12 +103,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:25.633304+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375364+00:00",
+    "timestamp": "2026-10-22T04:45:13.236184+00:00",
     "company": "Maroc Ingrédients",
     "email": "info@marocingredients.com",
     "domain": "marocingredients.com",
@@ -121,12 +119,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:30.500336+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375407+00:00",
+    "timestamp": "2026-10-22T04:45:13.236218+00:00",
     "company": "SIOF",
     "email": "info@siofgroup.com",
     "domain": "siofgroup.com",
@@ -138,12 +135,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:34.988931+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375603+00:00",
+    "timestamp": "2026-10-22T04:45:13.236350+00:00",
     "company": "Mutandis",
     "email": "contact@mutandis.com",
     "domain": "mutandis.com",
@@ -155,12 +151,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:40.075189+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375643+00:00",
+    "timestamp": "2026-10-22T04:45:13.236382+00:00",
     "company": "COPAG",
     "email": "info@copag.ma",
     "domain": "copag.ma",
@@ -172,12 +167,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:45.118307+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375684+00:00",
+    "timestamp": "2026-10-22T04:45:13.236414+00:00",
     "company": "ABC Dis",
     "email": "contact@abcdis.ma",
     "domain": "abcdis.ma",
@@ -189,12 +183,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:50.053417+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375448+00:00",
+    "timestamp": "2026-10-22T04:45:13.236252+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -206,12 +199,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375519+00:00",
+    "timestamp": "2026-10-22T04:45:13.236285+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -223,12 +214,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375562+00:00",
+    "timestamp": "2026-10-22T04:45:13.236318+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -240,12 +229,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375766+00:00",
+    "timestamp": "2026-10-22T04:45:13.236480+00:00",
     "company": "TBI Maroc",
     "email": "info@tbi.ma",
     "domain": "tbi.ma",
@@ -257,10 +244,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:54.799564+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375807+00:00",
+    "timestamp": "2026-10-22T04:45:13.236513+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -272,10 +260,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375848+00:00",
+    "timestamp": "2026-10-22T04:45:13.236545+00:00",
     "company": "SOFALIM",
     "email": "contact@sofalim.ma",
     "domain": "sofalim.ma",
@@ -287,10 +275,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:59.907081+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:06:04.375726+00:00",
+    "timestamp": "2026-10-22T04:45:13.236447+00:00",
     "company": "Alimexia",
     "email": "contact@alimexia.ma",
     "domain": "alimexia.ma",
@@ -302,10 +291,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "sent",
+    "sent_at": "2026-10-22T04:46:04.443029+00:00"
   },
   {
-    "timestamp": "2026-10-22T04:03:50.950726+00:00",
+    "timestamp": "2026-10-22T04:43:07.774380+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -316,21 +306,6 @@
     "direct_intent": false,
     "priority": "STANDARD",
     "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T04:05:27.143759+00:00",
-    "company": "Kenzi Hotels Group",
-    "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }

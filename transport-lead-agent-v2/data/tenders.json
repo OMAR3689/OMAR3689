@@ -1,35 +1,79 @@
 [
   {
-    "title": "appel d'offres ouvert international sur offres de prix pour l’acquisition du mobilier pour résidence destiné à l’Institut de Formation Douanière relevant de l’Administration des Douanes et Impôts Indirects (lot unique)",
-    "buyer": "",
+    "title": "Détails de l'avis d'achat #08/2026",
+    "buyer": "Commune rurale de JAHJOUH",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/393614",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:42:06.550618+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Acquisition des switchs pour équiper le siège de l’ANCFCC",
+    "buyer": "M4 / ANCFCC - AGENCE NATIONALE DE LA CONSERVATION FONCIERE, DU CADASTRE ET DE LA CARTOGRAPHIE",
     "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
     "keyword": "flotte",
-    "url": "https://www.marchespublics.gov.ma/?page=entreprise.SuiviConsultation&refConsultation=845057&orgAcronyme=g8e",
+    "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1023119&orgAcronyme=q1s",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:03:14.456366+00:00",
+    "retrieved_at": "2026-10-22T04:42:24.643027+00:00",
     "index_engine": "DDGS"
   },
   {
-    "title": "Détails de l'avis d'achat #58/CL/2026",
+    "title": "Détails de l'avis d'achat #47/2026",
+    "buyer": "DELEGUE DU MINISTERE DE LA SANTE A LA PROVINCE DE TANTAN",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "flotte",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/389919",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:42:24.643347+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #48/2026",
     "buyer": "",
     "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
     "keyword": "livraison",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/378751",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386893",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:03:19.324718+00:00",
+    "retrieved_at": "2026-10-22T04:42:37.938480+00:00",
     "index_engine": "DDGS"
   },
   {
-    "title": "Détails de l'avis d'achat #18/2026/CA",
+    "title": "Détails de l'avis d'achat #25/2026",
     "buyer": "",
     "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
     "keyword": "livraison",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386207",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/385608",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:03:19.324851+00:00",
+    "retrieved_at": "2026-10-22T04:42:37.938599+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #111/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/397184",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:42:37.938721+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #08/2026",
+    "buyer": "Commune rurale de KHEMISSET CHAOUIA",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392807",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:42:37.938887+00:00",
     "index_engine": "DDGS"
   }
 ]
