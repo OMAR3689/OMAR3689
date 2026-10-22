@@ -1,30 +1,30 @@
 [
   {
-    "timestamp": "2026-10-22T11:24:24.493641+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T11:30:16.343885+00:00",
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "domain": "hangarmaroc.com",
+    "url": "https://hangarmaroc.com/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
     "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T11:29:50.375767+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "email": "",
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "need": "transport et logistique",
+    "sector_hint": "retail distribution",
+    "score": 60,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:24:29.852515+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T11:23:56.141730+00:00",
+    "timestamp": "2026-10-22T11:29:19.478846+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -36,37 +36,13 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:24:16.785612+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T11:24:51.216758+00:00",
+    "timestamp": "2026-10-22T11:30:00.317443+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
     "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T11:25:04.594508+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
     "score": 20,
     "source": "ddgs",
     "status": "no_email"
