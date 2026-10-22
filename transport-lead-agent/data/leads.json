@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T10:32:39.318266+00:00",
+    "timestamp": "2026-10-22T10:37:50.979762+00:00",
     "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
     "domain": "3skpartsauto.com",
@@ -8,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T10:32:53.086068+00:00",
+    "timestamp": "2026-10-22T10:38:01.662841+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,23 +20,35 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T10:33:24.954540+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "timestamp": "2026-10-22T10:38:10.546129+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
-    "source": "ddgs",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T10:32:27.596922+00:00",
+    "timestamp": "2026-10-22T10:38:17.414244+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T10:37:41.767215+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -44,6 +56,18 @@
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T10:38:50.881129+00:00",
+    "company": "Maroc - Mobilité, transport - Appels d'offres, marchés ...",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?cat=mobilite-transport",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
