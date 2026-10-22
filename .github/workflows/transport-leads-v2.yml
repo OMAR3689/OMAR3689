@@ -43,6 +43,7 @@ jobs:
       MAX_EMAILS_PER_HOUR: '20'
       MIN_SENDABLE_LEADS: '1'
       MIN_PREVIEW_LEADS: '5'
+      MIN_LEAD_SCORE: '40'
       PRESENTATION_URL: 'https://trmb.ma/'
       PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
       PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
@@ -128,6 +129,7 @@ jobs:
           dry_run = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
           minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
           preview_minimum = max(1, int(os.environ.get("MIN_PREVIEW_LEADS", "5")))
+          minimum_score = max(40, int(os.environ.get("MIN_LEAD_SCORE", "40")))
           expected_status = "dry_run_preview" if dry_run else "sent"
           outcomes = [x for x in run_leads if x.get("status") == expected_status]
 
@@ -166,7 +168,7 @@ jobs:
                   or not sources.is_public_business_email(
                       email, site_domain=company_host, allow_external_domain=True
                   )
-                  or int(lead.get("score", 0) or 0) < 20
+                  or int(lead.get("score", 0) or 0) < minimum_score
               ):
                   raise SystemExit(
                       f"Validation failed: unverified official contact in outcomes for {lead.get('company')}."

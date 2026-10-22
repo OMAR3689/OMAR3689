@@ -31,7 +31,7 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Search-index public procurement titles are cleaned using the official notice object so metadata is not mislabeled as the tender subject.
 - When the official portal is unreachable, tender discovery uses six short, targeted public-index queries instead of an oversized combined OR query; results remain limited to official notice-detail URLs.
 - Separate V2 prospect/contact files from public procurement opportunities.
-- Additional research queries cover Moroccan flour mills, confectionery manufacturers, pasta/couscous producers, and canneries; official contacts are verified again at runtime before use.
+- Additional research queries cover Moroccan flour mills, confectionery manufacturers, pasta/couscous producers, and canneries; official contacts are verified again at runtime before use. Prospects must score at least 40/100, and known company-listing marketplaces are blocked as email evidence sources.
 
 ## Run a preview
 Open GitHub Actions, select **TRMB Lead Agent V2 - Manual Dry Run**, choose branch `trmb-agent-v2`, then click **Run workflow**. Review:

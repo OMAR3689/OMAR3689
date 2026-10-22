@@ -24,6 +24,7 @@ TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
 TENDERS_CSV = os.path.join(OUT_DIR, "tenders.csv")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "10"))
 MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "20"))
+MIN_LEAD_SCORE = max(40, int(os.environ.get("MIN_LEAD_SCORE", "40")))
 # V2 safety default: preview only; workflow also omits SMTP credentials.
 DRY_RUN = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
 V1_HISTORY_FILE = os.environ.get("V1_HISTORY_FILE", "").strip()
@@ -144,6 +145,8 @@ NON_PROSPECT_DOMAINS = {
     # Company lookup tools and tender aggregators are not themselves freight buyers.
     "icemorocco.com", "francemarches.com", "welipro.com",
     "hangarmaroc.com", "hangarmaroc.ma",
+    # Marketplace/listing pages are discovery hints, not official company contact sources.
+    "moroccanproducts.ma",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
@@ -1923,7 +1926,7 @@ def main():
         if x.get("email")
         and x.get("email_verified") is True
         and str(x.get("email", "")).strip().lower() not in permanently_rejected
-        and int(x.get("score", 0) or 0) >= 20
+        and int(x.get("score", 0) or 0) >= MIN_LEAD_SCORE
         and x.get("status") != "smtp_retry_wait"
         and retry_is_due(x)
         and is_sendable_contact(x)

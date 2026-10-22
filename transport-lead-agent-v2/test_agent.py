@@ -9,6 +9,18 @@ import agent
 
 
 class AgentTests(unittest.TestCase):
+    def test_official_contact_score_threshold_excludes_weak_prospects(self):
+        self.assertGreaterEqual(agent.MIN_LEAD_SCORE, 40)
+        self.assertLess(25, agent.MIN_LEAD_SCORE)
+        self.assertLess(35, agent.MIN_LEAD_SCORE)
+
+    def test_marketplace_listing_is_not_accepted_as_official_prospect_source(self):
+        self.assertTrue(agent.is_non_prospect_source(
+            "Fapaco — Fabrique Marocaine de Pâtes et Couscous",
+            "Product profile and company listing",
+            "https://moroccanproducts.ma/fr/company/fapaco",
+        ))
+
     def test_logistics_service_page_is_filtered_as_provider_not_buyer(self):
         title = "Stockage & Distribution - Royas"
         content = (
