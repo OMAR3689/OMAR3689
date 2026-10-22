@@ -16,7 +16,23 @@
     "email_verified": false
   },
   {
-    "timestamp": "2026-10-22T14:41:21.498465+00:00",
+    "timestamp": "2026-10-22T14:45:24.022535+00:00",
+    "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
+    "email": "",
+    "domain": "ckmafrica.com",
+    "url": "https://ckmafrica.com/ckma-equipements-industriels-maroc-fournisseur-industriel-maroc",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution industrielle",
+    "score": 30,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T14:45:46.973603+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -32,7 +48,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:41:00.653673+00:00",
+    "timestamp": "2026-10-22T14:46:21.082986+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "",
     "domain": "tacindustrie.ma",
@@ -48,7 +64,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:39:33.140565+00:00",
+    "timestamp": "2026-10-22T14:45:04.086340+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
@@ -64,7 +80,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T14:41:25.431459+00:00",
+    "timestamp": "2026-10-22T14:46:25.544361+00:00",
     "company": "Smart Import Technologie | Solutions industrielles au Maroc",
     "email": "smartimporttechnology@gmail.com",
     "domain": "smart-import.tech",
