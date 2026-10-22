@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T06:06:05.439921+00:00",
+    "timestamp": "2026-10-22T06:10:25.709381+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -10,7 +10,22 @@
     "score": 55,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T06:11:04.792691+00:00",
+    "company": "Kenzi Hotels Group",
+    "email": "",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }
