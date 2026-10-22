@@ -517,7 +517,7 @@ class SourcesTests(unittest.TestCase):
         self.assertIn("location de véhicules avec chauffeur", query_text)
         self.assertIn("barid al maghrib", query_text)
         self.assertIn("autoroutes du maroc", query_text)
-        self.assertIn("Date limite de remise des plis", query_text)
+        self.assertIn("date limite de remise des plis", query_text)
         self.assertIn("transport de personnel", sources.MP_INDEX_EXTRA_KEYWORDS)
 
 
