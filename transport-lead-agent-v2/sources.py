@@ -383,7 +383,7 @@ def _parse_tender_row(row, keyword, listing_url):
 
 
 def _parse_indexed_tender(item, keyword):
-    """Parse a tender found in Bing's public index; never crawl a blocked portal page."""
+    """Parse an indexed tender while avoiding publication-date/deadline confusion."""
     url = str(item.get("url", "")).strip()
     title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip()
     description = re.sub(r"\s+", " ", str(item.get("content", "") or "")).strip()
@@ -404,14 +404,34 @@ def _parse_indexed_tender(item, keyword):
     if any(marker in normal for marker in ("avis de resultat definitif", "resultat definitif", "pv d'ouverture")):
         return None
 
+    # Search engines often use the portal's generic title. Prefer the indexed
+    # subject/object when present, but do not invent a subject when absent.
+    generic_titles = {
+        "marches publics electroniques",
+        "portail marocain des marches publics",
+    }
+    objective_match = re.search(
+        r"\bobjet(?:\s+de\s+(?:la\s+)?(?:consultation|l'appel d'offres|l'operation))?"
+        r"\s*[:\-]\s*(.+?)(?=\s*(?:Acheteur public|Date limite|Type d'annonce|"
+        r"Procedure|Categorie principale|Lieu d'execution|$))",
+        text, flags=re.IGNORECASE
+    )
+    if _normal_text(title) in generic_titles and objective_match:
+        objective = re.sub(r"\s+", " ", objective_match.group(1)).strip(" :-")
+        if objective:
+            title = objective[:500]
+
+    # Only treat a date as a deadline when the indexed snippet labels it as one.
+    deadline_match = re.search(
+        r"(?:date\s+limite(?:\s+de\s+(?:remise\s+des\s+plis|depot|reception\s+des\s+offres))?"
+        r"|deadline)\s*[:\-]?\s*"
+        r"(\d{2}[/-]\d{2}[/-]\d{4}|\d{4}-\d{2}-\d{2})",
+        text, flags=re.IGNORECASE
+    )
     deadline = ""
     deadline_status = "date_limite_inconnue_a_verifier"
-    date_match = re.search(
-        r"\b(\d{2}[/-]\d{2}[/-]\d{4}|\d{4}-\d{2}-\d{2})\b",
-        text
-    )
-    if date_match:
-        deadline = date_match.group(1)
+    if deadline_match:
+        deadline = deadline_match.group(1)
         parsed_date = None
         for fmt in ("%d/%m/%Y", "%d-%m-%Y", "%Y-%m-%d"):
             try:
@@ -427,7 +447,8 @@ def _parse_indexed_tender(item, keyword):
             deadline_status = "date_limite_future"
 
     buyer_match = re.search(
-        r"Acheteur public\s*:?\s*(.+?)(?=\s*(?:Lieu d'execution|Date limite|$))",
+        r"Acheteur public\s*:?\s*(.+?)(?=\s*(?:Lieu d'execution|Date limite|"
+        r"Type d'annonce|Procedure|Categorie principale|Objet|$))",
         text, flags=re.IGNORECASE
     )
     buyer = re.sub(r"\s+", " ", buyer_match.group(1)).strip(" :-")[:300] if buyer_match else ""
@@ -438,7 +459,7 @@ def _parse_indexed_tender(item, keyword):
         "status": deadline_status,
         "keyword": keyword,
         "url": url,
-        "source": "Index Bing du Portail Marocain des Marchés Publics",
+        "source": "Index public du Portail Marocain des Marchés Publics",
         "retrieved_at": datetime.now(timezone.utc).isoformat(),
     }
 
