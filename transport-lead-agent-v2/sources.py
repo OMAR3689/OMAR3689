@@ -508,14 +508,14 @@ def _parse_indexed_tender(item, keyword):
     # Generic purchase notices may reveal their object only in the indexed snippet.
     if generic_purchase_title and description_has_relevance:
         prefix_match = re.search(
-            r"^(.+?)(?=\\s*(?:Acheteur public|Date mise en ligne|Date de mise en ligne|"
+            r"^(.+?)(?=\s*(?:Acheteur public|Date mise en ligne|Date de mise en ligne|"
             r"Date publication|Date de publication|Type d'annonce|Procedure|"
-            r"Categorie principale)\\b)",
+            r"Categorie principale)\b)",
             description,
             flags=re.IGNORECASE,
         )
         if prefix_match:
-            prefix = re.sub(r"\\s+", " ", prefix_match.group(1)).strip(" :-")
+            prefix = re.sub(r"\s+", " ", prefix_match.group(1)).strip(" :-")
             if _is_transport_service_tender({"title": prefix}):
                 title = prefix[:500]
 
