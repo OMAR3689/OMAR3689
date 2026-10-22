@@ -351,6 +351,23 @@ class SourcesTests(unittest.TestCase):
         self.assertIsNotNone(tender)
         self.assertIn("logistique", tender["title"].lower())
 
+    def test_indexed_tender_accepts_additional_transport_service_keyword(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/456790",
+            "content": (
+                "Objet : Location de véhicules avec chauffeur pour le transport du personnel "
+                "Acheteur public : OFFICE EXEMPLE "
+                "Date limite de remise des plis : 30/11/2099"
+            ),
+        }
+        all_keywords = (*sources.MP_KEYWORDS, *sources.MP_INDEX_EXTRA_KEYWORDS)
+        keyword = sources._keyword_for_indexed_tender(item, all_keywords)
+        self.assertIn(keyword, sources.MP_INDEX_EXTRA_KEYWORDS)
+        tender = sources._parse_indexed_tender(item, keyword)
+        self.assertIsNotNone(tender)
+        self.assertIn("véhicules", tender["title"].lower())
+
     def test_tender_fallback_uses_ddgs_when_official_portal_is_unreachable(self):
         item = {
             "title": "Avis de consultation - Transport de marchandises",
