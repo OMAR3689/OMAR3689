@@ -1179,23 +1179,6 @@
     "sent_at": "2026-10-22T14:16:17.169836+00:00"
   },
   {
-    "timestamp": "2026-10-22T14:53:24.649181+00:00",
-    "company": "Smart Import Technologie | Solutions industrielles au Maroc",
-    "email": "smartimporttechnology@gmail.com",
-    "domain": "smart-import.tech",
-    "url": "http://smart-import.tech/",
-    "need": "transport et logistique",
-    "sector_hint": "distribution industrielle",
-    "score": 15,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "http://smart-import.tech/",
-    "email_verified": true,
-    "status": "contact_not_verified",
-    "run_id": "39799186060"
-  },
-  {
     "company": "DARI COUSPATE",
     "email": "info@couscousdari.com",
     "domain": "couscousdari.com",
@@ -1292,7 +1275,7 @@
     "run_id": "39803537846"
   },
   {
-    "timestamp": "2026-10-22T15:30:19.947326+00:00",
+    "timestamp": "2026-10-22T15:40:01.323179+00:00",
     "company": "Fandy",
     "email": "info@fandygroup.com",
     "domain": "fandy.ma",
@@ -1308,7 +1291,7 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39804874393",
+    "run_id": "39806309084",
     "smtp_rejection": "{'info@fandygroup.com': (550, b'The mail server could not deliver mail to info@fandygroup.com.  The account\\nor domain may not exist, they may be blacklisted, or missing the proper dns\\nentries.')}"
   },
   {
@@ -1324,16 +1307,16 @@
     "source": "verified-official-contact-fallback",
     "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
     "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}",
-    "status": "smtp_retry_wait",
+    "status": "dry_run_preview",
     "email_verified": true,
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39804874393",
+    "run_id": "39806309084",
     "retry_count": 2,
     "retry_after": "2026-10-22T15:35:01.433894+00:00"
   },
   {
-    "timestamp": "2026-10-22T15:33:14.113782+00:00",
+    "timestamp": "2026-10-22T15:42:58.222599+00:00",
     "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
     "email": "commercial@bledconserves.ma",
     "domain": "bledconserves.ma",
@@ -1347,10 +1330,10 @@
     "email_source_url": "http://www.bledconserves.ma/",
     "email_verified": true,
     "status": "contact_not_verified",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:32:46.460435+00:00",
+    "timestamp": "2026-10-22T15:42:21.563757+00:00",
     "company": "Rania Couspate — Couscous & pâtes du Maroc",
     "email": "",
     "domain": "rania-couspate.com",
@@ -1364,10 +1347,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:32:29.581605+00:00",
+    "timestamp": "2026-10-22T15:42:01.929819+00:00",
     "company": "Accueil - Deliz food Processing",
     "email": "",
     "domain": "delizfood.ma",
@@ -1381,10 +1364,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:29:04.139196+00:00",
+    "timestamp": "2026-10-22T15:38:40.074555+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
     "domain": "ckmafrica.com",
@@ -1398,10 +1381,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:29:49.133356+00:00",
+    "timestamp": "2026-10-22T15:39:02.706309+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -1415,10 +1398,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:28:46.109660+00:00",
+    "timestamp": "2026-10-22T15:38:15.876785+00:00",
     "company": "Total emballages | le premier distributeur du plastic au Maroc",
     "email": "",
     "domain": "totalemballages.com",
@@ -1428,14 +1411,14 @@
     "score": 25,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:32:03.815952+00:00",
+    "timestamp": "2026-10-22T15:41:36.635334+00:00",
     "company": "Contact – Biscoland",
     "email": "contact@biscoland.ma",
     "domain": "biscoland.ma",
@@ -1451,10 +1434,10 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:29:25.763239+00:00",
+    "timestamp": "2026-10-22T15:39:13.533984+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "",
     "domain": "tacindustrie.ma",
@@ -1468,10 +1451,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:31:39.078620+00:00",
+    "timestamp": "2026-10-22T15:41:11.182443+00:00",
     "company": "NSI - Producteur marocain de chocolats et de biscuits",
     "email": "",
     "domain": "nsi.ma",
@@ -1485,10 +1468,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:28:25.957956+00:00",
+    "timestamp": "2026-10-22T15:37:54.386372+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
@@ -1498,14 +1481,31 @@
     "score": 15,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "https://marocemballage.ma/contact/",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   },
   {
-    "timestamp": "2026-10-22T15:31:14.086799+00:00",
+    "timestamp": "2026-10-22T15:39:17.946109+00:00",
+    "company": "Smart Import Technologie | Solutions industrielles au Maroc",
+    "email": "smartimporttechnology@gmail.com",
+    "domain": "smart-import.tech",
+    "url": "http://smart-import.tech/",
+    "need": "transport et logistique",
+    "sector_hint": "distribution industrielle",
+    "score": 15,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "http://smart-import.tech/",
+    "email_verified": true,
+    "status": "contact_not_verified",
+    "run_id": "39806309084"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:44.902708+00:00",
     "company": "MayMouna",
     "email": "",
     "domain": "maymouna.ma",
@@ -1519,6 +1519,6 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39804874393"
+    "run_id": "39806309084"
   }
 ]
