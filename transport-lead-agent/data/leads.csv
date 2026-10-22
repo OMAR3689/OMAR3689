@@ -1,5 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T01:04:54.418340+00:00,Bumageco - Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T01:05:02.092492+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T01:05:09.163846+00:00,Globaldis - Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T01:05:39.716723+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T01:10:07.035652+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-22T01:11:02.363322+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T01:11:10.006444+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T01:10:47.306665+00:00,Padauto - Parc d'équipement automobile,contact@padauto.ma,padauto.ma,https://padauto.ma/?lang=fr,livraison / distribution,automobile industrie,55,ddgs,,sent,2026-10-22T01:12:05.454578+00:00,
+2026-10-22T01:09:53.623284+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-22T01:11:44.187786+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
