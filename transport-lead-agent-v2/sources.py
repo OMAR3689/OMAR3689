@@ -414,7 +414,12 @@ def _parse_indexed_tender(item, keyword):
 
     text = title + " " + description
     normal = _normal_text(text)
-    if not any(_normal_text(term) in normal for term in MP_KEYWORDS):
+    # The search query was already restricted to this keyword and official host.
+    # Index snippets may omit the matching body text, especially on purchase notices,
+    # so require a known query keyword plus a specific detail URL rather than
+    # discarding a valid official record solely because its snippet is sparse.
+    known_keywords = {_normal_text(term) for term in MP_KEYWORDS}
+    if _normal_text(keyword) not in known_keywords:
         return None
     if any(marker in normal for marker in (
         "avis de resultat definitif", "resultat definitif", "pv d'ouverture",
@@ -607,7 +612,7 @@ def _find_indexed_tenders(keywords):
         ("Bing RSS", _bing_rss_index_search),
         ("DuckDuckGo HTML", _duckduckgo_html_index_search),
     )
-    for keyword in list(keywords)[:4]:
+    for keyword in list(keywords):
         query = (
             f'site:{MP_HOST} "{keyword}" '
             '(consultation OR "avis d appel a la concurrence" OR "appel d offres")'
