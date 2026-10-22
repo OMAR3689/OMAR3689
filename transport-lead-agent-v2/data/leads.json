@@ -1,33 +1,17 @@
 [
   {
-    "timestamp": "2026-10-22T08:51:53.633125+00:00",
-    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "timestamp": "2026-10-22T08:57:21.727157+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "alaqindustry.com",
-    "url": "https://alaqindustry.com/",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 60,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T08:53:33.029026+00:00",
-    "company": "Conseil, recrutement et formation au Maroc | PHOENICIA",
-    "email": "admin@phoeniciaco.com",
-    "domain": "phoeniciaco.com",
-    "url": "https://phoeniciaco.com/",
-    "need": "transport et logistique",
-    "sector_hint": "consultation transport logistique",
-    "score": 40,
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
     "source": "ddgs",
-    "email_source_url": "https://phoeniciaco.com/a-propos/",
-    "status": "sent",
-    "sent_at": "2026-10-22T08:53:41.841505+00:00"
+    "email_source_url": "",
+    "status": "no_email"
   }
 ]
