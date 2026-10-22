@@ -1,6 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T01:20:24.052866+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T01:20:31.679461+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T01:20:54.146343+00:00,SICATGB S.A.R.L - Construction et BTP au Maroc,contact@sicatgb.com,sicatgb.com,https://sicatgb.com/,transport et logistique,construction chantier,75,ddgs,,sent,2026-10-22T01:21:31.878775+00:00,
-2026-10-22T01:20:00.578229+00:00,FENAGRI - Fédération nationale de l'agroalimentaire,fenagri@fenagri.org,fenagri.org,https://fenagri.org/,transport et logistique,agroalimentaire industrie,60,ddgs,,sent,2026-10-22T01:21:36.656390+00:00,
-2026-10-22T01:21:09.724417+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-22T01:25:18.488363+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T01:25:23.508327+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T01:25:46.852927+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T01:25:54.163449+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,

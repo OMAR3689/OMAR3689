@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T01:20:24.052866+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T01:20:31.679461+00:00",
+    "timestamp": "2026-10-22T01:25:18.488363+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,33 +12,31 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T01:20:54.146343+00:00",
-    "company": "SICATGB S.A.R.L - Construction et BTP au Maroc",
-    "email": "contact@sicatgb.com",
-    "domain": "sicatgb.com",
-    "url": "https://sicatgb.com/",
-    "need": "transport et logistique",
-    "sector_hint": "construction chantier",
-    "score": 75,
+    "timestamp": "2026-10-22T01:25:23.508327+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
     "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T01:21:31.878775+00:00"
+    "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T01:20:00.578229+00:00",
-    "company": "FENAGRI - Fédération nationale de l'agroalimentaire",
-    "email": "fenagri@fenagri.org",
-    "domain": "fenagri.org",
-    "url": "https://fenagri.org/",
+    "timestamp": "2026-10-22T01:25:46.852927+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "email": "",
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
     "need": "transport et logistique",
-    "sector_hint": "agroalimentaire industrie",
+    "sector_hint": "retail distribution",
     "score": 60,
     "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T01:21:36.656390+00:00"
+    "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T01:21:09.724417+00:00",
+    "timestamp": "2026-10-22T01:25:54.163449+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
