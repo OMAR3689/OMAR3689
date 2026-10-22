@@ -20,26 +20,26 @@
     "index_engine": "DDGS"
   },
   {
-    "title": "location de véhicules pour transport du personnel de la commune",
-    "buyer": "Commune rurale de RAS EL OUED",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport de personnel",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T17:17:06.878052+00:00",
-    "index_engine": "DDGS"
-  },
-  {
     "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
     "buyer": "POSTE MAROC",
     "deadline": "10/11/2026",
     "status": "date_limite_future_a_verifier",
-    "keyword": "transport de personnel",
+    "keyword": "transport du personnel",
     "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T17:17:06.879445+00:00",
-    "index_engine": "DDGS",
+    "retrieved_at": "2026-10-22T19:11:31.554395+00:00",
+    "index_engine": "Bing RSS",
     "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre"
+  },
+  {
+    "title": "location de véhicules pour transport du personnel de la commune",
+    "buyer": "Commune rurale de RAS EL OUED",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T19:11:31.555117+00:00",
+    "index_engine": "Bing RSS"
   },
   {
     "title": "Sep 14, 2026 · Relatif à la location de matériel de transport et engins Détails",
@@ -48,7 +48,7 @@
     "keyword": "transport",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/380203",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T17:17:35.225942+00:00",
+    "retrieved_at": "2026-10-22T19:11:49.910252+00:00",
     "index_engine": "DDGS"
   }
 ]
