@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T23:18:30.724912+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T23:18:42.810803+00:00",
+    "timestamp": "2026-10-22T23:23:38.441938+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,23 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:19:36.167676+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
-    "email": "",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T23:19:18.265722+00:00",
+    "timestamp": "2026-10-22T23:24:04.280281+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -44,19 +20,19 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:18:18.771694+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-22T23:23:26.676762+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
+    "score": 55,
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
