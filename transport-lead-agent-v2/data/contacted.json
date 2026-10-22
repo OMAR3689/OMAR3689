@@ -545,6 +545,12 @@
     "sent_at": "2026-10-22T12:17:47.466139+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
   },
+  "info@hangarmaroc.com": {
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
+    "domain": "hangarmaroc.com",
+    "sent_at": "2026-10-22T13:51:40.096914+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
   "info@zalar.ma": {
     "company": "Zalar Holding",
     "domain": "zalar.ma",
@@ -708,9 +714,8 @@
       "priority": "WARM",
       "source": "verified-official-contact-fallback",
       "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
-      "status": "smtp_retry_pending",
       "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}",
-      "email_verified": true
+      "status": "smtp_retry_pending"
     }
   ],
   "_permanent_rejects": [],
@@ -776,5 +781,47 @@
     "sent_at": "2026-10-22T12:32:46.343783+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES",
     "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@santoy.ma": {
+    "company": "Santoy Distribution",
+    "domain": "santoy.ma",
+    "sent_at": "2026-10-22T13:56:27.158900+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "contact@iconeindustrie.ma": {
+    "company": "ICÔNE INDUSTRIE",
+    "domain": "iconeindustrie.ma",
+    "sent_at": "2026-10-22T13:56:31.874268+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "contact@artechindustrie.ma": {
+    "company": "Artech Industrie",
+    "domain": "artechindustrie.ma",
+    "sent_at": "2026-10-22T13:56:36.541546+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "adsindustrie@menara.ma": {
+    "company": "E-ADSINDUSTRIE",
+    "domain": "e.adsindustrie.ma",
+    "sent_at": "2026-10-22T13:56:41.193834+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "contact@lkequipement.ma": {
+    "company": "LK Équipement – Matériels Électriques & Industriels au Maroc",
+    "domain": "lkequipement.ma",
+    "sent_at": "2026-10-22T13:56:45.338584+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "reda.sdfi@gmail.com": {
+    "company": "SDFI Maroc - Fournitures Industrielles et Équipements de Sécurité",
+    "domain": "sdfi.ma",
+    "sent_at": "2026-10-22T13:56:49.722875+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
   }
 }
