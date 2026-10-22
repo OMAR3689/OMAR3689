@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "timestamp": "2026-10-22T07:39:11.749183+00:00",
+    "company": "Kenzi Hotels Group",
+    "email": "",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  }
+]
