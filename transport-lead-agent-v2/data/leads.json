@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T06:15:11.804122+00:00",
+    "timestamp": "2026-10-22T06:19:39.314441+00:00",
     "company": "UPM - Grossiste Pharmaceutique",
     "email": "",
     "domain": "upm-grossiste.ma",
@@ -15,23 +15,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T06:14:55.933498+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "ihssanpa@hotmail.com",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "https://ihssanpa.ma/",
-    "status": "sent",
-    "sent_at": "2026-10-22T06:16:23.613019+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T06:15:43.714648+00:00",
+    "timestamp": "2026-10-22T06:20:14.419863+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
