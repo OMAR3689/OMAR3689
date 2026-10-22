@@ -1,6 +1,57 @@
 [
   {
-    "timestamp": "2026-10-22T12:11:25.136926+00:00",
+    "timestamp": "2026-10-22T12:17:12.482857+00:00",
+    "company": "Ghizo Plast - Fabricant d'emballages plastiques au Maroc ...",
+    "email": "ghplastghplast@gmail.com",
+    "domain": "ghizoplast.com",
+    "url": "https://ghizoplast.com/",
+    "need": "transport lié aux flux import/export",
+    "sector_hint": "emballage / industrie",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "https://ghizoplast.com/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T12:17:23.917796+00:00",
+    "company": "Ouafa Plastique",
+    "email": "contact@ouafaplastique.ma",
+    "domain": "ouafaplastique.ma",
+    "url": "https://ouafaplastique.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "emballage / industrie",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "https://ouafaplastique.ma/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T12:17:37.621086+00:00",
+    "company": "Emballage Maroc | Spécialiste d'emballage et packaging",
+    "email": "contact@embalo.ma",
+    "domain": "embalo.ma",
+    "url": "https://embalo.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "emballage / industrie",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "https://embalo.ma/contact/",
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-22T12:18:52.788305+00:00",
     "company": "SCE Chemicals",
     "email": "contact@sce.ma",
     "domain": "scechemicals.ma",
@@ -17,7 +68,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:11:31.362579+00:00",
+    "timestamp": "2026-10-22T12:19:01.641256+00:00",
     "company": "Contact - Rhone Chimie",
     "email": "contact@rcimaroc.com",
     "domain": "rcimaroc.com",
@@ -34,7 +85,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:11:41.881712+00:00",
+    "timestamp": "2026-10-22T12:20:01.658700+00:00",
     "company": "LK Équipement – Matériels Électriques & Industriels au Maroc",
     "email": "contact@lkequipement.ma",
     "domain": "lkequipement.ma",
@@ -44,14 +95,14 @@
     "score": 100,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "https://www.lkequipement.ma/",
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:12:38.451244+00:00",
+    "timestamp": "2026-10-22T12:21:16.379263+00:00",
     "company": "SDFI Maroc - Fournitures Industrielles et Équipements de Sécurité",
     "email": "reda.sdfi@gmail.com",
     "domain": "sdfi.ma",
@@ -61,29 +112,14 @@
     "score": 100,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "https://sdfi.ma/",
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:09:51.569651+00:00",
-    "company": "Acceuil - KPH",
-    "email": "",
-    "domain": "kph.ma",
-    "url": "https://www.kph.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "pharmaceutique",
-    "score": 100,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T12:12:29.206548+00:00",
+    "timestamp": "2026-10-22T12:21:07.638070+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -93,12 +129,12 @@
     "score": 95,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.498920+00:00",
+    "timestamp": "2026-10-22T12:21:34.647291+00:00",
     "company": "Global Industrie",
     "email": "contact@globalindustrie.ma",
     "domain": "globalindustrie.ma",
@@ -115,7 +151,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499000+00:00",
+    "timestamp": "2026-10-22T12:21:34.647402+00:00",
     "company": "Delta Hygiène",
     "email": "contact@deltahygiene.ma",
     "domain": "deltahygiene.ma",
@@ -132,7 +168,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499115+00:00",
+    "timestamp": "2026-10-22T12:21:34.647584+00:00",
     "company": "ABRATEX",
     "email": "info@abratex.ma",
     "domain": "abratex.ma",
@@ -149,7 +185,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499172+00:00",
+    "timestamp": "2026-10-22T12:21:34.647675+00:00",
     "company": "SODIMAT Maroc",
     "email": "contact@sodimat.ma",
     "domain": "sodimat.ma",
@@ -161,12 +197,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499232+00:00",
+    "timestamp": "2026-10-22T12:21:34.647784+00:00",
     "company": "Riaya Industries",
     "email": "communications@riaya-industries.com",
     "domain": "riaya-industries.com",
@@ -178,12 +212,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499260+00:00",
+    "timestamp": "2026-10-22T12:21:34.647829+00:00",
     "company": "Global Engineering Industrial & Automotive",
     "email": "contact@globalengineering.ma",
     "domain": "globalengineering.ma",
@@ -195,12 +227,10 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.498969+00:00",
+    "timestamp": "2026-10-22T12:21:34.647354+00:00",
     "company": "Santoy Distribution",
     "email": "contact@santoy.ma",
     "domain": "santoy.ma",
@@ -215,7 +245,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499143+00:00",
+    "timestamp": "2026-10-22T12:21:34.647631+00:00",
     "company": "ICÔNE INDUSTRIE",
     "email": "contact@iconeindustrie.ma",
     "domain": "iconeindustrie.ma",
@@ -230,7 +260,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499029+00:00",
+    "timestamp": "2026-10-22T12:21:34.647449+00:00",
     "company": "Artech Industrie",
     "email": "contact@artechindustrie.ma",
     "domain": "artechindustrie.ma",
@@ -245,7 +275,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499058+00:00",
+    "timestamp": "2026-10-22T12:21:34.647494+00:00",
     "company": "E-ADSINDUSTRIE",
     "email": "adsindustrie@menara.ma",
     "domain": "e.adsindustrie.ma",
@@ -260,7 +290,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:12:40.499087+00:00",
+    "timestamp": "2026-10-22T12:21:34.647540+00:00",
     "company": "Texweld",
     "email": "contact@texweld.ma",
     "domain": "texweld.ma",
@@ -275,7 +305,22 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:11:58.577983+00:00",
+    "timestamp": "2026-10-22T12:18:01.016916+00:00",
+    "company": "Total emballages | le premier distributeur du plastic au Maroc",
+    "email": "",
+    "domain": "totalemballages.com",
+    "url": "https://www.totalemballages.com/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 75,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T12:19:54.872310+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
     "domain": "ckmafrica.com",
@@ -285,12 +330,27 @@
     "score": 70,
     "direct_intent": false,
     "priority": "WARM",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:12:06.521475+00:00",
+    "timestamp": "2026-10-22T12:21:20.833808+00:00",
+    "company": "Smart Import Technologie | Solutions industrielles au Maroc",
+    "email": "smartimporttechnology@gmail.com",
+    "domain": "smart-import.tech",
+    "url": "http://smart-import.tech/",
+    "need": "transport et logistique",
+    "sector_hint": "distribution industrielle",
+    "score": 60,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "http://smart-import.tech/",
+    "status": "contact_not_verified"
+  },
+  {
+    "timestamp": "2026-10-22T12:20:08.511221+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "industrietac@gmail.com",
     "domain": "tacindustrie.ma",
@@ -300,12 +360,42 @@
     "score": 55,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "https://tacindustrie.ma/product/a7757e76-f83d-40e2-be1d-8345eaf9b80e",
+    "source": "bing-rss",
+    "email_source_url": "https://tacindustrie.ma/product/6e1e8471-1e8f-459f-95e5-ca500284a41d",
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T12:10:14.495294+00:00",
+    "timestamp": "2026-10-22T12:17:06.243005+00:00",
+    "company": "Contact - Maroc Emballage | Imprimeur cartonnier",
+    "email": "commercial@marocemballage.ma",
+    "domain": "marocemballage.ma",
+    "url": "https://marocemballage.ma/contact/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 40,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://marocemballage.ma/contact/",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T12:17:16.151563+00:00",
+    "company": "Sodicap – Solutions d'Emballage en Papier et Carton",
+    "email": "sodicapservice.c@gmail.com",
+    "domain": "sodicap.ma",
+    "url": "https://sodicap.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://sodicap.ma/",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T12:15:24.184832+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
