@@ -9,6 +9,8 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.message import EmailMessage
+
+import sources
 from urllib.parse import quote_plus, unquote, urljoin, urlparse, urlencode
 from urllib.request import Request, urlopen
 
@@ -16,6 +18,8 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 LEADS_JSON = os.path.join(OUT_DIR, "leads.json")
 LEADS_CSV = os.path.join(OUT_DIR, "leads.csv")
+TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
+TENDERS_CSV = os.path.join(OUT_DIR, "tenders.csv")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "10"))
 MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "20"))
 # V2 safety default: preview only; workflow also omits SMTP credentials.
@@ -454,13 +458,18 @@ def strip_html(raw):
 
 
 def fetch_page(url):
+    # All company-site crawling goes through sources.polite_get so robots.txt,
+    # per-host delay, and retry handling are respected.
     if not url or not url.startswith(("http://", "https://")):
         return "", []
     try:
-        raw = http_get(url, timeout=12)
+        raw = sources.polite_get(url)
+        if not raw:
+            return "", []
         links = re.findall(r'href=["\']([^"\']+)["\']', raw, flags=re.I)
         return strip_html(raw)[:120000], links
-    except Exception:
+    except Exception as exc:
+        print(f"⚠️ Polite page fetch failed: {url} ({exc})")
         return "", []
 
 
@@ -494,25 +503,13 @@ def usable_email(email, url=""):
 
 
 def discover_email(url):
-    text, links = fetch_page(url)
-    if not text and not links:
-        return ""
-    candidates = extract_emails(text)
-    for link in links:
-        if link.lower().startswith("mailto:"):
-            candidates.extend(extract_emails(unquote(link[7:].split("?", 1)[0])))
-    checked = set()
-    for link in links:
-        absolute = urljoin(url, link)
-        path = urlparse(absolute).path.lower().strip("/")
-        if path in CONTACT_PATHS or any(path.endswith("/" + x) for x in CONTACT_PATHS):
-            if absolute in checked:
-                continue
-            checked.add(absolute)
-            page_text, _ = fetch_page(absolute)
-            candidates.extend(extract_emails(page_text))
-            if len(checked) >= 3:
-                break
+    # Use the polite same-domain crawler. Only generic public business contacts
+    # are considered here; a later search-snippet fallback remains domain-restricted.
+    try:
+        candidates = sources.find_official_contacts(url, max_pages=4)
+    except Exception as exc:
+        print(f"⚠️ Official contact discovery failed for {url}: {exc}")
+        candidates = []
     for email in candidates:
         if usable_email(email, url):
             return email
@@ -933,6 +930,19 @@ def send_email(to_addr, subject, body):
     return False, "unknown SMTP error"
 
 
+def save_tender_files(items):
+    """Save public procurement opportunities separately from commercial buyer leads."""
+    os.makedirs(OUT_DIR, exist_ok=True)
+    with open(TENDERS_JSON, "w", encoding="utf-8") as f:
+        json.dump(items, f, ensure_ascii=False, indent=2)
+    fields = ["retrieved_at", "title", "buyer", "deadline", "status", "keyword", "url", "source"]
+    with open(TENDERS_CSV, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(items)
+    print(f"📑 Saved {len(items)} public tender opportunities separately from sales prospects.")
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
@@ -947,6 +957,15 @@ def main():
     seen = set()
     source_counts = {}
     print("Starting Morocco-only B2B buyer discovery with free search sources...")
+
+    # Public tenders are opportunities for TRMB to review/bid, not contacts to
+    # email automatically as sales prospects. Keep their inventory in separate files.
+    try:
+        tender_opportunities = sources.find_tenders()
+    except Exception as exc:
+        print(f"⚠️ Official tender discovery failed safely: {exc}")
+        tender_opportunities = []
+    save_tender_files(tender_opportunities)
 
     for q, sector_hint in QUERIES:
         print(f"Searching: {q}")
