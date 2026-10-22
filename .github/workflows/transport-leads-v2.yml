@@ -12,6 +12,7 @@ concurrency:
 
 jobs:
   preview:
+    if: github.ref == 'refs/heads/trmb-agent-v2'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -27,7 +28,7 @@ jobs:
       - name: Verify isolated V2 and live V1 history
         run: |
           echo "✅ V2 manual preview mode — no emails are sent."
-          git fetch origin main
+          git fetch origin main:refs/remotes/origin/main
           git show origin/main:transport-lead-agent/data/contacted.json > "$RUNNER_TEMP/v1-contacted.json"
           echo "V1_HISTORY_FILE=$RUNNER_TEMP/v1-contacted.json" >> "$GITHUB_ENV"
 
