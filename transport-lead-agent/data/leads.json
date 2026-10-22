@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T18:32:01.365721+00:00",
+    "timestamp": "2026-10-22T18:37:25.084853+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,23 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T18:32:09.979811+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T18:32:41.347034+00:00",
+    "timestamp": "2026-10-22T18:37:51.587809+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -32,23 +20,23 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T18:31:50.397851+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T18:32:54.600647+00:00",
+    "timestamp": "2026-10-22T18:37:12.921699+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T18:38:00.269064+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
