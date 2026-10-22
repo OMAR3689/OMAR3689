@@ -15,6 +15,41 @@ class AgentTests(unittest.TestCase):
         self.assertLess(50, agent.MIN_LEAD_SCORE)
         self.assertLess(55, agent.MIN_LEAD_SCORE)
 
+    def test_lead_status_explains_threshold_bounces_and_unverified_contacts(self):
+        contact = {
+            "company": "Example Manufacturer",
+            "email": "contact@example.ma",
+            "domain": "example.ma",
+            "url": "https://example.ma/",
+            "email_source_url": "https://example.ma/contact/",
+            "email_verified": True,
+            "score": 55,
+            "status": "qualified",
+        }
+        self.assertEqual(
+            agent.normalize_qualification_status(dict(contact), set()),
+            "below_quality_threshold",
+        )
+
+        unverified = {**contact, "email_verified": False}
+        self.assertEqual(
+            agent.normalize_qualification_status(unverified, set()),
+            "contact_not_verified",
+        )
+
+        bounced = {**contact, "score": 85}
+        self.assertEqual(
+            agent.normalize_qualification_status(bounced, {"contact@example.ma"}),
+            "smtp_rejected",
+        )
+
+        retrying = {**contact, "status": "smtp_retry_wait"}
+        self.assertEqual(
+            agent.normalize_qualification_status(retrying, set()),
+            "smtp_retry_wait",
+        )
+
+
     def test_marketplace_listing_is_not_accepted_as_official_prospect_source(self):
         self.assertTrue(agent.is_non_prospect_source(
             "Fapaco — Fabrique Marocaine de Pâtes et Couscous",
@@ -244,6 +279,19 @@ class AgentTests(unittest.TestCase):
 
     def test_fallback_contacts_have_official_source_urls_and_pass_sendability_checks(self):
         self.assertGreaterEqual(len(agent.SEEDED_PUBLIC_CONTACTS), 30)
+        seed_emails = [item["email"].lower() for item in agent.SEEDED_PUBLIC_CONTACTS]
+        seed_domains = [item["domain"].lower().removeprefix("www.") for item in agent.SEEDED_PUBLIC_CONTACTS]
+        self.assertEqual(len(seed_emails), len(set(seed_emails)))
+        self.assertEqual(len(seed_domains), len(set(seed_domains)))
+        seeded_names = {item["company"] for item in agent.SEEDED_PUBLIC_CONTACTS}
+        self.assertTrue({
+            "Fonderie et Aciers du Maroc",
+            "AMTI — Alfa Maroc Tech Industrie",
+            "MGM Industries",
+            "AL AYYAR Metal Industry",
+            "Promachines",
+            "Moroccan Iron Steel",
+        }.issubset(seeded_names))
         for contact in agent.SEEDED_PUBLIC_CONTACTS:
             with self.subTest(company=contact["company"]):
                 self.assertTrue(contact.get("email"))
