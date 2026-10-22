@@ -1,6 +1,6 @@
 # V2 discovery, official-contact verification, persistent history, and bounded retries.
 name: TRMB Lead Agent V2 - Verified Outreach
-# Intentional [send-v2] commits run the guarded send mode only after the Python tests pass.
+# [preview-v2] code commits run a dry-run discovery preview; only explicit send mode may send after tests pass.
 
 on:
   workflow_dispatch:
