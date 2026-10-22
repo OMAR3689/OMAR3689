@@ -2,12 +2,22 @@ name: TRMB Lead Agent V2 - Manual Dry Run
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Preview only or send to verified official business contacts"
+        type: choice
+        options:
+          - preview
+          - send
+        default: preview
+        required: true
   push:
     branches: [trmb-agent-v2]
     paths:
       - 'transport-lead-agent-v2/agent.py'
       - 'transport-lead-agent-v2/sources.py'
       - 'transport-lead-agent-v2/test_sources.py'
+      - 'transport-lead-agent-v2/test_agent.py'
       - '.github/workflows/transport-leads-v2.yml'
 
 permissions:
