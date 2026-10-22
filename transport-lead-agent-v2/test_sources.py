@@ -284,6 +284,25 @@ class SourcesTests(unittest.TestCase):
             )
         )
 
+    def test_grouped_tender_search_matches_keyword_from_notice_object(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/456789",
+            "content": (
+                "Objet : Organisation de la logistique afférente aux missions "
+                "Business to Business à l’extérieur du Royaume "
+                "Acheteur public : MINISTERE DE L'INDUSTRIE ET DU COMMERCE "
+                "Date limite de remise des plis : 31/12/2099"
+            ),
+        }
+        keyword = sources._keyword_for_indexed_tender(
+            item, sources.MP_KEYWORDS
+        )
+        self.assertEqual(keyword, "organisation logistique")
+        tender = sources._parse_indexed_tender(item, keyword)
+        self.assertIsNotNone(tender)
+        self.assertIn("logistique", tender["title"].lower())
+
     def test_tender_fallback_uses_ddgs_when_official_portal_is_unreachable(self):
         item = {
             "title": "Avis de consultation - Transport de marchandises",
@@ -291,13 +310,14 @@ class SourcesTests(unittest.TestCase):
             "content": "Acheteur public : Commune Exemple Date limite de remise des plis : 31/12/2099",
         }
         with patch("sources.polite_get", return_value=None), \
-             patch("sources._ddgs_index_search", return_value=[item]), \
+             patch("sources._ddgs_index_search", return_value=[item]) as ddgs, \
              patch("sources._bing_rss_index_search", return_value=[]), \
              patch("sources._duckduckgo_html_index_search", return_value=[]):
             tenders = sources.find_tenders(keywords=("transport",))
         self.assertEqual(len(tenders), 1)
         self.assertEqual(tenders[0]["index_engine"], "DDGS")
         self.assertEqual(tenders[0]["buyer"], "Commune Exemple")
+        self.assertLessEqual(ddgs.call_count, 3, "indexed fallback should use grouped bounded queries")
 
     def test_duckduckgo_html_parser_extracts_public_result_link(self):
         html = (
