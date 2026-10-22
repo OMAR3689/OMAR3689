@@ -1,54 +1,30 @@
 [
   {
-    "timestamp": "2026-10-22T03:29:47.550278+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T03:29:53.621761+00:00",
-    "company": "ste IBRA | Importateur et Vendeur de Pièces Automobiles de Qualité",
-    "email": "",
-    "domain": "ibraparts.ma",
-    "url": "https://ibraparts.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T03:30:52.780978+00:00",
+    "timestamp": "2026-10-22T03:33:59.453343+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
-    "score": 95,
+    "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T03:31:45.925409+00:00",
+    "timestamp": "2026-10-22T03:34:06.242940+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
     "url": "https://www.globaldis.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
-    "score": 60,
+    "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T03:32:14.414011+00:00",
+    "timestamp": "2026-10-22T03:34:28.851887+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -60,28 +36,15 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T03:29:38.434747+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-22T03:34:37.888562+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T03:29:31.707933+00:00",
-    "company": "CAPRAM",
-    "email": "contact@capram.ma",
-    "domain": "capram.ma",
-    "url": "https://capram.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "bing-rss",
-    "status": "sent",
-    "sent_at": "2026-10-22T03:32:59.727029+00:00"
+    "source": "ddgs",
+    "status": "no_email"
   }
 ]
