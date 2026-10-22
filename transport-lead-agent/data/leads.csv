@@ -1,5 +1,9 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T17:50:34.520552+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
-2026-10-22T17:50:52.908939+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T17:51:00.199492+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T17:50:42.065809+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
+2026-10-22T17:55:40.678966+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T17:56:01.142529+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T17:56:07.436922+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-22T17:56:17.074389+00:00,ISIO LABORATOIRES | Maroc,contact@isiolaboratoires.com,isiolaboratoires.com,http://isiolaboratoires.com/,transport lié aux flux import/export,pharmaceutique,95,ddgs,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-22T17:56:30.772008+00:00,ASMEX – Confédération Marocaine des Exportateurs,,asmex.org,https://asmex.org/,transport et logistique,importateur exportateur,80,ddgs,,no_email,,
+2026-10-22T17:56:14.432501+00:00,LABORATOIRES PHARMACEUTIQUES PRODISPHAR,info@prodisphar.com,prodisphar.com,https://www.prodisphar.com/,transport et logistique,pharmaceutique,60,ddgs,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-22T17:56:43.772187+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T17:55:48.755346+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
