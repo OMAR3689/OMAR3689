@@ -1,6 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T01:32:06.501480+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,95,ddgs,,no_email,,
-2026-10-22T01:32:59.458950+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,transport et logistique,distribution grossiste,60,ddgs,,no_email,,
-2026-10-22T01:33:25.472717+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
-2026-10-22T01:31:10.342796+00:00,CAPRAM,,capram.ma,https://capram.ma/,transport et logistique,automobile industrie,20,ddgs,,no_email,,
-2026-10-22T01:33:34.104691+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-22T01:35:53.698009+00:00,Tuyauto — Équipementier Automobile,contact@tuyauto.ma,tuyauto.ma,https://www.tuyauto.ma/,transport et logistique,automobile industrie,100,ddgs,,sent,2026-10-22T01:37:00.741686+00:00,
+2026-10-22T01:35:44.662855+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-22T01:36:33.061744+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T01:35:51.875892+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
