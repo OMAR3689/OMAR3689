@@ -383,7 +383,7 @@ def _parse_tender_row(row, keyword, listing_url):
 
 
 def _parse_indexed_tender(item, keyword):
-    """Parse an indexed tender while avoiding publication-date/deadline confusion."""
+    """Parse a specific indexed tender; avoid generic listings and publication-date confusion."""
     url = str(item.get("url", "")).strip()
     title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip()
     description = re.sub(r"\s+", " ", str(item.get("content", "") or "")).strip()
@@ -392,36 +392,59 @@ def _parse_indexed_tender(item, keyword):
     parts = urllib.parse.urlsplit(url)
     if parts.scheme not in ("http", "https") or _host(url) != _host(MP_SEARCH_URL):
         return None
-    # Accept only indexed announcement/detail paths, not the generic portal homepage.
-    if not any(term in (parts.path + "?" + parts.query).lower()
-               for term in ("index.php", "consultation", "annonce")):
+
+    query_params = urllib.parse.parse_qs(parts.query, keep_blank_values=True)
+    page_type = (query_params.get("page", [""])[0] or "").lower()
+    is_purchase_detail = bool(re.search(
+        r"/bdc/entreprise/consultation/show/\d+/?$", parts.path, flags=re.IGNORECASE
+    ))
+    has_consultation_ref = any(
+        str(value).strip()
+        for key in ("refConsultation", "id")
+        for value in query_params.get(key, [])
+    )
+    is_named_detail_page = (
+        "detailconsultation" in page_type or "suiviconsultation" in page_type
+    )
+    # A search/listing URL itself is not an opportunity. Require a concrete
+    # purchase-detail path or a consultation/detail ID on an official page.
+    if not (is_purchase_detail or (has_consultation_ref and is_named_detail_page)):
         return None
 
     text = title + " " + description
     normal = _normal_text(text)
     if not any(_normal_text(term) in normal for term in MP_KEYWORDS):
         return None
-    if any(marker in normal for marker in ("avis de resultat definitif", "resultat definitif", "pv d'ouverture")):
+    if any(marker in normal for marker in (
+        "avis de resultat definitif", "resultat definitif", "pv d'ouverture",
+        "avis d'attribution"
+    )):
         return None
 
-    # Search engines often use the portal's generic title. Prefer the indexed
-    # subject/object when present, but do not invent a subject when absent.
     generic_titles = {
         "marches publics electroniques",
         "portail marocain des marches publics",
+        "marches publics",
     }
+    stop_labels = (
+        r"Acheteur public|Date limite|Date mise en ligne|Date de mise en ligne|"
+        r"Date publication|Date de publication|Type d'annonce|Procedure|"
+        r"Categorie principale|Lieu d'execution|Objet|"
+        r"Date d'ouverture|Date de remise"
+    )
     objective_match = re.search(
-        r"\bobjet(?:\s+de\s+(?:la\s+)?(?:consultation|l'appel d'offres|l'operation))?"
-        r"\s*[:\-]\s*(.+?)(?=\s*(?:Acheteur public|Date limite|Type d'annonce|"
-        r"Procedure|Categorie principale|Lieu d'execution|$))",
+        rf"\bobjet(?:\s+de\s+(?:la\s+)?(?:consultation|l'appel d'offres|l'operation))?"
+        rf"\s*[:\-]\s*(.+?)(?=\s*(?:{stop_labels})\b|\s*$)",
         text, flags=re.IGNORECASE
     )
-    if _normal_text(title) in generic_titles and objective_match:
-        objective = re.sub(r"\s+", " ", objective_match.group(1)).strip(" :-")
-        if objective:
-            title = objective[:500]
+    if _normal_text(title) in generic_titles:
+        objective = re.sub(r"\s+", " ", objective_match.group(1)).strip(" :-") if objective_match else ""
+        if not objective or _normal_text(objective) in generic_titles:
+            # A generic portal title with no indexed object is not useful enough
+            # to present as a named tender candidate.
+            return None
+        title = objective[:500]
 
-    # Only treat a date as a deadline when the indexed snippet labels it as one.
     deadline_match = re.search(
         r"(?:date\s+limite(?:\s+de\s+(?:remise\s+des\s+plis|depot|reception\s+des\s+offres))?"
         r"|deadline)\s*[:\-]?\s*"
@@ -447,11 +470,15 @@ def _parse_indexed_tender(item, keyword):
             deadline_status = "date_limite_future"
 
     buyer_match = re.search(
-        r"Acheteur public\s*:?\s*(.+?)(?=\s*(?:Lieu d'execution|Date limite|"
-        r"Type d'annonce|Procedure|Categorie principale|Objet|$))",
+        rf"Acheteur public\s*[:\-]?\s*(.+?)(?=\s*(?:{stop_labels})\b|\s*$)",
         text, flags=re.IGNORECASE
     )
     buyer = re.sub(r"\s+", " ", buyer_match.group(1)).strip(" :-")[:300] if buyer_match else ""
+    # Keep the buyer field clean when the search snippet has adjacent metadata.
+    buyer = re.sub(
+        r"\s+(?:Date mise en ligne|Date de mise en ligne|Date publication|Date de publication)\b.*$",
+        "", buyer, flags=re.IGNORECASE
+    ).strip(" :-")
     return {
         "title": title[:500],
         "buyer": buyer,
