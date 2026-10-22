@@ -66,24 +66,29 @@ jobs:
           leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
           tenders = json.loads((out / "tenders.json").read_text(encoding="utf-8"))
           previews = [x for x in leads if x.get("status") == "dry_run_preview"]
+          with_email = [
+              x for x in leads
+              if str(x.get("email", "")).strip() and int(x.get("score", 0) or 0) >= 20
+          ]
 
           if len(previews) < 7:
               raise SystemExit(f"Validation failed: only {len(previews)} qualified email previews; expected at least 7.")
-          emails = [str(x.get("email", "")).strip().lower() for x in previews]
+          emails = [str(x.get("email", "")).strip().lower() for x in with_email]
           if len(emails) != len(set(emails)):
-              raise SystemExit("Validation failed: duplicate email addresses in preview.")
-          for lead in previews:
+              raise SystemExit("Validation failed: duplicate email addresses in V2 lead output.")
+          for lead in with_email:
               source = str(lead.get("email_source_url", "")).strip()
               source_host = (urlparse(source).hostname or "").lower().removeprefix("www.")
               company_host = str(lead.get("domain", "")).strip().lower().removeprefix("www.")
               if urlparse(source).scheme != "https" or not source_host or source_host != company_host:
                   raise SystemExit(f"Validation failed: official source URL missing or domain mismatch for {lead.get('company')}.")
+
           for tender in tenders:
               host = (urlparse(str(tender.get("url", ""))).hostname or "").lower().removeprefix("www.")
               if host != "marchespublics.gov.ma":
                   raise SystemExit("Validation failed: a tender record does not point to the official public-procurement portal.")
 
-          print(f"✅ Preview validation passed: {len(previews)} unique emails, each with an HTTPS official-domain source.")
+          print(f"✅ Preview validation passed: {len(previews)} previewed, {len(with_email)} qualified leads with unique emails and HTTPS official-domain sources.")
           print(f"ℹ️ Public tender candidates: {len(tenders)} (stored separately, never emailed automatically).")
           PY
 
