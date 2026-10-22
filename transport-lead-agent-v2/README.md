@@ -20,7 +20,7 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Uses a per-host delay, bounded page size, timeout and limited retries for 429/503 responses.
 - No authenticated access or LinkedIn scraping.
 - Official public tenders are stored separately in `tenders.json` and `tenders.csv` as opportunities for TRMB to review/bid. They are not converted into sales leads and are never emailed automatically by the tender module.
-- Tender dates that are known to have passed are excluded; dates missing or not parsed are marked for manual verification.
+- Tender dates that are known to have passed are excluded; missing/unparsed deadlines are clearly marked for manual verification and are not presented as confirmed open tenders.
 
 ## V2 improvements being tested
 - Additional searches for explicit transport/logistics purchase intent (quotes, provider search, tenders, consultations).
@@ -39,4 +39,4 @@ Open GitHub Actions, select **TRMB Lead Agent V2 - Manual Dry Run**, choose bran
 - `transport-lead-agent-v2/data/tenders.csv`
 - the run logs
 
-Scheduled sends are enabled through the workflow on the default branch. Review the latest workflow run and the saved CSV/JSON files after changes to scoring or contact-validation rules.
+No scheduled sending trigger is configured in this V2 workflow. Code pushes tagged `[preview-v2]` run discovery in `DRY_RUN=true` and do not send emails. Sending requires an explicit manual workflow-dispatch selection of `send` or a deliberately reviewed `[send-v2]` activation commit; the workflow runs syntax/unit tests first, verifies official contact-source URLs and records outcomes before considering a cycle valid. Keep previews as the default until the saved leads and delivery policy are reviewed.
