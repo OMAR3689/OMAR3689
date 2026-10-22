@@ -1,16 +1,5 @@
 [
   {
-    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
-    "buyer": "",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport du personnel",
-    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T14:43:43.971367+00:00",
-    "index_engine": "DDGS"
-  },
-  {
     "title": "TRANSPORT DE MATERIEL DIVERS",
     "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
     "deadline": "",
@@ -19,6 +8,28 @@
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
     "source": "Index public du Portail Marocain des Marchés Publics",
     "retrieved_at": "2026-10-22T15:08:50.111327+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T15:27:08.163438+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "location de véhicules pour transport du personnel de la commune",
+    "buyer": "Commune rurale de RAS EL OUED",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T15:27:08.164072+00:00",
     "index_engine": "Bing RSS"
   }
 ]
