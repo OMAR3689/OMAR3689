@@ -452,6 +452,30 @@ def _parse_tender_row(row, keyword, listing_url):
     return result
 
 
+def _extract_indexed_tender_object(title, description):
+    """Extract only the named procurement object from mixed search-result metadata."""
+    stop_labels = (
+        r"Acheteur public|Date limite|Date mise en ligne|Date de mise en ligne|"
+        r"Date publication|Date de publication|Type d'annonce|Procedure|Procédure|"
+        r"Categorie principale|Catégorie principale|Lieu d'execution|Lieu d'exécution|"
+        r"Statuts? obligatoires|Détails?|Details?|Date d'ouverture|Date de remise"
+    )
+    for text in (description, title):
+        candidate_text = re.sub(r"\s+", " ", str(text or "")).strip()
+        match = re.search(
+            rf"\bObjet\s*[:\-]?\s*(.+?)(?=\s*(?:{stop_labels})\b|\s*$)",
+            candidate_text,
+            flags=re.IGNORECASE,
+        )
+        if not match:
+            continue
+        candidate = re.sub(r"\s+", " ", match.group(1)).strip(" :-–—.")
+        candidate = re.sub(r"\s+", " ", candidate).strip()
+        if candidate and _is_transport_service_tender({"title": candidate}):
+            return candidate[:500]
+    return ""
+
+
 def _parse_indexed_tender(item, keyword):
     """Parse a specific indexed tender; avoid generic listings and publication-date confusion."""
     url = str(item.get("url", "")).strip()
@@ -481,6 +505,10 @@ def _parse_indexed_tender(item, keyword):
     # purchase-detail path or a consultation/detail ID on an official page.
     if not (is_purchase_detail or (has_consultation_ref and is_named_detail_page)):
         return None
+
+    extracted_object = _extract_indexed_tender_object(title, description)
+    if extracted_object:
+        title = extracted_object
 
     text = title + " " + description
     normal = _normal_text(text)

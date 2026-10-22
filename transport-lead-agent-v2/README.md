@@ -5,7 +5,7 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 ## Operating mode and safety
 - The scheduled workflow is configured for a five-minute cadence; GitHub may delay scheduled runs under load.
 - Scheduled runs send only to new, verified business contacts; manual workflow dispatch defaults to preview and offers an explicit send mode.
-- Sending is capped at 10 emails per run and 20 per rolling hour. If there are no new verified contacts, the run succeeds without sending.
+- Sending is capped at 10 emails per run and 20 per rolling hour. If there are no new verified contacts, the run succeeds without sending. Explicit SMTP 4xx temporary rejections are put in a persistent retry queue and retried in the next cycle; permanent/non-transient failures remain visible as run errors.
 - Every candidate must have a public contact address found on its official HTTPS site. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
 - V2 writes prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
 - The contact history is used to suppress repeat outreach to previously contacted addresses/domains.
@@ -24,6 +24,8 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Lead metadata `direct_intent` and `priority` (`HOT`, `WARM`, `STANDARD`).
 - Priority-aware ordering and expanded CSV export for review.
 - More robust filtering of transport providers, company lookup sites, and tender directories.
+- Search providers are retried when an engine returns only directories or competitors; the official-contact fallback list is expanded with additional Moroccan industrial distributors, manufacturers and B2B suppliers.
+- Search-index public procurement titles are cleaned using the official notice object so metadata is not mislabeled as the tender subject.
 - Separate V2 prospect/contact files from public procurement opportunities.
 
 ## Run a preview

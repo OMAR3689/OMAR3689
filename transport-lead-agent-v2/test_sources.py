@@ -95,6 +95,23 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(tender["status"], "date_limite_future")
         self.assertEqual(tender["source"], "Portail Marocain des Marchés Publics")
 
+    def test_indexed_tender_parser_cleans_mixed_object_metadata_from_title(self):
+        item = {
+            "title": (
+                "#29/BG/2026 Objet TRANSPORT DE MATERIEL DIVERS. "
+                "statuts obligatoires pour vérifier l'activité Détails Acheteur publicGOUVERNEUR"
+            ),
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
+            "content": (
+                "#29/BG/2026 Objet : TRANSPORT DE MATERIEL DIVERS. "
+                "Statuts obligatoires pour vérifier l'activité. "
+                "Acheteur public : GOUVERNEUR DE LA PROVINCE D'AOUSSERD"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(tender["title"], "TRANSPORT DE MATERIEL DIVERS")
+
     def test_indexed_tender_parser_accepts_official_portal_result(self):
         item = {
             "title": "Avis de consultation - Transport de marchandises",

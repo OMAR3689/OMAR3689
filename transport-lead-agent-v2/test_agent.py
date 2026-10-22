@@ -8,6 +8,50 @@ import agent
 
 
 class AgentTests(unittest.TestCase):
+    def test_search_web_tries_next_engine_when_first_results_are_only_directories(self):
+        directory_results = ([{
+            "title": "Annuaire des transporteurs au Maroc",
+            "url": "https://directory.ma/liste",
+            "content": "Annuaire, liste des fournisseurs transport Maroc",
+        }], "ddgs")
+        company_results = ([{
+            "title": "Alpha Food Industries",
+            "url": "https://alphafood.ma/contact",
+            "content": "Fabricant agroalimentaire et distribution au Maroc",
+        }], "bing-rss")
+        with patch.object(agent, "ddgs_search", return_value=directory_results[0]), \\
+             patch.object(agent, "bing_rss_search", return_value=company_results[0]), \\
+             patch.object(agent, "ddg_html_search", return_value=[]), \\
+             patch.object(agent, "searxng_search", return_value=[]):
+            results, source = agent.search_web("fabricants agroalimentaires Maroc")
+        self.assertEqual(source, "bing-rss")
+        self.assertEqual([item["url"] for item in results], ["https://alphafood.ma/contact"])
+
+    def test_transient_smtp_451_is_deferred_but_auth_error_is_not_transient(self):
+        self.assertTrue(
+            agent.is_transient_smtp_failure(
+                "{'contact@company.ma': (451, b'Temporary local problem - please try later')}"
+            )
+        )
+        self.assertTrue(agent.is_transient_smtp_failure("(421, b'Service not available')"))
+        self.assertFalse(agent.is_transient_smtp_failure("(535, b'Authentication failed')"))
+        self.assertFalse(agent.is_transient_smtp_failure("SMTP credentials not configured"))
+
+    def test_retry_queue_does_not_mark_candidate_as_already_contacted(self):
+        pending = [{
+            "company": "Alpha Food",
+            "email": "contact@alphafood.ma",
+            "domain": "alphafood.ma",
+            "url": "https://alphafood.ma/",
+            "score": 80,
+        }]
+        identifiers, domains = agent.build_contact_suppression({
+            agent.PENDING_RETRY_KEY: pending,
+        })
+        self.assertFalse(
+            agent.was_contacted("contact@alphafood.ma", "alphafood.ma", identifiers, domains)
+        )
+
     def test_history_suppression_normalizes_urls_and_mailboxes(self):
         history = {
             "https://www.example.ma/contact": {
@@ -99,8 +143,8 @@ class AgentTests(unittest.TestCase):
         unofficial_source = {**official, "email_source_url": "https://directory.example/company/"}
         self.assertFalse(agent.is_sendable_contact(unofficial_source))
 
-    def test_fallback_contacts_have_official_source_urls(self):
-        self.assertGreaterEqual(len(agent.SEEDED_PUBLIC_CONTACTS), 20)
+    def test_fallback_contacts_have_official_source_urls_and_pass_sendability_checks(self):
+        self.assertGreaterEqual(len(agent.SEEDED_PUBLIC_CONTACTS), 30)
         for contact in agent.SEEDED_PUBLIC_CONTACTS:
             with self.subTest(company=contact["company"]):
                 self.assertTrue(contact.get("email"))
@@ -108,6 +152,7 @@ class AgentTests(unittest.TestCase):
                 self.assertTrue(contact.get("url", "").startswith("https://"))
                 self.assertTrue(contact.get("email_source_url", "").startswith("https://"))
                 self.assertGreaterEqual(contact.get("score", 0), 20)
+                self.assertTrue(agent.is_sendable_contact(contact), contact)
 
 
 if __name__ == "__main__":

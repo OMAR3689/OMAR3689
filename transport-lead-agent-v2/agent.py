@@ -16,6 +16,7 @@ from urllib.request import Request, urlopen
 
 OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
+PENDING_RETRY_KEY = "_pending_retry_queue"
 LEADS_JSON = os.path.join(OUT_DIR, "leads.json")
 LEADS_CSV = os.path.join(OUT_DIR, "leads.csv")
 TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
@@ -59,6 +60,10 @@ QUERIES = [
     ('"recherche prestataire transport" Maroc entreprise', 'recherche prestataire transport'),
     ('"appel d offres transport" Maroc entreprise logistique', 'appel d offres transport'),
     ('"consultation transport logistique" Maroc entreprise', 'consultation transport logistique'),
+    ('fabricants emballage plastique carton Maroc usine contact officiel', 'emballage / industrie'),
+    ('entreprises produits chimiques Maroc usine contact officiel', 'chimie / industrie'),
+    ('grossistes équipements industriels Maroc import export contact officiel', 'distribution industrielle'),
+    ('entreprises e-commerce Maroc distribution entrepôt logistique contact', 'e-commerce / distribution'),
 ]
 
 GENERIC_EMAIL_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
@@ -410,6 +415,126 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport de structures métalliques, matériels et équipements de chantier",
         "sector_hint": "construction métallique / montage industriel / ingénierie", "score": 76,
     },
+    {
+        "company": "Global Industrie",
+        "email": "contact@globalindustrie.ma",
+        "domain": "globalindustrie.ma",
+        "url": "https://www.globalindustrie.ma/pages/contact.php",
+        "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
+        "need": "transport de fournitures, pièces et équipements industriels",
+        "sector_hint": "distribution industrielle / équipements techniques",
+        "score": 78,
+    },
+    {
+        "company": "Santoy Distribution",
+        "email": "contact@santoy.ma",
+        "domain": "santoy.ma",
+        "url": "https://santoy.ma/index.php/contactez-nous/",
+        "email_source_url": "https://santoy.ma/index.php/contactez-nous/",
+        "need": "transport et distribution de produits de loisirs, cosmétiques et lifestyle",
+        "sector_hint": "distribution B2B / produits de consommation",
+        "score": 77,
+    },
+    {
+        "company": "Delta Hygiène",
+        "email": "contact@deltahygiene.ma",
+        "domain": "deltahygiene.ma",
+        "url": "https://www.deltahygiene.ma/contact.html",
+        "email_source_url": "https://www.deltahygiene.ma/contact.html",
+        "need": "transport et distribution de produits d'hygiène",
+        "sector_hint": "fabrication / produits d'hygiène",
+        "score": 78,
+    },
+    {
+        "company": "Artech Industrie",
+        "email": "contact@artechindustrie.ma",
+        "domain": "artechindustrie.ma",
+        "url": "https://artechindustrie.ma/contact/",
+        "email_source_url": "https://artechindustrie.ma/contact/",
+        "need": "transport de films plastiques alimentaires, emballages et approvisionnements",
+        "sector_hint": "importation / distribution industrielle",
+        "score": 76,
+    },
+    {
+        "company": "E-ADSINDUSTRIE",
+        "email": "adsindustrie@menara.ma",
+        "domain": "e.adsindustrie.ma",
+        "url": "https://e.adsindustrie.ma/index.php?route=information%2Fcontact",
+        "email_source_url": "https://e.adsindustrie.ma/index.php?route=information%2Fcontact",
+        "need": "transport de matériel électrique et équipements professionnels",
+        "sector_hint": "importation / distribution électrique",
+        "score": 75,
+    },
+    {
+        "company": "Texweld",
+        "email": "contact@texweld.ma",
+        "domain": "texweld.ma",
+        "url": "https://www.texweld.ma/contact/",
+        "email_source_url": "https://www.texweld.ma/contact/",
+        "need": "transport de tissus en gros et flux d'importation / distribution",
+        "sector_hint": "importation / distribution textile",
+        "score": 75,
+    },
+    {
+        "company": "ABRATEX",
+        "email": "info@abratex.ma",
+        "domain": "abratex.ma",
+        "url": "https://abratex.ma/contact/",
+        "email_source_url": "https://abratex.ma/contact/",
+        "need": "transport de fournitures pour l'industrie et le BTP",
+        "sector_hint": "distribution industrielle / BTP",
+        "score": 78,
+    },
+    {
+        "company": "ICÔNE INDUSTRIE",
+        "email": "contact@iconeindustrie.ma",
+        "domain": "iconeindustrie.ma",
+        "url": "https://iconeindustrie.ma/",
+        "email_source_url": "https://iconeindustrie.ma/",
+        "need": "transport d'équipements électriques, hydrauliques et industriels",
+        "sector_hint": "équipements industriels / automatisme",
+        "score": 77,
+    },
+    {
+        "company": "SODIMAT Maroc",
+        "email": "contact@sodimat.ma",
+        "domain": "sodimat.ma",
+        "url": "https://sodimat.ma/contactez-nous/",
+        "email_source_url": "https://sodimat.ma/contactez-nous/",
+        "need": "transport de matériaux de travaux et fournitures de chantier",
+        "sector_hint": "distribution matériaux / BTP",
+        "score": 78,
+    },
+    {
+        "company": "SCE Chemicals",
+        "email": "contact@sce.ma",
+        "domain": "scechemicals.ma",
+        "url": "https://scechemicals.ma/contact/",
+        "email_source_url": "https://scechemicals.ma/contact/",
+        "need": "transport de produits chimiques destinés à l'industrie et à l'agriculture",
+        "sector_hint": "industrie chimique / agriculture",
+        "score": 80,
+    },
+    {
+        "company": "Riaya Industries",
+        "email": "communications@riaya-industries.com",
+        "domain": "riaya-industries.com",
+        "url": "https://riaya-industries.com/contact/",
+        "email_source_url": "https://riaya-industries.com/contact/",
+        "need": "transport lié aux opérations industrielles et à la distribution",
+        "sector_hint": "industrie / fabrication",
+        "score": 78,
+    },
+    {
+        "company": "Global Engineering Industrial & Automotive",
+        "email": "contact@globalengineering.ma",
+        "domain": "globalengineering.ma",
+        "url": "https://globalengineering.ma/",
+        "email_source_url": "https://globalengineering.ma/",
+        "need": "transport de fournitures industrielles et pièces automobiles",
+        "sector_hint": "distribution industrielle / pièces automobiles",
+        "score": 78,
+    },
 ]
 
 
@@ -540,11 +665,8 @@ def ddg_html_search(q):
 
 
 def search_web(q, require_morocco=True):
-    # Prefer the free meta-search API; it combines available engines rather than
-    # relying on a single RSS endpoint that has returned unrelated results.
+    """Prefer usable company pages; retry another free index if the first is mostly junk."""
     engines = (
-        # DDGS rotates across public search backends and is less brittle than scraping
-        # one search engine's HTML directly. No key or paid search credits required.
         ("ddgs", ddgs_search),
         ("bing-rss", bing_rss_search),
         ("duckduckgo", ddg_html_search),
@@ -552,24 +674,38 @@ def search_web(q, require_morocco=True):
     )
     for source, search_fn in engines:
         try:
-            results = search_fn(q)
-            if not results:
-                continue
-            if not require_morocco:
-                return results, source
-            matched = [
-                item for item in results
-                if is_morocco_candidate(item.get("title", ""), item.get("content", ""), item.get("url", ""))
-                and not is_non_prospect_source(item.get("title", ""), item.get("content", ""), item.get("url", ""))
-            ]
-            if matched:
-                # Return the filtered set to keep downstream crawling focused.
-                return matched, source
-            print(f"⚠️ {source} returned no Morocco-matched results; trying next source")
-        except Exception as e:
-            print(f"⚠️ {source} unavailable: {e}")
-    return [], "none"
+            raw_results = search_fn(q) or []
+        except Exception as exc:
+            print(f"⚠️ {source} unavailable: {exc}")
+            continue
+        if not raw_results:
+            continue
 
+        usable = []
+        seen_urls = set()
+        for item in raw_results:
+            title = str(item.get("title", "") or "").strip()
+            url = str(item.get("url", "") or item.get("href", "") or "").strip()
+            content = str(item.get("content", "") or item.get("body", "") or "").strip()
+            if not title or not url or not url.startswith(("https://", "http://")):
+                continue
+            if is_non_prospect_source(title, content, url):
+                continue
+            if is_bad_prospect(title, content, url):
+                continue
+            if require_morocco and not is_morocco_candidate(title, content, url):
+                continue
+            parts = urlparse(url)
+            key = (parts.hostname or "").lower().removeprefix("www.") + parts.path.rstrip("/").lower()
+            if not key or key in seen_urls:
+                continue
+            seen_urls.add(key)
+            usable.append({**item, "title": title, "url": url, "content": content, "source": source})
+
+        if usable:
+            return usable[:12], source
+        print(f"⚠️ {source} returned results, but none passed the Morocco/company filters; trying next source")
+    return [], "none"
 
 def strip_html(raw):
     text = re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>|<noscript[\s\S]*?</noscript>", " ", raw, flags=re.I)
@@ -747,7 +883,7 @@ def score(text):
 def is_bad_prospect(title, content, url):
     # Reject obvious transport/logistics providers from the result title immediately.
     # V2 is intended to find companies that BUY transport, not competitors selling it.
-    title_text = re.sub(r"\\s+", " ", title or "").lower().replace("’", "'")
+    title_text = re.sub(r"\s+", " ", title or "").lower().replace("’", "'")
     provider_title_signals = (
         "société de transport", "societe de transport",
         "société de transports", "societe de transports",
@@ -872,6 +1008,9 @@ def build_contact_suppression(history):
             return
 
     for key, value in history.items():
+        # Retry queue is operational state, not proof that a recipient/domain was contacted.
+        if key == PENDING_RETRY_KEY:
+            continue
         register(key)
         if isinstance(value, dict):
             for field in ("email", "domain", "url", "website"):
@@ -897,6 +1036,12 @@ def was_contacted(email, website_domain, identifiers, known_domains):
         if target == old_domain or target.endswith("." + old_domain) or old_domain.endswith("." + target):
             return True
     return False
+
+
+def is_transient_smtp_failure(detail):
+    """True only for explicit SMTP 4xx responses, which are temporary by protocol."""
+    codes = [int(code) for code in re.findall(r"(?<!\d)(4\d{2})(?!\d)", str(detail or ""))]
+    return any(400 <= code < 500 for code in codes)
 
 
 def count_sends_in_last_hour(history, now=None):
@@ -1156,10 +1301,16 @@ def send_email(to_addr, subject, body):
                 print(f"⚠️ Email accepted by SMTP, but Sent copy not saved: {folder_or_error}")
             return True, "accepted_by_smtp"
         except Exception as e:
+            detail = str(e)
             if attempt < SMTP_RETRIES:
-                time.sleep(2 * attempt)
+                if is_transient_smtp_failure(detail):
+                    delay = min(5 * (2 ** (attempt - 1)), 20)
+                    print(f"⏳ Temporary SMTP response for {to_addr}; retrying in {delay}s (attempt {attempt}/{SMTP_RETRIES})")
+                    time.sleep(delay)
+                else:
+                    time.sleep(2 * attempt)
             else:
-                return False, str(e)
+                return False, detail
     return False, "unknown SMTP error"
 
 
@@ -1181,8 +1332,28 @@ def main():
     history = load_history()
     contacted, contacted_domains = build_contact_suppression(history)
 
+    pending_queue = {}
+    stored_pending = history.get(PENDING_RETRY_KEY, [])
+    if isinstance(stored_pending, list):
+        for item in stored_pending:
+            if not isinstance(item, dict):
+                continue
+            email = str(item.get("email", "") or "").strip().lower()
+            target_domain = str(item.get("domain", "") or "").strip().lower().removeprefix("www.")
+            if email and target_domain and not was_contacted(email, target_domain, contacted, contacted_domains):
+                pending_queue[email] = dict(item)
+
     all_leads = []
     seen = set()
+    # Retry deferred 4xx rejections before seeking the next batch.
+    for email, old_lead in pending_queue.items():
+        lead = dict(old_lead)
+        lead["email"] = email
+        lead["status"] = "smtp_retry_pending"
+        all_leads.append(lead)
+        d = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
+        if d:
+            seen.add(d)
     source_counts = {}
     print("Starting Morocco-only B2B buyer discovery with free search sources...")
 
@@ -1360,6 +1531,7 @@ def main():
     attempted = 0
     planned = 0
     smtp_failures = 0
+    smtp_deferred = 0
     print(f"Mode V2: DRY_RUN={DRY_RUN} (true = preview only; no email sent)")
     sent_last_hour = count_sends_in_last_hour(history)
     if sent_last_hour >= MAX_EMAILS_PER_HOUR:
@@ -1395,6 +1567,7 @@ def main():
         ok, detail = send_email(email, subject, body)
         if ok:
             sent += 1
+            pending_queue.pop(email, None)
             lead["status"] = "sent"
             lead["sent_at"] = now_iso()
             history[email] = {
@@ -1411,10 +1584,26 @@ def main():
                 contacted_domains.add(lead["domain"].lower().removeprefix("www."))
             print(f"✅ Email accepted by SMTP: {lead['company']} <{email}>")
         else:
-            smtp_failures += 1
-            lead["status"] = "smtp_error"
-            lead["smtp_error"] = detail
-            print(f"⚠️ SMTP failed for {email}: {detail}")
+            if is_transient_smtp_failure(detail):
+                smtp_deferred += 1
+                lead["status"] = "smtp_retry_pending"
+                lead["retry_reason"] = detail
+                pending_queue[email] = {
+                    key: lead.get(key)
+                    for key in (
+                        "company", "email", "domain", "url", "need", "sector_hint",
+                        "score", "direct_intent", "priority", "source", "email_source_url",
+                        "retry_reason",
+                    )
+                }
+                pending_queue[email]["status"] = "smtp_retry_pending"
+                print(f"⏳ Temporary SMTP rejection for {email}; safely deferred to the next V2 cycle: {detail}")
+            else:
+                pending_queue.pop(email, None)
+                smtp_failures += 1
+                lead["status"] = "smtp_error"
+                lead["smtp_error"] = detail
+                print(f"⚠️ Permanent/non-transient SMTP failure for {email}: {detail}")
 
     with open(LEADS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_leads, f, ensure_ascii=False, indent=2)
@@ -1425,11 +1614,14 @@ def main():
         writer.writeheader()
         writer.writerows(all_leads)
 
+    history[PENDING_RETRY_KEY] = list(pending_queue.values())
     save_history(history)
     print(
         f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
         f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; previewed {planned}; attempts {attempted}; "
-        f"sent {sent} emails; SMTP failures {smtp_failures}; "
+        f"sent {sent} emails; permanent SMTP failures {smtp_failures}; "
+        f"temporary SMTP retries deferred {smtp_deferred}; "
+        f"pending retry queue {len(pending_queue)}; "
         f"no email {sum(1 for x in all_leads if not x.get('email'))}"
     )
 
