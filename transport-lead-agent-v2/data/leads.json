@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "timestamp": "2026-10-22T06:37:45.855782+00:00",
+    "company": "Groupe El Eulj – Somafaco",
+    "email": "",
+    "domain": "somafaco.com",
+    "url": "https://somafaco.com/a-propos/groupe-el-eulj/",
+    "need": "livraison / distribution",
+    "sector_hint": "consultation transport logistique",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T06:36:45.971812+00:00",
+    "company": "Kenzi Hotels Group",
+    "email": "",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  }
+]
