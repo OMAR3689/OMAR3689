@@ -193,7 +193,14 @@ jobs:
               f"{recipient_rejections} permanently rejected recipient(s) suppressed; "
               f"{temporary_retries} temporary rejection(s) deferred for retry."
           )
-          print(f"📑 Active official public-tender notices saved in the archive: {len(tenders)}.")
+          needs_verification = sum(
+              1 for x in tenders
+              if str(x.get("status", "")).endswith("a_verifier")
+          )
+          print(
+              f"📑 Official public-tender notices in archive: {len(tenders)}; "
+              f"deadlines requiring verification: {needs_verification}."
+          )
           PY
 
       - name: Queue the next verified V2 cycle
