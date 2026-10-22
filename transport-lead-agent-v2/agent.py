@@ -647,6 +647,30 @@ def public_email(title, url):
     return "", ""
 
 
+
+def is_sendable_contact(lead):
+    """Require a public generic mailbox listed on the company's own HTTPS site."""
+    email = str(lead.get("email", "") or "").strip().lower()
+    source_url = str(lead.get("email_source_url", "") or "").strip()
+    company_url = str(lead.get("url", "") or "").strip()
+    if not email or "@" not in email or not source_url.startswith("https://"):
+        return False
+    local, email_host = email.rsplit("@", 1)
+    prefix = local.split("+", 1)[0]
+    if prefix not in sources.GENERIC_PREFIXES or email_host in BAD_DOMAINS:
+        return False
+    source_host = domain(source_url)
+    company_host = domain(company_url)
+    declared_domain = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
+    if not source_host or not company_host or source_host != company_host:
+        return False
+    if declared_domain and declared_domain != company_host:
+        return False
+    path = urlparse(source_url).path.lower()
+    if any(path.endswith(ext) for ext in (".pdf", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
+        return False
+    return True
+
 def clean_company(title):
     t = re.sub(r"\s+", " ", title or "").strip()
     t = re.sub(r"\s*[|–—-]\s*(Accueil|Home|Contact|Site officiel|Official).*?$", "", t, flags=re.I)
@@ -1257,7 +1281,33 @@ def main():
     )
 
     all_leads.sort(key=lambda x: (x.get("priority") == "HOT", x["score"], bool(x["email"])), reverse=True)
-    qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
+    for lead in all_leads:
+        if lead.get("email") and not is_sendable_contact(lead) and lead.get("status") not in {"sent"}:
+            lead["status"] = "contact_not_verified"
+    qualified = [
+        x for x in all_leads
+        if x.get("email") and int(x.get("score", 0) or 0) >= 20 and is_sendable_contact(x)
+    ]
+    if not DRY_RUN:
+        missing = [
+            name for name in ("SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD")
+            if not os.environ.get(name, "").strip()
+        ]
+        if missing:
+            raise SystemExit(
+                "Send preflight blocked before any email was sent; missing GitHub secrets: "
+                + ", ".join(missing)
+            )
+        if not qualified:
+            raise SystemExit("Send preflight blocked before any email was sent: no verified generic contacts.")
+        pdf_bytes, pdf_error = load_presentation_pdf()
+        if pdf_bytes is None:
+            raise SystemExit(
+                "Send preflight blocked before any email was sent because the TRMB presentation PDF "
+                f"is unavailable: {pdf_error}"
+            )
+        print(f"✅ Send preflight passed: {len(qualified)} verified official generic business contacts.")
+
     sent = 0
     attempted = 0
     planned = 0
