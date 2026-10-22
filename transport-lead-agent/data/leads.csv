@@ -1,6 +1,8 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T12:10:21.374582+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T12:10:34.794382+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-22T12:10:43.118586+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-22T12:11:19.399490+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-22T12:11:06.721785+00:00,"EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",,ediman.ma,https://ediman.ma/,transport et logistique,construction chantier,20,ddgs,,no_email,,
+2026-10-22T12:16:12.143724+00:00,Société d'Import-Export au Maroc | ESSGAL IMPORT,info@essgalimport.ma,essgalimport.ma,https://essgalimport.ma/,livraison / distribution,importateur exportateur,100,ddgs,,sent,2026-10-22T12:17:47.466139+00:00,
+2026-10-22T12:15:41.670558+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-22T12:15:53.706050+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-22T12:16:41.329943+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 entreprises ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-22T12:17:30.627927+00:00,Hangar à vendre et à louer au Maroc | Hangar Maroc,,hangarmaroc.com,https://hangarmaroc.com/,transport et logistique,entrepôt logistique,60,bing-rss,,no_email,,
+2026-10-22T12:15:31.861399+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-22T12:16:56.241782+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,bing-rss,,no_email,,
