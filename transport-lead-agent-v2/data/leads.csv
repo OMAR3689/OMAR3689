@@ -1,3 +1,2 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T06:37:45.855782+00:00,Groupe El Eulj – Somafaco,,somafaco.com,https://somafaco.com/a-propos/groupe-el-eulj/,livraison / distribution,consultation transport logistique,100,False,WARM,ddgs,,no_email,,,,
-2026-10-22T06:36:45.971812+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,bing-rss,,no_email,,,,
+2026-10-22T06:41:19.213934+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
