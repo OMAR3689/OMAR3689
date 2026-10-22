@@ -2,6 +2,11 @@ name: TRMB Lead Agent V2 - Manual Dry Run
 
 on:
   workflow_dispatch:
+  push:
+    branches: [trmb-agent-v2]
+    paths:
+      - 'transport-lead-agent-v2/agent.py'
+      - '.github/workflows/transport-leads-v2.yml'
 
 permissions:
   contents: write
