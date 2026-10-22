@@ -1,6 +1,7 @@
 import sys
 import unittest
 from datetime import date, datetime, timedelta, timezone
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
@@ -10,9 +11,9 @@ import agent
 
 class AgentTests(unittest.TestCase):
     def test_official_contact_score_threshold_excludes_weak_prospects(self):
-        self.assertGreaterEqual(agent.MIN_LEAD_SCORE, 40)
-        self.assertLess(25, agent.MIN_LEAD_SCORE)
-        self.assertLess(35, agent.MIN_LEAD_SCORE)
+        self.assertGreaterEqual(agent.MIN_LEAD_SCORE, 60)
+        self.assertLess(50, agent.MIN_LEAD_SCORE)
+        self.assertLess(55, agent.MIN_LEAD_SCORE)
 
     def test_marketplace_listing_is_not_accepted_as_official_prospect_source(self):
         self.assertTrue(agent.is_non_prospect_source(
@@ -124,6 +125,54 @@ class AgentTests(unittest.TestCase):
         }], "test")
         with patch.object(agent, "search_web", return_value=results):
             self.assertEqual(agent.public_email("Company", "https://company.ma/"), ("", ""))
+
+    def test_sendable_contact_rejects_marketplace_recipient_or_company_domains(self):
+        valid = {
+            "email": "contact@example.ma",
+            "domain": "example.ma",
+            "url": "https://example.ma/",
+            "email_source_url": "https://example.ma/contact/",
+            "score": 80,
+        }
+        self.assertTrue(agent.is_sendable_contact(valid))
+
+        marketplace_mailbox = {**valid, "email": "contact@moroccanproducts.ma"}
+        self.assertFalse(agent.is_sendable_contact(marketplace_mailbox))
+
+        marketplace_company = {
+            **valid,
+            "email": "contact@moroccanproducts.ma",
+            "domain": "moroccanproducts.ma",
+            "url": "https://moroccanproducts.ma/fr/company/fapaco",
+            "email_source_url": "https://moroccanproducts.ma/fr/company/fapaco",
+        }
+        self.assertFalse(agent.is_sendable_contact(marketplace_company))
+
+
+    def test_mail_domain_route_check_accepts_mx_and_implicit_mx(self):
+        agent._EMAIL_ROUTE_CACHE.pop("example.ma", None)
+        with patch.object(agent, "urlopen", return_value=BytesIO(
+            b'{"Status":0,"Answer":[{"name":"example.ma","type":15,"data":"10 mx.example.ma."}]}'
+        )):
+            self.assertTrue(agent.email_domain_has_mail_route("contact@example.ma"))
+
+        agent._EMAIL_ROUTE_CACHE.pop("nomx-example.ma", None)
+        with patch.object(agent, "urlopen", side_effect=[
+            BytesIO(b'{"Status":0,"Answer":[]}'),
+            BytesIO(b'{"Status":0,"Answer":[{"name":"nomx-example.ma","type":1,"data":"192.0.2.1"}]}'),
+        ]):
+            self.assertTrue(agent.email_domain_has_mail_route("contact@nomx-example.ma"))
+
+
+    def test_mail_domain_route_check_blocks_nxdomain_and_fails_closed_on_timeout(self):
+        agent._EMAIL_ROUTE_CACHE.pop("no-such-domain.invalid", None)
+        with patch.object(agent, "urlopen", return_value=BytesIO(b'{"Status":3,"Answer":[]}')):
+            self.assertFalse(agent.email_domain_has_mail_route("info@no-such-domain.invalid"))
+
+        agent._EMAIL_ROUTE_CACHE.pop("timeout-example.ma", None)
+        with patch.object(agent, "urlopen", side_effect=TimeoutError("DNS timeout")):
+            self.assertIsNone(agent.email_domain_has_mail_route("info@timeout-example.ma"))
+
 
     def test_sendable_contact_accepts_published_role_and_named_mailboxes_on_official_https_page(self):
         valid = {
