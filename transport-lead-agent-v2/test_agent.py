@@ -216,6 +216,41 @@ class AgentTests(unittest.TestCase):
             )
         )
 
+ 
+    def test_lead_csv_fields_keeps_retry_and_smtp_rejection_columns(self):
+        fields = agent.lead_csv_fields([
+            {"company": "Alpha", "retry_reason": "451 Temporary"},
+            {"company": "Beta", "smtp_rejection": "550 mailbox unavailable"},
+        ])
+        self.assertIn("retry_reason", fields)
+        self.assertIn("smtp_rejection", fields)
+        self.assertEqual(len(fields), len(set(fields)))
+
+    def test_persist_outreach_state_saves_sent_history_and_retry_queue(self):
+        history = {
+            "sent@example.ma": {
+                "company": "Sent Co",
+                "domain": "sent.ma",
+                "sent_at": "2026-10-22T12:00:00+00:00",
+            }
+        }
+        pending = {
+            "later@example.ma": {
+                "company": "Later Co",
+                "email": "later@example.ma",
+                "domain": "later.ma",
+                "status": "smtp_retry_pending",
+                "retry_reason": "451 temporary",
+            }
+        }
+        rejected = {"bad@example.ma"}
+        with patch.object(agent, "save_history") as save:
+            agent.persist_outreach_state(history, pending, rejected)
+
+        self.assertEqual(history[agent.PENDING_RETRY_KEY], list(pending.values()))
+        self.assertEqual(history[agent.PERMANENT_REJECTS_KEY], ["bad@example.ma"])
+        save.assert_called_once_with(history)
+
 
 if __name__ == "__main__":
     unittest.main()

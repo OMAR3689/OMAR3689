@@ -695,6 +695,85 @@
     "sent_at": "2026-10-22T09:03:25.757787+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
   },
-  "_pending_retry_queue": [],
-  "_permanent_rejects": []
+  "_pending_retry_queue": [
+    {
+      "company": "Global Industrie",
+      "email": "contact@globalindustrie.ma",
+      "domain": "globalindustrie.ma",
+      "url": "https://www.globalindustrie.ma/pages/contact.php",
+      "need": "transport de fournitures, pièces et équipements industriels",
+      "sector_hint": "distribution industrielle / équipements techniques",
+      "score": 78,
+      "direct_intent": false,
+      "priority": "WARM",
+      "source": "verified-official-contact-fallback",
+      "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
+      "status": "smtp_retry_pending",
+      "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}"
+    }
+  ],
+  "_permanent_rejects": [],
+  "contact@emballe.ma": {
+    "company": "Emballe — Fabricant d’emballages carton, papier et plastique ...",
+    "domain": "emballe.ma",
+    "sent_at": "2026-10-22T12:30:49.465204+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "ghplastghplast@gmail.com": {
+    "company": "Ghizo Plast - Fabricant d'emballages plastiques au Maroc ...",
+    "domain": "ghizoplast.com",
+    "sent_at": "2026-10-22T12:30:53.920266+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@ouafaplastique.ma": {
+    "company": "Ouafa Plastique",
+    "domain": "ouafaplastique.ma",
+    "sent_at": "2026-10-22T12:30:58.512973+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@embalo.ma": {
+    "company": "Emballage Maroc | Spécialiste d'emballage et packaging",
+    "domain": "embalo.ma",
+    "sent_at": "2026-10-22T12:31:03.531245+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@sce.ma": {
+    "company": "SCE Chemicals",
+    "domain": "scechemicals.ma",
+    "sent_at": "2026-10-22T12:31:08.068875+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@deltahygiene.ma": {
+    "company": "Delta Hygiène",
+    "domain": "deltahygiene.ma",
+    "sent_at": "2026-10-22T12:32:32.984814+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "info@abratex.ma": {
+    "company": "ABRATEX",
+    "domain": "abratex.ma",
+    "sent_at": "2026-10-22T12:32:37.572586+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "contact@sodimat.ma": {
+    "company": "SODIMAT Maroc",
+    "domain": "sodimat.ma",
+    "sent_at": "2026-10-22T12:32:41.983194+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  },
+  "communications@riaya-industries.com": {
+    "company": "Riaya Industries",
+    "domain": "riaya-industries.com",
+    "sent_at": "2026-10-22T12:32:46.343783+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach"
+  }
 }

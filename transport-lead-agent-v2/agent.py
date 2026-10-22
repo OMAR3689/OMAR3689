@@ -1105,6 +1105,30 @@ def save_history(data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
+def persist_outreach_state(history, pending_queue, permanently_rejected):
+    """Persist successful submissions and retry state before any later output step can fail."""
+    history[PENDING_RETRY_KEY] = list(pending_queue.values())
+    history[PERMANENT_REJECTS_KEY] = sorted(
+        str(email).strip().lower() for email in permanently_rejected if str(email).strip()
+    )
+    save_history(history)
+
+
+def lead_csv_fields(leads):
+    """Stable CSV columns plus any operational fields used by retry/error records."""
+    fields = [
+        "timestamp", "company", "email", "domain", "url", "need", "sector_hint",
+        "score", "direct_intent", "priority", "source", "email_source_url",
+        "status", "sent_at", "smtp_error", "smtp_rejection", "retry_reason",
+        "retry_count", "preview_subject", "preview_note",
+    ]
+    extra = sorted({
+        key for item in leads for key in item.keys()
+        if key not in set(fields)
+    })
+    return fields + extra
+
+
 def save_to_sent_folder(msg):
     """Append a copy of an SMTP-submitted message to the account's IMAP Sent folder."""
     host = os.environ.get("IMAP_HOST", "").strip() or os.environ.get("SMTP_HOST", "").strip()
@@ -1614,7 +1638,11 @@ def main():
                 "domain": lead["domain"],
                 "sent_at": lead["sent_at"],
                 "subject": subject,
+                "source": "accepted_by_smtp",
             }
+            # Persist immediately after the external side effect. A later CSV or
+            # reporting failure must never make this recipient eligible again.
+            persist_outreach_state(history, pending_queue, permanently_rejected)
             contacted.add(email)
             contacted_domains.add(email.rsplit("@", 1)[1].lower())
             sent_last_hour += 1
@@ -1636,6 +1664,7 @@ def main():
                     )
                 }
                 pending_queue[email]["status"] = "smtp_retry_pending"
+                persist_outreach_state(history, pending_queue, permanently_rejected)
                 print(f"⏳ Temporary SMTP rejection for {email}; safely deferred to the next V2 cycle: {detail}")
             elif is_permanent_recipient_rejection(detail, email):
                 pending_queue.pop(email, None)
@@ -1643,26 +1672,26 @@ def main():
                 smtp_rejected += 1
                 lead["status"] = "smtp_rejected"
                 lead["smtp_rejection"] = detail
+                persist_outreach_state(history, pending_queue, permanently_rejected)
                 print(f"⛔ Recipient rejected permanently by SMTP; suppressing {email}: {detail}")
             else:
                 pending_queue.pop(email, None)
                 smtp_failures += 1
                 lead["status"] = "smtp_error"
                 lead["smtp_error"] = detail
+                persist_outreach_state(history, pending_queue, permanently_rejected)
                 print(f"⚠️ SMTP/service failure for {email}: {detail}")
 
     with open(LEADS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_leads, f, ensure_ascii=False, indent=2)
 
-    fields = ["timestamp", "company", "email", "domain", "url", "need", "sector_hint", "score", "direct_intent", "priority", "source", "email_source_url", "status", "sent_at", "smtp_error", "preview_subject", "preview_note"]
+    fields = lead_csv_fields(all_leads)
     with open(LEADS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         writer.writerows(all_leads)
 
-    history[PENDING_RETRY_KEY] = list(pending_queue.values())
-    history[PERMANENT_REJECTS_KEY] = sorted(permanently_rejected)
-    save_history(history)
+    persist_outreach_state(history, pending_queue, permanently_rejected)
     print(
         f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
         f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; previewed {planned}; attempts {attempted}; "

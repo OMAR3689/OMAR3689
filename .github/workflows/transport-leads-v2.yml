@@ -79,6 +79,7 @@ jobs:
           python -m unittest discover -s transport-lead-agent-v2 -p 'test_*.py' -v
 
       - name: Discover qualified contacts and execute configured mode
+        id: discover
         run: python transport-lead-agent-v2/agent.py
 
       # Persist sent_at / suppression history before any post-run validation can fail.
@@ -99,6 +100,8 @@ jobs:
 
       - name: Validate saved results and email outcomes
         if: always()
+        env:
+          DISCOVERY_RESULT: ${{ steps.discover.outcome }}
         run: |
           python - <<'PY'
           import json
@@ -109,6 +112,12 @@ jobs:
 
           sys.path.insert(0, str(Path("transport-lead-agent-v2").resolve()))
           import sources
+
+          if os.environ.get("DISCOVERY_RESULT") != "success":
+              raise SystemExit(
+                  "Validation blocked: discovery/send step did not complete successfully "
+                  f"(outcome={os.environ.get('DISCOVERY_RESULT', 'missing')})."
+              )
 
           out = Path("transport-lead-agent-v2/data")
           leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
