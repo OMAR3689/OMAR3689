@@ -1,3 +1,4 @@
+# Sending activation follows successful preview run #120: 52 tests passed and 8 official-page contacts were verified.
 name: TRMB Lead Agent V2 - Verified Outreach
 # Intentional [send-v2] commits run the guarded send mode only after the Python tests pass.
 
