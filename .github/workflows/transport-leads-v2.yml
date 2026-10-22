@@ -137,7 +137,14 @@ jobs:
                   urlparse(source).scheme != "https"
                   or not source_host
                   or source_host != company_host
-                  or local not in sources.GENERIC_PREFIXES
+                  or (
+                      local not in sources.GENERIC_PREFIXES
+                      and not (
+                          (email.split("@", 1)[-1] or "").lower() in sources.FREE_MAIL_HOSTS
+                          and local not in sources.NON_CONTACT_PREFIXES
+                          and len(local) >= 3
+                      )
+                  )
                   or int(lead.get("score", 0) or 0) < 20
               ):
                   raise SystemExit(
