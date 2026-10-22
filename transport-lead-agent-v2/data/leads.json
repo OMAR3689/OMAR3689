@@ -1,6 +1,21 @@
 [
   {
-    "timestamp": "2026-10-22T03:53:13.401109+00:00",
+    "timestamp": "2026-10-22T03:58:11.175996+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T03:58:20.190811+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -15,7 +30,22 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872609+00:00",
+    "timestamp": "2026-10-22T03:58:30.082179+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T03:59:52.304255+00:00",
     "company": "Zalar Holding",
     "email": "info@zalar.ma",
     "domain": "zalar.ma",
@@ -32,7 +62,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872559+00:00",
+    "timestamp": "2026-10-22T03:59:52.304209+00:00",
     "company": "DISLOG Group",
     "email": "contact@dislogroup.ma",
     "domain": "dislogroup.com",
@@ -49,7 +79,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872643+00:00",
+    "timestamp": "2026-10-22T03:59:52.304297+00:00",
     "company": "Maroc Ingrédients",
     "email": "info@marocingredients.com",
     "domain": "marocingredients.com",
@@ -66,7 +96,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872676+00:00",
+    "timestamp": "2026-10-22T03:59:52.304338+00:00",
     "company": "SIOF",
     "email": "info@siofgroup.com",
     "domain": "siofgroup.com",
@@ -83,7 +113,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872800+00:00",
+    "timestamp": "2026-10-22T03:59:52.304498+00:00",
     "company": "Mutandis",
     "email": "contact@mutandis.com",
     "domain": "mutandis.com",
@@ -100,7 +130,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872829+00:00",
+    "timestamp": "2026-10-22T03:59:52.304536+00:00",
     "company": "COPAG",
     "email": "info@copag.ma",
     "domain": "copag.ma",
@@ -117,7 +147,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872859+00:00",
+    "timestamp": "2026-10-22T03:59:52.304574+00:00",
     "company": "ABC Dis",
     "email": "contact@abcdis.ma",
     "domain": "abcdis.ma",
@@ -134,7 +164,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872709+00:00",
+    "timestamp": "2026-10-22T03:59:52.304377+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -151,7 +181,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872740+00:00",
+    "timestamp": "2026-10-22T03:59:52.304417+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -168,7 +198,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872769+00:00",
+    "timestamp": "2026-10-22T03:59:52.304457+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -185,7 +215,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872920+00:00",
+    "timestamp": "2026-10-22T03:59:52.304709+00:00",
     "company": "TBI Maroc",
     "email": "info@tbi.ma",
     "domain": "tbi.ma",
@@ -200,7 +230,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872952+00:00",
+    "timestamp": "2026-10-22T03:59:52.304750+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -215,7 +245,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T03:55:30.872983+00:00",
+    "timestamp": "2026-10-22T03:59:52.304789+00:00",
     "company": "SOFALIM",
     "email": "contact@sofalim.ma",
     "domain": "sofalim.ma",
@@ -230,22 +260,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T03:52:41.657194+00:00",
-    "company": "Nos sites - Cimat",
-    "email": "contact@cimat.ma",
-    "domain": "cimat.ma",
-    "url": "https://www.cimat.ma/fr/pages/nos-sites",
-    "need": "livraison / distribution",
-    "sector_hint": "industrie",
-    "score": 75,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "ddgs",
-    "email_source_url": "https://www.cimat.ma/",
-    "status": "qualified"
-  },
-  {
-    "timestamp": "2026-10-22T03:55:30.872889+00:00",
+    "timestamp": "2026-10-22T03:59:52.304666+00:00",
     "company": "Alimexia",
     "email": "contact@alimexia.ma",
     "domain": "alimexia.ma",
@@ -260,14 +275,29 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T03:52:54.131798+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-22T03:59:06.223958+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T03:59:52.303894+00:00",
+    "company": "Grant Thornton Morocco",
+    "email": "",
+    "domain": "grantthornton.ma",
+    "url": "https://www.grantthornton.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "consultation transport logistique",
+    "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
     "source": "ddgs",
