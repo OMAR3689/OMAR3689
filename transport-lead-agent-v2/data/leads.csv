@@ -1,2 +1,3 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T05:56:42.151322+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T06:01:50.545848+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T06:02:54.229283+00:00,Grant Thornton Morocco,,grantthornton.ma,https://www.grantthornton.ma/,transport et logistique,consultation transport logistique,20,False,STANDARD,ddgs,,no_email,,,,
