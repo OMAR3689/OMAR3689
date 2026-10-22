@@ -8,7 +8,7 @@ on:
       - 'transport-lead-agent/agent.py'
       - '.github/workflows/transport-leads.yml'
   schedule:
-    - cron: '2/5 * * * *'
+    - cron: '*/5 * * * *'
 
 permissions:
   contents: write
