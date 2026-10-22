@@ -1,4 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T19:08:22.091117+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-22T19:08:29.580052+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-22T19:08:10.646937+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-22T19:13:47.342379+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-22T19:13:54.555109+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-22T19:13:26.554871+00:00,Conception et installation d'usines au Maroc - ALAQ INDUSTRY,contact@alaqindustry.com,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,smtp_error,,"{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
+2026-10-22T19:13:36.210259+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-22T19:14:41.502267+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,

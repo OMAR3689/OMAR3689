@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T19:08:22.091117+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T19:08:29.580052+00:00",
+    "timestamp": "2026-10-22T19:13:47.342379+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -24,7 +12,32 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T19:08:10.646937+00:00",
+    "timestamp": "2026-10-22T19:13:54.555109+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T19:13:26.554871+00:00",
+    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 60,
+    "source": "ddgs",
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
+  },
+  {
+    "timestamp": "2026-10-22T19:13:36.210259+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -32,6 +45,18 @@
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T19:14:41.502267+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
