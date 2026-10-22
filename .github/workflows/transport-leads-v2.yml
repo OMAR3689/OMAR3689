@@ -7,6 +7,7 @@ on:
     paths:
       - 'transport-lead-agent-v2/agent.py'
       - 'transport-lead-agent-v2/sources.py'
+      - 'transport-lead-agent-v2/test_sources.py'
       - '.github/workflows/transport-leads-v2.yml'
 
 permissions:
@@ -46,7 +47,9 @@ jobs:
         run: python -m pip install --disable-pip-version-check --no-warn-script-location ddgs
 
       - name: Validate Python syntax
-        run: python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py
+        run: |
+          python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py transport-lead-agent-v2/test_sources.py
+          python -m unittest discover -s transport-lead-agent-v2 -p 'test_*.py' -v
 
       - name: Discover and preview prospects (no sending)
         run: python transport-lead-agent-v2/agent.py
