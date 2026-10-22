@@ -290,6 +290,55 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport de fournitures et équipements industriels importés",
         "sector_hint": "importation / distribution industrielle", "score": 74,
     },
+    {
+        "company": "DISLOG Group", "email": "contact@dislogroup.ma",
+        "domain": "dislogroup.com", "url": "https://dislogroup.com/en/contact/",
+        "email_source_url": "https://dislogroup.com/en/contact/",
+        "need": "transport de produits de grande consommation et flux de distribution nationale",
+        "sector_hint": "industrie / distribution B2B", "score": 82,
+    },
+    {
+        "company": "Zalar Holding", "email": "info@zalar.ma",
+        "domain": "zalar.ma", "url": "https://zalar.ma/fr/accueil/",
+        "email_source_url": "https://zalar.ma/fr/accueil/",
+        "need": "transport de produits avicoles, aliments pour animaux et approvisionnement industriel",
+        "sector_hint": "agro-industrie / filière avicole", "score": 84,
+    },
+    {
+        "company": "Maroc Ingrédients", "email": "info@marocingredients.com",
+        "domain": "marocingredients.com", "url": "https://marocingredients.com/contact-2.html",
+        "email_source_url": "https://marocingredients.com/contact-2.html",
+        "need": "transport de matières premières industrielles et ingrédients alimentaires",
+        "sector_hint": "import-export / matières premières", "score": 82,
+    },
+    {
+        "company": "SIOF", "email": "info@siofgroup.com",
+        "domain": "siofgroup.com", "url": "https://www.siofgroup.com/en",
+        "email_source_url": "https://www.siofgroup.com/en",
+        "need": "transport de produits agroalimentaires, huiles et approvisionnement",
+        "sector_hint": "industrie agroalimentaire / production", "score": 82,
+    },
+    {
+        "company": "Excelo – Best Biscuits Maroc", "email": "export@excelo.ma",
+        "domain": "excelo.ma", "url": "https://excelo.ma/",
+        "email_source_url": "https://excelo.ma/wp-content/uploads/2025/09/Catalogue_Excelo.pdf",
+        "need": "transport de produits fabriqués et flux de distribution/export",
+        "sector_hint": "fabrication agroalimentaire / biscuits", "score": 80,
+    },
+    {
+        "company": "La SOMADIR", "email": "germa@somadir.com",
+        "domain": "somadir.com", "url": "https://www.somadir.com/contact/",
+        "email_source_url": "https://www.somadir.com/contact/",
+        "need": "transport de produits industriels et approvisionnement entre sites",
+        "sector_hint": "industrie agroalimentaire / production", "score": 80,
+    },
+    {
+        "company": "Damandis", "email": "malika.ouchhal@damandis.ma",
+        "domain": "damandis.ma", "url": "https://damandis.ma/contact",
+        "email_source_url": "https://damandis.ma/contact",
+        "need": "transport et distribution de produits FMCG entre plateformes et régions",
+        "sector_hint": "distribution B2B / produits de grande consommation", "score": 78,
+    },
 ]
 
 
@@ -502,40 +551,51 @@ def usable_email(email, url=""):
     return not page_domain or host == page_domain or host.endswith("." + page_domain) or page_domain.endswith("." + host)
 
 
-def discover_email(url):
-    # Use the polite same-domain crawler. Only generic public business contacts
-    # are considered here; a later search-snippet fallback remains domain-restricted.
+def discover_email_record(url):
+    """Return the email and exact page URL from the official company site."""
     try:
-        candidates = sources.find_official_contacts(url, max_pages=4)
+        candidates = sources.find_official_contact_records(url, max_pages=4)
     except Exception as exc:
         print(f"⚠️ Official contact discovery failed for {url}: {exc}")
         candidates = []
-    for email in candidates:
-        if usable_email(email, url):
-            return email
-    return ""
+    for item in candidates:
+        email = str(item.get("email", "")).strip().lower()
+        source_url = str(item.get("source_url", "")).strip()
+        if usable_email(email, url) and source_url and domain(source_url) == domain(url):
+            return email, source_url
+    return "", ""
+
+
+def discover_email(url):
+    """Backward-compatible email-only helper."""
+    return discover_email_record(url)[0]
 
 
 def public_email(title, url):
+    """Find a public business mailbox only when the evidence page is on the official host."""
     host = domain(url)
-    queries = []
-    if host:
-        queries.append(f'site:{host} "@" contact')
-        queries.append(f'site:{host} email')
-    queries.append(f'"{title}" Maroc contact email')
+    if not host:
+        return "", ""
+    queries = [
+        f'site:{host} "@" contact',
+        f'site:{host} email',
+        f'"{title}" Maroc site:{host} contact email',
+    ]
     for q in queries:
         results, _ = search_web(q, require_morocco=False)
         for item in results:
+            source_url = str(item.get("url", "")).strip()
+            # Do not extract contact details from directories or third-party snippets.
+            if not source_url or domain(source_url) != host:
+                continue
             blob = f"{item.get('title', '')} {item.get('content', '')}"
             for email in extract_emails(blob):
-                # Do not use sensitive/non-sales mailboxes (e.g. pharmacovigilance)
-                # as generic commercial contacts. Only public business contact roles.
                 prefix = email.split("@", 1)[0].lower()
                 if prefix not in sources.GENERIC_PREFIXES:
                     continue
                 if usable_email(email, url):
-                    return email
-    return ""
+                    return email, source_url
+    return "", ""
 
 
 def clean_company(title):
@@ -669,27 +729,61 @@ def load_history():
     return data
 
 
-def count_sends_in_last_hour(history, now=None):
-    """Count successful SMTP submissions recorded in the rolling last hour."""
-    now = now or datetime.now(timezone.utc)
-    cutoff = now.timestamp() - 3600
-    count = 0
-    for value in history.values():
-        if not isinstance(value, dict):
-            continue
-        sent_at = value.get("sent_at")
-        if not sent_at:
-            continue
-        try:
-            parsed = datetime.fromisoformat(str(sent_at).replace("Z", "+00:00"))
-            if parsed.tzinfo is None:
-                parsed = parsed.replace(tzinfo=timezone.utc)
-            if parsed.astimezone(timezone.utc).timestamp() >= cutoff:
-                count += 1
-        except (TypeError, ValueError, OverflowError):
-            continue
-    return count
+def build_contact_suppression(history):
+    """Normalize old email, URL and domain records to prevent duplicate outreach."""
+    identifiers = set()
+    domains = set()
 
+    def register(value):
+        if value is None:
+            return
+        raw = str(value).strip().lower()
+        if not raw:
+            return
+        identifiers.add(raw)
+        clean = raw.removeprefix("mailto:")
+        if "@" in clean and not clean.startswith(("http://", "https://")):
+            host = clean.rsplit("@", 1)[1].split("/", 1)[0].strip(".")
+            if host and "." in host:
+                domains.add(host.removeprefix("www."))
+            return
+        try:
+            candidate = clean if clean.startswith(("http://", "https://")) else "//" + clean
+            host = (urlparse(candidate).hostname or "").lower().removeprefix("www.")
+            if "." in host:
+                domains.add(host)
+        except Exception:
+            return
+
+    for key, value in history.items():
+        register(key)
+        if isinstance(value, dict):
+            for field in ("email", "domain", "url", "website"):
+                register(value.get(field))
+    return identifiers, domains
+
+
+def was_contacted(email, website_domain, identifiers, known_domains):
+    """Return true when this email or the same normalized company domain was contacted."""
+    target = str(website_domain or "").strip().lower().removeprefix("www.")
+    if "://" in target:
+        target = domain(target)
+    target = target.rstrip(".")
+    address = str(email or "").strip().lower()
+    if address and address in identifiers:
+        return True
+    if not target:
+        return False
+    for old_domain in known_domains:
+        old_domain = str(old_domain).strip().lower().removeprefix("www.").rstrip(".")
+        if not old_domain:
+            continue
+        if target == old_domain or target.endswith("." + old_domain) or old_domain.endswith("." + target):
+            return True
+    return False
+
+
+def count_sends_in_last_hour
 
 def save_history(data):
     os.makedirs(OUT_DIR, exist_ok=True)
@@ -949,12 +1043,7 @@ def save_tender_files(items):
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
     history = load_history()
-    contacted = {str(k).lower() for k in history.keys()}
-    for value in history.values():
-        if isinstance(value, dict):
-            for field in ("email", "domain"):
-                if value.get(field):
-                    contacted.add(str(value[field]).lower())
+    contacted, contacted_domains = build_contact_suppression(history)
 
     all_leads = []
     seen = set()
@@ -982,7 +1071,7 @@ def main():
                 continue
             d = domain(url)
             key = d or url
-            if key in seen or key in contacted:
+            if key in seen or was_contacted('', d, contacted, contacted_domains):
                 continue
 
             # Search-engine RSS can return unrelated global results for Morocco queries.
@@ -1015,9 +1104,9 @@ def main():
                 continue
             seen.add(key)
             company = clean_company(title)
-            email = discover_email(url)
+            email, email_source_url = discover_email_record(url)
             if not email:
-                email = public_email(company, url)
+                email, email_source_url = public_email(company, url)
             lead = {
                 "timestamp": now_iso(),
                 "company": company,
@@ -1030,6 +1119,7 @@ def main():
                 "direct_intent": has_direct_intent(evidence),
                 "priority": prospect_priority(evidence, s),
                 "source": source,
+                "email_source_url": email_source_url,
                 "status": "qualified" if email else "no_email",
             }
             all_leads.append(lead)
@@ -1039,31 +1129,63 @@ def main():
             break
 
 
-    # Add verified official-contact fallbacks when search engines return little or no data.
-    # Skip every company or email already contacted; never re-send on later scheduled runs.
+    # Add independently researched contacts published on official company pages.
+    # Historical URL/email/domain suppression is preserved, and search hits without
+    # an email are enriched rather than duplicated when a verified contact exists.
     seeded_added = 0
-    existing_domains_with_email = {
-        x.get("domain", "").lower() for x in all_leads if x.get("email")
+    seeded_enriched = 0
+    existing_by_domain = {
+        str(item.get("domain", "")).lower().removeprefix("www."): item
+        for item in all_leads if item.get("domain")
     }
-    existing_emails = {x.get("email", "").lower() for x in all_leads if x.get("email")}
+    existing_emails = {str(item.get("email", "")).lower() for item in all_leads if item.get("email")}
     for seed in SEEDED_PUBLIC_CONTACTS:
-        email = seed["email"].lower()
-        d = seed["domain"].lower()
-        if email in contacted or d in contacted or email in existing_emails or d in existing_domains_with_email:
+        email = str(seed.get("email", "")).strip().lower()
+        d = str(seed.get("domain", "")).strip().lower().removeprefix("www.")
+        if not email or not d or was_contacted(email, d, contacted, contacted_domains):
             continue
+        if email in existing_emails:
+            continue
+
+        existing = existing_by_domain.get(d)
+        if existing and existing.get("email"):
+            continue
+        if existing:
+            existing.update({
+                "company": seed["company"],
+                "email": email,
+                "domain": d,
+                "url": seed["url"],
+                "email_source_url": seed.get("email_source_url", seed["url"]),
+                "need": seed["need"],
+                "sector_hint": seed["sector_hint"],
+                "score": max(int(existing.get("score", 0) or 0), int(seed["score"])),
+                "direct_intent": bool(existing.get("direct_intent", False)),
+                "priority": "WARM" if max(int(existing.get("score", 0) or 0), int(seed["score"])) >= 60 else "STANDARD",
+                "source": "verified-official-contact-fallback",
+                "status": "qualified",
+            })
+            existing_emails.add(email)
+            seeded_enriched += 1
+            continue
+
         lead = {
             "timestamp": now_iso(),
             **seed,
             "direct_intent": False,
-            "priority": "WARM" if seed["score"] >= 70 else "STANDARD",
+            "priority": "WARM" if seed["score"] >= 60 else "STANDARD",
             "source": "verified-official-contact-fallback",
+            "email_source_url": seed.get("email_source_url", seed["url"]),
             "status": "qualified",
         }
         all_leads.append(lead)
+        existing_by_domain[d] = lead
         existing_emails.add(email)
-        existing_domains_with_email.add(d)
         seeded_added += 1
-    print(f"Added {seeded_added} verified official-contact fallback prospects")
+    print(
+        f"Added {seeded_added} new official-contact fallback prospects; "
+        f"enriched {seeded_enriched} search results with verified official contacts"
+    )
 
     all_leads.sort(key=lambda x: (x.get("priority") == "HOT", x["score"], bool(x["email"])), reverse=True)
     qualified = [x for x in all_leads if x["email"] and x["score"] >= 20]
@@ -1092,7 +1214,7 @@ def main():
             )
             break
         email = lead["email"].lower()
-        if email in contacted or lead["domain"] in contacted:
+        if was_contacted(email, lead.get("domain", ""), contacted, contacted_domains):
             continue
         subject, body = build_message(lead["company"], lead["need"])
         if DRY_RUN:
@@ -1115,9 +1237,11 @@ def main():
                 "subject": subject,
             }
             contacted.add(email)
+            contacted_domains.add(email.rsplit("@", 1)[1].lower())
             sent_last_hour += 1
             if lead["domain"]:
-                contacted.add(lead["domain"])
+                contacted.add(lead["domain"].lower())
+                contacted_domains.add(lead["domain"].lower().removeprefix("www."))
             print(f"✅ Email accepted by SMTP: {lead['company']} <{email}>")
         else:
             smtp_failures += 1
