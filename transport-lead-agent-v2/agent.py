@@ -1049,6 +1049,35 @@ def is_sendable_contact(lead):
     return True
 
 
+
+def normalize_qualification_status(lead, permanently_rejected=None):
+    """Give each lead an honest status that reflects current qualification rules."""
+    permanently_rejected = {
+        str(email or "").strip().lower()
+        for email in (permanently_rejected or set())
+    }
+    status = str(lead.get("status", "") or "").strip().lower()
+    protected = {
+        "sent", "smtp_retry_wait", "smtp_retry_pending",
+        "smtp_rejected", "smtp_error", "mail_domain_no_route",
+        "mail_route_unverified",
+    }
+    if status in protected:
+        return status
+
+    email = str(lead.get("email", "") or "").strip().lower()
+    if not email:
+        lead["status"] = "no_email"
+    elif email in permanently_rejected:
+        lead["status"] = "smtp_rejected"
+    elif lead.get("email_verified") is not True or not is_sendable_contact(lead):
+        lead["status"] = "contact_not_verified"
+    elif int(lead.get("score", 0) or 0) < MIN_LEAD_SCORE:
+        lead["status"] = "below_quality_threshold"
+    else:
+        lead["status"] = "qualified"
+    return lead["status"]
+
 def email_domain_has_mail_route(email):
     """Return True for a published MX/A/AAAA route; False if none exists; None if DNS checks fail.
 
@@ -2045,10 +2074,7 @@ def main():
 
     all_leads.sort(key=lambda x: (x.get("priority") == "HOT", x["score"], bool(x["email"])), reverse=True)
     for lead in all_leads:
-        if lead.get("email") and (
-            not lead.get("email_verified") or not is_sendable_contact(lead)
-        ) and lead.get("status") not in {"sent"}:
-            lead["status"] = "contact_not_verified"
+        normalize_qualification_status(lead, permanently_rejected)
     qualified = [
         x for x in all_leads
         if x.get("email")
