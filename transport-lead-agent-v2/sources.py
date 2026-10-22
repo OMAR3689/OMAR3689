@@ -35,6 +35,14 @@ GENERIC_PREFIXES = {
     "devis", "sales", "ventes", "logistique", "transport",
     "procurement", "supplychain", "service",
 }
+# Some genuine Moroccan SMEs publish a Gmail/Outlook/Yahoo address as their
+# official business contact. Accept one only when it is found on their own site.
+FREE_MAIL_HOSTS = {
+    "gmail.com", "googlemail.com", "yahoo.com", "yahoo.fr", "yahoo.co.uk",
+    "outlook.com", "hotmail.com", "live.com", "icloud.com",
+    "proton.me", "protonmail.com",
+}
+NON_CONTACT_PREFIXES = {"noreply", "no-reply", "donotreply", "do-not-reply", "mailer-daemon"}
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 BAD_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".css", ".js")
 MP_HOST = "www.marchespublics.gov.ma"
@@ -232,7 +240,11 @@ class _TableRowParser(HTMLParser):
 
 
 def extract_generic_emails(html, site_domain):
-    """Retourne uniquement les adresses génériques publiques du même domaine."""
+    """
+    Extract public business mailboxes from a page already fetched on the official
+    company domain. Accept domain-based generic mailboxes, plus Gmail/Outlook/Yahoo
+    addresses published on that same official site (a common SME contact pattern).
+    """
     site_domain = _host("https://" + site_domain) if "://" not in site_domain else _host(site_domain)
     found = set()
     for email in EMAIL_RE.findall(html or ""):
@@ -240,9 +252,13 @@ def extract_generic_emails(html, site_domain):
         if email.endswith(BAD_SUFFIXES):
             continue
         local, _, dom = email.partition("@")
-        dom = dom.removeprefix("www.")
+        dom = dom.lower().removeprefix("www.")
         same_domain = dom == site_domain or dom.endswith("." + site_domain)
         if same_domain and local in GENERIC_PREFIXES:
+            found.add(email)
+        elif dom in FREE_MAIL_HOSTS and local not in NON_CONTACT_PREFIXES and len(local) >= 3:
+            # The calling code only invokes this on a page from the official company
+            # host, so this proves the free-mail address was publicly listed there.
             found.add(email)
     return sorted(found)
 
