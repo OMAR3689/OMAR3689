@@ -53,6 +53,22 @@ class AgentTests(unittest.TestCase):
         file_source = {**valid, "email_source_url": "https://example.ma/contact.pdf"}
         self.assertFalse(agent.is_sendable_contact(file_source))
 
+    def test_public_company_gmail_can_be_sent_when_published_on_official_site(self):
+        official = {
+            "email": "companytransport@gmail.com",
+            "domain": "example.ma",
+            "url": "https://example.ma/",
+            "email_source_url": "https://example.ma/contact/",
+            "score": 80,
+        }
+        self.assertTrue(agent.is_sendable_contact(official))
+
+        blocked_noreply = {**official, "email": "no-reply@gmail.com"}
+        self.assertFalse(agent.is_sendable_contact(blocked_noreply))
+
+        unofficial_source = {**official, "email_source_url": "https://directory.example/company/"}
+        self.assertFalse(agent.is_sendable_contact(unofficial_source))
+
     def test_fallback_contacts_have_official_source_urls(self):
         self.assertGreaterEqual(len(agent.SEEDED_PUBLIC_CONTACTS), 20)
         for contact in agent.SEEDED_PUBLIC_CONTACTS:
