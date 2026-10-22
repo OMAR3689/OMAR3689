@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T05:40:56.957542+00:00",
+    "timestamp": "2026-10-22T05:45:34.756917+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -12,12 +12,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:41.380886+00:00"
   },
   {
-    "timestamp": "2026-10-22T05:40:56.957599+00:00",
+    "timestamp": "2026-10-22T05:45:34.756974+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -29,12 +28,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:45.769236+00:00"
   },
   {
-    "timestamp": "2026-10-22T05:40:56.957639+00:00",
+    "timestamp": "2026-10-22T05:45:34.757025+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -46,10 +44,11 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:49.857699+00:00"
   },
   {
-    "timestamp": "2026-10-22T05:40:56.957683+00:00",
+    "timestamp": "2026-10-22T05:45:34.757083+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -61,36 +60,37 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
-    "status": "qualified"
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:54.428116+00:00"
   },
   {
-    "timestamp": "2026-10-22T05:39:07.342241+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-22T05:44:39.608800+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
+    "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:38:51.714007+00:00",
-    "company": "Nos sites - Cimat",
-    "email": "contact@cimat.ma",
-    "domain": "cimat.ma",
-    "url": "https://www.cimat.ma/fr/pages/nos-sites",
+    "timestamp": "2026-10-22T05:45:34.756563+00:00",
+    "company": "Grant Thornton Morocco",
+    "email": "",
+    "domain": "grantthornton.ma",
+    "url": "https://www.grantthornton.ma/",
     "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 40,
+    "sector_hint": "consultation transport logistique",
+    "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "https://www.cimat.ma/",
-    "status": "qualified"
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
   }
 ]

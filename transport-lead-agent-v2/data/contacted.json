@@ -550,5 +550,29 @@
     "domain": "mpg-industrie.com",
     "sent_at": "2026-10-22T04:58:07.273334+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "export@excelo.ma": {
+    "company": "Excelo – Best Biscuits Maroc",
+    "domain": "excelo.ma",
+    "sent_at": "2026-10-22T05:45:41.380886+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "germa@somadir.com": {
+    "company": "La SOMADIR",
+    "domain": "somadir.com",
+    "sent_at": "2026-10-22T05:45:45.769236+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "malika.ouchhal@damandis.ma": {
+    "company": "Damandis",
+    "domain": "damandis.ma",
+    "sent_at": "2026-10-22T05:45:49.857699+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "agrin@agrinmaroc.ma": {
+    "company": "Agrin Maroc",
+    "domain": "agrinmaroc.ma",
+    "sent_at": "2026-10-22T05:45:54.428116+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
