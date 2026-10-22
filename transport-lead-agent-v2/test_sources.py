@@ -104,6 +104,47 @@ class SourcesTests(unittest.TestCase):
         }
         self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
 
+    def test_indexed_tender_rejects_generic_purchase_when_only_buyer_is_known(self):
+        item = {
+            "title": "Détails de l'avis d'achat #68/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394750",
+            "content": (
+                "Acheteur public : DIRECTEUR REGIONAL DU MINISTERE DE LA JEUNESSE "
+                "ET DES SPORTS REGION SOUSS - MASSA"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "transport"))
+
+    def test_indexed_tender_rejects_switch_purchase_when_portal_metadata_matches_fleet(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1023119&orgAcronyme=q1s",
+            "content": (
+                "Objet : Acquisition des switchs pour équiper le siège de l'ANCFCC "
+                "Acheteur public : AGENCE NATIONALE DE LA CONSERVATION FONCIERE "
+                "Catégorie principale : Transport et logistique"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "flotte"))
+
+    def test_generic_purchase_with_transport_evidence_gets_descriptive_title(self):
+        item = {
+            "title": "Détails de l'avis d'achat #19/EXP/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394009",
+            "content": (
+                "Transport de marchandises Acheteur public : "
+                "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD "
+                "Date mise en ligne 15/10/2026 09:46"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(tender["title"], "Transport de marchandises")
+        self.assertEqual(
+            tender["buyer"],
+            "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD",
+        )
+
     def test_indexed_tender_parser_rejects_external_directory_results(self):
         item = {
             "title": "Transport de marchandises - appel d'offres",
@@ -224,7 +265,7 @@ class SourcesTests(unittest.TestCase):
         )
         self.assertNotIn("Date mise en ligne", tender["buyer"])
 
-    def test_official_purchase_detail_is_kept_when_index_snippet_omits_keyword(self):
+    def test_official_purchase_detail_without_object_evidence_is_rejected(self):
         item = {
             "title": "Détails de l'avis d'achat #19/EXP/2026",
             "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394009",
@@ -233,12 +274,7 @@ class SourcesTests(unittest.TestCase):
                 "D'OUJDA ANGAD Date mise en ligne 15/10/2026 09:46"
             ),
         }
-        tender = sources._parse_indexed_tender(item, "transport")
-        self.assertIsNotNone(tender)
-        self.assertEqual(tender["keyword"], "transport")
-        self.assertEqual(tender["buyer"], "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD")
-        self.assertEqual(tender["deadline"], "")
-        self.assertEqual(tender["status"], "date_limite_inconnue_a_verifier")
+        self.assertIsNone(sources._parse_indexed_tender(item, "transport"))
 
 
 if __name__ == "__main__":

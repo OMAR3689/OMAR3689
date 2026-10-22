@@ -435,9 +435,8 @@ def _parse_indexed_tender(item, keyword):
     title_relevance_terms = (
         "transport", "logistique", "convoyage", "flotte", "marchandises",
         "livraison", "vehicule", "camion", "navette", "demenagement",
-        "affretement", "approvisionnement",
+        "affretement", "approvisionnement", "deplacement", "mobilite",
     )
-    title_has_relevance = any(term in normalized_title for term in title_relevance_terms)
     generic_portal_titles = {
         "marches publics electroniques",
         "portail marocain des marches publics",
@@ -449,25 +448,7 @@ def _parse_indexed_tender(item, keyword):
     description_has_relevance = any(
         term in normalized_description for term in title_relevance_terms
     )
-    buyer_is_identified = bool(re.search(
-        r"Acheteur public\s*[:\-]?\s*[^:]{3,}",
-        description, flags=re.IGNORECASE
-    ))
 
-    # Search indexes sometimes match a keyword in metadata even when a specific
-    # procurement title is clearly about unrelated equipment (for example switches).
-    # Do not keep these as transport opportunities. Generic purchase-detail titles
-    # are retained only when a buyer or relevant logistics wording is present.
-    if not title_has_relevance and normalized_title not in generic_portal_titles:
-        if not generic_purchase_title:
-            return None
-        if not description_has_relevance and not buyer_is_identified:
-            return None
-
-    # The search query was already restricted to this keyword and official host.
-    # Index snippets may omit the matching body text, especially on purchase notices,
-    # so require a known query keyword plus a specific detail URL rather than
-    # discarding a valid official record solely because its snippet is sparse.
     known_keywords = {_normal_text(term) for term in MP_KEYWORDS}
     if _normal_text(keyword) not in known_keywords:
         return None
@@ -500,6 +481,36 @@ def _parse_indexed_tender(item, keyword):
             # to present as a named tender candidate.
             return None
         title = objective[:500]
+
+    # Re-check relevance AFTER the real object replaces generic portal labels.
+    # This prevents portal metadata such as category="flotte" from turning purchases
+    # for switches, blinds, or unrelated equipment into logistics opportunities.
+    normalized_final_title = _normal_text(title)
+    final_title_relevant = any(
+        term in normalized_final_title for term in title_relevance_terms
+    )
+
+    if generic_purchase_title and description_has_relevance:
+        # Some indexed purchase notices omit the "Objet:" label. Use the relevant
+        # text prefix before buyer/publication metadata as a descriptive fallback.
+        prefix_match = re.search(
+            r"^(.+?)(?=\s*(?:Acheteur public|Date mise en ligne|Date de mise en ligne|"
+            r"Date publication|Date de publication|Type d'annonce|Procedure|"
+            r"Categorie principale)\b)",
+            description,
+            flags=re.IGNORECASE,
+        )
+        if prefix_match:
+            prefix = re.sub(r"\s+", " ", prefix_match.group(1)).strip(" :-")
+            if any(term in _normal_text(prefix) for term in title_relevance_terms):
+                title = prefix[:500]
+                normalized_final_title = _normal_text(title)
+                final_title_relevant = True
+
+    # Buyer identity or a matching portal category alone is not sufficient. Require
+    # the parsed/provisional object itself to describe transport/logistics.
+    if not final_title_relevant:
+        return None
 
     deadline_match = re.search(
         r"(?:date\s+limite(?:\s+de\s+(?:remise\s+des\s+plis|depot|reception\s+des\s+offres))?"
