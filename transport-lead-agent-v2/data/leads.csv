@@ -1,2 +1,2 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T06:24:12.292757+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T06:28:07.817867+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,bing-rss,,no_email,,,,

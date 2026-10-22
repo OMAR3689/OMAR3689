@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T06:24:12.292757+00:00",
+    "timestamp": "2026-10-22T06:28:07.817867+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -10,7 +10,7 @@
     "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "status": "no_email"
   }
