@@ -444,13 +444,13 @@ def _parse_indexed_tender(item, keyword):
         "marches publics",
     }
     generic_purchase_title = bool(re.match(
-        r"^details? de l'avis d'achat\\b", normalized_title, flags=re.IGNORECASE
+        r"^details? de l'avis d'achat\b", normalized_title, flags=re.IGNORECASE
     ))
     description_has_relevance = any(
         term in normalized_description for term in title_relevance_terms
     )
     buyer_is_identified = bool(re.search(
-        r"Acheteur public\\s*[:\\-]?\\s*[^:]{3,}",
+        r"Acheteur public\s*[:\-]?\s*[^:]{3,}",
         description, flags=re.IGNORECASE
     ))
 
