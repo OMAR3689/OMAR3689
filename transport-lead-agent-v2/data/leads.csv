@@ -1,2 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T09:46:50.920914+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T09:55:54.678904+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,95,False,WARM,bing-rss,,no_email,,,,
+2026-10-22T09:54:58.313140+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,http://autoplus.net.ma/,transport et logistique,automobile industrie,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T09:56:34.816846+00:00,Fournisseurs & Grossistes au Maroc — Particuliers & Revendeurs,,jemlamaroc.com,https://jemlamaroc.com/sellers,transport et logistique,distribution grossiste,20,False,STANDARD,bing-rss,,no_email,,,,
+2026-10-22T09:58:33.668622+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T10:01:38.977597+00:00,Grant Thornton Morocco,,grantthornton.ma,https://www.grantthornton.ma/,transport et logistique,consultation transport logistique,20,False,STANDARD,ddgs,,no_email,,,,
