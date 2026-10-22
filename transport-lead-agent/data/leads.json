@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T13:13:19.335430+00:00",
+    "timestamp": "2026-10-22T13:18:38.348764+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,23 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T13:13:24.285417+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T13:13:43.760594+00:00",
+    "timestamp": "2026-10-22T13:19:06.391339+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,13 +24,25 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T13:13:59.052326+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-22T13:18:25.987222+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T13:19:14.333828+00:00",
+    "company": "Kenzi Hotels Group",
+    "email": "",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "ddgs",
     "status": "no_email"
