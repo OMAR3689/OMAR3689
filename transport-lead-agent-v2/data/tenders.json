@@ -1,1 +1,35 @@
-[]
+[
+  {
+    "title": "appel d'offres ouvert international sur offres de prix pour l’acquisition du mobilier pour résidence destiné à l’Institut de Formation Douanière relevant de l’Administration des Douanes et Impôts Indirects (lot unique)",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "flotte",
+    "url": "https://www.marchespublics.gov.ma/?page=entreprise.SuiviConsultation&refConsultation=845057&orgAcronyme=g8e",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:03:14.456366+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #58/CL/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/378751",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:03:19.324718+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #18/2026/CA",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386207",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T04:03:19.324851+00:00",
+    "index_engine": "DDGS"
+  }
+]
