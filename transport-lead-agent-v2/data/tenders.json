@@ -7,7 +7,7 @@
     "keyword": "transport",
     "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1044305&orgAcronyme=g3h",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:28.510710+00:00",
+    "retrieved_at": "2026-10-22T05:01:16.173310+00:00",
     "index_engine": "DDGS"
   },
   {
@@ -18,18 +18,7 @@
     "keyword": "transport",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394750",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:28.511060+00:00",
-    "index_engine": "DDGS"
-  },
-  {
-    "title": "Détails de l'avis d'achat #29/BG/2026",
-    "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:28.511213+00:00",
+    "retrieved_at": "2026-10-22T05:01:16.173934+00:00",
     "index_engine": "DDGS"
   },
   {
@@ -40,7 +29,7 @@
     "keyword": "logistique",
     "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=993297&orgAcronyme=m1w",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:33.332040+00:00",
+    "retrieved_at": "2026-10-22T05:01:19.830534+00:00",
     "index_engine": "DDGS"
   },
   {
@@ -51,7 +40,7 @@
     "keyword": "logistique",
     "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.SuiviConsultation&refConsultation=1042476&orgAcronyme=o8p",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:33.332248+00:00",
+    "retrieved_at": "2026-10-22T05:01:19.830944+00:00",
     "index_engine": "DDGS"
   },
   {
@@ -62,40 +51,7 @@
     "keyword": "flotte",
     "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1023119&orgAcronyme=q1s",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:44.717089+00:00",
-    "index_engine": "DDGS"
-  },
-  {
-    "title": "Détails de l'avis d'achat #48/2026",
-    "buyer": "",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "livraison",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386893",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:58.742602+00:00",
-    "index_engine": "DDGS"
-  },
-  {
-    "title": "Détails de l'avis d'achat #25/2026",
-    "buyer": "",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "livraison",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/385608",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:58.742691+00:00",
-    "index_engine": "DDGS"
-  },
-  {
-    "title": "Détails de l'avis d'achat #111/2026",
-    "buyer": "",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "livraison",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/397184",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:58.742760+00:00",
+    "retrieved_at": "2026-10-22T05:01:29.749931+00:00",
     "index_engine": "DDGS"
   },
   {
@@ -106,7 +62,40 @@
     "keyword": "livraison",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392807",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T04:55:58.742865+00:00",
-    "index_engine": "DDGS"
+    "retrieved_at": "2026-10-22T05:01:37.512896+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #48/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386893",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T05:01:37.513172+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #25/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/385608",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T05:01:37.513357+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "Détails de l'avis d'achat #111/2026",
+    "buyer": "",
+    "deadline": "",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "livraison",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/397184",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T05:01:37.513528+00:00",
+    "index_engine": "Bing RSS"
   }
 ]
