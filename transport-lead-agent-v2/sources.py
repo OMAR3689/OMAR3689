@@ -72,9 +72,21 @@ def allowed_by_robots(url):
             rp.set_url(robots_url)
             rp.parse(raw.splitlines())
             _robots_cache[base] = rp
+        except urllib.error.HTTPError as exc:
+            if exc.code in (404, 410):
+                # An absent robots.txt is "unavailable", not "disallow all":
+                # treat the site as having no published robot rules.
+                rp = robotparser.RobotFileParser()
+                rp.set_url(robots_url)
+                rp.parse([])
+                _robots_cache[base] = rp
+                print(f"ℹ️ robots.txt absent (HTTP {exc.code}); no crawl rules published by {base}")
+            else:
+                # Keep the conservative fail-closed policy for 401/403/429/5xx.
+                print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: HTTP {exc.code}")
+                _robots_cache[base] = None
         except Exception as exc:
-            # Per the project's conservative policy, inaccessible/unknown rules
-            # mean we skip this host rather than assume permission.
+            # Timeout or unknown network error: do not assume permission.
             print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: {exc}")
             _robots_cache[base] = None
     rp = _robots_cache[base]
