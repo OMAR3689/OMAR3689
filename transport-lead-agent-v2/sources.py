@@ -91,6 +91,9 @@ MP_INDEX_QUERY_VARIANTS = (
     f'site:{MP_HOST} "transport collectif par autocars et minibus" "Date limite" {MP_CURRENT_YEAR}',
     f'site:{MP_HOST} "Barid Al Maghrib" "transport du personnel" "Date limite" {MP_CURRENT_YEAR}',
     f'site:{MP_HOST} "Autoroutes du Maroc" "transport du personnel" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "Date limite de remise des plis" "transport du personnel" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "Date limite de remise des plis" "transport de marchandises" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "Date limite de remise des plis" "location de véhicules" {MP_CURRENT_YEAR}',
 )
 
 _robots_cache = {}
@@ -987,12 +990,14 @@ def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
             if count_for_keyword >= max_per_keyword:
                 break
 
-    if not found:
-        for tender in _find_indexed_tenders(keywords):
-            if not _is_transport_service_tender(tender):
-                continue
-            dedup_key = _normal_text(tender["title"]) + "|" + _normal_text(tender["buyer"]) + "|" + tender["deadline"]
-            found.setdefault(dedup_key, tender)
+    # Always supplement any direct portal results with the public index.
+    # The portal can respond for some queries and time out for others; using the
+    # index only when *all* direct queries fail silently loses partial results.
+    for tender in _find_indexed_tenders(keywords):
+        if not _is_transport_service_tender(tender):
+            continue
+        dedup_key = _normal_text(tender["title"]) + "|" + _normal_text(tender["buyer"]) + "|" + tender["deadline"]
+        found.setdefault(dedup_key, tender)
 
     results = list(found.values())
     print(f"📑 Marchés publics: {len(results)} opportunités retenues après déduplication et filtre de date.")
