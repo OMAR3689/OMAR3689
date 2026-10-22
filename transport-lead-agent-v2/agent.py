@@ -628,17 +628,30 @@ def usable_email(email, url="", allow_public_free_mail=False):
 
 
 def discover_email_record(url):
-    """Return the email and exact page URL from the official company site."""
+    """Return the best public business mailbox and its exact official source page."""
     try:
         candidates = sources.find_official_contact_records(url, max_pages=4)
     except Exception as exc:
         print(f"⚠️ Official contact discovery failed for {url}: {exc}")
         candidates = []
+
+    valid = []
     for item in candidates:
         email = str(item.get("email", "")).strip().lower()
         source_url = str(item.get("source_url", "")).strip()
-        if usable_email(email, url, allow_public_free_mail=True) and source_url and domain(source_url) == domain(url):
-            return email, source_url
+        if (
+            usable_email(email, url, allow_public_free_mail=True)
+            and source_url
+            and domain(source_url) == domain(url)
+        ):
+            free_mail = email.rsplit("@", 1)[-1].lower() in sources.FREE_MAIL_HOSTS
+            valid.append((free_mail, email, source_url))
+
+    # Prefer the official company-domain address if one exists; use public Gmail,
+    # Outlook, or Yahoo only as a fallback when it is published on the official site.
+    valid.sort(key=lambda item: (item[0], item[1]))
+    if valid:
+        return valid[0][1], valid[0][2]
     return "", ""
 
 

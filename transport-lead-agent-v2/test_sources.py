@@ -88,6 +88,22 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(tender["status"], "date_limite_future")
         self.assertIn("Index public", tender["source"])
 
+    def test_indexed_tender_rejects_unrelated_specific_title_even_if_category_matches(self):
+        item = {
+            "title": "Acquisition des switchs pour équiper le siège de l'ANCFCC",
+            "url": "https://www.marchespublics.gov.ma/?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1023119",
+            "content": "Catégorie principale : Transport et logistique. Acheteur public : ANCFCC",
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "flotte"))
+
+    def test_indexed_tender_rejects_generic_purchase_with_no_buyer_or_relevant_object(self):
+        item = {
+            "title": "Détails de l'avis d'achat #48/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/386893",
+            "content": "Date mise en ligne : 15/10/2026",
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
+
     def test_indexed_tender_parser_rejects_external_directory_results(self):
         item = {
             "title": "Transport de marchandises - appel d'offres",

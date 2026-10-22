@@ -430,6 +430,40 @@ def _parse_indexed_tender(item, keyword):
 
     text = title + " " + description
     normal = _normal_text(text)
+    normalized_title = _normal_text(title)
+    normalized_description = _normal_text(description)
+    title_relevance_terms = (
+        "transport", "logistique", "convoyage", "flotte", "marchandises",
+        "livraison", "vehicule", "camion", "navette", "demenagement",
+        "affretement", "approvisionnement",
+    )
+    title_has_relevance = any(term in normalized_title for term in title_relevance_terms)
+    generic_portal_titles = {
+        "marches publics electroniques",
+        "portail marocain des marches publics",
+        "marches publics",
+    }
+    generic_purchase_title = bool(re.match(
+        r"^details? de l'avis d'achat\\b", normalized_title, flags=re.IGNORECASE
+    ))
+    description_has_relevance = any(
+        term in normalized_description for term in title_relevance_terms
+    )
+    buyer_is_identified = bool(re.search(
+        r"Acheteur public\\s*[:\\-]?\\s*[^:]{3,}",
+        description, flags=re.IGNORECASE
+    ))
+
+    # Search indexes sometimes match a keyword in metadata even when a specific
+    # procurement title is clearly about unrelated equipment (for example switches).
+    # Do not keep these as transport opportunities. Generic purchase-detail titles
+    # are retained only when a buyer or relevant logistics wording is present.
+    if not title_has_relevance and normalized_title not in generic_portal_titles:
+        if not generic_purchase_title:
+            return None
+        if not description_has_relevance and not buyer_is_identified:
+            return None
+
     # The search query was already restricted to this keyword and official host.
     # Index snippets may omit the matching body text, especially on purchase notices,
     # so require a known query keyword plus a specific detail URL rather than

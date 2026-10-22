@@ -53,6 +53,27 @@ class AgentTests(unittest.TestCase):
         file_source = {**valid, "email_source_url": "https://example.ma/contact.pdf"}
         self.assertFalse(agent.is_sendable_contact(file_source))
 
+    def test_official_domain_mailbox_is_preferred_over_public_gmail(self):
+        records = [
+            {"email": "contact.mcip@gmail.com", "source_url": "https://example.ma/contact/"},
+            {"email": "contact@example.ma", "source_url": "https://example.ma/contact/"},
+        ]
+        with patch.object(agent.sources, "find_official_contact_records", return_value=records):
+            self.assertEqual(
+                agent.discover_email_record("https://example.ma/"),
+                ("contact@example.ma", "https://example.ma/contact/"),
+            )
+
+        with patch.object(
+            agent.sources,
+            "find_official_contact_records",
+            return_value=[{"email": "companycontact@gmail.com", "source_url": "https://example.ma/contact/"}],
+        ):
+            self.assertEqual(
+                agent.discover_email_record("https://example.ma/"),
+                ("companycontact@gmail.com", "https://example.ma/contact/"),
+            )
+
     def test_public_company_gmail_can_be_sent_when_published_on_official_site(self):
         official = {
             "email": "companytransport@gmail.com",
