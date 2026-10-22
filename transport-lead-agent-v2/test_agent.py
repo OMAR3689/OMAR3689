@@ -295,5 +295,18 @@ class AgentTests(unittest.TestCase):
             )
 
 
+    def test_seed_email_can_be_verified_from_official_pdf_text(self):
+        with patch.object(agent.sources, "polite_get_pdf", return_value="Contact: contact@example.ma"), \
+             patch.object(agent.sources, "find_official_contact_records", return_value=[]):
+            self.assertEqual(
+                agent.verify_public_email_source(
+                    "contact@example.ma",
+                    "https://example.ma/catalogue.pdf",
+                    "https://example.ma/",
+                ),
+                "https://example.ma/catalogue.pdf",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

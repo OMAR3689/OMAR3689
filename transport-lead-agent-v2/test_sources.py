@@ -82,6 +82,8 @@ class SourcesTests(unittest.TestCase):
         self.assertTrue(sources.is_public_business_email("malika.ouchhal@example.ma", "example.ma"))
         self.assertFalse(sources.is_public_business_email("pharmacovigilance@example.ma", "example.ma"))
         self.assertFalse(sources.is_public_business_email("jobs@example.ma", "example.ma"))
+        self.assertFalse(sources.is_public_business_email("suivis@example.ma", "example.ma"))
+        self.assertFalse(sources.is_public_business_email("tracking@example.ma", "example.ma"))
         self.assertTrue(
             sources.is_public_business_email("contact.mcip@gmail.com", "example.ma")
         )
@@ -353,13 +355,17 @@ class SourcesTests(unittest.TestCase):
         self.assertEqual(len(tenders), 1)
         self.assertEqual(tenders[0]["index_engine"], "DDGS")
         self.assertEqual(tenders[0]["buyer"], "Commune Exemple")
-        self.assertLessEqual(ddgs.call_count, 6, "indexed fallback should use six bounded query groups at most")
+        self.assertLessEqual(
+            ddgs.call_count, len(sources.MP_INDEX_QUERY_VARIANTS),
+            "indexed fallback should use bounded targeted query groups",
+        )
         self.assertTrue(
             all(len(call.args[0]) < 250 for call in ddgs.call_args_list),
             "procurement fallback should not send oversized OR queries",
         )
-        self.assertTrue(
-            any('"transport de marchandises"' in call.args[0] for call in ddgs.call_args_list),
+        self.assertIn(
+            '"transport de marchandises"',
+            " ".join(sources.MP_INDEX_QUERY_VARIANTS),
             "procurement fallback should search a specific freight-service phrase",
         )
 
@@ -453,6 +459,27 @@ class SourcesTests(unittest.TestCase):
             ),
         }
         self.assertIsNone(sources._parse_indexed_tender(item, "transport"))
+
+
+    def test_contact_crawler_extracts_email_from_official_catalog_pdf(self):
+        home = '<html><a href="/documents/catalogue-2026.pdf">Catalogue</a></html>'
+        with patch("sources.polite_get", return_value=home), \
+             patch("sources.polite_get_pdf", return_value="contact@example.ma"):
+            records = sources.find_official_contact_records("https://example.ma/", max_pages=4)
+
+        self.assertIn(
+            {"email": "contact@example.ma", "source_url": "https://example.ma/documents/catalogue-2026.pdf"},
+            records,
+        )
+
+    def test_index_query_variants_cover_transport_buyer_tender_types(self):
+        query_text = " ".join(sources.MP_INDEX_QUERY_VARIANTS).lower()
+        self.assertIn("transport du personnel", query_text)
+        self.assertIn("mise à disposition des chauffeurs", query_text)
+        self.assertIn("location de véhicules avec chauffeur", query_text)
+        self.assertIn("barid al maghrib", query_text)
+        self.assertIn("autoroutes du maroc", query_text)
+        self.assertIn("transport de personnel", sources.MP_INDEX_EXTRA_KEYWORDS)
 
 
 if __name__ == "__main__":

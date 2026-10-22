@@ -829,7 +829,11 @@ def public_email(title, url):
                 if not source_url.startswith("https://"):
                     continue
                 try:
-                    source_html = sources.polite_get(source_url)
+                    is_pdf = urlparse(source_url).path.lower().endswith(".pdf")
+                    source_html = (
+                        sources.polite_get_pdf(source_url)
+                        if is_pdf else sources.polite_get(source_url)
+                    )
                 except Exception as exc:
                     print(f"⚠️ Official email evidence fetch failed for {source_url}: {exc}")
                     continue
@@ -858,7 +862,14 @@ def verify_public_email_source(email, source_url, company_url):
         return ""
 
     path = urlparse(source_url).path.lower()
-    if not any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
+    if path.endswith(".pdf"):
+        try:
+            document_text = sources.polite_get_pdf(source_url)
+            if document_text and email in document_text.lower():
+                return source_url
+        except Exception as exc:
+            print(f"⚠️ Official PDF contact-source verification failed for {source_url}: {exc}")
+    elif not any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
         try:
             html = sources.polite_get(source_url)
             if html and email in html.lower():

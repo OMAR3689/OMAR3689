@@ -5,6 +5,7 @@ Sources gratuites et prudentes pour TRMB Lead Agent V2.
 - Délai par hôte, limites de taille et nouvelles tentatives en cas de limitation.
 - Aucun login, aucune session authentifiée, aucun scraping LinkedIn.
 """
+import io
 import re
 import time
 import unicodedata
@@ -21,6 +22,7 @@ REQUEST_DELAY = 3.0
 TIMEOUT = 20
 MAX_RETRIES = 3
 MAX_HTML_BYTES = 2_000_000
+MAX_PDF_BYTES = 8_000_000
 
 # URL officielle vérifiée du portail; la recherche avancée utilise le paramètre keyWord.
 MP_SEARCH_URL = "https://www.marchespublics.gov.ma/index.php"
@@ -32,6 +34,7 @@ MP_KEYWORDS = (
 CONTACT_HINTS = (
     "contact", "nous-contacter", "contactez", "contact-us",
     "a-propos", "about", "mentions-legales", "mentions-légales",
+    "catalogue", "catalog", "brochure", "présentation", "presentation",
 )
 GENERIC_PREFIXES = {
     "info", "contact", "commercial", "direction", "achats",
@@ -53,6 +56,8 @@ UNSUITABLE_LOCAL_TOKENS = {
     "legal", "juridique", "presse", "press", "media", "webmaster", "abuse",
     "security", "newsletter", "billing", "facturation", "accounting",
     "comptabilite", "comptabilité", "rh", "hr", "helpdesk",
+    # Customer follow-up / after-sales queues are poor targets for first-contact sales.
+    "suivi", "suivis", "tracking", "track", "reclamation", "reclamations", "sav",
     # Common placeholder/test inboxes are never valid sales contacts.
     "example", "exemple", "test", "demo", "sample", "placeholder",
     "yourname", "username", "your-email", "emailaddress",
@@ -60,6 +65,33 @@ UNSUITABLE_LOCAL_TOKENS = {
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 BAD_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".css", ".js")
 MP_HOST = "www.marchespublics.gov.ma"
+
+# Extra terms and focused public-index queries for transport tenders. The official
+# portal may be unreachable; these queries only accept concrete detail URLs on the
+# official portal and never crawl a blocked listing page.
+MP_INDEX_EXTRA_KEYWORDS = (
+    "transport de personnel",
+    "transport des salariés",
+    "mise à disposition des chauffeurs",
+    "location de véhicules avec chauffeur",
+    "location de véhicules avec chauffeurs",
+    "location longue durée de véhicules",
+    "transport collectif par autocars et minibus",
+    "prestations de transport du personnel",
+    "transport scolaire",
+)
+MP_CURRENT_YEAR = datetime.now().year
+MP_INDEX_QUERY_VARIANTS = (
+    f'site:{MP_HOST} "transport de marchandises" "Acheteur public" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "transport du personnel" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST}/bdc/entreprise/consultation/show "transport" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "mise à disposition des chauffeurs" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "location de véhicules avec chauffeur" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "location longue durée de véhicules" "chauffeurs" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "transport collectif par autocars et minibus" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "Barid Al Maghrib" "transport du personnel" "Date limite" {MP_CURRENT_YEAR}',
+    f'site:{MP_HOST} "Autoroutes du Maroc" "transport du personnel" "Date limite" {MP_CURRENT_YEAR}',
+)
 
 _robots_cache = {}
 _last_hit = {}
@@ -184,6 +216,65 @@ def polite_get(url):
                 time.sleep(5 * (attempt + 1))
                 continue
             print(f"⚠️ Erreur réseau: {url} ({exc})")
+            return None
+    return None
+
+
+def polite_get_pdf(url):
+    """Read text from a same-host public PDF under robots rules and strict size limits."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https" or not parts.path.lower().endswith(".pdf"):
+        return None
+    if not allowed_by_robots(url):
+        print(f"⏭️ PDF non lu: robots.txt interdit ou invérifiable: {url}")
+        return None
+
+    host = _host(url)
+    wait = _polite_delay(url) - (time.monotonic() - _last_hit.get(host, 0))
+    if wait > 0:
+        time.sleep(wait)
+
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/pdf,*/*;q=0.5",
+            "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
+        },
+    )
+    for attempt in range(MAX_RETRIES):
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                _last_hit[host] = time.monotonic()
+                payload = resp.read(MAX_PDF_BYTES + 1)
+            if len(payload) > MAX_PDF_BYTES:
+                print(f"⏭️ PDF trop volumineux (> {MAX_PDF_BYTES} octets): {url}")
+                return None
+            if not payload.startswith(b"%PDF-"):
+                print(f"⏭️ Document ignoré: contenu non PDF: {url}")
+                return None
+            try:
+                from pypdf import PdfReader
+                reader = PdfReader(io.BytesIO(payload), strict=False)
+                page_text = [(page.extract_text() or "") for page in list(reader.pages)[:8]]
+                extracted = "\n".join(page_text)
+                return extracted if extracted.strip() else None
+            except Exception as exc:
+                print(f"⚠️ Extraction de texte PDF impossible pour {url}: {exc}")
+                return None
+        except urllib.error.HTTPError as exc:
+            _last_hit[host] = time.monotonic()
+            if exc.code in (429, 503) and attempt < MAX_RETRIES - 1:
+                time.sleep(5 * (2 ** attempt))
+                continue
+            print(f"⚠️ HTTP {exc.code}: {url}")
+            return None
+        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+            _last_hit[host] = time.monotonic()
+            if attempt < MAX_RETRIES - 1:
+                time.sleep(3 * (attempt + 1))
+                continue
+            print(f"⚠️ Erreur réseau PDF: {url} ({exc})")
             return None
     return None
 
@@ -318,6 +409,14 @@ def find_official_contact_records(site_url, max_pages=4):
         if url in seen or _host(url) != original_host:
             continue
         seen.add(url)
+
+        if urllib.parse.urlsplit(url).path.lower().endswith(".pdf"):
+            page_text = polite_get_pdf(url)
+            if not page_text:
+                continue
+            for email in extract_generic_emails(page_text, original_host):
+                emails.setdefault(email, url)
+            continue
 
         html = polite_get(url)
         if not html:
@@ -787,21 +886,16 @@ def _find_indexed_tenders(keywords):
         ("DuckDuckGo HTML", _duckduckgo_html_index_search),
         ("DDGS", _ddgs_index_search),
     )
-    query_variants = (
-        f'site:{MP_HOST}/bdc/entreprise/consultation/show "transport"',
-        f'site:{MP_HOST} "transport de marchandises" "Acheteur public"',
-        f'site:{MP_HOST} "transport du personnel" "Date limite"',
-        f'site:{MP_HOST} "organisation logistique" "Acheteur public"',
-        f'site:{MP_HOST} ("location de camions" OR "affrètement")',
-        f'site:{MP_HOST} "prestations de transport" "consultation"',
-    )
+    query_variants = MP_INDEX_QUERY_VARIANTS
     unique_keywords = list(dict.fromkeys(
-        str(keyword).strip() for keyword in keywords if str(keyword).strip()
+        str(keyword).strip()
+        for keyword in (*keywords, *MP_INDEX_EXTRA_KEYWORDS)
+        if str(keyword).strip()
     ))
 
     for query_index, query in enumerate(query_variants, start=1):
         query_had_valid_notice = False
-        # At most 6 targeted queries x 3 free indexes = 18 bounded requests.
+        # At most len(MP_INDEX_QUERY_VARIANTS) targeted queries x 3 public indexes, each bounded.
         for engine_name, search_fn in engines:
             try:
                 items = search_fn(query)
