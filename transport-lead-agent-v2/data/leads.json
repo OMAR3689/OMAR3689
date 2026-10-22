@@ -1,6 +1,21 @@
 [
   {
-    "timestamp": "2026-10-22T05:03:48.813949+00:00",
+    "timestamp": "2026-10-22T05:11:32.730047+00:00",
+    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
+    "email": "",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:13:01.926671+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -15,7 +30,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:03:48.814013+00:00",
+    "timestamp": "2026-10-22T05:13:01.926736+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -30,7 +45,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:03:48.814082+00:00",
+    "timestamp": "2026-10-22T05:13:01.926785+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -45,7 +60,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:03:48.814138+00:00",
+    "timestamp": "2026-10-22T05:13:01.926838+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -60,24 +75,37 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:01:59.832514+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "ihssanpa@hotmail.com",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
+    "timestamp": "2026-10-22T05:11:02.820996+00:00",
+    "company": "Nos sites - Cimat",
+    "email": "",
+    "domain": "cimat.ma",
+    "url": "https://www.cimat.ma/fr/pages/nos-sites",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 40,
     "direct_intent": false,
     "priority": "STANDARD",
     "source": "ddgs",
-    "email_source_url": "https://ihssanpa.ma/",
-    "status": "dry_run_preview",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+    "email_source_url": "",
+    "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:02:41.972707+00:00",
+    "timestamp": "2026-10-22T05:11:15.748861+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:12:15.076707+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -87,22 +115,7 @@
     "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T05:03:47.954770+00:00",
-    "company": "Grant Thornton Morocco",
-    "email": "",
-    "domain": "grantthornton.ma",
-    "url": "https://www.grantthornton.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "consultation transport logistique",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }
