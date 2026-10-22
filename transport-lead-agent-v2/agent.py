@@ -696,7 +696,7 @@ def searxng_search(q):
             for item in payload.get("results", []):
                 link = str(item.get("url", "")).strip()
                 title = re.sub(r"\s+", " ", str(item.get("title", ""))).strip()
-                content = re.sub(r"\\s+", " ", str(item.get("content", ""))).strip()
+                content = re.sub(r"\s+", " ", str(item.get("content", ""))).strip()
                 if link.startswith(("http://", "https://")) and title:
                     results.append({
                         "title": title, "url": link, "content": content,
@@ -1815,8 +1815,8 @@ def merge_tender_archive(previous, current, max_records=1000, today=None):
         url = str(item.get("url", "") or "").strip()
         if domain(url) != "marchespublics.gov.ma":
             continue
-        title = re.sub(r"\\s+", " ", str(item.get("title", "") or "")).strip().lower()
-        buyer = re.sub(r"\\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
+        title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip().lower()
+        buyer = re.sub(r"\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
         deadline = str(item.get("deadline", "") or "").strip()
         key = "url:" + url.rstrip("/").lower() if url else ""
         if not key:
