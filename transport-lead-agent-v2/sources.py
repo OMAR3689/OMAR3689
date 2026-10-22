@@ -385,8 +385,8 @@ def _parse_tender_row(row, keyword, listing_url):
 def _parse_indexed_tender(item, keyword):
     """Parse a tender found in Bing's public index; never crawl a blocked portal page."""
     url = str(item.get("url", "")).strip()
-    title = re.sub(r"\\s+", " ", str(item.get("title", "") or "")).strip()
-    description = re.sub(r"\\s+", " ", str(item.get("content", "") or "")).strip()
+    title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip()
+    description = re.sub(r"\s+", " ", str(item.get("content", "") or "")).strip()
     if not url or not title:
         return None
     parts = urllib.parse.urlsplit(url)
@@ -407,7 +407,7 @@ def _parse_indexed_tender(item, keyword):
     deadline = ""
     deadline_status = "date_limite_inconnue_a_verifier"
     date_match = re.search(
-        r"\\b(\\d{2}[/-]\\d{2}[/-]\\d{4}|\\d{4}-\\d{2}-\\d{2})\\b",
+        r"\b(\d{2}[/-]\d{2}[/-]\d{4}|\d{4}-\d{2}-\d{2})\b",
         text
     )
     if date_match:
@@ -427,10 +427,10 @@ def _parse_indexed_tender(item, keyword):
             deadline_status = "date_limite_future"
 
     buyer_match = re.search(
-        r"Acheteur public\\s*:?\\s*(.+?)(?=\\s*(?:Lieu d'execution|Date limite|$))",
+        r"Acheteur public\s*:?\s*(.+?)(?=\s*(?:Lieu d'execution|Date limite|$))",
         text, flags=re.IGNORECASE
     )
-    buyer = re.sub(r"\\s+", " ", buyer_match.group(1)).strip(" :-")[:300] if buyer_match else ""
+    buyer = re.sub(r"\s+", " ", buyer_match.group(1)).strip(" :-")[:300] if buyer_match else ""
     return {
         "title": title[:500],
         "buyer": buyer,
