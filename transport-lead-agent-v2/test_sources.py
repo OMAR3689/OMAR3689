@@ -195,6 +195,22 @@ class SourcesTests(unittest.TestCase):
         )
         self.assertNotIn("Date mise en ligne", tender["buyer"])
 
+    def test_official_purchase_detail_is_kept_when_index_snippet_omits_keyword(self):
+        item = {
+            "title": "Détails de l'avis d'achat #19/EXP/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394009",
+            "content": (
+                "Acheteur public : DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE "
+                "D'OUJDA ANGAD Date mise en ligne 15/10/2026 09:46"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport")
+        self.assertIsNotNone(tender)
+        self.assertEqual(tender["keyword"], "transport")
+        self.assertEqual(tender["buyer"], "DIRECTION PROVINCIALE DE L'EDUCATION NATIONALE D'OUJDA ANGAD")
+        self.assertEqual(tender["deadline"], "")
+        self.assertEqual(tender["status"], "date_limite_inconnue_a_verifier")
+
 
 if __name__ == "__main__":
     unittest.main()
