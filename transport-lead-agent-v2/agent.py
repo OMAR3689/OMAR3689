@@ -783,7 +783,27 @@ def was_contacted(email, website_domain, identifiers, known_domains):
     return False
 
 
-def count_sends_in_last_hour
+def count_sends_in_last_hour(history, now=None):
+    """Count successful SMTP submissions recorded in the rolling last hour."""
+    now = now or datetime.now(timezone.utc)
+    cutoff = now.timestamp() - 3600
+    count = 0
+    for value in history.values():
+        if not isinstance(value, dict):
+            continue
+        sent_at = value.get("sent_at")
+        if not sent_at:
+            continue
+        try:
+            parsed = datetime.fromisoformat(str(sent_at).replace("Z", "+00:00"))
+            if parsed.tzinfo is None:
+                parsed = parsed.replace(tzinfo=timezone.utc)
+            if parsed.astimezone(timezone.utc).timestamp() >= cutoff:
+                count += 1
+        except (TypeError, ValueError, OverflowError):
+            continue
+    return count
+
 
 def save_history(data):
     os.makedirs(OUT_DIR, exist_ok=True)
