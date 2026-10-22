@@ -53,6 +53,9 @@ UNSUITABLE_LOCAL_TOKENS = {
     "legal", "juridique", "presse", "press", "media", "webmaster", "abuse",
     "security", "newsletter", "billing", "facturation", "accounting",
     "comptabilite", "comptabilité", "rh", "hr", "helpdesk",
+    # Common placeholder/test inboxes are never valid sales contacts.
+    "example", "exemple", "test", "demo", "sample", "placeholder",
+    "yourname", "username", "your-email", "emailaddress",
 }
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 BAD_SUFFIXES = (".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".css", ".js")
@@ -321,9 +324,9 @@ def find_official_contact_records(site_url, max_pages=4):
             continue
         for email in extract_generic_emails(html, original_host):
             emails.setdefault(email, url)
-        if emails:
-            break
 
+        # Continue through explicit contact/about links even if the homepage has
+        # another address; the commercial mailbox may live on a separate page.
         parser = _LinkParser()
         parser.feed(html)
         for href, label in parser.links:

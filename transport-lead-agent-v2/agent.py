@@ -822,10 +822,67 @@ def public_email(title, url):
                     email, site_domain=host, allow_external_domain=True
                 ):
                     continue
-                if usable_email(email, url, allow_public_free_mail=True):
-                    return email, source_url
+                if not usable_email(email, url, allow_public_free_mail=True):
+                    continue
+                # A search snippet is not proof: confirm the exact address is
+                # present in HTML fetched from that same official HTTPS host.
+                if not source_url.startswith("https://"):
+                    continue
+                try:
+                    source_html = sources.polite_get(source_url)
+                except Exception as exc:
+                    print(f"⚠️ Official email evidence fetch failed for {source_url}: {exc}")
+                    continue
+                if not source_html or email.lower() not in source_html.lower():
+                    continue
+                return email, source_url
     return "", ""
 
+
+
+def verify_public_email_source(email, source_url, company_url):
+    """Confirm an address is visibly published on an official HTTPS company page."""
+    email = str(email or "").strip().lower()
+    source_url = str(source_url or "").strip()
+    company_url = str(company_url or "").strip()
+    company_host = domain(company_url)
+    if (
+        not email
+        or not source_url.startswith("https://")
+        or not company_host
+        or domain(source_url) != company_host
+        or not sources.is_public_business_email(
+            email, site_domain=company_host, allow_external_domain=True
+        )
+    ):
+        return ""
+
+    path = urlparse(source_url).path.lower()
+    if not any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
+        try:
+            html = sources.polite_get(source_url)
+            if html and email in html.lower():
+                return source_url
+        except Exception as exc:
+            print(f"⚠️ Official contact-source verification failed for {source_url}: {exc}")
+
+    # If the candidate's original URL is a homepage or a non-HTML document,
+    # inspect a small number of same-host contact pages under robots rules.
+    try:
+        records = sources.find_official_contact_records(company_url, max_pages=4)
+    except Exception as exc:
+        print(f"⚠️ Official contact-page fallback failed for {company_url}: {exc}")
+        return ""
+    for record in records:
+        record_email = str(record.get("email", "")).strip().lower()
+        record_url = str(record.get("source_url", "")).strip()
+        if (
+            record_email == email
+            and record_url.startswith("https://")
+            and domain(record_url) == company_host
+        ):
+            return record_url
+    return ""
 
 
 def is_sendable_contact(lead):
@@ -872,14 +929,20 @@ def prospect_priority(text, value):
 
 
 def score(text):
+    """Use a bounded score so ordinary company pages do not all saturate at 100."""
     t = (text or "").lower().replace("’", "'")
-    buyer = sum(15 for x in BUYER_SIGNALS if x in t)
-    sector = sum(20 for x in TARGET_SECTOR_SIGNALS if x in t)
-    intent = sum(30 for x in DIRECT_INTENT_SIGNALS if x in t)
-    provider = sum(30 for x in PROVIDER_SIGNALS if x in t)
-    directory = sum(60 for x in DIRECTORY_SIGNALS if x in t)
-    # Direct statements of transport/logistics intent receive stronger priority.
-    return max(0, min(100, buyer + sector + intent - provider - directory))
+    buyer_hits = sum(1 for signal in BUYER_SIGNALS if signal in t)
+    sector_hits = sum(1 for signal in TARGET_SECTOR_SIGNALS if signal in t)
+    intent_hits = sum(1 for signal in DIRECT_INTENT_SIGNALS if signal in t)
+    provider_hits = sum(1 for signal in PROVIDER_SIGNALS if signal in t)
+    directory_hits = sum(1 for signal in DIRECTORY_SIGNALS if signal in t)
+
+    buyer_score = min(30, buyer_hits * 10)
+    sector_score = min(25, sector_hits * 5)
+    direct_intent_score = (45 + min(10, max(0, intent_hits - 1) * 5)) if intent_hits else 0
+    provider_penalty = min(75, provider_hits * 25)
+    directory_penalty = min(100, directory_hits * 60)
+    return max(0, min(100, buyer_score + sector_score + direct_intent_score - provider_penalty - directory_penalty))
 
 
 def is_bad_prospect(title, content, url):
@@ -1408,6 +1471,7 @@ def main():
     for email, old_lead in pending_queue.items():
         lead = dict(old_lead)
         lead["email"] = email
+        lead["email_verified"] = bool(old_lead.get("email_verified", False))
         lead["status"] = "smtp_retry_pending"
         all_leads.append(lead)
         d = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
@@ -1486,6 +1550,7 @@ def main():
                 "priority": prospect_priority(evidence, s),
                 "source": source,
                 "email_source_url": email_source_url,
+                "email_verified": bool(email and email_source_url),
                 "status": "qualified" if email else "no_email",
             }
             all_leads.append(lead)
@@ -1516,13 +1581,27 @@ def main():
         existing = existing_by_domain.get(d)
         if existing and existing.get("email"):
             continue
+
+        verified_source_url = verify_public_email_source(
+            email,
+            seed.get("email_source_url", seed.get("url", "")),
+            seed.get("url", ""),
+        )
+        if not verified_source_url:
+            print(
+                f"⏭️ Seed contact skipped; address not found on an accessible official page: "
+                f"{seed.get('company')} <{email}>"
+            )
+            continue
+
         if existing:
             existing.update({
                 "company": seed["company"],
                 "email": email,
                 "domain": d,
                 "url": seed["url"],
-                "email_source_url": seed.get("email_source_url", seed["url"]),
+                "email_source_url": verified_source_url,
+                "email_verified": True,
                 "need": seed["need"],
                 "sector_hint": seed["sector_hint"],
                 "score": max(int(existing.get("score", 0) or 0), int(seed["score"])),
@@ -1541,7 +1620,8 @@ def main():
             "direct_intent": False,
             "priority": "WARM" if seed["score"] >= 60 else "STANDARD",
             "source": "verified-official-contact-fallback",
-            "email_source_url": seed.get("email_source_url", seed["url"]),
+            "email_source_url": verified_source_url,
+            "email_verified": True,
             "status": "qualified",
         }
         all_leads.append(lead)
@@ -1555,11 +1635,14 @@ def main():
 
     all_leads.sort(key=lambda x: (x.get("priority") == "HOT", x["score"], bool(x["email"])), reverse=True)
     for lead in all_leads:
-        if lead.get("email") and not is_sendable_contact(lead) and lead.get("status") not in {"sent"}:
+        if lead.get("email") and (
+            not lead.get("email_verified") or not is_sendable_contact(lead)
+        ) and lead.get("status") not in {"sent"}:
             lead["status"] = "contact_not_verified"
     qualified = [
         x for x in all_leads
         if x.get("email")
+        and x.get("email_verified") is True
         and str(x.get("email", "")).strip().lower() not in permanently_rejected
         and int(x.get("score", 0) or 0) >= 20
         and is_sendable_contact(x)

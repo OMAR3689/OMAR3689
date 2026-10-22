@@ -252,5 +252,48 @@ class AgentTests(unittest.TestCase):
         save.assert_called_once_with(history)
 
 
+    def test_public_email_rejects_snippet_address_not_visible_on_official_page(self):
+        result = [{
+            "title": "Contact Alpha",
+            "url": "https://alpha.ma/contact",
+            "content": "contact@alpha.ma",
+        }]
+        with (
+            patch.object(agent, "search_web", return_value=(result, "bing-rss")),
+            patch.object(agent.sources, "polite_get", return_value="<html>No address here</html>"),
+        ):
+            self.assertEqual(agent.public_email("Alpha", "https://alpha.ma/"), ("", ""))
+
+    def test_public_email_accepts_exact_address_visible_on_official_page(self):
+        result = [{
+            "title": "Contact Alpha",
+            "url": "https://alpha.ma/contact",
+            "content": "contact@alpha.ma",
+        }]
+        with (
+            patch.object(agent, "search_web", return_value=(result, "bing-rss")),
+            patch.object(agent.sources, "polite_get", return_value="<html>Contact: contact@alpha.ma</html>"),
+        ):
+            self.assertEqual(
+                agent.public_email("Alpha", "https://alpha.ma/"),
+                ("contact@alpha.ma", "https://alpha.ma/contact"),
+            )
+
+    def test_seed_contact_is_not_verified_without_exact_official_page_evidence(self):
+        seed = {
+            "email": "contact@alpha.ma",
+            "url": "https://alpha.ma/",
+            "email_source_url": "https://alpha.ma/contact",
+        }
+        with patch.object(agent.sources, "polite_get", return_value="<html>sales@alpha.ma</html>"), \
+             patch.object(agent.sources, "find_official_contact_records", return_value=[]):
+            self.assertEqual(
+                agent.verify_public_email_source(
+                    seed["email"], seed["email_source_url"], seed["url"]
+                ),
+                "",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -62,6 +62,21 @@ class SourcesTests(unittest.TestCase):
             ],
         )
 
+    def test_placeholder_emails_are_never_valid_business_contacts(self):
+        for email in (
+            "exemple@gmail.com",
+            "example@example.ma",
+            "test@company.ma",
+            "demo@gmail.com",
+            "sample@company.ma",
+        ):
+            with self.subTest(email=email):
+                self.assertFalse(
+                    sources.is_public_business_email(
+                        email, site_domain="company.ma", allow_external_domain=True
+                    )
+                )
+
     def test_public_business_email_validator_blocks_non_sales_mailboxes(self):
         self.assertTrue(sources.is_public_business_email("export@example.ma", "example.ma"))
         self.assertTrue(sources.is_public_business_email("malika.ouchhal@example.ma", "example.ma"))
@@ -252,6 +267,27 @@ class SourcesTests(unittest.TestCase):
             "content": "Date limite de remise des plis : 01/01/2000",
         }
         self.assertIsNone(sources._parse_indexed_tender(item, "transport"))
+
+    def test_contact_crawler_visits_contact_page_even_when_homepage_has_an_email(self):
+        def fake_get(url):
+            if url == "https://example.ma/":
+                return (
+                    '<p>info@example.ma</p>'
+                    '<a href="/contact">Contact</a>'
+                )
+            if url == "https://example.ma/contact":
+                return "<p>commercial@example.ma</p>"
+            return None
+
+        with patch("sources.polite_get", side_effect=fake_get):
+            records = sources.find_official_contact_records(
+                "https://example.ma/", max_pages=4
+            )
+
+        self.assertIn("info@example.ma", [item["email"] for item in records])
+        self.assertIn("commercial@example.ma", [item["email"] for item in records])
+        source_map = {item["email"]: item["source_url"] for item in records}
+        self.assertEqual(source_map["commercial@example.ma"], "https://example.ma/contact")
 
     def test_official_email_record_includes_exact_source_page(self):
         html = "<html><body>info@example.ma</body></html>"

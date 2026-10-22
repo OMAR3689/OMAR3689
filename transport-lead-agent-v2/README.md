@@ -6,7 +6,8 @@ V2 researches Moroccan companies that may need transport/logistics services, rec
 - Manual workflow dispatch defaults to preview and offers an explicit send mode.
 - After an intentional, successful send-mode activation, each validated send run queues the next V2 cycle with a 90-second pause; actual cadence depends on the Actions run duration and GitHub queueing. The workflow does not guarantee an exact one-minute interval.
 - Sending is capped at 10 emails per run and 20 per rolling hour. If there are no new verified contacts, the run succeeds without sending. Explicit SMTP 4xx temporary rejections are put in a persistent retry queue and retried in the next cycle; permanent/non-transient failures remain visible as run errors.
-- Every candidate must have a public contact address found on its official HTTPS site. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
+- Every contact must be visibly found on an official HTTPS company page; a search-engine snippet alone is not sufficient. Placeholder/test addresses such as `exemple@gmail.com` are rejected, and the validation stage requires the explicit `email_verified=true` evidence flag.
+- The scoring rubric distinguishes direct stated transport intent from ordinary sector fit, so generic manufacturer pages no longer all receive a saturated score of 100. Public Gmail/Yahoo/Outlook addresses are permitted when visibly published there; role-based and named corporate mailboxes are also allowed unless they are automated, recruitment, privacy/legal, or pharmaceutical safety inboxes.
 - V2 writes prospect, contact-history, and public-tender data under `transport-lead-agent-v2/data/`.
 - The contact history is used to suppress repeat outreach to previously contacted addresses/domains.
 

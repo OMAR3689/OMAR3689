@@ -159,6 +159,7 @@ jobs:
                   urlparse(source).scheme != "https"
                   or not source_host
                   or source_host != company_host
+                  or lead.get("email_verified") is not True
                   or not sources.is_public_business_email(
                       email, site_domain=company_host, allow_external_domain=True
                   )
