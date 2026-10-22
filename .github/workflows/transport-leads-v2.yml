@@ -27,12 +27,16 @@ permissions:
   actions: write
 
 concurrency:
-  group: trmb-agent-v2
-  cancel-in-progress: false
+  # Keep real send cycles separate from disposable previews. A newer preview can
+  # replace an older preview, but it cannot cancel an active outreach cycle.
+  group: trmb-agent-v2-${{ ((github.event_name == 'workflow_dispatch' && inputs.mode == 'send') || (github.event_name == 'push' && contains(github.event.head_commit.message, '[send-v2]')) ) && 'send' || 'preview' }}
+  cancel-in-progress: ${{ (github.event_name == 'push' && !contains(github.event.head_commit.message, '[send-v2]')) || (github.event_name == 'workflow_dispatch' && inputs.mode != 'send') }}
 
 jobs:
   preview:
-    if: github.event_name == 'schedule' || github.ref == 'refs/heads/trmb-agent-v2'
+    # Code pushes are checked by the isolated CI workflow; only manual preview/send
+    # dispatches and an intentional [send-v2] activation run the discovery pipeline.
+    if: (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && contains(github.event.head_commit.message, '[send-v2]'))) && github.ref == 'refs/heads/trmb-agent-v2'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
