@@ -313,7 +313,7 @@ class SourcesTests(unittest.TestCase):
         }
         tender = sources._parse_indexed_tender(item, "transport")
         self.assertIsNotNone(tender)
-        self.assertEqual(tender["title"], "Transport de marchandises entre sites.")
+        self.assertEqual(tender["title"], "Transport de marchandises entre sites")
         self.assertEqual(tender["buyer"], "M6 / CTSA - Casablanca Transport en Site Aménagé SA")
         self.assertEqual(tender["deadline"], "31/12/2099")
         self.assertEqual(tender["source"], "Index public du Portail Marocain des Marchés Publics")
