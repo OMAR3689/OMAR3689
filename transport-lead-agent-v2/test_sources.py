@@ -1,6 +1,7 @@
 import sys
 import unittest
 import urllib.error
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
 
@@ -40,8 +41,18 @@ class SourcesTests(unittest.TestCase):
             self.assertFalse(sources.allowed_by_robots("https://example.ma/contact"))
 
     def test_robots_timeout_fails_closed(self):
-        with patch("sources.urllib.request.urlopen", side_effect=TimeoutError("timeout")):
+        with patch("sources.urllib.request.urlopen", side_effect=TimeoutError("timeout")), \\
+             patch("sources.time.sleep"):
             self.assertFalse(sources.allowed_by_robots("https://example.ma/contact"))
+
+    def test_robots_transient_timeout_retries_once_then_respects_published_rules(self):
+        allowed_rules = BytesIO(b"User-agent: *\\nAllow: /\\n")
+        with patch(
+            "sources.urllib.request.urlopen",
+            side_effect=[TimeoutError("transient timeout"), allowed_rules],
+        ) as mocked, patch("sources.time.sleep"):
+            self.assertTrue(sources.allowed_by_robots("https://example.ma/contact"))
+            self.assertEqual(mocked.call_count, 2)
 
     def test_public_business_emails_from_official_domain_include_role_and_named_addresses(self):
         html = """
