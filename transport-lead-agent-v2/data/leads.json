@@ -1,37 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T09:02:27.710424+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
-    "email": "baaouchbrahim@gmail.com",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "bing-rss",
-    "email_source_url": "https://bau-industrie.com/services/industriel/",
-    "status": "sent",
-    "sent_at": "2026-10-22T09:03:25.757787+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T09:01:36.246388+00:00",
-    "company": "Acceuil - KPH",
-    "email": "",
-    "domain": "kph.ma",
-    "url": "https://www.kph.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "pharmaceutique",
-    "score": 100,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T09:02:18.978040+00:00",
+    "timestamp": "2026-10-22T09:06:53.490900+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
