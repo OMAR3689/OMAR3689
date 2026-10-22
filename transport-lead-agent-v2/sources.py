@@ -652,7 +652,7 @@ def _parse_indexed_tender(item, keyword):
         term in normalized_description for term in title_relevance_terms
     )
 
-    known_keywords = {_normal_text(term) for term in MP_KEYWORDS}
+    known_keywords = {_normal_text(term) for term in (*MP_KEYWORDS, *MP_INDEX_EXTRA_KEYWORDS)}
     if _normal_text(keyword) not in known_keywords:
         return None
     if any(marker in normal for marker in (
