@@ -291,7 +291,12 @@ class AgentTests(unittest.TestCase):
             "AL AYYAR Metal Industry",
             "Promachines",
             "Moroccan Iron Steel",
+            "Managem Group",
+            "COLORADO S.A.",
         }.issubset(seeded_names))
+        seed_by_name = {item["company"]: item for item in agent.SEEDED_PUBLIC_CONTACTS}
+        self.assertEqual(seed_by_name["Managem Group"]["email"], "procurement@managemgroup.com")
+        self.assertEqual(seed_by_name["COLORADO S.A."]["email"], "contact@colorado.ma")
         for contact in agent.SEEDED_PUBLIC_CONTACTS:
             with self.subTest(company=contact["company"]):
                 self.assertTrue(contact.get("email"))
