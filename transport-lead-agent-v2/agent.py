@@ -1844,9 +1844,14 @@ def save_tender_files(items):
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         writer.writerows(archived)
+    needs_verification = sum(
+        1 for item in archived
+        if str(item.get("status", "")).endswith("a_verifier")
+    )
     print(
         f"📑 Current run found {len(items)} tender candidate(s); "
-        f"{len(archived)} active official notices remain in the archive."
+        f"{len(archived)} official notices remain in the archive; "
+        f"{needs_verification} deadline(s) unknown or requiring verification."
     )
 
 
