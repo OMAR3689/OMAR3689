@@ -16,23 +16,7 @@
     "email_verified": false
   },
   {
-    "timestamp": "2026-10-22T14:35:08.930754+00:00",
-    "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
-    "email": "",
-    "domain": "ckmafrica.com",
-    "url": "https://ckmafrica.com/ckma-equipements-industriels-maroc-fournisseur-industriel-maroc",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution industrielle",
-    "score": 30,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T14:36:07.239048+00:00",
+    "timestamp": "2026-10-22T14:41:21.498465+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -42,29 +26,13 @@
     "score": 30,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:34:47.766271+00:00",
-    "company": "Total emballages | le premier distributeur du plastic au Maroc",
-    "email": "",
-    "domain": "totalemballages.com",
-    "url": "https://www.totalemballages.com/",
-    "need": "transport et logistique",
-    "sector_hint": "emballage / industrie",
-    "score": 25,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T14:35:45.056979+00:00",
+    "timestamp": "2026-10-22T14:41:00.653673+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "",
     "domain": "tacindustrie.ma",
@@ -74,13 +42,13 @@
     "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "ddgs",
+    "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:34:23.580485+00:00",
+    "timestamp": "2026-10-22T14:39:33.140565+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
@@ -94,5 +62,21 @@
     "email_source_url": "https://marocemballage.ma/contact/",
     "email_verified": true,
     "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T14:41:25.431459+00:00",
+    "company": "Smart Import Technologie | Solutions industrielles au Maroc",
+    "email": "smartimporttechnology@gmail.com",
+    "domain": "smart-import.tech",
+    "url": "http://smart-import.tech/",
+    "need": "transport et logistique",
+    "sector_hint": "distribution industrielle",
+    "score": 15,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "http://smart-import.tech/",
+    "email_verified": true,
+    "status": "contact_not_verified"
   }
 ]
