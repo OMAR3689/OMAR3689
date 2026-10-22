@@ -17,6 +17,7 @@ from urllib.request import Request, urlopen
 OUT_DIR = os.path.join(os.path.dirname(__file__), "data")
 HISTORY_FILE = os.path.join(OUT_DIR, "contacted.json")
 PENDING_RETRY_KEY = "_pending_retry_queue"
+PERMANENT_REJECTS_KEY = "_permanent_rejects"
 LEADS_JSON = os.path.join(OUT_DIR, "leads.json")
 LEADS_CSV = os.path.join(OUT_DIR, "leads.csv")
 TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
@@ -1009,7 +1010,7 @@ def build_contact_suppression(history):
 
     for key, value in history.items():
         # Retry queue is operational state, not proof that a recipient/domain was contacted.
-        if key == PENDING_RETRY_KEY:
+        if key in {PENDING_RETRY_KEY, PERMANENT_REJECTS_KEY}:
             continue
         register(key)
         if isinstance(value, dict):
@@ -1042,6 +1043,30 @@ def is_transient_smtp_failure(detail):
     """True only for explicit SMTP 4xx responses, which are temporary by protocol."""
     codes = [int(code) for code in re.findall(r"(?<!\d)(4\d{2})(?!\d)", str(detail or ""))]
     return any(400 <= code < 500 for code in codes)
+
+
+def is_permanent_recipient_rejection(detail, email):
+    """Detect a recipient-specific 550-559 refusal without misclassifying SMTP auth errors."""
+    message = str(detail or "").lower()
+    address = str(email or "").strip().lower()
+    if not address or address not in message:
+        return False
+    codes = [int(code) for code in re.findall(r"(?<!\d)(5\d{2})(?!\d)", message)]
+    return any(550 <= code <= 559 for code in codes)
+
+
+def get_permanently_rejected_emails(history):
+    """Return only explicit permanent recipient refusals from persisted V2 state."""
+    raw = history.get(PERMANENT_REJECTS_KEY, [])
+    if not isinstance(raw, list):
+        return set()
+    out = set()
+    for item in raw:
+        value = item.get("email", "") if isinstance(item, dict) else item
+        email = str(value or "").strip().lower()
+        if "@" in email:
+            out.add(email)
+    return out
 
 
 def count_sends_in_last_hour(history, now=None):
@@ -1332,6 +1357,7 @@ def main():
     history = load_history()
     contacted, contacted_domains = build_contact_suppression(history)
 
+    permanently_rejected = get_permanently_rejected_emails(history)
     pending_queue = {}
     stored_pending = history.get(PENDING_RETRY_KEY, [])
     if isinstance(stored_pending, list):
@@ -1500,7 +1526,10 @@ def main():
             lead["status"] = "contact_not_verified"
     qualified = [
         x for x in all_leads
-        if x.get("email") and int(x.get("score", 0) or 0) >= 20 and is_sendable_contact(x)
+        if x.get("email")
+        and str(x.get("email", "")).strip().lower() not in permanently_rejected
+        and int(x.get("score", 0) or 0) >= 20
+        and is_sendable_contact(x)
     ]
     if not DRY_RUN:
         missing = [
@@ -1532,6 +1561,7 @@ def main():
     planned = 0
     smtp_failures = 0
     smtp_deferred = 0
+    smtp_rejected = 0
     print(f"Mode V2: DRY_RUN={DRY_RUN} (true = preview only; no email sent)")
     sent_last_hour = count_sends_in_last_hour(history)
     if sent_last_hour >= MAX_EMAILS_PER_HOUR:
@@ -1598,12 +1628,19 @@ def main():
                 }
                 pending_queue[email]["status"] = "smtp_retry_pending"
                 print(f"⏳ Temporary SMTP rejection for {email}; safely deferred to the next V2 cycle: {detail}")
+            elif is_permanent_recipient_rejection(detail, email):
+                pending_queue.pop(email, None)
+                permanently_rejected.add(email)
+                smtp_rejected += 1
+                lead["status"] = "smtp_rejected"
+                lead["smtp_rejection"] = detail
+                print(f"⛔ Recipient rejected permanently by SMTP; suppressing {email}: {detail}")
             else:
                 pending_queue.pop(email, None)
                 smtp_failures += 1
                 lead["status"] = "smtp_error"
                 lead["smtp_error"] = detail
-                print(f"⚠️ Permanent/non-transient SMTP failure for {email}: {detail}")
+                print(f"⚠️ SMTP/service failure for {email}: {detail}")
 
     with open(LEADS_JSON, "w", encoding="utf-8") as f:
         json.dump(all_leads, f, ensure_ascii=False, indent=2)
@@ -1615,12 +1652,15 @@ def main():
         writer.writerows(all_leads)
 
     history[PENDING_RETRY_KEY] = list(pending_queue.values())
+    history[PERMANENT_REJECTS_KEY] = sorted(permanently_rejected)
     save_history(history)
     print(
         f"Searched {len(QUERIES)} queries ({', '.join(f'{k}={v}' for k, v in source_counts.items())}); "
         f"Found {len(all_leads)} buyer leads; qualified {len(qualified)}; previewed {planned}; attempts {attempted}; "
         f"sent {sent} emails; permanent SMTP failures {smtp_failures}; "
         f"temporary SMTP retries deferred {smtp_deferred}; "
+        f"permanent recipient rejections suppressed {smtp_rejected}; "
+        f"persisted permanent rejects {len(permanently_rejected)}; "
         f"pending retry queue {len(pending_queue)}; "
         f"no email {sum(1 for x in all_leads if not x.get('email'))}"
     )

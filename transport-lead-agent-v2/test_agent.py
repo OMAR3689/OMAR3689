@@ -39,6 +39,32 @@ class AgentTests(unittest.TestCase):
         self.assertFalse(agent.is_transient_smtp_failure("(535, b'Authentication failed')"))
         self.assertFalse(agent.is_transient_smtp_failure("SMTP credentials not configured"))
 
+    def test_permanent_recipient_rejection_is_suppressed_but_smtp_auth_is_not(self):
+        self.assertTrue(
+            agent.is_permanent_recipient_rejection(
+                "{'bad@company.ma': (550, b'Mailbox unavailable')}",
+                "bad@company.ma",
+            )
+        )
+        self.assertFalse(
+            agent.is_permanent_recipient_rejection(
+                "{'bad@company.ma': (535, b'Authentication failed')}",
+                "bad@company.ma",
+            )
+        )
+        self.assertFalse(
+            agent.is_permanent_recipient_rejection(
+                "{'other@company.ma': (550, b'Mailbox unavailable')}",
+                "bad@company.ma",
+            )
+        )
+        self.assertEqual(
+            agent.get_permanently_rejected_emails({
+                agent.PERMANENT_REJECTS_KEY: ["bad@company.ma", {"email": "dead@company.ma"}]
+            }),
+            {"bad@company.ma", "dead@company.ma"},
+        )
+
     def test_retry_queue_does_not_mark_candidate_as_already_contacted(self):
         pending = [{
             "company": "Alpha Food",
