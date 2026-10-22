@@ -19,10 +19,12 @@ class AgentTests(unittest.TestCase):
             "url": "https://alphafood.ma/contact",
             "content": "Fabricant agroalimentaire et distribution au Maroc",
         }], "bing-rss")
-        with patch.object(agent, "ddgs_search", return_value=directory_results[0]), \\
-             patch.object(agent, "bing_rss_search", return_value=company_results[0]), \\
-             patch.object(agent, "ddg_html_search", return_value=[]), \\
-             patch.object(agent, "searxng_search", return_value=[]):
+        with (
+            patch.object(agent, "ddgs_search", return_value=directory_results[0]),
+            patch.object(agent, "bing_rss_search", return_value=company_results[0]),
+            patch.object(agent, "ddg_html_search", return_value=[]),
+            patch.object(agent, "searxng_search", return_value=[]),
+        ):
             results, source = agent.search_web("fabricants agroalimentaires Maroc")
         self.assertEqual(source, "bing-rss")
         self.assertEqual([item["url"] for item in results], ["https://alphafood.ma/contact"])
