@@ -481,14 +481,21 @@ def _tender_search_url(keyword):
 
 
 def _is_transport_service_tender(tender):
-    """Reject public purchases where delivery is incidental to unrelated goods."""
+    """Reject unrelated goods, asset sales, and vehicle auctions from service-tender results."""
     title = _normal_text(str(tender.get("title", "") or ""))
+    non_service_sale_signals = (
+        "avis de vente publique", "vente publique des vehicules",
+        "vente publique de vehicules", "vente aux encheres",
+        "mise en vente", "cession de vehicules", "cession des vehicules",
+        "vehicules et materiels divers administratifs reformes",
+        "vehicules reformes", "materiels reformes",
+    )
     irrelevant_goods_signals = (
         "titres de transport", "billets sans contact", "supports de communication",
         "support de communication", "climatiseur", "climatiseurs",
         "stores enrouleurs", "switchs",
     )
-    if any(signal in title for signal in irrelevant_goods_signals):
+    if any(signal in title for signal in (*non_service_sale_signals, *irrelevant_goods_signals)):
         return False
     service_terms = (
         "transport", "logistique", "convoyage", "flotte", "marchandises",
