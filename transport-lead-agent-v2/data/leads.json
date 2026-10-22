@@ -16,7 +16,24 @@
     "email_verified": false
   },
   {
-    "timestamp": "2026-10-22T14:09:55.935902+00:00",
+    "timestamp": "2026-10-22T14:14:33.360832+00:00",
+    "company": "Les meilleures solutions d'emballage et de protection e ...",
+    "email": "suivis@cartoncom.ma",
+    "domain": "cartoncom.ma",
+    "url": "https://cartoncom.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "emballage / industrie",
+    "score": 30,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://cartoncom.ma/",
+    "email_verified": true,
+    "status": "sent",
+    "sent_at": "2026-10-22T14:16:17.169836+00:00"
+  },
+  {
+    "timestamp": "2026-10-22T14:15:17.114493+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
     "domain": "ckmafrica.com",
@@ -32,7 +49,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:10:32.055491+00:00",
+    "timestamp": "2026-10-22T14:16:02.362949+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -48,7 +65,23 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:10:09.418928+00:00",
+    "timestamp": "2026-10-22T14:14:57.306477+00:00",
+    "company": "Total emballages | le premier distributeur du plastic au Maroc",
+    "email": "",
+    "domain": "totalemballages.com",
+    "url": "https://www.totalemballages.com/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 25,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T14:15:37.312548+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "",
     "domain": "tacindustrie.ma",
@@ -64,7 +97,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T14:09:37.135109+00:00",
+    "timestamp": "2026-10-22T14:14:16.651303+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
