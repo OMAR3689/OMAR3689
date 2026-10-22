@@ -715,7 +715,10 @@
       "source": "verified-official-contact-fallback",
       "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
       "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}",
-      "status": "smtp_retry_pending"
+      "status": "dry_run_preview",
+      "email_verified": true,
+      "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+      "preview_note": "Preview only; not sent. Activate sending only after V2 review."
     }
   ],
   "_permanent_rejects": [],

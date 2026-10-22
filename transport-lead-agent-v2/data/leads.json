@@ -1,5 +1,1260 @@
 [
   {
+    "company": "Garden Expresse Maroc | Site officiel transport & logistique",
+    "email": "contact@gardenexpresse.com",
+    "domain": "gardenexpresse.com",
+    "url": "https://www.gardenexpresse.com",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T03:48:32.668087+00:00"
+  },
+  {
+    "company": "Transport marchandises Casablanca rapide et assuré",
+    "email": "contact@transportmarchandise.com",
+    "domain": "transportmarchandise.com",
+    "url": "https://transportmarchandise.com",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T04:01:07.664970+00:00"
+  },
+  {
+    "company": "Agroalimentaire Maroc | Télécontact - Référence des professionnels",
+    "email": "commercial@telecontact.ma",
+    "domain": "telecontact.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:29:25.350932+00:00"
+  },
+  {
+    "company": "IDJM TRANSPORT | Transport de marchandises & Déménagement au Maroc",
+    "email": "contact@idjmtrans.ma",
+    "domain": "idjmtrans.ma",
+    "url": "https://idjmtrans.ma",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:09:04.927106+00:00"
+  },
+  {
+    "company": "Solutions — transport professionnel au Maroc",
+    "email": "contact@salis-services.com",
+    "domain": "salis-services.com",
+    "url": "https://salis-services.com/fr/solutions.html",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:09:06.566776+00:00"
+  },
+  {
+    "company": "Transport France Maroc : la solution Flexatrans - Flexatrans - Flexatrans",
+    "email": "contact@flexatrans.eu",
+    "domain": "colis.flexatrans.eu",
+    "url": "https://colis.flexatrans.eu/details-transport+france+maroc+la+solution+flexatrans-1810",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:09:08.211159+00:00"
+  },
+  {
+    "company": "Transport international routier Maroc – Belgique",
+    "email": "boumara@boumaratrans.com",
+    "domain": "boumaratrans.com",
+    "url": "https://www.boumaratrans.com/transport-routier-international-maroc-europe-maroc/maroc-belgique-maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:09:09.809456+00:00"
+  },
+  {
+    "company": "Transport de marchandises Maroc - TCL Transport",
+    "email": "contact@tcl.ma",
+    "domain": "tcltransport.com",
+    "url": "https://tcltransport.com/transport-marchandise-maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:30:28.332977+00:00"
+  },
+  {
+    "company": "Entreprises Transports et logistique en Maroc - Kompass",
+    "email": "madonna@huaxialed.com",
+    "domain": "ma.kompass.com",
+    "url": "https://ma.kompass.com/s/transports-et-logistique/10",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:30:29.916055+00:00"
+  },
+  {
+    "company": "Appels d'offres qualification D.8 — marchés publics | AO Maroc",
+    "email": "notifs@aomaroc.com",
+    "domain": "aomaroc.com",
+    "url": "https://www.aomaroc.com/offres/qualification/d-8.html",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:49:16.926048+00:00"
+  },
+  {
+    "company": "Système de transport au Maroc | PDF | Finance et gestion monétaire",
+    "email": "info@bestwebsite.com",
+    "domain": "fr.scribd.com",
+    "url": "https://fr.scribd.com/presentation/709797155/Systeme-de-transport-au-Maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:49:19.824136+00:00"
+  },
+  {
+    "company": "Autorisations de transport de marchandises - OFT",
+    "email": "lizenz@bav.admin.ch",
+    "domain": "bav.admin.ch",
+    "url": "https://www.bav.admin.ch/fr/autorisations-de-transport-de-marchandises",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T18:49:22.686739+00:00"
+  },
+  {
+    "company": "Maroc: Ezzal, la startup dédiée au transport de marchandises en Afrique. | Startup Medias",
+    "email": "feedback@startupblink.com",
+    "domain": "startupmedias.net",
+    "url": "https://startupmedias.net/articles/maroc-ezzal-la-startup-dediee-au-transport-de-marchandises-en-afrique",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T19:22:51.943541+00:00"
+  },
+  {
+    "company": "Transport du Personnel au Maroc - Comfort Gateway",
+    "email": "contact@comfortgateway.ma",
+    "domain": "comfortgateway.ma",
+    "url": "https://comfortgateway.ma/transport-du-personnel-maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T19:22:55.068907+00:00"
+  },
+  {
+    "company": "Transport maritime au Maroc 2026 : guide complet pour chargeurs | FreshTrack",
+    "email": "info@freshtrack.ma",
+    "domain": "freshtrack.ma",
+    "url": "https://www.freshtrack.ma/fr/blog/maritime-transport-morocco",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T19:22:58.034793+00:00"
+  },
+  {
+    "company": "Fournisseurs Transport Maroc | Procurement.ma | Procurement.ma",
+    "email": "contact@procurement.ma",
+    "domain": "procurement.ma",
+    "url": "https://procurement.ma/fournisseurs/transport",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:05:11.217777+00:00"
+  },
+  {
+    "company": "Transport de Personnel à Agadir | Navettes Entreprises & Usines - TILDI TOURS",
+    "email": "contact@tilditours.ma",
+    "domain": "tilditours.ma",
+    "url": "https://www.tilditours.ma/transport-personnel.html",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:05:14.205114+00:00"
+  },
+  {
+    "company": "Société Import Export Maroc - Transitaire,Transport,Dédouanement Maroc",
+    "email": "devis@innovaimport.ma",
+    "domain": "innovaimport.ma",
+    "url": "https://innovaimport.ma/societe-import-export-maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:05:16.778934+00:00"
+  },
+  {
+    "company": "Transport marchandises Maroc | MSO TRANSPORTS",
+    "email": "contact@msotransports.com",
+    "domain": "msotransports.com",
+    "url": "https://msotransports.com/zones-de-transport-mso/transport-marchandises-maroc",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:05:22.483801+00:00"
+  },
+  {
+    "company": "Marché de la logistique au Maroc - Taille, part et analyse",
+    "email": "info@mordorintelligence.com",
+    "domain": "mordorintelligence.com",
+    "url": "https://www.mordorintelligence.com/fr/industry-reports/morocco-freight-and-logistics-market",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:05:34.826874+00:00"
+  },
+  {
+    "company": "Apple (AAPL) Stock Price & Overview",
+    "email": "support@stockanalysis.com",
+    "domain": "stockanalysis.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:51:13.271888+00:00"
+  },
+  {
+    "company": "Apple - AAPL - Stock Price Today - Zacks",
+    "email": "support@zacks.com",
+    "domain": "zacks.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:51:14.801278+00:00"
+  },
+  {
+    "company": "Apple (AAPL) Stock Price, News & Analysis - MarketBeat",
+    "email": "contact@marketbeat.com",
+    "domain": "marketbeat.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T20:51:16.394678+00:00"
+  },
+  {
+    "company": "Ciments du Maroc",
+    "email": "commercial@cimar.co.ma",
+    "domain": "cimentsdumaroc.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:05:21.875132+00:00"
+  },
+  {
+    "company": "Sothema",
+    "email": "sothema@sothema.ma",
+    "domain": "sothema.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:05:23.194893+00:00"
+  },
+  {
+    "company": "MAROC PET FOOD",
+    "email": "contact@marocpetfood.ma",
+    "domain": "marocpetfood.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:05:24.815159+00:00"
+  },
+  {
+    "company": "Imany Food",
+    "email": "contact@imanyfood.com",
+    "domain": "imanyfood.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:05:26.262372+00:00"
+  },
+  {
+    "company": "Al Halabi Food",
+    "email": "contact@alhalabi.ma",
+    "domain": "alhalabi.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:05:27.598445+00:00"
+  },
+  {
+    "company": "Framaco",
+    "email": "commercial@conserverieframaco.com",
+    "domain": "conserverieframaco.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:10:56.801028+00:00"
+  },
+  {
+    "company": "FinaAfric",
+    "email": "contact@finaafric.com",
+    "domain": "finaafric.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:12:13.578571+00:00"
+  },
+  {
+    "company": "Primasource Maroc",
+    "email": "contact@primasourcemaroc.com",
+    "domain": "primasourcemaroc.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:12:15.381662+00:00"
+  },
+  {
+    "company": "Copima - Garant de la Mobilité au Maroc",
+    "email": "contact@copima.ma",
+    "domain": "copima.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:22:39.263478+00:00"
+  },
+  {
+    "company": "Le Comptoir Des Pièces De Rechange Automobiles | La Qualité ...",
+    "email": "info@gsp.co.ma",
+    "domain": "gsp.co.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:22:40.957168+00:00"
+  },
+  {
+    "company": "EG Groupe Maroc | Grossiste, Importateur & Distributeur de ...",
+    "email": "contact@eggroupe.com",
+    "domain": "eggroupe.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:22:42.674098+00:00"
+  },
+  {
+    "company": "DistriShelf | Importateur et distributeur alimentaire au Maroc",
+    "email": "contact@distrishelf.ma",
+    "domain": "distrishelf.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:22:44.341768+00:00"
+  },
+  {
+    "company": "Pharmis",
+    "email": "contact@pharmis.ma",
+    "domain": "pharmis.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-20T21:22:45.852846+00:00"
+  },
+  {
+    "company": "Fabrication mécanique Maroc - Précision et Usinage Industriel",
+    "email": "contact@giga-steel.ma",
+    "domain": "giga-steel.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T02:22:38.669527+00:00"
+  },
+  {
+    "company": "RZ Industrie - Solution Globale en usinage industriel.",
+    "email": "contact@rzindustrie.ma",
+    "domain": "rzindustrie.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T02:22:43.676471+00:00"
+  },
+  {
+    "company": "Listes établissements agrées/autorisés - ONSSA",
+    "email": "contact@onssa.gov.ma",
+    "domain": "onssa.gov.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T02:22:49.438738+00:00"
+  },
+  {
+    "company": "Waimarie SARL - Société commerciale de Casablanca, Maroc",
+    "email": "bonjour@waimarie.ma",
+    "domain": "waimarie.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T03:10:16.603059+00:00"
+  },
+  {
+    "company": "BUSINEX IMPORT EXPORT & CONSULTING – Porte à porte tout compris !",
+    "email": "contact@businex.ma",
+    "domain": "businex.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T03:10:20.705795+00:00"
+  },
+  {
+    "company": "Tourtra - Entreprise de Construction & BTP au Maroc",
+    "email": "contact@tourtra.ma",
+    "domain": "tourtra.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T03:10:25.060268+00:00"
+  },
+  {
+    "company": "Contact - Laprophan",
+    "email": "contact@laprophan.com",
+    "domain": "laprophan.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T03:10:29.351958+00:00"
+  },
+  {
+    "company": "chopinos – Sté Marocaine De Distribution",
+    "email": "administratif@chopinos.ma",
+    "domain": "chopinos.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T03:10:33.653367+00:00"
+  },
+  {
+    "company": "MIA Hôtels – Votre expérience hôtelière d’exception au Maroc",
+    "email": "sales@mia-hotels.com",
+    "domain": "mia-hotels.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T08:22:58.671545+00:00"
+  },
+  {
+    "company": "Morocco All Inclusive Hotels",
+    "email": "info@kenzi-hotels.com",
+    "domain": "kenzi-hotels.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T08:23:04.236864+00:00"
+  },
+  {
+    "company": "Accueil - RISMA",
+    "email": "houda.skali@risma.com",
+    "domain": "risma.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T08:23:09.070982+00:00"
+  },
+  {
+    "company": "Mekaudis | Importation et Distribution de Pièces Automobiles au Maroc",
+    "email": "contact@mekaudis.ma",
+    "domain": "mekaudis.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T14:03:40.541111+00:00"
+  },
+  {
+    "company": "Industriel.ma – Solutions industrielles au Maroc ...",
+    "email": "contact@industriel.ma",
+    "domain": "industriel.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T14:03:44.340201+00:00"
+  },
+  {
+    "company": "Conserves Nora",
+    "email": "contact@norafood.com",
+    "domain": "norafood.net",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T22:11:52.688705+00:00"
+  },
+  {
+    "company": "Contactez-Nous - maphar.ma",
+    "email": "contact@maphar.ma",
+    "domain": "maphar.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:27.817948+00:00"
+  },
+  {
+    "company": "Oland Group",
+    "email": "contact@olandgroup.ma",
+    "domain": "olandgroup.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:33.767998+00:00"
+  },
+  {
+    "company": "Remora",
+    "email": "m.filali@remora.ma",
+    "domain": "remora.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:39.496021+00:00"
+  },
+  {
+    "company": "Industrial Manufacturing and Services Maroc",
+    "email": "info@imsmaroc.ma",
+    "domain": "imsmaroc.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:45.868556+00:00"
+  },
+  {
+    "company": "MACOBATE",
+    "email": "contact@macobate.com",
+    "domain": "macobate.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:51.642201+00:00"
+  },
+  {
+    "company": "Comptoir Équipements Industriel Maroc",
+    "email": "contact@cei.ma",
+    "domain": "cei.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:39:57.972653+00:00"
+  },
+  {
+    "company": "MTN Maroc",
+    "email": "contact@mtn.co.ma",
+    "domain": "mtn.co.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:40:04.101514+00:00"
+  },
+  {
+    "company": "Concept Industries",
+    "email": "info@concept-industries.ma",
+    "domain": "concept-industries.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:40:10.121285+00:00"
+  },
+  {
+    "company": "Agrimatco Maroc",
+    "email": "agrimatco.maroc@agrimatco-af.com",
+    "domain": "agrimatco.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:40:15.747215+00:00"
+  },
+  {
+    "company": "MEGA SOURCINGINDUSTRY",
+    "email": "commercial@megasourcingindustry.ma",
+    "domain": "megaindustry.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:40:21.321662+00:00"
+  },
+  {
+    "company": "APRO INDUSTRIE",
+    "email": "contact@apro-industrie.ma",
+    "domain": "apro-industrie.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-21T23:40:26.726892+00:00"
+  },
+  {
+    "company": "Yam Distribution – Fournisseur & distributeur CHR à Marrakech ...",
+    "email": "contact@yamdistribution.com",
+    "domain": "yamdistribution.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T00:33:43.713386+00:00"
+  },
+  {
+    "company": "Laboratoires BOTTU > Contact",
+    "email": "contact@bottu.com",
+    "domain": "bottu.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T00:33:49.342317+00:00"
+  },
+  {
+    "company": "Padauto - Parc d'équipement automobile",
+    "email": "contact@padauto.ma",
+    "domain": "padauto.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T01:12:05.454578+00:00"
+  },
+  {
+    "company": "UNITED CONSTRUCTION",
+    "email": "contact@unitedconstruction.ma",
+    "domain": "unitedconstruction.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T01:16:39.909070+00:00"
+  },
+  {
+    "company": "SICATGB S.A.R.L - Construction et BTP au Maroc",
+    "email": "contact@sicatgb.com",
+    "domain": "sicatgb.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T01:21:31.878775+00:00"
+  },
+  {
+    "company": "FENAGRI - Fédération nationale de l'agroalimentaire",
+    "email": "fenagri@fenagri.org",
+    "domain": "fenagri.org",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T01:21:36.656390+00:00"
+  },
+  {
+    "company": "Tuyauto — Équipementier Automobile",
+    "email": "contact@tuyauto.ma",
+    "domain": "tuyauto.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T01:37:00.741686+00:00"
+  },
+  {
+    "company": "cooperpharma – cooper pharma",
+    "email": "contact@cooperpharma.ma",
+    "domain": "cooperpharma.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T02:23:05.573307+00:00"
+  },
+  {
+    "company": "GV Industrie — Machines spéciales, soudure, laser, usinage | Maroc",
+    "email": "admini@gv-industrie.fr",
+    "domain": "gv-industrie.fr",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T02:38:28.240373+00:00"
+  },
+  {
+    "company": "QHP Industry — Solutions industrielles & négoce · Maroc",
+    "email": "contact@qhpindustry.com",
+    "domain": "qhpindustry.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T02:38:31.991039+00:00"
+  },
+  {
+    "company": "CAPRAM",
+    "email": "contact@capram.ma",
+    "domain": "capram.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T03:32:59.727029+00:00"
+  },
+  {
+    "company": "GIPAM - Groupement Interprofessionnel de L’Automobile au Maroc",
+    "email": "contact@gipam-maroc.ma",
+    "domain": "gipam-maroc.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:18:11.938781+00:00"
+  },
+  {
+    "company": "Grossiste Alimentaire Maroc & Afrique | AGRO FOOD INDUSTRIE",
+    "email": "bmontier@agrofoodindustrie.com",
+    "domain": "agrofoodindustrie.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:27:29.777710+00:00"
+  },
+  {
+    "company": "Nos sites - Cimat",
+    "email": "contact@cimat.ma",
+    "domain": "cimat.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:53:34.717714+00:00"
+  },
+  {
+    "company": "Commerce International Maroc – Votre partenaire pour réussir ...",
+    "email": "contact@commerceinternationalmaroc.com",
+    "domain": "commerceinternationalmaroc.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T06:21:13.428863+00:00"
+  },
+  {
+    "company": "SIPPO",
+    "email": "mohamed.tounassi@sippo.ma",
+    "domain": "sippo.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T06:25:31.749162+00:00"
+  },
+  {
+    "company": "BATIPRO BTP CONSULTING — Construction & bâtiment au Maroc",
+    "email": "contact@batiprobtp.ma",
+    "domain": "batiprobtp.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T06:36:11.443422+00:00"
+  },
+  {
+    "company": "Entrepôts - Rayonnage Maroc & Stockage - Kollirama Maroc",
+    "email": "contact@kollirama.ma",
+    "domain": "kollirama.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T06:56:22.264161+00:00"
+  },
+  {
+    "company": "Rayonnage Maroc - Produits de stockage - maghreb rayonnage",
+    "email": "contact@maghreb-rayonnage.ma",
+    "domain": "maghreb-rayonnage.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:11:59.342164+00:00"
+  },
+  {
+    "company": "CONTACT - zenithpharma.ma",
+    "email": "contact@zenithpharma.ma",
+    "domain": "zenithpharma.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:22:29.705843+00:00"
+  },
+  {
+    "company": "sodirep",
+    "email": "sodirep@sodirep.ma",
+    "domain": "sodirep.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:37:47.170107+00:00"
+  },
+  {
+    "company": "ACCUEIL - Glo Foods - GloFoods",
+    "email": "contact@glofoods.ma",
+    "domain": "glofoods.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T08:14:36.605047+00:00"
+  },
+  {
+    "company": "Accueil - ALH Hospitality",
+    "email": "recrutement@alh-hospitality.ma",
+    "domain": "alh-hospitality.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T08:24:28.712737+00:00"
+  },
+  {
+    "company": "Arzaki Distribution",
+    "email": "contact@arzaki.ma",
+    "domain": "arzaki.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T08:35:03.108885+00:00"
+  },
+  {
+    "company": "Entrepôts & 3PL au Maroc — supplychain.ma",
+    "email": "contact@supplychain.ma",
+    "domain": "supplychain.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T09:08:05.289177+00:00"
+  },
+  {
+    "company": "Home - COPRALIM",
+    "email": "helpdesk@copralim.ma",
+    "domain": "copralim.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T09:39:34.826816+00:00"
+  },
+  {
+    "company": "Société d'Import-Export au Maroc | ESSGAL IMPORT",
+    "email": "info@essgalimport.ma",
+    "domain": "essgalimport.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:17:47.466139+00:00"
+  },
+  {
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
+    "email": "info@hangarmaroc.com",
+    "domain": "hangarmaroc.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:51:40.096914+00:00"
+  },
+  {
+    "company": "Zalar Holding",
+    "email": "info@zalar.ma",
+    "domain": "zalar.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:20.526555+00:00"
+  },
+  {
+    "company": "DISLOG Group",
+    "email": "contact@dislogroup.ma",
+    "domain": "dislogroup.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:25.633304+00:00"
+  },
+  {
+    "company": "Maroc Ingrédients",
+    "email": "info@marocingredients.com",
+    "domain": "marocingredients.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:30.500336+00:00"
+  },
+  {
+    "company": "SIOF",
+    "email": "info@siofgroup.com",
+    "domain": "siofgroup.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:34.988931+00:00"
+  },
+  {
+    "company": "Mutandis",
+    "email": "contact@mutandis.com",
+    "domain": "mutandis.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:40.075189+00:00"
+  },
+  {
+    "company": "COPAG",
+    "email": "info@copag.ma",
+    "domain": "copag.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:45.118307+00:00"
+  },
+  {
+    "company": "ABC Dis",
+    "email": "contact@abcdis.ma",
+    "domain": "abcdis.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:50.053417+00:00"
+  },
+  {
+    "company": "TBI Maroc",
+    "email": "info@tbi.ma",
+    "domain": "tbi.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:54.799564+00:00"
+  },
+  {
+    "company": "SOFALIM",
+    "email": "contact@sofalim.ma",
+    "domain": "sofalim.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:45:59.907081+00:00"
+  },
+  {
+    "company": "Alimexia",
+    "email": "contact@alimexia.ma",
+    "domain": "alimexia.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:46:04.443029+00:00"
+  },
+  {
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "bumageco@gmail.com",
+    "domain": "bumageco.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:57:49.302541+00:00"
+  },
+  {
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "globaldis@gmail.com",
+    "domain": "globaldis.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:57:53.942325+00:00"
+  },
+  {
+    "company": "TOFCO MAROC",
+    "email": "tofcomaroc@gmail.com",
+    "domain": "tofco-maroc.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:57:58.271752+00:00"
+  },
+  {
+    "company": "M.C.I.P",
+    "email": "contact.mcip@gmail.com",
+    "domain": "mcip.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:58:02.882863+00:00"
+  },
+  {
+    "company": "MPG INDUSTRIE",
+    "email": "mpg.morocco@gmail.com",
+    "domain": "mpg-industrie.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T04:58:07.273334+00:00"
+  },
+  {
+    "company": "Excelo – Best Biscuits Maroc",
+    "email": "export@excelo.ma",
+    "domain": "excelo.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:41.380886+00:00"
+  },
+  {
+    "company": "La SOMADIR",
+    "email": "germa@somadir.com",
+    "domain": "somadir.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:45.769236+00:00"
+  },
+  {
+    "company": "Damandis",
+    "email": "malika.ouchhal@damandis.ma",
+    "domain": "damandis.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:49.857699+00:00"
+  },
+  {
+    "company": "Agrin Maroc",
+    "email": "agrin@agrinmaroc.ma",
+    "domain": "agrinmaroc.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:45:54.428116+00:00"
+  },
+  {
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "3sk.partsauto@gmail.com",
+    "domain": "3skpartsauto.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:53:24.419906+00:00"
+  },
+  {
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "email": "banasenmaroc@outlook.com",
+    "domain": "banasenmaroc.site",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:53:29.216926+00:00"
+  },
+  {
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "email": "ihssanpa@hotmail.com",
+    "domain": "ihssanpa.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T06:16:23.613019+00:00"
+  },
+  {
+    "company": "EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",
+    "email": "ediman.sarl@hotmail.com",
+    "domain": "ediman.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T07:53:39.258575+00:00"
+  },
+  {
+    "company": "Conseil, recrutement et formation au Maroc | PHOENICIA",
+    "email": "admin@phoeniciaco.com",
+    "domain": "phoeniciaco.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T08:53:41.841505+00:00"
+  },
+  {
+    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
+    "email": "baaouchbrahim@gmail.com",
+    "domain": "bau-industrie.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-22T09:03:25.757787+00:00"
+  },
+  {
+    "company": "Emballe — Fabricant d’emballages carton, papier et plastique ...",
+    "email": "contact@emballe.ma",
+    "domain": "emballe.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:30:49.465204+00:00"
+  },
+  {
+    "company": "Ghizo Plast - Fabricant d'emballages plastiques au Maroc ...",
+    "email": "ghplastghplast@gmail.com",
+    "domain": "ghizoplast.com",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:30:53.920266+00:00"
+  },
+  {
+    "company": "Ouafa Plastique",
+    "email": "contact@ouafaplastique.ma",
+    "domain": "ouafaplastique.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:30:58.512973+00:00"
+  },
+  {
+    "company": "Emballage Maroc | Spécialiste d'emballage et packaging",
+    "email": "contact@embalo.ma",
+    "domain": "embalo.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:31:03.531245+00:00"
+  },
+  {
+    "company": "SCE Chemicals",
+    "email": "contact@sce.ma",
+    "domain": "scechemicals.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:31:08.068875+00:00"
+  },
+  {
+    "company": "Delta Hygiène",
+    "email": "contact@deltahygiene.ma",
+    "domain": "deltahygiene.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:32:32.984814+00:00"
+  },
+  {
+    "company": "ABRATEX",
+    "email": "info@abratex.ma",
+    "domain": "abratex.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:32:37.572586+00:00"
+  },
+  {
+    "company": "SODIMAT Maroc",
+    "email": "contact@sodimat.ma",
+    "domain": "sodimat.ma",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:32:41.983194+00:00"
+  },
+  {
+    "company": "Riaya Industries",
+    "email": "communications@riaya-industries.com",
+    "domain": "riaya-industries.com",
+    "url": "",
+    "source": "accepted_by_smtp; reconstructed from successful run #117 log to prevent duplicate outreach",
+    "status": "sent",
+    "sent_at": "2026-10-22T12:32:46.343783+00:00"
+  },
+  {
+    "company": "Santoy Distribution",
+    "email": "contact@santoy.ma",
+    "domain": "santoy.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:27.158900+00:00"
+  },
+  {
+    "company": "ICÔNE INDUSTRIE",
+    "email": "contact@iconeindustrie.ma",
+    "domain": "iconeindustrie.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:31.874268+00:00"
+  },
+  {
+    "company": "Artech Industrie",
+    "email": "contact@artechindustrie.ma",
+    "domain": "artechindustrie.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:36.541546+00:00"
+  },
+  {
+    "company": "E-ADSINDUSTRIE",
+    "email": "adsindustrie@menara.ma",
+    "domain": "e.adsindustrie.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:41.193834+00:00"
+  },
+  {
+    "company": "LK Équipement – Matériels Électriques & Industriels au Maroc",
+    "email": "contact@lkequipement.ma",
+    "domain": "lkequipement.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:45.338584+00:00"
+  },
+  {
+    "company": "SDFI Maroc - Fournitures Industrielles et Équipements de Sécurité",
+    "email": "reda.sdfi@gmail.com",
+    "domain": "sdfi.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T13:56:49.722875+00:00"
+  },
+  {
+    "company": "Contact - Rhone Chimie",
+    "email": "contact@rcimaroc.com",
+    "domain": "rcimaroc.com",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T14:02:27.751979+00:00"
+  },
+  {
+    "company": "Les meilleures solutions d'emballage et de protection e ...",
+    "email": "suivis@cartoncom.ma",
+    "domain": "cartoncom.ma",
+    "url": "",
+    "source": "accepted_by_smtp",
+    "status": "sent",
+    "sent_at": "2026-10-22T14:16:17.169836+00:00"
+  },
+  {
+    "timestamp": "2026-10-22T14:57:52.032908+00:00",
+    "company": "DARI COUSPATE",
+    "email": "info@couscousdari.com",
+    "domain": "couscousdari.com",
+    "url": "https://couscousdari.com/contactez-nous",
+    "email_source_url": "https://couscousdari.com/contactez-nous",
+    "need": "transport de couscous, pâtes alimentaires, distribution et export",
+    "sector_hint": "industrie agroalimentaire / export",
+    "score": 85,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:53:53.850441+00:00",
+    "company": "Fandy",
+    "email": "info@fandygroup.com",
+    "domain": "fandy.ma",
+    "url": "https://www.fandy.ma/fr/contact",
+    "need": "transport de farine, approvisionnement de minoterie et distribution multi-sites",
+    "sector_hint": "minoterie / agroalimentaire",
+    "score": 82,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "email_source_url": "https://www.fandy.ma/fr/contact",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:57:51.362059+00:00",
+    "company": "MICHOC",
+    "email": "contact@michoc.ma",
+    "domain": "michoc.com",
+    "url": "https://www.michoc.com/nous-contacter/",
+    "email_source_url": "https://www.michoc.com/nous-contacter/",
+    "need": "transport de chocolats et confiseries, distribution et export",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 81,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:57:56.209700+00:00",
+    "company": "Moony",
+    "email": "export@moony.ma",
+    "domain": "moony.ma",
+    "url": "https://moony.ma/contactez-nous",
+    "email_source_url": "https://moony.ma/contactez-nous",
+    "need": "transport de produits alimentaires, acheminement et distribution/export",
+    "sector_hint": "agroalimentaire / fabrication / export",
+    "score": 80,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "verified-official-contact-fallback",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
     "company": "Global Industrie",
     "email": "contact@globalindustrie.ma",
     "domain": "globalindustrie.ma",
@@ -12,11 +1267,84 @@
     "source": "verified-official-contact-fallback",
     "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
     "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}",
-    "status": "contact_not_verified",
-    "email_verified": false
+    "status": "dry_run_preview",
+    "email_verified": true,
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
   },
   {
-    "timestamp": "2026-10-22T14:45:24.022535+00:00",
+    "timestamp": "2026-10-22T14:57:41.267529+00:00",
+    "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
+    "email": "commercial@bledconserves.ma",
+    "domain": "bledconserves.ma",
+    "url": "http://www.bledconserves.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "conserves / agroalimentaire",
+    "score": 55,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "http://www.bledconserves.ma/",
+    "email_verified": true,
+    "status": "contact_not_verified",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:56:53.723066+00:00",
+    "company": "Rania Couspate — Couscous & pâtes du Maroc",
+    "email": "",
+    "domain": "rania-couspate.com",
+    "url": "https://rania-couspate.com/",
+    "need": "transport lié aux flux import/export",
+    "sector_hint": "pâtes alimentaires / agroalimentaire",
+    "score": 45,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:57:13.825911+00:00",
+    "company": "Fapaco - Fabrique Marocaine de Pâtes et Couscous",
+    "email": "contact@moroccanproducts.ma",
+    "domain": "moroccanproducts.ma",
+    "url": "https://moroccanproducts.ma/fr/company/fapaco",
+    "need": "transport lié aux flux import/export",
+    "sector_hint": "pâtes alimentaires / agroalimentaire",
+    "score": 35,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "https://moroccanproducts.ma/fr/company/fapaco",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:56:22.128048+00:00",
+    "company": "Accueil - Deliz food Processing",
+    "email": "",
+    "domain": "delizfood.ma",
+    "url": "https://delizfood.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 35,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:52:31.254087+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
     "domain": "ckmafrica.com",
@@ -29,10 +1357,11 @@
     "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
-    "status": "no_email"
+    "status": "no_email",
+    "run_id": "39799186060"
   },
   {
-    "timestamp": "2026-10-22T14:45:46.973603+00:00",
+    "timestamp": "2026-10-22T14:53:20.641214+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -45,10 +1374,66 @@
     "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
-    "status": "no_email"
+    "status": "no_email",
+    "run_id": "39799186060"
   },
   {
-    "timestamp": "2026-10-22T14:46:21.082986+00:00",
+    "timestamp": "2026-10-22T14:56:38.424623+00:00",
+    "company": "Home - patoral.ma",
+    "email": "patoral.youness@gmail.com",
+    "domain": "patoral.ma",
+    "url": "https://patoral.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "pâtes alimentaires / agroalimentaire",
+    "score": 25,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "https://patoral.ma/contact-us/",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:52:13.394426+00:00",
+    "company": "Total emballages | le premier distributeur du plastic au Maroc",
+    "email": "",
+    "domain": "totalemballages.com",
+    "url": "https://www.totalemballages.com/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 25,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:55:55.070157+00:00",
+    "company": "Contact – Biscoland",
+    "email": "contact@biscoland.ma",
+    "domain": "biscoland.ma",
+    "url": "https://biscoland.ma/contact/",
+    "need": "livraison / distribution",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://biscoland.ma/wp-content/uploads/2024/04/Export.pdf",
+    "email_verified": true,
+    "status": "dry_run_preview",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:52:57.144913+00:00",
     "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
     "email": "",
     "domain": "tacindustrie.ma",
@@ -61,10 +1446,28 @@
     "source": "bing-rss",
     "email_source_url": "",
     "email_verified": false,
-    "status": "no_email"
+    "status": "no_email",
+    "run_id": "39799186060"
   },
   {
-    "timestamp": "2026-10-22T14:45:04.086340+00:00",
+    "timestamp": "2026-10-22T14:55:10.033484+00:00",
+    "company": "NSI - Producteur marocain de chocolats et de biscuits",
+    "email": "",
+    "domain": "nsi.ma",
+    "url": "https://nsi.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:51:52.451955+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
@@ -77,10 +1480,11 @@
     "source": "ddgs",
     "email_source_url": "https://marocemballage.ma/contact/",
     "email_verified": true,
-    "status": "qualified"
+    "status": "qualified",
+    "run_id": "39799186060"
   },
   {
-    "timestamp": "2026-10-22T14:46:25.544361+00:00",
+    "timestamp": "2026-10-22T14:53:24.649181+00:00",
     "company": "Smart Import Technologie | Solutions industrielles au Maroc",
     "email": "smartimporttechnology@gmail.com",
     "domain": "smart-import.tech",
@@ -93,6 +1497,24 @@
     "source": "bing-rss",
     "email_source_url": "http://smart-import.tech/",
     "email_verified": true,
-    "status": "contact_not_verified"
+    "status": "contact_not_verified",
+    "run_id": "39799186060"
+  },
+  {
+    "timestamp": "2026-10-22T14:54:48.096983+00:00",
+    "company": "MayMouna",
+    "email": "",
+    "domain": "maymouna.ma",
+    "url": "https://www.maymouna.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "minoterie / agroalimentaire",
+    "score": 15,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39799186060"
   }
 ]
