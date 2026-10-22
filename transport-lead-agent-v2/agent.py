@@ -339,6 +339,55 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport et distribution de produits FMCG entre plateformes et régions",
         "sector_hint": "distribution B2B / produits de grande consommation", "score": 78,
     },
+    {
+        "company": "Mutandis", "email": "contact@mutandis.com",
+        "domain": "mutandis.com", "url": "https://mutandis.com/contact/",
+        "email_source_url": "https://mutandis.com/contact/",
+        "need": "transport de produits de grande consommation, détergents, produits de la mer et jus",
+        "sector_hint": "industrie / biens de consommation", "score": 82,
+    },
+    {
+        "company": "COPAG", "email": "info@copag.ma",
+        "domain": "copag.ma", "url": "https://www.copag.ma/fr/delight-contact",
+        "email_source_url": "https://www.copag.ma/fr/delight-contact",
+        "need": "transport et distribution de produits laitiers et agroalimentaires",
+        "sector_hint": "coopérative agroalimentaire / production", "score": 82,
+    },
+    {
+        "company": "ABC Dis", "email": "contact@abcdis.ma",
+        "domain": "abcdis.ma", "url": "https://abcdis.ma/contact/",
+        "email_source_url": "https://abcdis.ma/contact/",
+        "need": "transport et distribution B2B de produits alimentaires et FMCG",
+        "sector_hint": "distribution agroalimentaire / FMCG", "score": 82,
+    },
+    {
+        "company": "Alimexia", "email": "contact@alimexia.ma",
+        "domain": "alimexia.ma", "url": "https://alimexia.ma/",
+        "email_source_url": "https://alimexia.ma/",
+        "need": "transport de matières premières, ingrédients et équipements pour l'industrie alimentaire",
+        "sector_hint": "fournitures industrielles agroalimentaires", "score": 74,
+    },
+    {
+        "company": "TBI Maroc", "email": "info@tbi.ma",
+        "domain": "tbi.ma", "url": "https://www.tbi.ma/contact/",
+        "email_source_url": "https://www.tbi.ma/contact/",
+        "need": "transport d'ingrédients et approvisionnement avec flux import-export",
+        "sector_hint": "distribution B2B / ingrédients industriels", "score": 76,
+    },
+    {
+        "company": "Agrin Maroc", "email": "agrin@agrinmaroc.ma",
+        "domain": "agrinmaroc.ma", "url": "https://agrinmaroc.ma/fr/contact-us-fr/",
+        "email_source_url": "https://agrinmaroc.ma/fr/contact-us-fr/",
+        "need": "transport de produits agricoles, herbes, épices et semences",
+        "sector_hint": "agro-industrie / import-export", "score": 76,
+    },
+    {
+        "company": "SOFALIM", "email": "contact@sofalim.ma",
+        "domain": "sofalim.ma", "url": "https://www.sofalim.ma/fr/contact",
+        "email_source_url": "https://www.sofalim.ma/fr/contact",
+        "need": "transport et approvisionnement de produits pour l'élevage et l'agriculture",
+        "sector_hint": "agro-industrie / alimentation animale", "score": 76,
+    },
 ]
 
 
