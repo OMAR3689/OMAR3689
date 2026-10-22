@@ -1815,7 +1815,12 @@ def merge_tender_archive(previous, current, max_records=1000, today=None):
         url = str(item.get("url", "") or "").strip()
         if domain(url) != "marchespublics.gov.ma":
             continue
-        title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip().lower()
+        title_text = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip()
+        # Revalidate old archive rows on every merge so an earlier false-positive
+        # (e.g. a public auction of retired vehicles) cannot live forever.
+        if not sources._is_transport_service_tender({"title": title_text}):
+            continue
+        title = title_text.lower()
         buyer = re.sub(r"\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
         deadline = str(item.get("deadline", "") or "").strip()
         key = "url:" + url.rstrip("/").lower() if url else ""
