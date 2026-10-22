@@ -368,6 +368,31 @@ class SourcesTests(unittest.TestCase):
         self.assertIsNotNone(tender)
         self.assertIn("véhicules", tender["title"].lower())
 
+    def test_public_vehicle_auction_is_not_a_transport_service_tender(self):
+        title = (
+            'Avis de Vente Publique des Véhicules et Matériels Divers Administratifs '
+            'Réformés "En circulation"'
+        )
+        self.assertFalse(sources._is_transport_service_tender({"title": title}))
+
+        indexed = {
+            "title": title,
+            "url": (
+                "https://www.marchespublics.gov.ma/?page=entreprise.SuiviConsultation"
+                "&refConsultation=939027&orgAcronyme=o8p"
+            ),
+            "content": (
+                "Acheteur public : SNTL - SOCIETE NATIONALE DES TRANSPORTS ET DE LA LOGISTIQUE "
+                "Date limite de remise des plis : 30/11/2099"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(indexed, "transport"))
+
+    def test_vehicle_rental_service_is_not_removed_by_vehicle_sale_filter(self):
+        self.assertTrue(sources._is_transport_service_tender({
+            "title": "Location de matériel de transport et engins",
+        }))
+
     def test_tender_fallback_uses_ddgs_when_official_portal_is_unreachable(self):
         item = {
             "title": "Avis de consultation - Transport de marchandises",
