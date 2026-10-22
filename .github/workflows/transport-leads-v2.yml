@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: trmb-agent-v2
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   preview:
