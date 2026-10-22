@@ -474,16 +474,7 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "importation / distribution électrique",
         "score": 75,
     },
-    {
-        "company": "Texweld",
-        "email": "contact@texweld.ma",
-        "domain": "texweld.ma",
-        "url": "https://www.texweld.ma/contact/",
-        "email_source_url": "https://www.texweld.ma/contact/",
-        "need": "transport de tissus en gros et flux d'importation / distribution",
-        "sector_hint": "importation / distribution textile",
-        "score": 75,
-    },
+
     {
         "company": "ABRATEX",
         "email": "info@abratex.ma",
@@ -534,26 +525,8 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "industrie / fabrication",
         "score": 78,
     },
-    {
-        "company": "Global Engineering Industrial & Automotive",
-        "email": "contact@globalengineering.ma",
-        "domain": "globalengineering.ma",
-        "url": "https://globalengineering.ma/",
-        "email_source_url": "https://globalengineering.ma/",
-        "need": "transport de fournitures industrielles et pièces automobiles",
-        "sector_hint": "distribution industrielle / pièces automobiles",
-        "score": 78,
-    },
-    {
-        "company": "Cartier Saada",
-        "email": "contact@cartiersaada.com",
-        "domain": "cartiersaada.com",
-        "url": "https://cartiersaada.com/en/contact/",
-        "email_source_url": "https://cartiersaada.com/en/contact/",
-        "need": "transport de conserves alimentaires, approvisionnement et expédition export",
-        "sector_hint": "agroalimentaire / conserves export",
-        "score": 82,
-    },
+
+
     {
         "company": "Fandy",
         "email": "info@fandygroup.com",
@@ -594,16 +567,7 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "agroalimentaire / fabrication / export",
         "score": 80,
     },
-    {
-        "company": "Fonderie et Aciers du Maroc",
-        "email": "contact@fam.ma",
-        "domain": "fam.ma",
-        "url": "https://www.fam.ma/en/",
-        "email_source_url": "https://www.fam.ma/en/",
-        "need": "transport de produits métallurgiques, matières premières et livraisons industrielles",
-        "sector_hint": "fonderie / acier / industrie lourde",
-        "score": 78,
-    },
+
     {
         "company": "AMTI — Alfa Maroc Tech Industrie",
         "email": "contact@amti.ma",
@@ -624,16 +588,7 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "fabrication industrielle",
         "score": 76,
     },
-    {
-        "company": "AL AYYAR Metal Industry",
-        "email": "contact@alayyarmetalindustry.ma",
-        "domain": "alayyarmetalindustry.ma",
-        "url": "https://www.alayyarmetalindustry.ma/contact.html",
-        "email_source_url": "https://www.alayyarmetalindustry.ma/contact.html",
-        "need": "transport de structures métalliques, pièces fabriquées et équipements",
-        "sector_hint": "métallerie / fabrication industrielle",
-        "score": 75,
-    },
+
     {
         "company": "Promachines",
         "email": "contact@promachines.ma",
@@ -644,16 +599,7 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "distribution de machines industrielles",
         "score": 75,
     },
-    {
-        "company": "Moroccan Iron Steel",
-        "email": "info@misteel.ma",
-        "domain": "misteel.ma",
-        "url": "https://misteel.ma/contact",
-        "email_source_url": "https://misteel.ma/contact",
-        "need": "transport de produits sidérurgiques et approvisionnement industriel",
-        "sector_hint": "acier / industrie métallurgique",
-        "score": 80,
-    },
+
 
     {
         "company": "Managem Group",
@@ -674,6 +620,27 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport de peintures, approvisionnement des matières premières et distribution B2B",
         "sector_hint": "fabrication / matériaux de construction / peinture",
         "score": 78,
+    },
+
+    {
+        "company": "SudBio",
+        "email": "contact@sudbio.ma",
+        "domain": "sudbio.ma",
+        "url": "https://sudbio.ma/en/capabilities/logistics-export/",
+        "email_source_url": "https://sudbio.ma/en/contact/",
+        "need": "transport routier de cosmétiques et ingrédients, expéditions nationales et export vers les distributeurs",
+        "sector_hint": "cosmétiques / fabrication / logistique export",
+        "score": 85,
+    },
+    {
+        "company": "Orbis Agro Industry",
+        "email": "contact@orbisagroindustry.ma",
+        "domain": "orbisagroindustry.ma",
+        "url": "https://orbisagroindustry.ma/orbis-agro-trading/",
+        "email_source_url": "https://orbisagroindustry.ma/en/contact/",
+        "need": "acheminement de fruits rouges, agrumes, olives et produits agricoles vers les marchés marocain et international",
+        "sector_hint": "agro-industrie / production agricole / export",
+        "score": 83,
     },
 ]
 
