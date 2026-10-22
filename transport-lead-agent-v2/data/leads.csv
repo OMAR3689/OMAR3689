@@ -1,2 +1,4 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T08:57:21.727157+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T09:02:27.710424+00:00,Industriel — Construction & BTP au Maroc · BauIndustrie,baaouchbrahim@gmail.com,bau-industrie.com,https://bau-industrie.com/services/industriel/,transport et logistique,entrepôt logistique,100,False,WARM,bing-rss,https://bau-industrie.com/services/industriel/,sent,2026-10-22T09:03:25.757787+00:00,,,
+2026-10-22T09:01:36.246388+00:00,Acceuil - KPH,,kph.ma,https://www.kph.ma/,transport et logistique,pharmaceutique,100,False,WARM,bing-rss,,no_email,,,,
+2026-10-22T09:02:18.978040+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,ddgs,,no_email,,,,
