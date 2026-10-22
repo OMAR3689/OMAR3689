@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T11:50:02.585751+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T11:50:10.796019+00:00",
+    "timestamp": "2026-10-22T11:55:04.969720+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,19 +12,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:50:16.058169+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-22T11:55:24.021523+00:00",
+    "company": "Acceuil - KPH",
     "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "domain": "kph.ma",
+    "url": "https://www.kph.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "pharmaceutique",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:50:35.356873+00:00",
+    "timestamp": "2026-10-22T11:55:47.745149+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -44,11 +32,11 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:49:43.413979+00:00",
+    "timestamp": "2026-10-22T11:54:53.046348+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -60,7 +48,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T11:50:42.357364+00:00",
+    "timestamp": "2026-10-22T11:55:59.785009+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -68,7 +56,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
