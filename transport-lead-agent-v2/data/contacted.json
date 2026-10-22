@@ -823,5 +823,12 @@
     "sent_at": "2026-10-22T13:56:49.722875+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES",
     "source": "accepted_by_smtp"
+  },
+  "contact@rcimaroc.com": {
+    "company": "Contact - Rhone Chimie",
+    "domain": "rcimaroc.com",
+    "sent_at": "2026-10-22T14:02:27.751979+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
   }
 }
