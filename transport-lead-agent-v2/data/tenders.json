@@ -1,13 +1,13 @@
 [
   {
-    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
-    "buyer": "",
+    "title": "TRANSPORT DE MATERIEL DIVERS",
+    "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
     "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport du personnel",
-    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T15:27:08.163438+00:00",
+    "retrieved_at": "2026-10-22T16:21:41.862644+00:00",
     "index_engine": "Bing RSS"
   },
   {
@@ -18,18 +18,18 @@
     "keyword": "transport du personnel",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T15:27:08.164072+00:00",
-    "index_engine": "Bing RSS"
+    "retrieved_at": "2026-10-22T16:23:49.230405+00:00",
+    "index_engine": "DDGS"
   },
   {
-    "title": "TRANSPORT DE MATERIEL DIVERS",
-    "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
+    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
+    "buyer": "",
     "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T16:21:41.862644+00:00",
-    "index_engine": "Bing RSS"
+    "retrieved_at": "2026-10-22T16:23:49.231860+00:00",
+    "index_engine": "DDGS"
   }
 ]
