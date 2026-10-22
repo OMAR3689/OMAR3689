@@ -602,9 +602,10 @@ def _duckduckgo_html_index_search(query):
 
 def _find_indexed_tenders(keywords):
     """
-    Search public indexes for official portal URLs if the portal itself is unreachable.
-    Search indexes are queried only; robots.txt is respected and no blocked result
-    page is fetched. Every accepted candidate must still link to the official portal.
+    Find official procurement notices from public search indexes when the portal
+    itself cannot be read. Only URLs hosted by the official portal are accepted.
+    Search the newer purchase-order detail path and the classic consultation pages.
+    Stop trying engines for a keyword as soon as a valid official notice is found.
     """
     found = {}
     engines = (
@@ -613,34 +614,52 @@ def _find_indexed_tenders(keywords):
         ("DuckDuckGo HTML", _duckduckgo_html_index_search),
     )
     for keyword in list(keywords):
-        query = (
-            f'site:{MP_HOST} "{keyword}" '
-            '(consultation OR "avis d appel a la concurrence" OR "appel d offres")'
+        query_variants = (
+            f'site:{MP_HOST}/bdc/entreprise/consultation/show "{keyword}"',
+            f'site:{MP_HOST} "{keyword}" ("Acheteur public" OR "Objet" OR "Date limite")',
+            f'site:{MP_HOST} "{keyword}"',
         )
-        for engine_name, search_fn in engines:
-            for item in search_fn(query):
-                tender = _parse_indexed_tender(item, keyword)
-                if not tender:
+        keyword_found = False
+        for query in query_variants:
+            for engine_name, search_fn in engines:
+                try:
+                    items = search_fn(query)
+                except Exception as exc:
+                    print(f"⚠️ Index public indisponible ({engine_name}, {keyword}): {exc}")
                     continue
-                dedup_key = (
-                    _normal_text(tender["title"]) + "|"
-                    + _normal_text(tender["buyer"]) + "|"
-                    + tender["deadline"]
-                )
-                if dedup_key not in found:
-                    tender["index_engine"] = engine_name
-                    found[dedup_key] = tender
+                accepted = []
+                for item in items or []:
+                    tender = _parse_indexed_tender(item, keyword)
+                    if not tender:
+                        continue
+                    dedup_key = (
+                        _normal_text(tender["title"]) + "|"
+                        + _normal_text(tender["buyer"]) + "|"
+                        + tender["deadline"]
+                    )
+                    if dedup_key not in found:
+                        tender["index_engine"] = engine_name
+                        found[dedup_key] = tender
+                        accepted.append(tender)
+                if accepted:
+                    print(
+                        f"📑 {engine_name}: {len(accepted)} avis officiels indexés "
+                        f"pour le mot-clé « {keyword} »."
+                    )
+                    keyword_found = True
+                    break
+            if keyword_found:
+                break
     print(
         f"📑 Index public du portail officiel: {len(found)} opportunités candidates "
-        "sur DDGS, Bing RSS et DuckDuckGo HTML; date/éligibilité à vérifier."
+        "sur DDGS, Bing RSS et DuckDuckGo HTML; dates/éligibilité à vérifier."
     )
     return list(found.values())
-
 
 def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
     """
     Read the official procurement portal when its published crawl rules allow it.
-    If robots.txt/network blocks the portal, use only Bing's public index as fallback.
+    If robots.txt/network blocks the portal, use public search indexes and keep only official-portal URLs.
     Tenders are stored separately and never automatically emailed as sales leads.
     """
     found = {}
