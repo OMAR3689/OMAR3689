@@ -1101,7 +1101,7 @@ def save_tender_files(items):
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(TENDERS_JSON, "w", encoding="utf-8") as f:
         json.dump(items, f, ensure_ascii=False, indent=2)
-    fields = ["retrieved_at", "title", "buyer", "deadline", "status", "keyword", "url", "source"]
+    fields = ["retrieved_at", "title", "buyer", "deadline", "status", "keyword", "url", "source", "index_engine"]
     with open(TENDERS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
