@@ -1,2 +1,3 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,direct_intent,priority,source,email_source_url,status,sent_at,smtp_error,preview_subject,preview_note
-2026-10-22T09:11:06.214433+00:00,UPM - Grossiste Pharmaceutique,,upm-grossiste.ma,https://upm-grossiste.ma/,livraison / distribution,distribution grossiste,100,False,WARM,bing-rss,,no_email,,,,
+2026-10-22T09:15:20.566744+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,http://autoplus.net.ma/,transport et logistique,automobile industrie,20,False,STANDARD,ddgs,,no_email,,,,
+2026-10-22T09:16:07.822240+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,False,STANDARD,bing-rss,,no_email,,,,
