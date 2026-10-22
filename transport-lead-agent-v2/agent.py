@@ -1354,17 +1354,18 @@ def main():
             )
         min_sendable = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
         if len(qualified) < min_sendable:
-            raise SystemExit(
-                "Send preflight blocked before any email was sent: "
-                f"{len(qualified)} verified generic contacts found; at least {min_sendable} required."
+            print(
+                f"ℹ️ No new verified contacts this cycle ({len(qualified)} qualified; "
+                f"{min_sendable} required). No emails will be sent."
             )
-        pdf_bytes, pdf_error = load_presentation_pdf()
-        if pdf_bytes is None:
-            raise SystemExit(
-                "Send preflight blocked before any email was sent because the TRMB presentation PDF "
-                f"is unavailable: {pdf_error}"
-            )
-        print(f"✅ Send preflight passed: {len(qualified)} verified official generic business contacts.")
+        else:
+            pdf_bytes, pdf_error = load_presentation_pdf()
+            if pdf_bytes is None:
+                raise SystemExit(
+                    "Send preflight blocked before any email was sent because the TRMB presentation PDF "
+                    f"is unavailable: {pdf_error}"
+                )
+            print(f"✅ Send preflight passed: {len(qualified)} verified official business contacts.")
 
     sent = 0
     attempted = 0

@@ -1,6 +1,8 @@
 name: TRMB Lead Agent V2 - Verified Outreach
 
 on:
+  schedule:
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -29,7 +31,7 @@ concurrency:
 
 jobs:
   preview:
-    if: github.ref == 'refs/heads/trmb-agent-v2'
+    if: github.event_name == 'schedule' || github.ref == 'refs/heads/trmb-agent-v2'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -53,6 +55,8 @@ jobs:
       SMTP_RETRIES: '3'
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: trmb-agent-v2
 
       - name: Verify isolated V2 and load outreach suppression history
         run: |
@@ -113,19 +117,20 @@ jobs:
           expected_status = "dry_run_preview" if dry_run else "sent"
           outcomes = [x for x in leads if x.get("status") == expected_status]
 
-          if not dry_run and len(outcomes) < minimum:
-              raise SystemExit(
-                  f"Validation failed: {len(outcomes)} verified {expected_status} records; "
-                  f"at least {minimum} required before a send run can be considered valid."
-              )
-          if dry_run and not outcomes:
-              print("ℹ️ Preview succeeded: no new verified contacts this cycle; no emails sent.")
-
           if not dry_run:
               smtp_errors = [x for x in leads if x.get("status") == "smtp_error"]
               if smtp_errors:
                   details = "; ".join(f"{x.get('company')}: {x.get('smtp_error', 'unknown SMTP error')}" for x in smtp_errors[:5])
                   raise SystemExit(f"Validation failed: {len(smtp_errors)} SMTP failure(s): {details}")
+              if not outcomes:
+                  print("ℹ️ Send cycle succeeded: no new verified contacts; no emails sent.")
+              elif len(outcomes) < minimum:
+                  raise SystemExit(
+                      f"Validation failed: {len(outcomes)} verified {expected_status} records; "
+                      f"at least {minimum} required."
+                  )
+          elif not outcomes:
+              print("ℹ️ Preview succeeded: no new verified contacts this cycle; no emails sent.")
 
           emails = [str(x.get("email", "")).strip().lower() for x in outcomes]
           if any(not email for email in emails) or len(emails) != len(set(emails)):
