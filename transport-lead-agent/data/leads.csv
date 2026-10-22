@@ -1,6 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T12:52:50.800869+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T12:53:05.130336+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-22T12:53:37.296007+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
-2026-10-22T12:52:39.354255+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
-2026-10-22T12:53:49.504154+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-22T12:58:00.048076+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T12:58:11.298039+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T12:59:08.341535+00:00,Industriel — Construction & BTP au Maroc · BauIndustrie,,bau-industrie.com,https://bau-industrie.com/services/industriel/,transport et logistique,entrepôt logistique,100,bing-rss,,no_email,,
+2026-10-22T12:58:42.926000+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-22T12:57:49.923353+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
+2026-10-22T12:58:55.300540+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,bing-rss,,no_email,,
