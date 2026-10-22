@@ -1,44 +1,31 @@
 [
   {
-    "timestamp": "2026-10-22T12:16:12.143724+00:00",
-    "company": "Société d'Import-Export au Maroc | ESSGAL IMPORT",
-    "email": "info@essgalimport.ma",
-    "domain": "essgalimport.ma",
-    "url": "https://essgalimport.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
-    "score": 100,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T12:17:47.466139+00:00"
-  },
-  {
-    "timestamp": "2026-10-22T12:15:41.670558+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-22T12:20:43.804742+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:15:53.706050+00:00",
-    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
+    "timestamp": "2026-10-22T12:20:48.385181+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "autoplus.net.ma",
-    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:16:41.329943+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 entreprises ...",
+    "timestamp": "2026-10-22T12:21:08.481675+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
     "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
@@ -49,19 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:17:30.627927+00:00",
-    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
-    "email": "",
-    "domain": "hangarmaroc.com",
-    "url": "https://hangarmaroc.com/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 60,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T12:15:31.861399+00:00",
+    "timestamp": "2026-10-22T12:20:35.819831+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -69,11 +44,11 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:16:56.241782+00:00",
+    "timestamp": "2026-10-22T12:21:14.896777+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -82,6 +57,18 @@
     "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T12:21:28.364315+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
