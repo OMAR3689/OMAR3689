@@ -11,6 +11,7 @@ import unicodedata
 import urllib.error
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from html.parser import HTMLParser
 from urllib import robotparser
@@ -246,15 +247,15 @@ def extract_generic_emails(html, site_domain):
     return sorted(found)
 
 
-def find_official_contacts(site_url, max_pages=4):
-    """Crawl limité du site officiel et de ses pages contact, si robots.txt l'autorise."""
+def find_official_contact_records(site_url, max_pages=4):
+    """Return public generic contacts with the exact official page URL where each appeared."""
     original_host = _host(site_url)
     if not original_host:
         return []
 
     to_visit = [site_url]
     seen = set()
-    emails = set()
+    emails = {}
     while to_visit and len(seen) < max(1, min(int(max_pages), 8)):
         url = to_visit.pop(0)
         parts = urllib.parse.urlsplit(url)
@@ -266,7 +267,8 @@ def find_official_contacts(site_url, max_pages=4):
         html = polite_get(url)
         if not html:
             continue
-        emails.update(extract_generic_emails(html, original_host))
+        for email in extract_generic_emails(html, original_host):
+            emails.setdefault(email, url)
         if emails:
             break
 
@@ -284,7 +286,18 @@ def find_official_contacts(site_url, max_pages=4):
             hint_text = _normal_text(absolute + " " + label)
             if any(hint in hint_text for hint in CONTACT_HINTS):
                 to_visit.append(absolute)
-    return sorted(emails)
+    return [
+        {"email": email, "source_url": source_url}
+        for email, source_url in sorted(emails.items())
+    ]
+
+
+def find_official_contacts(site_url, max_pages=4):
+    """Backward-compatible email-only wrapper."""
+    return [
+        item["email"]
+        for item in find_official_contact_records(site_url, max_pages=max_pages)
+    ]
 
 
 def _tender_search_url(keyword):
@@ -369,14 +382,119 @@ def _parse_tender_row(row, keyword, listing_url):
     return result
 
 
-def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
+def _parse_indexed_tender(item, keyword):
+    """Parse a tender found in Bing's public index; never crawl a blocked portal page."""
+    url = str(item.get("url", "")).strip()
+    title = re.sub(r"\\s+", " ", str(item.get("title", "") or "")).strip()
+    description = re.sub(r"\\s+", " ", str(item.get("content", "") or "")).strip()
+    if not url or not title:
+        return None
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme not in ("http", "https") or _host(url) != _host(MP_SEARCH_URL):
+        return None
+    # Accept only indexed announcement/detail paths, not the generic portal homepage.
+    if not any(term in (parts.path + "?" + parts.query).lower()
+               for term in ("index.php", "consultation", "annonce")):
+        return None
+
+    text = title + " " + description
+    normal = _normal_text(text)
+    if not any(_normal_text(term) in normal for term in MP_KEYWORDS):
+        return None
+    if any(marker in normal for marker in ("avis de resultat definitif", "resultat definitif", "pv d'ouverture")):
+        return None
+
+    deadline = ""
+    deadline_status = "date_limite_inconnue_a_verifier"
+    date_match = re.search(
+        r"\\b(\\d{2}[/-]\\d{2}[/-]\\d{4}|\\d{4}-\\d{2}-\\d{2})\\b",
+        text
+    )
+    if date_match:
+        deadline = date_match.group(1)
+        parsed_date = None
+        for fmt in ("%d/%m/%Y", "%d-%m-%Y", "%Y-%m-%d"):
+            try:
+                parsed_date = datetime.strptime(deadline, fmt).date()
+                break
+            except ValueError:
+                continue
+        if parsed_date is None:
+            deadline_status = "date_limite_a_verifier"
+        elif parsed_date < datetime.now().date():
+            return None
+        else:
+            deadline_status = "date_limite_future"
+
+    buyer_match = re.search(
+        r"Acheteur public\\s*:?\\s*(.+?)(?=\\s*(?:Lieu d'execution|Date limite|$))",
+        text, flags=re.IGNORECASE
+    )
+    buyer = re.sub(r"\\s+", " ", buyer_match.group(1)).strip(" :-")[:300] if buyer_match else ""
+    return {
+        "title": title[:500],
+        "buyer": buyer,
+        "deadline": deadline,
+        "status": deadline_status,
+        "keyword": keyword,
+        "url": url,
+        "source": "Index Bing du Portail Marocain des Marchés Publics",
+        "retrieved_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def _find_indexed_tenders(keywords):
     """
-    Recherche les avis publics contenant des mots liés au transport.
-    Les marchés publics sont retournés comme opportunités de soumission,
-    jamais comme prospects à qui envoyer automatiquement un email commercial.
+    Fallback using Bing's public RSS index when the official portal's robots.txt
+    or network endpoint is unavailable. This queries Bing only; it does not
+    bypass robots.txt or fetch the blocked procurement pages.
     """
     found = {}
-    official_host = _host(MP_SEARCH_URL)
+    for keyword in list(keywords)[:4]:
+        query = (
+            f'site:{MP_HOST} "{keyword}" '
+            '(consultation OR "appel d offres" OR annonce)'
+        )
+        search_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(query)
+        req = urllib.request.Request(
+            search_url,
+            headers={
+                "User-Agent": USER_AGENT,
+                "Accept": "application/rss+xml,application/xml,text/xml,*/*;q=0.8",
+            },
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=12) as response:
+                payload = response.read(500_000)
+            root = ET.fromstring(payload)
+            for item_node in root.findall(".//item"):
+                item = {
+                    "title": item_node.findtext("title") or "",
+                    "url": item_node.findtext("link") or "",
+                    "content": item_node.findtext("description") or "",
+                }
+                tender = _parse_indexed_tender(item, keyword)
+                if not tender:
+                    continue
+                key = (
+                    _normal_text(tender["title"]) + "|"
+                    + _normal_text(tender["buyer"]) + "|"
+                    + tender["deadline"]
+                )
+                found.setdefault(key, tender)
+        except Exception as exc:
+            print(f"⚠️ Recherche indexée des marchés publics indisponible ({keyword}): {exc}")
+    print(f"📑 Index Bing du portail officiel: {len(found)} opportunités candidates; date/éligibilité à vérifier.")
+    return list(found.values())
+
+
+def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
+    """
+    Read the official procurement portal when its published crawl rules allow it.
+    If robots.txt/network blocks the portal, use only Bing's public index as fallback.
+    Tenders are stored separately and never automatically emailed as sales leads.
+    """
+    found = {}
     for keyword in keywords:
         listing_url = _tender_search_url(keyword)
         html = polite_get(listing_url)
@@ -400,6 +518,11 @@ def find_tenders(keywords=MP_KEYWORDS, max_per_keyword=15):
             count_for_keyword += 1
             if count_for_keyword >= max_per_keyword:
                 break
+
+    if not found:
+        for tender in _find_indexed_tenders(keywords):
+            dedup_key = _normal_text(tender["title"]) + "|" + _normal_text(tender["buyer"]) + "|" + tender["deadline"]
+            found.setdefault(dedup_key, tender)
 
     results = list(found.values())
     print(f"📑 Marchés publics: {len(results)} opportunités retenues après déduplication et filtre de date.")
