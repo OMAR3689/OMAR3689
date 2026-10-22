@@ -1802,15 +1802,43 @@ def save_lead_files(items):
 
 
 def merge_tender_archive(previous, current, max_records=1000, today=None):
-    """Keep deduplicated, non-expired notices from the official Moroccan procurement portal."""
+    """Merge official notices without losing good metadata on an incomplete refresh."""
     today = today or datetime.now(timezone.utc).date()
     ordered = {}
+    unknown_deadline_statuses = {
+        "date_limite_inconnue_a_verifier",
+        "date_limite_a_verifier",
+    }
     for item in list(previous or []) + list(current or []):
         if not isinstance(item, dict):
             continue
         url = str(item.get("url", "") or "").strip()
         if domain(url) != "marchespublics.gov.ma":
             continue
+        title = re.sub(r"\\s+", " ", str(item.get("title", "") or "")).strip().lower()
+        buyer = re.sub(r"\\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
+        deadline = str(item.get("deadline", "") or "").strip()
+        key = "url:" + url.rstrip("/").lower() if url else ""
+        if not key:
+            key = "notice:" + "|".join((title, buyer, deadline))
+
+        old = ordered.pop(key, None)
+        merged = dict(old or {})
+        for field, value in item.items():
+            if value is None or (isinstance(value, str) and not value.strip()):
+                # Missing data from a later index result must not erase better evidence.
+                continue
+            if (
+                field == "status"
+                and str(value).strip().lower() in unknown_deadline_statuses
+                and str(merged.get("deadline", "")).strip()
+            ):
+                continue
+            merged[field] = value
+        ordered[key] = merged
+
+    active = []
+    for item in ordered.values():
         deadline = str(item.get("deadline", "") or "").strip()
         deadline_date = None
         if deadline:
@@ -1820,16 +1848,12 @@ def merge_tender_archive(previous, current, max_records=1000, today=None):
                     break
                 except ValueError:
                     continue
+        # Filter after merge: an older unknown-date record must not survive when
+        # a later refresh finally reveals that its deadline has already passed.
         if deadline_date and deadline_date < today:
             continue
-        title = re.sub(r"\s+", " ", str(item.get("title", "") or "")).strip().lower()
-        buyer = re.sub(r"\s+", " ", str(item.get("buyer", "") or "")).strip().lower()
-        key = "url:" + url.rstrip("/").lower() if url else ""
-        if not key:
-            key = "notice:" + "|".join((title, buyer, deadline))
-        old = ordered.pop(key, None)
-        ordered[key] = {**(old or {}), **dict(item)}
-    return list(ordered.values())[-max(1, int(max_records)):]
+        active.append(item)
+    return active[-max(1, int(max_records)):]
 
 
 def save_tender_files(items):
@@ -1839,7 +1863,7 @@ def save_tender_files(items):
     archived = merge_tender_archive(previous, items)
     with open(TENDERS_JSON, "w", encoding="utf-8") as f:
         json.dump(archived, f, ensure_ascii=False, indent=2)
-    fields = ["retrieved_at", "title", "buyer", "deadline", "status", "keyword", "url", "source", "index_engine"]
+    fields = ["retrieved_at", "title", "buyer", "deadline", "deadline_source_url", "status", "keyword", "url", "source", "index_engine"]
     with open(TENDERS_CSV, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
