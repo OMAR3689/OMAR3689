@@ -1,30 +1,79 @@
 [
   {
-    "timestamp": "2026-10-22T05:17:17.797491+00:00",
+    "timestamp": "2026-10-22T05:23:01.716973+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:27:14.098005+00:00",
+    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
+    "email": "",
+    "domain": "hangarmaroc.com",
+    "url": "https://hangarmaroc.com/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:24:02.012683+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
+    "score": 95,
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:17:22.940047+00:00",
+    "timestamp": "2026-10-22T05:25:53.057912+00:00",
+    "company": "UPM - Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "upm-grossiste.ma",
+    "url": "https://upm-grossiste.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 95,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:22:13.561250+00:00",
+    "company": "Grossiste Alimentaire Maroc & Afrique | AGRO FOOD INDUSTRIE",
+    "email": "bmontier@agrofoodindustrie.com",
+    "domain": "agrofoodindustrie.com",
+    "url": "https://www.agrofoodindustrie.com/",
+    "need": "transport et logistique",
+    "sector_hint": "agroalimentaire industrie",
+    "score": 60,
+    "source": "ddgs",
+    "status": "sent",
+    "sent_at": "2026-10-22T05:27:29.777710+00:00"
+  },
+  {
+    "timestamp": "2026-10-22T05:24:58.275075+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
     "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
+    "need": "transport et logistique",
     "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
+    "score": 60,
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:17:47.438253+00:00",
+    "timestamp": "2026-10-22T05:26:21.612502+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,20 +85,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:17:09.636975+00:00",
-    "company": "GIPAM - Groupement Interprofessionnel de L’Automobile au Maroc",
-    "email": "contact@gipam-maroc.ma",
-    "domain": "gipam-maroc.ma",
-    "url": "https://gipam-maroc.ma/",
+    "timestamp": "2026-10-22T05:22:52.831530+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
-    "score": 20,
+    "score": 40,
     "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-22T05:18:11.938781+00:00"
+    "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:17:55.532190+00:00",
+    "timestamp": "2026-10-22T05:26:31.839160+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -57,7 +105,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
