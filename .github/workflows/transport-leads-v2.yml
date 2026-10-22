@@ -1,7 +1,16 @@
-name: TRMB Lead Agent V2 - Manual Dry Run
+name: TRMB Lead Agent V2 - Verified Outreach
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Preview only or send to verified official business contacts"
+        type: choice
+        options:
+          - preview
+          - send
+        default: preview
+        required: true
   push:
     branches: [trmb-agent-v2]
     paths:
@@ -16,7 +25,7 @@ permissions:
 
 concurrency:
   group: trmb-agent-v2
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   preview:
@@ -24,18 +33,30 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      DRY_RUN: 'true'
+      # One intentional activation push is tagged [send-v2]. Later code pushes
+      # default back to preview; manual workflow runs can explicitly choose send.
+      DRY_RUN: ${{ (github.event_name == 'push' && !contains(github.event.head_commit.message, '[send-v2]')) || (github.event_name == 'workflow_dispatch' && inputs.mode != 'send') }}
       MAX_EMAILS_PER_RUN: '10'
       MAX_EMAILS_PER_HOUR: '20'
+      MIN_SENDABLE_LEADS: '7'
       PRESENTATION_URL: 'https://trmb.ma/'
       PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
       PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT || '465' }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      IMAP_HOST: ${{ secrets.IMAP_HOST }}
+      IMAP_PORT: ${{ secrets.IMAP_PORT || '993' }}
+      IMAP_SENT_FOLDER: ${{ secrets.IMAP_SENT_FOLDER }}
+      SMTP_RETRIES: '3'
     steps:
       - uses: actions/checkout@v5
 
-      - name: Verify isolated V2 and live V1 history
+      - name: Verify isolated V2 and load outreach suppression history
         run: |
-          echo "✅ V2 manual preview mode — no emails are sent."
+          echo "DRY_RUN=$DRY_RUN"
           git fetch origin main:refs/remotes/origin/main
           git show origin/main:transport-lead-agent/data/contacted.json > "$RUNNER_TEMP/v1-contacted.json"
           echo "V1_HISTORY_FILE=$RUNNER_TEMP/v1-contacted.json" >> "$GITHUB_ENV"
@@ -47,55 +68,91 @@ jobs:
       - name: Install free search engine
         run: python -m pip install --disable-pip-version-check --no-warn-script-location ddgs
 
-      - name: Validate Python syntax
+      - name: Validate Python syntax and unit tests
         run: |
           python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py transport-lead-agent-v2/test_sources.py transport-lead-agent-v2/test_agent.py
           python -m unittest discover -s transport-lead-agent-v2 -p 'test_*.py' -v
 
-      - name: Discover and preview prospects (no sending)
+      - name: Discover qualified contacts and execute configured mode
         run: python transport-lead-agent-v2/agent.py
 
-      - name: Validate saved V2 preview results
-        run: |
-          python - <<'PY'
-          import json
-          from pathlib import Path
-          from urllib.parse import urlparse
-
-          out = Path("transport-lead-agent-v2/data")
-          leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
-          tenders = json.loads((out / "tenders.json").read_text(encoding="utf-8"))
-          previews = [x for x in leads if x.get("status") == "dry_run_preview"]
-          with_email = [
-              x for x in leads
-              if str(x.get("email", "")).strip() and int(x.get("score", 0) or 0) >= 20
-          ]
-
-          if len(previews) < 7:
-              raise SystemExit(f"Validation failed: only {len(previews)} qualified email previews; expected at least 7.")
-          emails = [str(x.get("email", "")).strip().lower() for x in with_email]
-          if len(emails) != len(set(emails)):
-              raise SystemExit("Validation failed: duplicate email addresses in V2 lead output.")
-          for lead in with_email:
-              source = str(lead.get("email_source_url", "")).strip()
-              source_host = (urlparse(source).hostname or "").lower().removeprefix("www.")
-              company_host = str(lead.get("domain", "")).strip().lower().removeprefix("www.")
-              if urlparse(source).scheme != "https" or not source_host or source_host != company_host:
-                  raise SystemExit(f"Validation failed: official source URL missing or domain mismatch for {lead.get('company')}.")
-
-          for tender in tenders:
-              host = (urlparse(str(tender.get("url", ""))).hostname or "").lower().removeprefix("www.")
-              if host != "marchespublics.gov.ma":
-                  raise SystemExit("Validation failed: a tender record does not point to the official public-procurement portal.")
-
-          print(f"✅ Preview validation passed: {len(previews)} previewed, {len(with_email)} qualified leads with unique emails and HTTPS official-domain sources.")
-          print(f"ℹ️ Public tender candidates: {len(tenders)} (stored separately, never emailed automatically).")
-          PY
-
-      - name: Commit V2 preview data only
+      # Persist sent_at / suppression history before any post-run validation can fail.
+      - name: Commit V2 lead, tender and outreach history
+        if: always()
         run: |
           git config user.name 'TRMB Lead Agent V2'
           git config user.email 'actions@github.com'
           git add transport-lead-agent-v2/data/leads.json transport-lead-agent-v2/data/leads.csv transport-lead-agent-v2/data/contacted.json transport-lead-agent-v2/data/tenders.json transport-lead-agent-v2/data/tenders.csv
-          git diff --cached --quiet || git commit -m 'Update TRMB Lead Agent V2 preview data'
-          git push origin HEAD:trmb-agent-v2
+          if git diff --cached --quiet; then
+            echo "ℹ️ No V2 data changes to commit."
+          else
+            git commit -m 'Store V2 discovery and outreach state'
+            git push origin HEAD:trmb-agent-v2
+          fi
+
+      - name: Validate saved results and email outcomes
+        if: always()
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          sys.path.insert(0, str(Path("transport-lead-agent-v2").resolve()))
+          import sources
+
+          out = Path("transport-lead-agent-v2/data")
+          leads = json.loads((out / "leads.json").read_text(encoding="utf-8"))
+          tenders = json.loads((out / "tenders.json").read_text(encoding="utf-8"))
+          dry_run = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
+          minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "7")))
+          expected_status = "dry_run_preview" if dry_run else "sent"
+          outcomes = [x for x in leads if x.get("status") == expected_status]
+
+          if len(outcomes) < minimum:
+              raise SystemExit(
+                  f"Validation failed: {len(outcomes)} verified {expected_status} records; "
+                  f"expected at least {minimum}."
+              )
+
+          if not dry_run:
+              smtp_errors = [x for x in leads if x.get("status") == "smtp_error"]
+              if smtp_errors:
+                  details = "; ".join(f"{x.get('company')}: {x.get('smtp_error', 'unknown SMTP error')}" for x in smtp_errors[:5])
+                  raise SystemExit(f"Validation failed: {len(smtp_errors)} SMTP failure(s): {details}")
+
+          emails = [str(x.get("email", "")).strip().lower() for x in outcomes]
+          if any(not email for email in emails) or len(emails) != len(set(emails)):
+              raise SystemExit("Validation failed: missing or duplicate email addresses in outcomes.")
+
+          for lead in outcomes:
+              source = str(lead.get("email_source_url", "")).strip()
+              source_host = (urlparse(source).hostname or "").lower().removeprefix("www.")
+              company_host = (urlparse(str(lead.get("url", ""))).hostname or "").lower().removeprefix("www.")
+              email = str(lead.get("email", "")).strip().lower()
+              local = email.split("@", 1)[0].split("+", 1)[0]
+              if (
+                  urlparse(source).scheme != "https"
+                  or not source_host
+                  or source_host != company_host
+                  or local not in sources.GENERIC_PREFIXES
+                  or int(lead.get("score", 0) or 0) < 20
+              ):
+                  raise SystemExit(
+                      f"Validation failed: unverified official contact in outcomes for {lead.get('company')}."
+                  )
+
+          for tender in tenders:
+              host = (urlparse(str(tender.get("url", ""))).hostname or "").lower().removeprefix("www.")
+              if host != "marchespublics.gov.ma":
+                  raise SystemExit("Validation failed: a tender record does not point to the official procurement portal.")
+
+          mode = "preview" if dry_run else "send"
+          print(
+              f"✅ Validation passed: mode={mode}; {len(outcomes)} verified official-domain "
+              "business contact(s); unique emails; no SMTP errors."
+          )
+          print(f"📑 Official public-tender candidates saved separately: {len(tenders)}.")
+          PY
