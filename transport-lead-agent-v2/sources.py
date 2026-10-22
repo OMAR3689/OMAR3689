@@ -520,10 +520,14 @@ def _parse_indexed_tender(item, keyword):
         )
         if prefix_match:
             prefix = re.sub(r"\s+", " ", prefix_match.group(1)).strip(" :-")
-            if any(term in _normal_text(prefix) for term in title_relevance_terms):
+            normalized_prefix = _normal_text(prefix)
+            if any(signal in normalized_prefix for signal in irrelevant_goods_signals):
+                return None
+            if any(term in normalized_prefix for term in tender_service_terms):
                 title = prefix[:500]
                 normalized_final_title = _normal_text(title)
                 final_title_relevant = True
+
 
     # Buyer identity or a matching portal category alone is not sufficient. Require
     # the parsed/provisional object itself to describe transport/logistics.

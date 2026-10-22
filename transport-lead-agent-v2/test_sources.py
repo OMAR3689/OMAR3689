@@ -151,6 +151,17 @@ class SourcesTests(unittest.TestCase):
         }
         self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
 
+    def test_generic_purchase_rejects_air_conditioners_even_when_delivery_is_mentioned(self):
+        item = {
+            "title": "Détails de l'avis d'achat #48/2026",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/378751",
+            "content": (
+                "Objet Acquisition, livraison, installation et mise en service de climatiseurs "
+                "Acheteur public : FACULTE DES SCIENCES JURIDIQUES ECONOMIQUES ET SOCIALES AGDAL"
+            ),
+        }
+        self.assertIsNone(sources._parse_indexed_tender(item, "livraison"))
+
     def test_delivery_word_alone_does_not_qualify_as_transport_service(self):
         item = {
             "title": "Avis de consultation - Livraison de lots de fournitures de bureau",
