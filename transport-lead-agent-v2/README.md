@@ -12,6 +12,7 @@ This is a separate development copy of the working V1 agent.
 
 ## Sources and crawl etiquette
 - Uses free search providers for commercial company research.
+- Public Gmail/Yahoo/Outlook addresses are allowed only when listed on that company's own official website; the agent does not invent them or accept third-party directory snippets as proof.
 - `sources.py` checks `robots.txt` before crawling a company or the official public-procurement portal. If robots rules cannot be read, it fails closed and skips that crawl.
 - Uses a per-host delay, bounded page size, timeout and limited retries for 429/503 responses.
 - No authenticated access or LinkedIn scraping.

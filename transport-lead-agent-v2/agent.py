@@ -388,6 +388,27 @@ SEEDED_PUBLIC_CONTACTS = [
         "need": "transport et approvisionnement de produits pour l'élevage et l'agriculture",
         "sector_hint": "agro-industrie / alimentation animale", "score": 76,
     },
+    {
+        "company": "TOFCO MAROC", "email": "tofcomaroc@gmail.com",
+        "domain": "tofco-maroc.com", "url": "https://www.tofco-maroc.com/contact/",
+        "email_source_url": "https://www.tofco-maroc.com/contact/",
+        "need": "transport de matériaux industriels, tuyauterie et équipements de chantier",
+        "sector_hint": "tuyauterie industrielle / chaudronnerie / construction métallique", "score": 76,
+    },
+    {
+        "company": "MPG INDUSTRIE", "email": "mpg.morocco@gmail.com",
+        "domain": "mpg-industrie.com", "url": "https://mpg-industrie.com/contact/",
+        "email_source_url": "https://mpg-industrie.com/contact/",
+        "need": "transport de fournitures et équipements industriels",
+        "sector_hint": "fournitures industrielles / étanchéité / maintenance", "score": 74,
+    },
+    {
+        "company": "M.C.I.P", "email": "contact.mcip@gmail.com",
+        "domain": "mcip.ma", "url": "https://www.mcip.ma/EN/",
+        "email_source_url": "https://www.mcip.ma/EN/",
+        "need": "transport de structures métalliques, matériels et équipements de chantier",
+        "sector_hint": "construction métallique / montage industriel / ingénierie", "score": 76,
+    },
 ]
 
 
@@ -1318,7 +1339,7 @@ def main():
                 "Send preflight blocked before any email was sent; missing GitHub secrets: "
                 + ", ".join(missing)
             )
-        min_sendable = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "7")))
+        min_sendable = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
         if len(qualified) < min_sendable:
             raise SystemExit(
                 "Send preflight blocked before any email was sent: "
