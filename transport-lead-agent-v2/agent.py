@@ -97,6 +97,11 @@ DIRECTORY_SIGNALS = (
     "plateforme des annonces des appels d'offres", "appels d'offres transport",
     "appels d'offres logistique", "appels d'offres au maroc",
     "appel d'offres transport", "market intelligence", "market research",
+    "recherche ice", "ice maroc", "registre de commerce",
+    "identifiant commun de l'entreprise", "verification entreprise",
+    "vérification entreprise", "recherche d'entreprise", "recherche entreprise",
+    "appel d'offre maroc", "appels d'offres publics", "appels d'offres en cours",
+    "marchés publics", "marches publics", "tender platform",
 )
 TARGET_SECTOR_SIGNALS = (
     "usine", "industriel", "industrie", "agroalimentaire", "agricole", "distribution",
@@ -122,6 +127,8 @@ NON_PROSPECT_DOMAINS = {
     "mordorintelligence.com", "freshtrack.ma", "startupmedias.net", "bav.admin.ch",
     "comfortgateway.ma", "tilditours.ma", "msotransports.com", "innovaimport.ma",
     "sonix.ai", "scribd.com", "aomaroc.com", "bestwebsite.com",
+    # Company lookup tools and tender aggregators are not themselves freight buyers.
+    "icemorocco.com", "francemarches.com", "welipro.com",
 }
 FINANCE_NOISE = (
     "stock price", "stock price today", "stock price & overview", "stock market",
