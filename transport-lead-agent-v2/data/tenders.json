@@ -2,24 +2,12 @@
   {
     "title": "TRANSPORT DE MATERIEL DIVERS",
     "buyer": "GOUVERNEUR DE LA PROVINCE D'AOUSSERD",
-    "deadline": "",
     "status": "date_limite_inconnue_a_verifier",
     "keyword": "transport",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/394682",
     "source": "Index public du Portail Marocain des Marchés Publics",
     "retrieved_at": "2026-10-22T16:21:41.862644+00:00",
     "index_engine": "Bing RSS"
-  },
-  {
-    "title": "location de véhicules pour transport du personnel de la commune",
-    "buyer": "Commune rurale de RAS EL OUED",
-    "deadline": "",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport du personnel",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T16:23:49.230405+00:00",
-    "index_engine": "DDGS"
   },
   {
     "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
@@ -29,8 +17,38 @@
     "keyword": "transport du personnel",
     "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-22T16:23:49.231860+00:00",
-    "index_engine": "DDGS",
+    "retrieved_at": "2026-10-22T16:58:55.863809+00:00",
+    "index_engine": "Bing RSS",
     "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre"
+  },
+  {
+    "title": "location de véhicules pour transport du personnel de la commune",
+    "buyer": "Commune rurale de RAS EL OUED",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport du personnel",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T16:58:55.864448+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "Sep 14, 2026 · Relatif à la location de matériel de transport et engins Détails",
+    "buyer": "Arrondissement BNI MAKADA",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/380203",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T16:59:13.682490+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "Avis de Vente Publique des Véhicules et Matériels Divers Administratifs Réformés \"En circulation\"",
+    "buyer": "M3 / SNTL - SOCIETE NATIONALE DES TRANSPORTS ET DE LA LOGISTIQUE",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "logistique",
+    "url": "https://www.marchespublics.gov.ma/?page=entreprise.SuiviConsultation&refConsultation=939027&orgAcronyme=o8p",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-22T16:59:13.683359+00:00",
+    "index_engine": "DDGS"
   }
 ]
