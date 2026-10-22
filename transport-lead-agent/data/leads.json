@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-22T15:28:18.646046+00:00",
+    "timestamp": "2026-10-22T15:33:40.484657+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T15:33:48.231072+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,19 +20,19 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T15:28:41.089838+00:00",
-    "company": "Kenzi Hotels Group",
+    "timestamp": "2026-10-22T15:33:25.121364+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "source": "ddgs",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 55,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
