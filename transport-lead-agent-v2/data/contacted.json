@@ -715,13 +715,17 @@
       "source": "verified-official-contact-fallback",
       "email_source_url": "https://www.globalindustrie.ma/pages/contact.php",
       "retry_reason": "{'contact@globalindustrie.ma': (451, b'Temporary local problem - please try later')}",
-      "status": "dry_run_preview",
+      "status": "smtp_retry_pending",
       "email_verified": true,
       "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-      "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+      "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
+      "retry_count": 1,
+      "retry_after": "2026-10-22T15:11:37.272433+00:00"
     }
   ],
-  "_permanent_rejects": [],
+  "_permanent_rejects": [
+    "info@fandygroup.com"
+  ],
   "contact@emballe.ma": {
     "company": "Emballe — Fabricant d’emballages carton, papier et plastique ...",
     "domain": "emballe.ma",
@@ -838,6 +842,41 @@
     "company": "Les meilleures solutions d'emballage et de protection e ...",
     "domain": "cartoncom.ma",
     "sent_at": "2026-10-22T14:16:17.169836+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "info@couscousdari.com": {
+    "company": "DARI COUSPATE",
+    "domain": "couscousdari.com",
+    "sent_at": "2026-10-22T15:04:56.660253+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "contact@michoc.ma": {
+    "company": "MICHOC",
+    "domain": "michoc.com",
+    "sent_at": "2026-10-22T15:05:12.932290+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "export@moony.ma": {
+    "company": "Moony",
+    "domain": "moony.ma",
+    "sent_at": "2026-10-22T15:05:18.363077+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "contact@moroccanproducts.ma": {
+    "company": "Fapaco - Fabrique Marocaine de Pâtes et Couscous",
+    "domain": "moroccanproducts.ma",
+    "sent_at": "2026-10-22T15:06:41.713399+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "source": "accepted_by_smtp"
+  },
+  "patoral.youness@gmail.com": {
+    "company": "Home - patoral.ma",
+    "domain": "patoral.ma",
+    "sent_at": "2026-10-22T15:06:46.102398+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES",
     "source": "accepted_by_smtp"
   }
