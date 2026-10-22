@@ -1,5 +1,8 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-22T20:00:07.726083+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
-2026-10-22T20:00:25.410720+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-22T19:59:55.386295+00:00,Conception et installation d’usines au Maroc - ALAQ INDUSTRY,,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,no_email,,
-2026-10-22T20:00:14.428343+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
+2026-10-22T20:05:23.257750+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T20:05:36.881469+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-22T20:05:03.308955+00:00,Conception et installation d'usines au Maroc - ALAQ INDUSTRY,contact@alaqindustry.com,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,smtp_error,,"{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
+2026-10-22T20:06:43.901815+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-22T20:05:15.085647+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
+2026-10-22T20:06:12.031168+00:00,MADEC MAROC | CONSORTIUM MAROCAIN DE COMMERCIALISATION,,madec.ma,https://www.madec.ma/,livraison / distribution,distribution grossiste,35,ddgs,,no_email,,
+2026-10-22T20:06:56.526248+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,bing-rss,,no_email,,
