@@ -1,6 +1,30 @@
 [
   {
-    "timestamp": "2026-10-22T12:05:16.225077+00:00",
+    "timestamp": "2026-10-22T12:10:21.374582+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T12:10:34.794382+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T12:10:43.118586+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -8,23 +32,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T12:06:05.506797+00:00",
-    "company": "Hangar à vendre et à louer au Maroc | Hangar Maroc",
-    "email": "",
-    "domain": "hangarmaroc.com",
-    "url": "https://hangarmaroc.com/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T12:05:42.049710+00:00",
+    "timestamp": "2026-10-22T12:11:19.399490+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -32,6 +44,18 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T12:11:06.721785+00:00",
+    "company": "EDIMAN | Construction, Rénovation, Plomberie & Électricité à ...",
+    "email": "",
+    "domain": "ediman.ma",
+    "url": "https://ediman.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "construction chantier",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
