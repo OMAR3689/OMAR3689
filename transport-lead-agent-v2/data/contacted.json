@@ -1,0 +1,428 @@
+{
+  "https://www.gardenexpresse.com": {
+    "email": "contact@gardenexpresse.com",
+    "company": "Garden Expresse Maroc | Site officiel transport & logistique",
+    "sent_at": "2026-10-20T03:48:32.668087+00:00"
+  },
+  "https://transportmarchandise.com": {
+    "email": "contact@transportmarchandise.com",
+    "company": "Transport marchandises Casablanca rapide et assuré",
+    "sent_at": "2026-10-20T04:01:07.664970+00:00"
+  },
+  "https://telecontact.ma/liens/transport-de-marchandises-maroc/casablanca.php": {
+    "email": "donnees.personnelles@edicom.ma",
+    "company": "Transport de marchandises Maroc à Casablanca,Telecontact les pages jaunes du maroc",
+    "sent_at": "2026-10-20T18:09:03.303578+00:00"
+  },
+  "https://idjmtrans.ma": {
+    "email": "contact@idjmtrans.ma",
+    "company": "IDJM TRANSPORT | Transport de marchandises & Déménagement au Maroc",
+    "sent_at": "2026-10-20T18:09:04.927106+00:00"
+  },
+  "https://salis-services.com/fr/solutions.html": {
+    "email": "contact@salis-services.com",
+    "company": "Solutions — transport professionnel au Maroc",
+    "sent_at": "2026-10-20T18:09:06.566776+00:00"
+  },
+  "https://colis.flexatrans.eu/details-transport+france+maroc+la+solution+flexatrans-1810": {
+    "email": "contact@flexatrans.eu",
+    "company": "Transport France Maroc : la solution Flexatrans - Flexatrans - Flexatrans",
+    "sent_at": "2026-10-20T18:09:08.211159+00:00"
+  },
+  "https://www.boumaratrans.com/transport-routier-international-maroc-europe-maroc/maroc-belgique-maroc": {
+    "email": "boumara@boumaratrans.com",
+    "company": "Transport international routier Maroc – Belgique",
+    "sent_at": "2026-10-20T18:09:09.809456+00:00"
+  },
+  "https://tcltransport.com/transport-marchandise-maroc": {
+    "email": "contact@tcl.ma",
+    "company": "Transport de marchandises Maroc - TCL Transport",
+    "sent_at": "2026-10-20T18:30:28.332977+00:00"
+  },
+  "https://ma.kompass.com/s/transports-et-logistique/10": {
+    "email": "madonna@huaxialed.com",
+    "company": "Entreprises Transports et logistique en Maroc - Kompass",
+    "sent_at": "2026-10-20T18:30:29.916055+00:00"
+  },
+  "https://www.aomaroc.com/offres/qualification/d-8.html": {
+    "email": "notifs@aomaroc.com",
+    "company": "Appels d'offres qualification D.8 — marchés publics | AO Maroc",
+    "message_id": "<179252215326.2079.8200216206847326330@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:16.926048+00:00"
+  },
+  "https://fr.scribd.com/presentation/709797155/Systeme-de-transport-au-Maroc": {
+    "email": "info@bestwebsite.com",
+    "company": "Système de transport au Maroc | PDF | Finance et gestion monétaire",
+    "message_id": "<179252215692.2079.10523105969616952093@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:19.824136+00:00"
+  },
+  "https://www.bav.admin.ch/fr/autorisations-de-transport-de-marchandises": {
+    "email": "lizenz@bav.admin.ch",
+    "company": "Autorisations de transport de marchandises - OFT",
+    "message_id": "<179252215982.2079.14702478058371538089@runnervm8k3b6.dnbrx4ldm3cejfjma5vl053eia.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T18:49:22.686739+00:00"
+  },
+  "https://startupmedias.net/articles/maroc-ezzal-la-startup-dediee-au-transport-de-marchandises-en-afrique": {
+    "email": "feedback@startupblink.com",
+    "company": "Maroc: Ezzal, la startup dédiée au transport de marchandises en Afrique. | Startup Medias",
+    "message_id": "<179252416837.2091.310707566659498623@runnervm8k3b6.qbcklkq2tuhetaziv34l1m1mih.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T19:22:51.943541+00:00"
+  },
+  "https://comfortgateway.ma/transport-du-personnel-maroc": {
+    "email": "contact@comfortgateway.ma",
+    "company": "Transport du Personnel au Maroc - Comfort Gateway",
+    "message_id": "<179252417194.2091.466423930052354874@runnervm8k3b6.qbcklkq2tuhetaziv34l1m1mih.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T19:22:55.068907+00:00"
+  },
+  "https://www.freshtrack.ma/fr/blog/maritime-transport-morocco": {
+    "email": "info@freshtrack.ma",
+    "company": "Transport maritime au Maroc 2026 : guide complet pour chargeurs | FreshTrack",
+    "message_id": "<179252417506.2091.8042362824155671574@runnervm8k3b6.qbcklkq2tuhetaziv34l1m1mih.phxx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T19:22:58.034793+00:00"
+  },
+  "https://procurement.ma/fournisseurs/transport": {
+    "email": "contact@procurement.ma",
+    "company": "Fournisseurs Transport Maroc | Procurement.ma | Procurement.ma",
+    "message_id": "<179252670787.2080.18381450701011832986@runnervm8k3b6.mkp05drk0bkedb0ttnqokptsdh.jx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T20:05:11.217777+00:00"
+  },
+  "https://www.tilditours.ma/transport-personnel.html": {
+    "email": "contact@tilditours.ma",
+    "company": "Transport de Personnel à Agadir | Navettes Entreprises & Usines - TILDI TOURS",
+    "message_id": "<179252671121.2080.17029539708487769531@runnervm8k3b6.mkp05drk0bkedb0ttnqokptsdh.jx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T20:05:14.205114+00:00"
+  },
+  "https://innovaimport.ma/societe-import-export-maroc": {
+    "email": "devis@innovaimport.ma",
+    "company": "Société Import Export Maroc - Transitaire,Transport,Dédouanement Maroc",
+    "message_id": "<179252671420.2080.8810319893897734777@runnervm8k3b6.mkp05drk0bkedb0ttnqokptsdh.jx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T20:05:16.778934+00:00"
+  },
+  "https://msotransports.com/zones-de-transport-mso/transport-marchandises-maroc": {
+    "email": "contact@msotransports.com",
+    "company": "Transport marchandises Maroc | MSO TRANSPORTS",
+    "message_id": "<179252671677.2080.8768845076004594202@runnervm8k3b6.mkp05drk0bkedb0ttnqokptsdh.jx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T20:05:22.483801+00:00"
+  },
+  "https://www.mordorintelligence.com/fr/industry-reports/morocco-freight-and-logistics-market": {
+    "email": "info@mordorintelligence.com",
+    "company": "Marché de la logistique au Maroc - Taille, part et analyse",
+    "message_id": "<179252673196.2080.5835585218095481966@runnervm8k3b6.mkp05drk0bkedb0ttnqokptsdh.jx.internal.cloudapp.net>",
+    "sender": "tarik@trmb.ma",
+    "sent_at": "2026-10-20T20:05:34.826874+00:00"
+  },
+  "support@stockanalysis.com": {
+    "company": "Apple (AAPL) Stock Price & Overview",
+    "domain": "stockanalysis.com",
+    "sent_at": "2026-10-20T20:51:13.271888+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "support@zacks.com": {
+    "company": "Apple - AAPL - Stock Price Today - Zacks",
+    "domain": "zacks.com",
+    "sent_at": "2026-10-20T20:51:14.801278+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@marketbeat.com": {
+    "company": "Apple (AAPL) Stock Price, News & Analysis - MarketBeat",
+    "domain": "marketbeat.com",
+    "sent_at": "2026-10-20T20:51:16.394678+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "commercial@cimar.co.ma": {
+    "company": "Ciments du Maroc",
+    "domain": "cimentsdumaroc.com",
+    "sent_at": "2026-10-20T21:05:21.875132+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "sothema@sothema.ma": {
+    "company": "Sothema",
+    "domain": "sothema.com",
+    "sent_at": "2026-10-20T21:05:23.194893+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@marocpetfood.ma": {
+    "company": "MAROC PET FOOD",
+    "domain": "marocpetfood.ma",
+    "sent_at": "2026-10-20T21:05:24.815159+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@imanyfood.com": {
+    "company": "Imany Food",
+    "domain": "imanyfood.com",
+    "sent_at": "2026-10-20T21:05:26.262372+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@alhalabi.ma": {
+    "company": "Al Halabi Food",
+    "domain": "alhalabi.ma",
+    "sent_at": "2026-10-20T21:05:27.598445+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "commercial@conserverieframaco.com": {
+    "company": "Framaco",
+    "domain": "conserverieframaco.com",
+    "sent_at": "2026-10-20T21:10:56.801028+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@finaafric.com": {
+    "company": "FinaAfric",
+    "domain": "finaafric.com",
+    "sent_at": "2026-10-20T21:12:13.578571+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@primasourcemaroc.com": {
+    "company": "Primasource Maroc",
+    "domain": "primasourcemaroc.com",
+    "sent_at": "2026-10-20T21:12:15.381662+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@copima.ma": {
+    "company": "Copima - Garant de la Mobilité au Maroc",
+    "domain": "copima.ma",
+    "sent_at": "2026-10-20T21:22:39.263478+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "info@gsp.co.ma": {
+    "company": "Le Comptoir Des Pièces De Rechange Automobiles | La Qualité ...",
+    "domain": "gsp.co.ma",
+    "sent_at": "2026-10-20T21:22:40.957168+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@eggroupe.com": {
+    "company": "EG Groupe Maroc | Grossiste, Importateur & Distributeur de ...",
+    "domain": "eggroupe.com",
+    "sent_at": "2026-10-20T21:22:42.674098+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@distrishelf.ma": {
+    "company": "DistriShelf | Importateur et distributeur alimentaire au Maroc",
+    "domain": "distrishelf.ma",
+    "sent_at": "2026-10-20T21:22:44.341768+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@pharmis.ma": {
+    "company": "Pharmis",
+    "domain": "pharmis.ma",
+    "sent_at": "2026-10-20T21:22:45.852846+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@africainerayonnagefroid.com": {
+    "company": "Africain Rayonnage Froid",
+    "domain": "africainerayonnagefroid.com",
+    "status": "delivery_failure_reported",
+    "suppressed_at": "2026-10-21T01:47:00+00:00",
+    "note": "Temporarily suppressed after user reported a delivery failure; verify before re-enabling."
+  },
+  "contact@giga-steel.ma": {
+    "company": "Fabrication mécanique Maroc - Précision et Usinage Industriel",
+    "domain": "giga-steel.ma",
+    "sent_at": "2026-10-21T02:22:38.669527+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@rzindustrie.ma": {
+    "company": "RZ Industrie - Solution Globale en usinage industriel.",
+    "domain": "rzindustrie.ma",
+    "sent_at": "2026-10-21T02:22:43.676471+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@onssa.gov.ma": {
+    "company": "Listes établissements agrées/autorisés - ONSSA",
+    "domain": "onssa.gov.ma",
+    "sent_at": "2026-10-21T02:22:49.438738+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES",
+    "status": "suppressed_public_authority",
+    "suppressed_at": "2026-10-21T02:22:00+00:00",
+    "note": "Excluded from future automated commercial outreach: Moroccan government/public authority domain."
+  },
+  "bonjour@waimarie.ma": {
+    "company": "Waimarie SARL - Société commerciale de Casablanca, Maroc",
+    "domain": "waimarie.ma",
+    "sent_at": "2026-10-21T03:10:16.603059+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@businex.ma": {
+    "company": "BUSINEX IMPORT EXPORT & CONSULTING – Porte à porte tout compris !",
+    "domain": "businex.ma",
+    "sent_at": "2026-10-21T03:10:20.705795+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@tourtra.ma": {
+    "company": "Tourtra - Entreprise de Construction & BTP au Maroc",
+    "domain": "tourtra.ma",
+    "sent_at": "2026-10-21T03:10:25.060268+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@laprophan.com": {
+    "company": "Contact - Laprophan",
+    "domain": "laprophan.com",
+    "sent_at": "2026-10-21T03:10:29.351958+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "administratif@chopinos.ma": {
+    "company": "chopinos – Sté Marocaine De Distribution",
+    "domain": "chopinos.ma",
+    "sent_at": "2026-10-21T03:10:33.653367+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "sales@mia-hotels.com": {
+    "company": "MIA Hôtels – Votre expérience hôtelière d’exception au Maroc",
+    "domain": "mia-hotels.com",
+    "sent_at": "2026-10-21T08:22:58.671545+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "info@kenzi-hotels.com": {
+    "company": "Morocco All Inclusive Hotels",
+    "domain": "kenzi-hotels.com",
+    "sent_at": "2026-10-21T08:23:04.236864+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "houda.skali@risma.com": {
+    "company": "Accueil - RISMA",
+    "domain": "risma.com",
+    "sent_at": "2026-10-21T08:23:09.070982+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@mekaudis.ma": {
+    "company": "Mekaudis | Importation et Distribution de Pièces Automobiles au Maroc",
+    "domain": "mekaudis.ma",
+    "sent_at": "2026-10-21T14:03:40.541111+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@industriel.ma": {
+    "company": "Industriel.ma – Solutions industrielles au Maroc ...",
+    "domain": "industriel.ma",
+    "sent_at": "2026-10-21T14:03:44.340201+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@norafood.com": {
+    "company": "Conserves Nora",
+    "domain": "norafood.net",
+    "sent_at": "2026-10-21T22:11:52.688705+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@maphar.ma": {
+    "company": "Contactez-Nous - maphar.ma",
+    "domain": "maphar.ma",
+    "sent_at": "2026-10-21T23:39:27.817948+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@olandgroup.ma": {
+    "company": "Oland Group",
+    "domain": "olandgroup.ma",
+    "sent_at": "2026-10-21T23:39:33.767998+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "m.filali@remora.ma": {
+    "company": "Remora",
+    "domain": "remora.ma",
+    "sent_at": "2026-10-21T23:39:39.496021+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "info@imsmaroc.ma": {
+    "company": "Industrial Manufacturing and Services Maroc",
+    "domain": "imsmaroc.ma",
+    "sent_at": "2026-10-21T23:39:45.868556+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@macobate.com": {
+    "company": "MACOBATE",
+    "domain": "macobate.ma",
+    "sent_at": "2026-10-21T23:39:51.642201+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@cei.ma": {
+    "company": "Comptoir Équipements Industriel Maroc",
+    "domain": "cei.ma",
+    "sent_at": "2026-10-21T23:39:57.972653+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@mtn.co.ma": {
+    "company": "MTN Maroc",
+    "domain": "mtn.co.ma",
+    "sent_at": "2026-10-21T23:40:04.101514+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "info@concept-industries.ma": {
+    "company": "Concept Industries",
+    "domain": "concept-industries.ma",
+    "sent_at": "2026-10-21T23:40:10.121285+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "agrimatco.maroc@agrimatco-af.com": {
+    "company": "Agrimatco Maroc",
+    "domain": "agrimatco.ma",
+    "sent_at": "2026-10-21T23:40:15.747215+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "commercial@megasourcingindustry.ma": {
+    "company": "MEGA SOURCINGINDUSTRY",
+    "domain": "megaindustry.ma",
+    "sent_at": "2026-10-21T23:40:21.321662+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@apro-industrie.ma": {
+    "company": "APRO INDUSTRIE",
+    "domain": "apro-industrie.ma",
+    "sent_at": "2026-10-21T23:40:26.726892+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@yamdistribution.com": {
+    "company": "Yam Distribution – Fournisseur & distributeur CHR à Marrakech ...",
+    "domain": "yamdistribution.com",
+    "sent_at": "2026-10-22T00:33:43.713386+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@bottu.com": {
+    "company": "Laboratoires BOTTU > Contact",
+    "domain": "bottu.com",
+    "sent_at": "2026-10-22T00:33:49.342317+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@padauto.ma": {
+    "company": "Padauto - Parc d'équipement automobile",
+    "domain": "padauto.ma",
+    "sent_at": "2026-10-22T01:12:05.454578+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@unitedconstruction.ma": {
+    "company": "UNITED CONSTRUCTION",
+    "domain": "unitedconstruction.ma",
+    "sent_at": "2026-10-22T01:16:39.909070+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@sicatgb.com": {
+    "company": "SICATGB S.A.R.L - Construction et BTP au Maroc",
+    "domain": "sicatgb.com",
+    "sent_at": "2026-10-22T01:21:31.878775+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "fenagri@fenagri.org": {
+    "company": "FENAGRI - Fédération nationale de l'agroalimentaire",
+    "domain": "fenagri.org",
+    "sent_at": "2026-10-22T01:21:36.656390+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@tuyauto.ma": {
+    "company": "Tuyauto — Équipementier Automobile",
+    "domain": "tuyauto.ma",
+    "sent_at": "2026-10-22T01:37:00.741686+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@cooperpharma.ma": {
+    "company": "cooperpharma – cooper pharma",
+    "domain": "cooperpharma.ma",
+    "sent_at": "2026-10-22T02:23:05.573307+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  }
+}
