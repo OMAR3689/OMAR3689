@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-22T23:28:37.176752+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-22T23:34:34.219641+00:00",
+    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:28:55.767909+00:00",
+    "timestamp": "2026-10-22T23:34:47.585200+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -24,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:29:02.930738+00:00",
+    "timestamp": "2026-10-22T23:34:55.056933+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -36,7 +36,44 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:28:44.713636+00:00",
+    "timestamp": "2026-10-22T23:35:13.937531+00:00",
+    "company": "Acceuil - KPH",
+    "email": "",
+    "domain": "kph.ma",
+    "url": "https://www.kph.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "pharmaceutique",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T23:34:03.454010+00:00",
+    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 60,
+    "source": "ddgs",
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
+  },
+  {
+    "timestamp": "2026-10-22T23:35:35.641189+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "email": "",
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "need": "transport et logistique",
+    "sector_hint": "retail distribution",
+    "score": 60,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T23:34:13.241968+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -44,19 +81,19 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:29:48.919574+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-22T23:34:21.807927+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "bing-rss",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 55,
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
