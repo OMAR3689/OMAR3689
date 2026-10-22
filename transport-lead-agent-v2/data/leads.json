@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T05:22:18.344508+00:00",
+    "timestamp": "2026-10-22T05:24:57.517113+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -15,7 +15,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:22:18.344582+00:00",
+    "timestamp": "2026-10-22T05:24:57.517183+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -30,7 +30,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:22:18.344637+00:00",
+    "timestamp": "2026-10-22T05:24:57.517260+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -45,7 +45,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:22:18.344696+00:00",
+    "timestamp": "2026-10-22T05:24:57.517319+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -60,7 +60,7 @@
     "status": "contact_not_verified"
   },
   {
-    "timestamp": "2026-10-22T05:20:25.237101+00:00",
+    "timestamp": "2026-10-22T05:23:32.720113+00:00",
     "company": "Nos sites - Cimat",
     "email": "",
     "domain": "cimat.ma",
@@ -75,7 +75,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T05:21:10.940055+00:00",
+    "timestamp": "2026-10-22T05:24:17.781014+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -85,22 +85,7 @@
     "score": 20,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-22T05:22:17.466667+00:00",
-    "company": "Grant Thornton Morocco",
-    "email": "",
-    "domain": "grantthornton.ma",
-    "url": "https://www.grantthornton.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "consultation transport logistique",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
+    "source": "ddgs",
     "email_source_url": "",
     "status": "no_email"
   }
