@@ -526,10 +526,13 @@ def public_email(title, url):
     for q in queries:
         results, _ = search_web(q, require_morocco=False)
         for item in results:
-            candidate_url = item.get("url", "") or url
             blob = f"{item.get('title', '')} {item.get('content', '')}"
             for email in extract_emails(blob):
-                # Keep public-email search constrained to the original company domain.
+                # Do not use sensitive/non-sales mailboxes (e.g. pharmacovigilance)
+                # as generic commercial contacts. Only public business contact roles.
+                prefix = email.split("@", 1)[0].lower()
+                if prefix not in sources.GENERIC_PREFIXES:
+                    continue
                 if usable_email(email, url):
                     return email
     return ""
