@@ -443,48 +443,143 @@ def _parse_indexed_tender(item, keyword):
     }
 
 
+class _SearchResultLinkParser(HTMLParser):
+    """Extract ordinary result links from DuckDuckGo's public HTML results."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.results = []
+        self._href = ""
+        self._parts = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag.lower() != "a":
+            return
+        attrs = dict(attrs)
+        classes = str(attrs.get("class", "")).split()
+        href = str(attrs.get("href", "")).strip()
+        if "result__a" in classes and href:
+            self._href = href
+            self._parts = []
+
+    def handle_data(self, data):
+        if self._href:
+            self._parts.append(data)
+
+    def handle_endtag(self, tag):
+        if tag.lower() != "a" or not self._href:
+            return
+        title = re.sub(r"\s+", " ", " ".join(self._parts)).strip()
+        parsed = urllib.parse.urlsplit(self._href)
+        query = urllib.parse.parse_qs(parsed.query)
+        href = query.get("uddg", [self._href])[0]
+        if title and href.startswith(("http://", "https://")):
+            self.results.append({"title": title, "url": href, "content": ""})
+        self._href = ""
+        self._parts = []
+
+
+def _ddgs_index_search(query):
+    """Search a public search index through DDGS without fetching target pages."""
+    try:
+        from ddgs import DDGS
+        raw = DDGS(timeout=10).text(
+            query, region="ma-fr", safesearch="off", max_results=10, backend="auto"
+        )
+        out = []
+        for item in raw or []:
+            url = str(item.get("href") or item.get("url") or "").strip()
+            title = re.sub(r"\s+", " ", str(item.get("title") or "")).strip()
+            content = re.sub(r"\s+", " ", str(item.get("body") or item.get("content") or "")).strip()
+            if url.startswith(("http://", "https://")) and title:
+                out.append({"title": title, "url": url, "content": content})
+        return out
+    except Exception as exc:
+        print(f"⚠️ DDGS index des marchés publics indisponible: {exc}")
+        return []
+
+
+def _bing_rss_index_search(query):
+    """Query Bing's public RSS index only; do not fetch result pages."""
+    search_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(query)
+    req = urllib.request.Request(
+        search_url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/rss+xml,application/xml,text/xml,*/*;q=0.8",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            payload = response.read(500_000)
+        root = ET.fromstring(payload)
+        return [
+            {
+                "title": item.findtext("title") or "",
+                "url": item.findtext("link") or "",
+                "content": item.findtext("description") or "",
+            }
+            for item in root.findall(".//item")
+        ]
+    except Exception as exc:
+        print(f"⚠️ Bing RSS index des marchés publics indisponible: {exc}")
+        return []
+
+
+def _duckduckgo_html_index_search(query):
+    """Fallback to public DuckDuckGo HTML search results."""
+    search_url = "https://html.duckduckgo.com/html/?" + urllib.parse.urlencode({"q": query})
+    req = urllib.request.Request(
+        search_url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.7",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as response:
+            payload = response.read(500_000).decode("utf-8", errors="replace")
+        parser = _SearchResultLinkParser()
+        parser.feed(payload)
+        return parser.results
+    except Exception as exc:
+        print(f"⚠️ DuckDuckGo HTML index des marchés publics indisponible: {exc}")
+        return []
+
+
 def _find_indexed_tenders(keywords):
     """
-    Fallback using Bing's public RSS index when the official portal's robots.txt
-    or network endpoint is unavailable. This queries Bing only; it does not
-    bypass robots.txt or fetch the blocked procurement pages.
+    Search public indexes for official portal URLs if the portal itself is unreachable.
+    Search indexes are queried only; robots.txt is respected and no blocked result
+    page is fetched. Every accepted candidate must still link to the official portal.
     """
     found = {}
+    engines = (
+        ("DDGS", _ddgs_index_search),
+        ("Bing RSS", _bing_rss_index_search),
+        ("DuckDuckGo HTML", _duckduckgo_html_index_search),
+    )
     for keyword in list(keywords)[:4]:
         query = (
             f'site:{MP_HOST} "{keyword}" '
-            '(consultation OR "appel d offres" OR annonce)'
+            '(consultation OR "avis d appel a la concurrence" OR "appel d offres")'
         )
-        search_url = "https://www.bing.com/search?format=rss&q=" + urllib.parse.quote_plus(query)
-        req = urllib.request.Request(
-            search_url,
-            headers={
-                "User-Agent": USER_AGENT,
-                "Accept": "application/rss+xml,application/xml,text/xml,*/*;q=0.8",
-            },
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=12) as response:
-                payload = response.read(500_000)
-            root = ET.fromstring(payload)
-            for item_node in root.findall(".//item"):
-                item = {
-                    "title": item_node.findtext("title") or "",
-                    "url": item_node.findtext("link") or "",
-                    "content": item_node.findtext("description") or "",
-                }
+        for engine_name, search_fn in engines:
+            for item in search_fn(query):
                 tender = _parse_indexed_tender(item, keyword)
                 if not tender:
                     continue
-                key = (
+                dedup_key = (
                     _normal_text(tender["title"]) + "|"
                     + _normal_text(tender["buyer"]) + "|"
                     + tender["deadline"]
                 )
-                found.setdefault(key, tender)
-        except Exception as exc:
-            print(f"⚠️ Recherche indexée des marchés publics indisponible ({keyword}): {exc}")
-    print(f"📑 Index Bing du portail officiel: {len(found)} opportunités candidates; date/éligibilité à vérifier.")
+                if dedup_key not in found:
+                    tender["index_engine"] = engine_name
+                    found[dedup_key] = tender
+    print(
+        f"📑 Index public du portail officiel: {len(found)} opportunités candidates "
+        "sur DDGS, Bing RSS et DuckDuckGo HTML; date/éligibilité à vérifier."
+    )
     return list(found.values())
 
 
