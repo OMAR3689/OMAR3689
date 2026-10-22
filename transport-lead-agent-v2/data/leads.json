@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "timestamp": "2026-10-22T09:25:24.461704+00:00",
+    "company": "Grant Thornton Morocco",
+    "email": "",
+    "domain": "grantthornton.ma",
+    "url": "https://www.grantthornton.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "consultation transport logistique",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "status": "no_email"
+  }
+]
