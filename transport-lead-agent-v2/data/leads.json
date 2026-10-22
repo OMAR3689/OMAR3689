@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T05:37:13.692306+00:00",
+    "timestamp": "2026-10-22T05:40:56.957542+00:00",
     "company": "Excelo – Best Biscuits Maroc",
     "email": "export@excelo.ma",
     "domain": "excelo.ma",
@@ -17,7 +17,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T05:37:13.692355+00:00",
+    "timestamp": "2026-10-22T05:40:56.957599+00:00",
     "company": "La SOMADIR",
     "email": "germa@somadir.com",
     "domain": "somadir.com",
@@ -34,7 +34,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T05:37:13.692384+00:00",
+    "timestamp": "2026-10-22T05:40:56.957639+00:00",
     "company": "Damandis",
     "email": "malika.ouchhal@damandis.ma",
     "domain": "damandis.ma",
@@ -49,7 +49,7 @@
     "status": "qualified"
   },
   {
-    "timestamp": "2026-10-22T05:37:13.692443+00:00",
+    "timestamp": "2026-10-22T05:40:56.957683+00:00",
     "company": "Agrin Maroc",
     "email": "agrin@agrinmaroc.ma",
     "domain": "agrinmaroc.ma",
@@ -61,6 +61,36 @@
     "direct_intent": false,
     "priority": "WARM",
     "source": "verified-official-contact-fallback",
+    "status": "qualified"
+  },
+  {
+    "timestamp": "2026-10-22T05:39:07.342241+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 55,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T05:38:51.714007+00:00",
+    "company": "Nos sites - Cimat",
+    "email": "contact@cimat.ma",
+    "domain": "cimat.ma",
+    "url": "https://www.cimat.ma/fr/pages/nos-sites",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 40,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "https://www.cimat.ma/",
     "status": "qualified"
   }
 ]
