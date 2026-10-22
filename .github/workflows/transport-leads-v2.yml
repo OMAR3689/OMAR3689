@@ -49,7 +49,7 @@ jobs:
 
       - name: Validate Python syntax
         run: |
-          python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py transport-lead-agent-v2/test_sources.py
+          python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py transport-lead-agent-v2/test_sources.py transport-lead-agent-v2/test_agent.py
           python -m unittest discover -s transport-lead-agent-v2 -p 'test_*.py' -v
 
       - name: Discover and preview prospects (no sending)
