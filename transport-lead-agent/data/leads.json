@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T21:17:29.572653+00:00",
+    "timestamp": "2026-10-22T21:22:54.445612+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -12,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T21:17:37.821827+00:00",
+    "timestamp": "2026-10-22T21:23:03.000563+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,25 +24,26 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T21:17:16.711810+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
+    "timestamp": "2026-10-22T21:22:38.350172+00:00",
+    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
+    "sector_hint": "industrie",
+    "score": 60,
     "source": "ddgs",
-    "status": "no_email"
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
   },
   {
-    "timestamp": "2026-10-22T21:18:30.938214+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-22T21:23:37.669883+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
+    "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "ddgs",
     "status": "no_email"
