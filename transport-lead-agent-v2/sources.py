@@ -54,18 +54,27 @@ def _normal_text(value):
 
 
 def allowed_by_robots(url):
-    """Fail closed: si robots.txt ne peut pas être lu, ne pas crawler ce site."""
+    """Fail closed, avec timeout explicite pour ne pas bloquer une exécution."""
     parts = urllib.parse.urlsplit(url)
     if parts.scheme not in ("http", "https") or not parts.netloc:
         return False
     base = f"{parts.scheme}://{parts.netloc}"
     if base not in _robots_cache:
-        rp = robotparser.RobotFileParser()
-        rp.set_url(base + "/robots.txt")
+        robots_url = base + "/robots.txt"
+        req = urllib.request.Request(
+            robots_url,
+            headers={"User-Agent": USER_AGENT, "Accept": "text/plain,*/*;q=0.1"},
+        )
         try:
-            rp.read()
+            with urllib.request.urlopen(req, timeout=8) as resp:
+                raw = resp.read(100_000).decode("utf-8", errors="replace")
+            rp = robotparser.RobotFileParser()
+            rp.set_url(robots_url)
+            rp.parse(raw.splitlines())
             _robots_cache[base] = rp
         except Exception as exc:
+            # Per the project's conservative policy, inaccessible/unknown rules
+            # mean we skip this host rather than assume permission.
             print(f"⏭️ robots.txt inaccessible; crawl désactivé pour {base}: {exc}")
             _robots_cache[base] = None
     rp = _robots_cache[base]
@@ -77,6 +86,22 @@ def allowed_by_robots(url):
         return False
 
 
+def _polite_delay(url):
+    """Use the site-declared Crawl-delay when available, never below 3 seconds."""
+    parts = urllib.parse.urlsplit(url)
+    base = f"{parts.scheme}://{parts.netloc}"
+    rp = _robots_cache.get(base)
+    delay = REQUEST_DELAY
+    if rp is not None:
+        try:
+            declared = rp.crawl_delay(USER_AGENT)
+            if declared is not None:
+                delay = max(delay, float(declared))
+        except Exception:
+            pass
+    return delay
+
+
 def polite_get(url):
     """GET HTML avec vérification robots.txt, délai par hôte et retry limité."""
     if not allowed_by_robots(url):
@@ -84,7 +109,7 @@ def polite_get(url):
         return None
 
     host = _host(url)
-    wait = REQUEST_DELAY - (time.monotonic() - _last_hit.get(host, 0))
+    wait = _polite_delay(url) - (time.monotonic() - _last_hit.get(host, 0))
     if wait > 0:
         time.sleep(wait)
 
