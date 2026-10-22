@@ -6,6 +6,7 @@ on:
     branches: [trmb-agent-v2]
     paths:
       - 'transport-lead-agent-v2/agent.py'
+      - 'transport-lead-agent-v2/sources.py'
       - '.github/workflows/transport-leads-v2.yml'
 
 permissions:
@@ -45,7 +46,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check --no-warn-script-location ddgs
 
       - name: Validate Python syntax
-        run: python -m py_compile transport-lead-agent-v2/agent.py
+        run: python -m py_compile transport-lead-agent-v2/agent.py transport-lead-agent-v2/sources.py
 
       - name: Discover and preview prospects (no sending)
         run: python transport-lead-agent-v2/agent.py
@@ -54,6 +55,6 @@ jobs:
         run: |
           git config user.name 'TRMB Lead Agent V2'
           git config user.email 'actions@github.com'
-          git add transport-lead-agent-v2/data/leads.json transport-lead-agent-v2/data/leads.csv transport-lead-agent-v2/data/contacted.json
+          git add transport-lead-agent-v2/data/leads.json transport-lead-agent-v2/data/leads.csv transport-lead-agent-v2/data/contacted.json transport-lead-agent-v2/data/tenders.json transport-lead-agent-v2/data/tenders.csv
           git diff --cached --quiet || git commit -m 'Update TRMB Lead Agent V2 preview data'
           git push origin HEAD:trmb-agent-v2
