@@ -285,14 +285,13 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(len(seed_domains), len(set(seed_domains)))
         seeded_names = {item["company"] for item in agent.SEEDED_PUBLIC_CONTACTS}
         self.assertTrue({
-            "Fonderie et Aciers du Maroc",
             "AMTI — Alfa Maroc Tech Industrie",
             "MGM Industries",
-            "AL AYYAR Metal Industry",
             "Promachines",
-            "Moroccan Iron Steel",
             "Managem Group",
             "COLORADO S.A.",
+            "SudBio",
+            "Orbis Agro Industry",
         }.issubset(seeded_names))
         seed_by_name = {item["company"]: item for item in agent.SEEDED_PUBLIC_CONTACTS}
         self.assertEqual(seed_by_name["Managem Group"]["email"], "procurement@managemgroup.com")
@@ -305,6 +304,12 @@ class AgentTests(unittest.TestCase):
             seed_by_name["COLORADO S.A."]["email_source_url"],
             "https://www.colorado.ma/corporate/fr/politique-de-confidentialite-application-mobile-colorado-reporting",
         )
+        self.assertEqual(seed_by_name["SudBio"]["email"], "contact@sudbio.ma")
+        self.assertEqual(seed_by_name["SudBio"]["url"], "https://sudbio.ma/en/capabilities/logistics-export/")
+        self.assertEqual(seed_by_name["SudBio"]["email_source_url"], "https://sudbio.ma/en/contact/")
+        self.assertEqual(seed_by_name["Orbis Agro Industry"]["email"], "contact@orbisagroindustry.ma")
+        self.assertEqual(seed_by_name["Orbis Agro Industry"]["url"], "https://orbisagroindustry.ma/orbis-agro-trading/")
+        self.assertEqual(seed_by_name["Orbis Agro Industry"]["email_source_url"], "https://orbisagroindustry.ma/en/contact/")
         for contact in agent.SEEDED_PUBLIC_CONTACTS:
             with self.subTest(company=contact["company"]):
                 self.assertTrue(contact.get("email"))
