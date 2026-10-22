@@ -24,7 +24,7 @@ TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
 TENDERS_CSV = os.path.join(OUT_DIR, "tenders.csv")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "10"))
 MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "20"))
-MIN_LEAD_SCORE = max(40, int(os.environ.get("MIN_LEAD_SCORE", "40")))
+MIN_LEAD_SCORE = max(60, int(os.environ.get("MIN_LEAD_SCORE", "60")))
 # V2 safety default: preview only; workflow also omits SMTP credentials.
 DRY_RUN = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
 V1_HISTORY_FILE = os.environ.get("V1_HISTORY_FILE", "").strip()
@@ -39,6 +39,7 @@ PRESENTATION_PDF_FILENAME = os.environ.get(
 SMTP_RETRIES = int(os.environ.get("SMTP_RETRIES", "3"))
 _PRESENTATION_PDF_CACHE = None
 _PRESENTATION_PDF_ERROR = None
+_EMAIL_ROUTE_CACHE = {}
 
 # Free sources only. No Tavily/API credits required.
 # Queries focus on Moroccan companies likely to BUY transport/logistics,
@@ -954,7 +955,7 @@ def verify_public_email_source(email, source_url, company_url):
 
 
 def is_sendable_contact(lead):
-    """Require a public business mailbox published on the company's own HTTPS site."""
+    """Require a public business mailbox from the company's own official HTTPS site."""
     email = str(lead.get("email", "") or "").strip().lower()
     source_url = str(lead.get("email_source_url", "") or "").strip()
     company_url = str(lead.get("url", "") or "").strip()
@@ -962,11 +963,21 @@ def is_sendable_contact(lead):
         return False
     source_host = domain(source_url)
     company_host = domain(company_url)
+    email_host = email.rsplit("@", 1)[-1].lower().rstrip(".")
     declared_domain = str(lead.get("domain", "") or "").strip().lower().removeprefix("www.")
     if not source_host or not company_host or source_host != company_host:
         return False
     if declared_domain and declared_domain != company_host:
         return False
+    # A marketplace or directory must never be treated as a buyer or contact domain,
+    # even if an older archive row contains an apparently valid address there.
+    blocked_hosts = {
+        host.lower().removeprefix("www.")
+        for host in NON_PROSPECT_DOMAINS
+    }
+    for host in (company_host, source_host, email_host):
+        if any(host == blocked or host.endswith("." + blocked) for blocked in blocked_hosts):
+            return False
     if not sources.is_public_business_email(
         email, site_domain=company_host, allow_external_domain=True
     ):
@@ -976,6 +987,63 @@ def is_sendable_contact(lead):
     if any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
         return False
     return True
+
+
+def email_domain_has_mail_route(email):
+    """Return True for a published MX/A/AAAA route; False if none exists; None if DNS checks fail.
+
+    Uses public DNS-over-HTTPS only as a pre-send safety check. This cannot prove that
+    an individual mailbox exists, so permanent SMTP recipient rejections are still
+    suppressed by the existing outreach history logic.
+    """
+    address = str(email or "").strip().lower()
+    if address.count("@") != 1:
+        return False
+    host = address.rsplit("@", 1)[1].strip().rstrip(".")
+    if not host:
+        return False
+    try:
+        host = host.encode("idna").decode("ascii")
+    except UnicodeError:
+        return False
+    if host in _EMAIL_ROUTE_CACHE:
+        return _EMAIL_ROUTE_CACHE[host]
+
+    for record_type, expected_type in (("MX", 15), ("A", 1), ("AAAA", 28)):
+        query_url = "https://cloudflare-dns.com/dns-query?" + urlencode({
+            "name": host,
+            "type": record_type,
+        })
+        request = Request(
+            query_url,
+            headers={
+                "accept": "application/dns-json",
+                "user-agent": "TRMB-Lead-Agent-V2/1.0",
+            },
+        )
+        try:
+            with urlopen(request, timeout=6) as response:
+                payload = response.read(64_000)
+            answer = json.loads(payload.decode("utf-8", errors="replace"))
+            status = answer.get("Status")
+            if status == 3:  # NXDOMAIN: this recipient domain cannot receive mail.
+                _EMAIL_ROUTE_CACHE[host] = False
+                return False
+            if status != 0:
+                print(f"⚠️ DNS mail-route check inconclusive for {host}: status={status}")
+                _EMAIL_ROUTE_CACHE[host] = None
+                return None
+            records = answer.get("Answer") or []
+            if any(int(item.get("type", 0)) == expected_type for item in records):
+                _EMAIL_ROUTE_CACHE[host] = True
+                return True
+        except Exception as exc:
+            print(f"⏸️ DNS mail-route check unavailable for {host}; recipient held safely: {exc}")
+            _EMAIL_ROUTE_CACHE[host] = None
+            return None
+
+    _EMAIL_ROUTE_CACHE[host] = False
+    return False
 
 def clean_company(title):
     t = re.sub(r"\s+", " ", title or "").strip()
@@ -1932,6 +2000,20 @@ def main():
         and is_sendable_contact(x)
     ]
     if not DRY_RUN:
+        # Confirm the destination mail domain publishes MX or implicit-MX (A/AAAA)
+        # records before attempting SMTP. DNS uncertainty fails closed: skip this
+        # cycle rather than send to an unverified mail domain.
+        mail_route_qualified = []
+        for lead in qualified:
+            route_ok = email_domain_has_mail_route(lead.get("email", ""))
+            if route_ok is True:
+                mail_route_qualified.append(lead)
+            else:
+                lead["status"] = "mail_domain_no_route" if route_ok is False else "mail_route_unverified"
+                lead["mail_route_check"] = "no_mx_a_aaaa" if route_ok is False else "dns_check_unavailable"
+                print(f"⏭️ Not sending to {lead.get('email', '')}: mail domain route check={lead['mail_route_check']}")
+        qualified = mail_route_qualified
+
         missing = [
             name for name in ("SMTP_HOST", "SMTP_USER", "SMTP_PASSWORD")
             if not os.environ.get(name, "").strip()
