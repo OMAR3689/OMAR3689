@@ -748,16 +748,25 @@ def _keyword_for_indexed_tender(item, keywords):
         key=lambda value: len(_normal_text(value)),
         reverse=True,
     )
+    ignored_connectors = {"de", "du", "des", "la", "le", "les", "l", "d", "et", "a", "au", "aux"}
+    def matches_keyword(text, keyword):
+        normalized_keyword = _normal_text(keyword)
+        if not normalized_keyword:
+            return False
+        if normalized_keyword in text:
+            return True
+        # French word order frequently inserts articles ("organisation de la logistique").
+        tokens = [token for token in normalized_keyword.split() if token not in ignored_connectors]
+        return len(tokens) > 1 and all(token in text for token in tokens)
+
     # Prefer the most specific phrase in the actual notice title/object.
     for keyword in normalized_keywords:
-        normalized_keyword = _normal_text(keyword)
-        if normalized_keyword and normalized_keyword in normalized_object:
+        if matches_keyword(normalized_object, keyword):
             return keyword
     # Generic portal/search titles sometimes omit "Objet"; _parse_indexed_tender
     # will still validate the object and reject unrelated purchases.
     for keyword in normalized_keywords:
-        normalized_keyword = _normal_text(keyword)
-        if normalized_keyword and normalized_keyword in normalized_description:
+        if matches_keyword(normalized_description, keyword):
             return keyword
     return ""
 
