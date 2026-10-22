@@ -1241,23 +1241,6 @@
     "run_id": "39801971123"
   },
   {
-    "timestamp": "2026-10-22T15:21:05.443594+00:00",
-    "company": "Consortium Marocain | Produits Chimiques Industriels depuis 1951",
-    "email": "",
-    "domain": "consortiummarocain.com",
-    "url": "https://consortiummarocain.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "chimie / industrie",
-    "score": 35,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39803537846"
-  },
-  {
     "timestamp": "2026-10-22T15:39:17.946109+00:00",
     "company": "Smart Import Technologie | Solutions industrielles au Maroc",
     "email": "smartimporttechnology@gmail.com",
@@ -1318,23 +1301,6 @@
     "run_id": "39819504845"
   },
   {
-    "timestamp": "2026-10-22T17:08:22.725756+00:00",
-    "company": "Total emballages | le premier distributeur du plastic au Maroc",
-    "email": "",
-    "domain": "totalemballages.com",
-    "url": "https://www.totalemballages.com/",
-    "need": "transport et logistique",
-    "sector_hint": "emballage / industrie",
-    "score": 25,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39819504845"
-  },
-  {
     "timestamp": "2026-10-22T17:23:42.772612+00:00",
     "company": "Exportateur de Fruits et Légumes Frais du Maroc | HOUKMI ...",
     "email": "info@houkmiexport.com",
@@ -1369,7 +1335,41 @@
     "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:18:13.389983+00:00",
+    "timestamp": "2026-10-22T19:17:57.889282+00:00",
+    "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
+    "email": "commercial@bledconserves.ma",
+    "domain": "bledconserves.ma",
+    "url": "http://www.bledconserves.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "conserves / agroalimentaire",
+    "score": 55,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "http://www.bledconserves.ma/",
+    "email_verified": true,
+    "status": "contact_not_verified",
+    "run_id": "39818440613"
+  },
+  {
+    "timestamp": "2026-10-22T19:15:59.758048+00:00",
+    "company": "AMGALA",
+    "email": "contact@amgala.ma",
+    "domain": "amgala.ma",
+    "url": "https://amgala.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "minoterie / agroalimentaire",
+    "score": 15,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "https://amgala.ma/",
+    "email_verified": true,
+    "status": "below_quality_threshold",
+    "run_id": "39818440613"
+  },
+  {
+    "timestamp": "2026-10-22T20:13:40.226001+00:00",
     "company": "Managem Group",
     "email": "procurement@managemgroup.com",
     "domain": "managemgroup.com",
@@ -1385,10 +1385,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:18:37.258388+00:00",
+    "timestamp": "2026-10-22T20:14:05.367307+00:00",
     "company": "Orbis Agro Industry",
     "email": "contact@orbisagroindustry.ma",
     "domain": "orbisagroindustry.ma",
@@ -1404,10 +1404,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:14:49.698525+00:00",
+    "timestamp": "2026-10-22T20:10:50.412390+00:00",
     "company": "Fandy",
     "email": "info@fandygroup.com",
     "domain": "fandy.ma",
@@ -1423,7 +1423,7 @@
     "status": "smtp_rejected",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613",
+    "run_id": "39821112314",
     "smtp_rejection": "{'info@fandygroup.com': (550, b'The mail server could not deliver mail to info@fandygroup.com.  The account\\nor domain may not exist, they may be blacklisted, or missing the proper dns\\nentries.')}"
   },
   {
@@ -1443,12 +1443,12 @@
     "email_verified": true,
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613",
+    "run_id": "39821112314",
     "retry_count": 2,
     "retry_after": "2026-10-22T15:35:01.433894+00:00"
   },
   {
-    "timestamp": "2026-10-22T19:18:14.230490+00:00",
+    "timestamp": "2026-10-22T20:13:40.998487+00:00",
     "company": "COLORADO S.A.",
     "email": "contact@colorado.ma",
     "domain": "colorado.ma",
@@ -1464,10 +1464,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:18:07.754625+00:00",
+    "timestamp": "2026-10-22T20:13:33.917244+00:00",
     "company": "AMTI — Alfa Maroc Tech Industrie",
     "email": "contact@amti.ma",
     "domain": "alfa-mti.com",
@@ -1483,10 +1483,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:18:11.154266+00:00",
+    "timestamp": "2026-10-22T20:13:37.749006+00:00",
     "company": "MGM Industries",
     "email": "contact@mgmindustries.ma",
     "domain": "mgmindustries.ma",
@@ -1502,10 +1502,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:18:11.926059+00:00",
+    "timestamp": "2026-10-22T20:13:38.918492+00:00",
     "company": "Promachines",
     "email": "contact@promachines.ma",
     "domain": "promachines.ma",
@@ -1521,27 +1521,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:17:57.889282+00:00",
-    "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
-    "email": "commercial@bledconserves.ma",
-    "domain": "bledconserves.ma",
-    "url": "http://www.bledconserves.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "conserves / agroalimentaire",
-    "score": 55,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "http://www.bledconserves.ma/",
-    "email_verified": true,
-    "status": "contact_not_verified",
-    "run_id": "39818440613"
-  },
-  {
-    "timestamp": "2026-10-22T19:17:28.868470+00:00",
+    "timestamp": "2026-10-22T20:13:26.117088+00:00",
     "company": "Rania Couspate — Couscous & pâtes du Maroc",
     "email": "",
     "domain": "rania-couspate.com",
@@ -1555,10 +1538,27 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:17:11.693583+00:00",
+    "timestamp": "2026-10-22T20:08:53.865056+00:00",
+    "company": "Consortium Marocain | Produits Chimiques Industriels depuis 1951",
+    "email": "",
+    "domain": "consortiummarocain.com",
+    "url": "https://consortiummarocain.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "chimie / industrie",
+    "score": 35,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
+  },
+  {
+    "timestamp": "2026-10-22T20:13:06.363026+00:00",
     "company": "Accueil - Deliz food Processing",
     "email": "",
     "domain": "delizfood.ma",
@@ -1568,14 +1568,14 @@
     "score": 35,
     "direct_intent": false,
     "priority": "STANDARD",
-    "source": "bing-rss",
+    "source": "ddgs",
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:13:18.207263+00:00",
+    "timestamp": "2026-10-22T20:09:09.211189+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
     "domain": "ckmafrica.com",
@@ -1589,10 +1589,10 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:14:09.563345+00:00",
+    "timestamp": "2026-10-22T20:10:02.792632+00:00",
     "company": "Votre partenaire d'équipements et fournitures industrielles ...",
     "email": "",
     "domain": "outicom.com",
@@ -1606,7 +1606,75 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
+  },
+  {
+    "timestamp": "2026-10-22T20:08:30.273690+00:00",
+    "company": "Total emballages | le premier distributeur du plastic au Maroc",
+    "email": "",
+    "domain": "totalemballages.com",
+    "url": "https://www.totalemballages.com/",
+    "need": "transport et logistique",
+    "sector_hint": "emballage / industrie",
+    "score": 25,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
+  },
+  {
+    "timestamp": "2026-10-22T20:07:52.598530+00:00",
+    "company": "FedEx | Services de livraison, de coursier et d'expédition ...",
+    "email": "",
+    "domain": "fedex.com",
+    "url": "https://www.fedex.com/fr-ma/home.html",
+    "need": "livraison / distribution",
+    "sector_hint": "consultation transport logistique",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
+  },
+  {
+    "timestamp": "2026-10-22T20:09:36.873863+00:00",
+    "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
+    "email": "",
+    "domain": "tacindustrie.ma",
+    "url": "https://tacindustrie.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution industrielle",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
+  },
+  {
+    "timestamp": "2026-10-22T20:12:10.189115+00:00",
+    "company": "NSI - Producteur marocain de chocolats et de biscuits",
+    "email": "",
+    "domain": "nsi.ma",
+    "url": "https://nsi.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
   },
   {
     "timestamp": "2026-10-22T19:16:47.555778+00:00",
@@ -1628,41 +1696,7 @@
     "preview_note": "Preview only; not sent. Activate sending only after V2 review."
   },
   {
-    "timestamp": "2026-10-22T19:13:49.311826+00:00",
-    "company": "TAC INDUSTRIE | Équipements & Solutions Industrielles au Maroc",
-    "email": "",
-    "domain": "tacindustrie.ma",
-    "url": "https://tacindustrie.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution industrielle",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39818440613"
-  },
-  {
-    "timestamp": "2026-10-22T19:16:20.560589+00:00",
-    "company": "NSI - Producteur marocain de chocolats et de biscuits",
-    "email": "",
-    "domain": "nsi.ma",
-    "url": "https://nsi.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "confiserie / agroalimentaire",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39818440613"
-  },
-  {
-    "timestamp": "2026-10-22T19:12:57.776535+00:00",
+    "timestamp": "2026-10-22T20:08:07.503524+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
     "domain": "marocemballage.ma",
@@ -1676,27 +1710,27 @@
     "email_source_url": "https://marocemballage.ma/contact/",
     "email_verified": true,
     "status": "below_quality_threshold",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:15:59.758048+00:00",
-    "company": "AMGALA",
-    "email": "contact@amgala.ma",
-    "domain": "amgala.ma",
-    "url": "https://amgala.ma/",
+    "timestamp": "2026-10-22T20:06:35.644087+00:00",
+    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "email": "",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
-    "sector_hint": "minoterie / agroalimentaire",
+    "sector_hint": "industrie",
     "score": 15,
     "direct_intent": false,
     "priority": "STANDARD",
     "source": "ddgs",
-    "email_source_url": "https://amgala.ma/",
-    "email_verified": true,
-    "status": "below_quality_threshold",
-    "run_id": "39818440613"
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T19:15:42.396493+00:00",
+    "timestamp": "2026-10-22T20:11:46.095893+00:00",
     "company": "MayMouna",
     "email": "",
     "domain": "maymouna.ma",
@@ -1710,6 +1744,6 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "39818440613"
+    "run_id": "39821112314"
   }
 ]
