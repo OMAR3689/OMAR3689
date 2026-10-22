@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-22T23:44:16.912295+00:00",
+    "timestamp": "2026-10-22T23:49:50.858755+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -12,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:44:24.812372+00:00",
+    "timestamp": "2026-10-22T23:49:59.820365+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,19 +24,69 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:44:03.316367+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-22T23:50:13.203242+00:00",
+    "company": "LABORATOIRES PHARMACEUTIQUES PRODISPHAR",
+    "email": "info@prodisphar.com",
+    "domain": "prodisphar.com",
+    "url": "https://www.prodisphar.com/",
+    "need": "transport et logistique",
+    "sector_hint": "pharmaceutique",
+    "score": 60,
+    "source": "bing-rss",
+    "status": "smtp_error",
+    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
+  },
+  {
+    "timestamp": "2026-10-22T23:49:33.115093+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 55,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T23:49:40.351860+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
+    "score": 55,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T23:49:22.805306+00:00",
+    "company": "Maghrebsteel | LEADER MAROCAIN DE L’ACIER",
+    "email": "yassine.assaieb@maghrebsteel.ma",
+    "domain": "maghrebsteel.ma",
+    "url": "https://www.maghrebsteel.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 20,
+    "source": "bing-rss",
+    "status": "smtp_error",
+    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
+  },
+  {
+    "timestamp": "2026-10-22T23:50:34.006374+00:00",
+    "company": "FNBTP - Fédération Nationale du Bâtiment et des Travaux ...",
+    "email": "",
+    "domain": "fnbtp.ma",
+    "url": "https://fnbtp.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "construction chantier",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-22T23:45:04.223757+00:00",
+    "timestamp": "2026-10-22T23:50:49.395614+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -45,6 +95,18 @@
     "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-22T23:51:07.260989+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
