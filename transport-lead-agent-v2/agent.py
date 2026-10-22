@@ -894,6 +894,13 @@ def is_bad_prospect(title, content, url):
         "freight forwarder", "commissionnaire de transport",
         "transport de marchandises", "transport international",
         "transport routier", "nos camions", "notre flotte",
+        "stockage & distribution", "stockage et distribution",
+        "solutions logistiques", "solutions de transport",
+        "services logistiques", "prestataire logistique",
+        "opérateur logistique", "operateur logistique",
+        "transport maritime", "transport aérien", "transport aerien",
+        "transport multimodal", "import/export international",
+        "import export international",
     )
     if any(signal in title_text for signal in provider_title_signals):
         return True

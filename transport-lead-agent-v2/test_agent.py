@@ -8,6 +8,15 @@ import agent
 
 
 class AgentTests(unittest.TestCase):
+    def test_logistics_service_page_is_filtered_as_provider_not_buyer(self):
+        title = "Stockage & Distribution - Royas"
+        content = (
+            "Solutions logistiques complètes. Transport maritime et aérien, "
+            "dédouanement, import/export et distribution nationale."
+        )
+        url = "https://www.royas.ma/fr/services/stockage-distribution"
+        self.assertTrue(agent.is_bad_prospect(title, content, url))
+
     def test_search_web_tries_next_engine_when_first_results_are_only_directories(self):
         directory_results = ([{
             "title": "Annuaire des transporteurs au Maroc",
