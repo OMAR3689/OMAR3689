@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T03:07:11.520182+00:00",
+    "timestamp": "2026-10-23T03:12:22.616740+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,11 +8,49 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T03:07:03.402590+00:00",
+    "timestamp": "2026-10-23T03:12:46.858170+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "email": "",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
+    "need": "livraison / distribution",
+    "sector_hint": "importateur exportateur",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T03:12:34.594730+00:00",
+    "company": "ISIO LABORATOIRES | Maroc",
+    "email": "contact@isiolaboratoires.com",
+    "domain": "isiolaboratoires.com",
+    "url": "http://isiolaboratoires.com/",
+    "need": "transport lié aux flux import/export",
+    "sector_hint": "pharmaceutique",
+    "score": 95,
+    "source": "ddgs",
+    "status": "smtp_error",
+    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
+  },
+  {
+    "timestamp": "2026-10-23T03:12:32.106727+00:00",
+    "company": "LABORATOIRES PHARMACEUTIQUES PRODISPHAR",
+    "email": "info@prodisphar.com",
+    "domain": "prodisphar.com",
+    "url": "https://www.prodisphar.com/",
+    "need": "transport et logistique",
+    "sector_hint": "pharmaceutique",
+    "score": 60,
+    "source": "ddgs",
+    "status": "smtp_error",
+    "smtp_error": "Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type"
+  },
+  {
+    "timestamp": "2026-10-23T03:12:10.420896+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -24,7 +62,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T03:07:36.823698+00:00",
+    "timestamp": "2026-10-23T03:13:06.182877+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -36,7 +74,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T03:07:49.930573+00:00",
+    "timestamp": "2026-10-23T03:13:24.583535+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -44,7 +82,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
