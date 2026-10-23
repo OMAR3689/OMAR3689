@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T01:48:34.081489+00:00",
+    "timestamp": "2026-10-23T01:55:34.470282+00:00",
     "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
     "domain": "3skpartsauto.com",
@@ -8,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:49:32.729148+00:00",
+    "timestamp": "2026-10-23T01:55:45.524548+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,59 +20,36 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T01:50:16.736697+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T01:51:32.267970+00:00",
-    "company": "BANASEN MAROC — Importation et Exportation Internationale",
-    "email": "",
-    "domain": "banasenmaroc.site",
-    "url": "https://banasenmaroc.site/",
-    "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
-    "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:52:49.644654+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "timestamp": "2026-10-23T01:55:16.537670+00:00",
+    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
-    "sector_hint": "retail distribution",
+    "sector_hint": "industrie",
     "score": 60,
     "source": "ddgs",
-    "status": "no_email"
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
   },
   {
-    "timestamp": "2026-10-23T01:47:48.958503+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-23T01:55:25.325255+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
+    "need": "transport et logistique",
     "sector_hint": "automobile industrie",
-    "score": 55,
-    "source": "bing-rss",
+    "score": 40,
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:53:48.190649+00:00",
+    "timestamp": "2026-10-23T01:56:19.114784+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -81,6 +58,18 @@
     "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T01:56:38.132752+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
