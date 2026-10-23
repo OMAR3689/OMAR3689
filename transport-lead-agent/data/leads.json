@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T07:31:07.856957+00:00",
+    "timestamp": "2026-10-23T07:36:27.152834+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -8,35 +8,23 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:31:12.845086+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-23T07:36:46.017877+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "importateur exportateur",
     "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:31:39.394832+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T07:31:00.020218+00:00",
+    "timestamp": "2026-10-23T07:36:13.584838+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -48,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:32:05.872473+00:00",
+    "timestamp": "2026-10-23T07:37:16.937140+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
