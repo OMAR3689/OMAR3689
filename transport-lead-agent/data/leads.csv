@@ -1,8 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T05:06:34.442046+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-23T05:06:52.931286+00:00,BANASEN MAROC — Importation et Exportation Internationale,,banasenmaroc.site,https://banasenmaroc.site/,livraison / distribution,importateur exportateur,100,bing-rss,,no_email,,
-2026-10-23T05:06:12.916902+00:00,Conception et installation d’usines au Maroc - ALAQ INDUSTRY,,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,no_email,,
-2026-10-23T05:07:08.961600+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T05:06:20.055413+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
-2026-10-23T05:07:17.642841+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
-2026-10-23T05:07:35.583982+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,bing-rss,,no_email,,
+2026-10-23T05:11:17.570602+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-23T05:11:26.073193+00:00,ISIO LABORATOIRES | Maroc,contact@isiolaboratoires.com,isiolaboratoires.com,http://isiolaboratoires.com/,transport et logistique,pharmaceutique,80,ddgs,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-23T05:11:22.962994+00:00,LABORATOIRES PHARMACEUTIQUES PRODISPHAR,info@prodisphar.com,prodisphar.com,https://www.prodisphar.com/,transport et logistique,pharmaceutique,60,ddgs,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-23T05:11:59.730344+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T05:11:49.261904+00:00,FNBTP - Fédération Nationale du Bâtiment et des Travaux ...,,fnbtp.ma,https://fnbtp.ma/,transport et logistique,construction chantier,20,ddgs,,no_email,,
+2026-10-23T05:12:08.662510+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
