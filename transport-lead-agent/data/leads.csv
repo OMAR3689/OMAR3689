@@ -1,4 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T07:41:36.106860+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T07:42:11.836531+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T07:41:24.129817+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-23T07:46:43.754635+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-23T07:47:13.387141+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T07:47:51.046094+00:00,7AV Hotels,info@7avhotels.com,7avhotels.com,https://www.7avhotels.com/,transport et logistique,hôtel tourisme,40,ddgs,,sent,2026-10-23T07:48:19.060365+00:00,
+2026-10-23T07:46:32.118423+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-23T07:48:10.555036+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,bing-rss,,no_email,,
