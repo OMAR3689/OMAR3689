@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T00:30:39.954687+00:00",
+    "timestamp": "2026-10-23T00:35:48.556352+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -12,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T00:31:17.020710+00:00",
+    "timestamp": "2026-10-23T00:36:19.481122+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -20,11 +20,11 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T00:30:26.739075+00:00",
+    "timestamp": "2026-10-23T00:35:34.948674+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -36,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T00:31:25.540650+00:00",
+    "timestamp": "2026-10-23T00:36:29.663638+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
