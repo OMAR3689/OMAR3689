@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T05:37:02.288417+00:00",
+    "timestamp": "2026-10-23T05:42:35.338899+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,43 +8,44 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T05:37:28.779350+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "timestamp": "2026-10-23T05:42:07.867160+00:00",
+    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
-    "sector_hint": "retail distribution",
+    "sector_hint": "industrie",
     "score": 60,
-    "source": "ddgs",
-    "status": "no_email"
+    "source": "bing-rss",
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
   },
   {
-    "timestamp": "2026-10-23T05:36:49.412784+00:00",
+    "timestamp": "2026-10-23T05:42:17.654156+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
+    "score": 55,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T05:37:36.841543+00:00",
-    "company": "Kenzi Hotels Group",
+    "timestamp": "2026-10-23T05:43:30.953043+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
     "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
+    "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
