@@ -1,30 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T03:39:22.484622+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T03:39:56.635319+00:00",
-    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
-    "email": "",
-    "domain": "autoplus.net.ma",
-    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T03:40:39.134128+00:00",
+    "timestamp": "2026-10-23T03:44:02.671447+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -32,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T03:42:09.239519+00:00",
+    "timestamp": "2026-10-23T03:44:35.156891+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -48,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T03:38:39.358747+00:00",
+    "timestamp": "2026-10-23T03:43:50.277004+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
