@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T15:14:01.055841+00:00",
+    "timestamp": "2026-10-23T15:19:10.209797+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T15:19:23.303662+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -12,19 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T15:14:19.412318+00:00",
-    "company": "BANASEN MAROC — Importation et Exportation Internationale",
-    "email": "",
-    "domain": "banasenmaroc.site",
-    "url": "https://banasenmaroc.site/",
-    "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T15:13:47.393684+00:00",
+    "timestamp": "2026-10-23T15:18:57.720912+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -36,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T15:14:56.010258+00:00",
+    "timestamp": "2026-10-23T15:20:11.673024+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
