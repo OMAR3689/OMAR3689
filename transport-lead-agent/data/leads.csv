@@ -1,10 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T02:31:43.905937+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T02:31:55.769194+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T02:32:07.907682+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-23T02:32:15.538367+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-23T02:32:32.512620+00:00,Acceuil - KPH,,kph.ma,https://www.kph.ma/,transport et logistique,pharmaceutique,100,bing-rss,,no_email,,
-2026-10-23T02:31:25.636159+00:00,Conception et installation d'usines au Maroc - ALAQ INDUSTRY,contact@alaqindustry.com,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,smtp_error,,"{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
-2026-10-23T02:32:56.878709+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T02:31:35.065363+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
-2026-10-23T02:33:10.328115+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,bing-rss,,no_email,,
+2026-10-23T02:36:35.575577+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T02:36:45.020555+00:00,ISIO LABORATOIRES | Maroc,contact@isiolaboratoires.com,isiolaboratoires.com,http://isiolaboratoires.com/,transport lié aux flux import/export,pharmaceutique,95,bing-rss,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-23T02:37:13.897973+00:00,ASMEX – Confédération Marocaine des Exportateurs,,asmex.org,https://asmex.org/,transport et logistique,importateur exportateur,80,ddgs,,no_email,,
+2026-10-23T02:36:53.427147+00:00,LABORATOIRES PHARMACEUTIQUES PRODISPHAR,info@prodisphar.com,prodisphar.com,https://www.prodisphar.com/,transport et logistique,pharmaceutique,60,bing-rss,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-23T02:36:22.260710+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-23T02:38:00.288630+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,
