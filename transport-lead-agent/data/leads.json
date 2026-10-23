@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T14:12:07.133253+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T14:12:12.069341+00:00",
+    "timestamp": "2026-10-23T14:17:08.472704+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:12:32.979348+00:00",
+    "timestamp": "2026-10-23T14:17:28.021120+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:11:56.432054+00:00",
+    "timestamp": "2026-10-23T14:16:59.680276+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -44,11 +32,11 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:12:47.075935+00:00",
+    "timestamp": "2026-10-23T14:17:44.057815+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -56,7 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
