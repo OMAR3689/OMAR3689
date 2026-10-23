@@ -1,5 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T07:26:07.876670+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-23T07:26:47.149789+00:00,Industriel — Construction & BTP au Maroc · BauIndustrie,,bau-industrie.com,https://bau-industrie.com/services/industriel/,transport et logistique,entrepôt logistique,100,ddgs,,no_email,,
-2026-10-23T07:25:55.923799+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
-2026-10-23T07:27:02.971384+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,
+2026-10-23T07:31:07.856957+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T07:31:12.845086+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T07:31:39.394832+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T07:31:00.020218+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-23T07:32:05.872473+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,
