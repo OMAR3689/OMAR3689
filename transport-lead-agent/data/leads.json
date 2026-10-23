@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T06:19:10.814201+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T06:19:17.960486+00:00",
+    "timestamp": "2026-10-23T06:24:26.934728+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -24,31 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T06:19:22.807344+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T06:19:40.699039+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T06:19:02.681601+00:00",
+    "timestamp": "2026-10-23T06:24:17.708744+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -60,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T06:20:07.047689+00:00",
+    "timestamp": "2026-10-23T06:25:15.932316+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
