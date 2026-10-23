@@ -1,31 +1,19 @@
 [
   {
-    "timestamp": "2026-10-23T09:49:36.476330+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-23T09:55:04.809569+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "automobile industrie",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T09:50:54.166849+00:00",
-    "company": "BANASEN MAROC — Importation et Exportation Internationale",
-    "email": "",
-    "domain": "banasenmaroc.site",
-    "url": "https://banasenmaroc.site/",
-    "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T09:52:03.648414+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "timestamp": "2026-10-23T09:56:06.554805+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 entreprises ...",
     "email": "",
     "domain": "maroc.welipro.com",
     "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
@@ -36,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T09:48:40.040802+00:00",
+    "timestamp": "2026-10-23T09:54:52.858695+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -48,15 +36,28 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T09:53:45.802957+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-23T09:55:39.940731+00:00",
+    "company": "MADEC MAROC | CONSORTIUM MAROCAIN DE COMMERCIALISATION",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
+    "domain": "madec.ma",
+    "url": "https://www.madec.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 35,
     "source": "bing-rss",
     "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T09:54:37.422947+00:00",
+    "company": "MTIM - Mega Tours Industrie Maroc",
+    "email": "contact@mtim.ma",
+    "domain": "mtim.ma",
+    "url": "https://www.mtim.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 20,
+    "source": "ddgs",
+    "status": "sent",
+    "sent_at": "2026-10-23T09:56:32.790176+00:00"
   }
 ]
