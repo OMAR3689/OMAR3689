@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T07:46:43.754635+00:00",
+    "timestamp": "2026-10-23T07:51:46.502308+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T07:51:53.999898+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -8,11 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:47:13.387141+00:00",
+    "timestamp": "2026-10-23T07:52:21.122919+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,39 +36,14 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:47:51.046094+00:00",
-    "company": "7AV Hotels",
-    "email": "info@7avhotels.com",
-    "domain": "7avhotels.com",
-    "url": "https://www.7avhotels.com/",
+    "timestamp": "2026-10-23T07:52:36.860056+00:00",
+    "company": "Hôtels et appartements à du Maroc, tous les hébergements à Maroc",
+    "email": "",
+    "domain": "allhotelsmorocco.com",
+    "url": "https://www.allhotelsmorocco.com/fr/",
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 40,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-23T07:48:19.060365+00:00"
-  },
-  {
-    "timestamp": "2026-10-23T07:46:32.118423+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T07:48:10.555036+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
     "source": "bing-rss",
     "status": "no_email"
   }
