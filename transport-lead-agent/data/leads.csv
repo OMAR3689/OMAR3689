@@ -1,7 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T10:20:11.869012+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-23T10:20:17.034926+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-23T10:20:40.547025+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T10:20:02.473848+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
-2026-10-23T10:20:47.281958+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,bing-rss,,no_email,,
-2026-10-23T10:20:59.838307+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,
+2026-10-23T10:25:28.489679+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-23T10:25:41.457838+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-23T10:26:10.016739+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T10:25:16.953284+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-23T10:26:18.591962+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
