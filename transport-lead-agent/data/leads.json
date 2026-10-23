@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T09:01:24.690249+00:00",
+    "timestamp": "2026-10-23T09:06:35.611618+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T09:01:52.799497+00:00",
+    "timestamp": "2026-10-23T09:07:01.373715+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T09:01:11.072675+00:00",
+    "timestamp": "2026-10-23T09:06:23.383172+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
