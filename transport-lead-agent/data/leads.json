@@ -1,42 +1,30 @@
 [
   {
-    "timestamp": "2026-10-23T07:20:59.434916+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-23T07:26:07.876670+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T07:21:17.739004+00:00",
-    "company": "BANASEN MAROC — Importation et Exportation Internationale",
-    "email": "",
-    "domain": "banasenmaroc.site",
-    "url": "https://banasenmaroc.site/",
-    "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T07:21:34.102063+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T07:20:48.158689+00:00",
+    "timestamp": "2026-10-23T07:26:47.149789+00:00",
+    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
+    "email": "",
+    "domain": "bau-industrie.com",
+    "url": "https://bau-industrie.com/services/industriel/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T07:25:55.923799+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -45,6 +33,18 @@
     "sector_hint": "automobile industrie",
     "score": 40,
     "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T07:27:02.971384+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
