@@ -1,30 +1,30 @@
 [
   {
-    "timestamp": "2026-10-23T08:14:54.857355+00:00",
+    "timestamp": "2026-10-23T08:22:07.323400+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "email": "",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
+    "need": "livraison / distribution",
+    "sector_hint": "importateur exportateur",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T08:21:53.325899+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
+    "score": 95,
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T08:14:59.537118+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T08:15:21.315928+00:00",
+    "timestamp": "2026-10-23T08:22:21.168731+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,14 +36,38 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T08:14:46.730396+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-23T08:20:22.421860+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
+    "need": "transport et logistique",
     "sector_hint": "automobile industrie",
-    "score": 55,
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T08:20:55.628048+00:00",
+    "company": "Konipa — Pièces auto au Maroc, importateur à Casablanca",
+    "email": "",
+    "domain": "konipa.ma",
+    "url": "https://konipa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 20,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T08:23:04.735872+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "bing-rss",
     "status": "no_email"
   }
