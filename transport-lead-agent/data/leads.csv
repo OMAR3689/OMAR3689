@@ -1,9 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T00:20:34.343415+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T00:20:45.578317+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/qui-sommes-nous,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T00:20:59.807837+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-23T00:21:09.314318+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-23T00:21:24.510560+00:00,Acceuil - KPH,,kph.ma,https://www.kph.ma/,transport et logistique,pharmaceutique,100,ddgs,,no_email,,
-2026-10-23T00:20:19.439527+00:00,Conception et installation d'usines au Maroc - ALAQ INDUSTRY,contact@alaqindustry.com,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,smtp_error,,"{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
-2026-10-23T00:21:46.025931+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T00:20:26.711557+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
+2026-10-23T00:25:29.224826+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T00:25:35.811178+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T00:26:07.146329+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T00:25:17.910280+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
