@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T11:47:48.338353+00:00",
+    "timestamp": "2026-10-23T11:52:53.465824+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -12,19 +12,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T11:47:32.866061+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-23T11:52:40.694932+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "bing-rss",
+    "score": 55,
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T11:48:35.144256+00:00",
+    "timestamp": "2026-10-23T11:53:36.311685+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
