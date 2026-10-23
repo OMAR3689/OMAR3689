@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T05:42:35.338899+00:00",
+    "timestamp": "2026-10-23T05:49:51.850458+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -12,32 +12,31 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T05:42:07.867160+00:00",
+    "timestamp": "2026-10-23T05:48:01.402556+00:00",
     "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
-    "email": "contact@alaqindustry.com",
+    "email": "",
     "domain": "alaqindustry.com",
     "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
     "sector_hint": "industrie",
     "score": 60,
-    "source": "bing-rss",
-    "status": "smtp_error",
-    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
-  },
-  {
-    "timestamp": "2026-10-23T05:42:17.654156+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T05:43:30.953043+00:00",
+    "timestamp": "2026-10-23T05:48:56.138264+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T05:52:49.850639+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -45,7 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
