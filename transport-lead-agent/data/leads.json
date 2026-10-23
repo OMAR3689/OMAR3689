@@ -1,30 +1,42 @@
 [
   {
-    "timestamp": "2026-10-23T01:16:08.300066+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-23T01:21:17.533294+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "automobile industrie",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:17:05.519829+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
+    "timestamp": "2026-10-23T01:21:29.358805+00:00",
+    "company": "AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
     "email": "",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/qui-sommes-nous",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T01:21:49.887245+00:00",
+    "company": "Acceuil - KPH",
+    "email": "",
+    "domain": "kph.ma",
+    "url": "https://www.kph.ma/",
     "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
+    "sector_hint": "pharmaceutique",
     "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:16:43.882684+00:00",
+    "timestamp": "2026-10-23T01:22:11.077481+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,7 +48,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:15:55.722896+00:00",
+    "timestamp": "2026-10-23T01:21:06.843765+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -48,7 +60,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:16:52.382260+00:00",
+    "timestamp": "2026-10-23T01:22:22.839719+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
