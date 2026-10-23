@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T01:06:06.110214+00:00",
+    "timestamp": "2026-10-23T01:11:10.949507+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T01:11:19.827798+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -12,19 +24,32 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:05:50.198605+00:00",
-    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "timestamp": "2026-10-23T01:11:37.682729+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
     "email": "",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
+    "need": "livraison / distribution",
+    "sector_hint": "importateur exportateur",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T01:10:53.876830+00:00",
+    "company": "Conception et installation d’usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
     "domain": "alaqindustry.com",
     "url": "https://alaqindustry.com/",
     "need": "transport et logistique",
     "sector_hint": "industrie",
     "score": 60,
     "source": "ddgs",
-    "status": "no_email"
+    "status": "smtp_error",
+    "smtp_error": "{'contact@alaqindustry.com': (451, b'Temporary local problem - please try later')}"
   },
   {
-    "timestamp": "2026-10-23T01:05:57.796191+00:00",
+    "timestamp": "2026-10-23T01:11:02.699102+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -36,19 +61,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:06:29.236069+00:00",
-    "company": "Kenzi Hotels Group",
+    "timestamp": "2026-10-23T01:11:55.401521+00:00",
+    "company": "Hôtels au Maroc : réservez en ligne sur all.accor.com",
     "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
+    "domain": "all.accor.com",
+    "url": "https://all.accor.com/a/fr/destination/country/hotels-morocco-pma.html",
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
-    "score": 20,
-    "source": "ddgs",
+    "score": 40,
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T01:06:41.802225+00:00",
+    "timestamp": "2026-10-23T01:12:09.953108+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -56,7 +81,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
