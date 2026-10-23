@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T04:30:18.076107+00:00",
+    "timestamp": "2026-10-23T04:35:34.987526+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T04:35:42.968897+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -12,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T04:30:26.165163+00:00",
+    "timestamp": "2026-10-23T04:35:48.493176+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -24,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T04:31:07.545471+00:00",
+    "timestamp": "2026-10-23T04:36:13.789796+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -36,15 +48,27 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T04:30:06.082228+00:00",
+    "timestamp": "2026-10-23T04:35:26.089996+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
+    "need": "transport et logistique",
     "sector_hint": "automobile industrie",
-    "score": 55,
+    "score": 40,
     "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T04:36:40.007849+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
