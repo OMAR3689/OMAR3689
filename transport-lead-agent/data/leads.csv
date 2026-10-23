@@ -1,6 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T15:08:53.217277+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
-2026-10-23T15:09:13.542896+00:00,BANASEN MAROC — Importation et Exportation Internationale,,banasenmaroc.site,https://banasenmaroc.site/,livraison / distribution,importateur exportateur,100,bing-rss,,no_email,,
-2026-10-23T15:09:30.205570+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T15:08:37.579113+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
-2026-10-23T15:09:55.785793+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,bing-rss,,no_email,,
+2026-10-23T15:14:01.055841+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-23T15:14:19.412318+00:00,BANASEN MAROC — Importation et Exportation Internationale,,banasenmaroc.site,https://banasenmaroc.site/,livraison / distribution,importateur exportateur,100,bing-rss,,no_email,,
+2026-10-23T15:13:47.393684+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-23T15:14:56.010258+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,bing-rss,,no_email,,
