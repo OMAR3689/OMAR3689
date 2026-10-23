@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-23T13:56:38.199406+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T13:56:48.590607+00:00",
+    "timestamp": "2026-10-23T14:01:49.652709+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,31 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T13:57:32.567538+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
-    "email": "",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T13:57:14.750520+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
-    "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T13:56:28.984500+00:00",
+    "timestamp": "2026-10-23T14:01:37.429913+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -56,11 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T13:57:47.751462+00:00",
+    "timestamp": "2026-10-23T14:02:25.624707+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -68,7 +32,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
