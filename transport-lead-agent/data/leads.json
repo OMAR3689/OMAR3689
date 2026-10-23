@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T08:30:20.781606+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-23T08:35:33.824061+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "automobile industrie",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T08:30:25.985552+00:00",
+    "timestamp": "2026-10-23T08:35:45.830872+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,24 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T08:30:12.773856+00:00",
-    "company": "Pièces Auto Maroc – Optiques, Rétroviseurs & Carrosserie ...",
-    "email": "contact@atlasauto.ma",
-    "domain": "atlasauto.ma",
-    "url": "https://atlasauto.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 70,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-23T08:31:08.050830+00:00"
-  },
-  {
-    "timestamp": "2026-10-23T08:30:45.409739+00:00",
+    "timestamp": "2026-10-23T08:36:17.002808+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -49,14 +36,14 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T08:31:02.296537+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-23T08:35:23.038224+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
+    "sector_hint": "automobile industrie",
+    "score": 40,
     "source": "ddgs",
     "status": "no_email"
   }
