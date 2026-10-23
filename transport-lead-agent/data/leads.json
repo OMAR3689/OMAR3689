@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-23T14:07:08.102512+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-23T14:12:07.133253+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:07:18.968753+00:00",
+    "timestamp": "2026-10-23T14:12:12.069341+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,36 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-23T14:08:02.004830+00:00",
-    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
-    "email": "",
-    "domain": "bau-industrie.com",
-    "url": "https://bau-industrie.com/services/industriel/",
-    "need": "transport et logistique",
-    "sector_hint": "entrepôt logistique",
-    "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:06:44.260623+00:00",
-    "company": "Sarmaga - L'équipement pour l'industrie agro-alimentaire",
-    "email": "contact@sarmaga.com",
-    "domain": "sarmaga.com",
-    "url": "https://www.sarmaga.com/",
-    "need": "transport et logistique",
-    "sector_hint": "agroalimentaire industrie",
-    "score": 80,
-    "source": "ddgs",
-    "status": "sent",
-    "sent_at": "2026-10-23T14:08:19.992382+00:00"
-  },
-  {
-    "timestamp": "2026-10-23T14:07:44.084527+00:00",
+    "timestamp": "2026-10-23T14:12:32.979348+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -61,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-23T14:06:58.058915+00:00",
+    "timestamp": "2026-10-23T14:11:56.432054+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -69,6 +44,18 @@
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-23T14:12:47.075935+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
