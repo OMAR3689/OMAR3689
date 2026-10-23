@@ -1,5 +1,4 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T08:56:42.418050+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-23T08:56:20.680110+00:00,Conception et installation d’usines au Maroc - ALAQ INDUSTRY,,alaqindustry.com,https://alaqindustry.com/,transport et logistique,industrie,60,ddgs,,no_email,,
-2026-10-23T08:57:10.291572+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T08:56:32.419616+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-23T09:01:24.690249+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-23T09:01:52.799497+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T09:01:11.072675+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
