@@ -1,6 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-23T09:55:04.809569+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
-2026-10-23T09:56:06.554805+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 entreprises ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-23T09:54:52.858695+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
-2026-10-23T09:55:39.940731+00:00,MADEC MAROC | CONSORTIUM MAROCAIN DE COMMERCIALISATION,,madec.ma,https://www.madec.ma/,livraison / distribution,distribution grossiste,35,bing-rss,,no_email,,
-2026-10-23T09:54:37.422947+00:00,MTIM - Mega Tours Industrie Maroc,contact@mtim.ma,mtim.ma,https://www.mtim.ma/,transport et logistique,industrie,20,ddgs,,sent,2026-10-23T09:56:32.790176+00:00,
+2026-10-23T09:59:44.727326+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-23T10:00:18.406005+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-23T09:59:33.114644+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-23T10:00:41.898089+00:00,"Hôtels et appartements à du Maroc, tous les hébergements à Maroc",,allhotelsmorocco.com,https://www.allhotelsmorocco.com/fr/,transport et logistique,hôtel tourisme,40,bing-rss,,no_email,,
