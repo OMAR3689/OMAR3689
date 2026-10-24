@@ -14,6 +14,7 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from html import unescape
 from html.parser import HTMLParser
 from urllib import robotparser
 
@@ -94,6 +95,9 @@ MP_INDEX_QUERY_VARIANTS = (
     f'site:{MP_HOST} "Date limite de remise des plis" "transport du personnel" {MP_CURRENT_YEAR}',
     f'site:{MP_HOST} "Date limite de remise des plis" "transport de marchandises" {MP_CURRENT_YEAR}',
     f'site:{MP_HOST} "Date limite de remise des plis" "location de véhicules" {MP_CURRENT_YEAR}',
+    f'site:marchespublics.gov.ma "Objet :" transport "Acheteur public" {MP_CURRENT_YEAR}',
+    f"site:marchespublics.gov.ma 'avis d'achat' transport {MP_CURRENT_YEAR}",
+    f'site:marchespublics.gov.ma "transport du personnel" "Date limite" {MP_CURRENT_YEAR + 1}',
 )
 
 _robots_cache = {}
@@ -398,8 +402,9 @@ def extract_generic_emails(html, site_domain):
     addresses visibly published on that same official website.
     """
     site_domain = _host("https://" + site_domain) if "://" not in site_domain else _host(site_domain)
+    html_text = unescape(html or "")
     found = set()
-    for email in EMAIL_RE.findall(html or ""):
+    for email in EMAIL_RE.findall(html_text):
         email = email.lower().strip(".,;:()[]<>")
         if email.endswith(BAD_SUFFIXES):
             continue
