@@ -51,14 +51,11 @@ QUERIES = [
     ('usines industrielles Maroc site officiel contact entreprise', 'industrie'),
     ('fabricants pièces automobiles Maroc entreprise contact site officiel', 'automobile industrie'),
     ('grossistes distributeurs Maroc entreprise site officiel contact', 'distribution grossiste'),
-    ('laboratoires pharmaceutiques Maroc entreprise contact site officiel', 'pharmaceutique'),
     ('importateurs exportateurs Maroc entreprise site officiel contact', 'importateur exportateur'),
     ('entreprises BTP construction Maroc site officiel contact', 'construction chantier'),
     ('supermarchés commerce distribution Maroc entreprises contact', 'retail distribution'),
-    ('hôtels groupes hôteliers Maroc site officiel contact', 'hôtel tourisme'),
     ('entrepôts plateformes industrielles Maroc entreprises contact', 'entrepôt logistique'),
     ('fabricants producteurs Maroc usine entreprise contact', 'fabrication production'),
-    ('entreprises Maroc transport marchandises appel offres logistique', 'transport marchandises'),
     ('"demande de devis transport" Maroc entreprise', 'demande de devis transport'),
     ('"recherche prestataire transport" Maroc entreprise', 'recherche prestataire transport'),
     ('"appel d offres transport" Maroc entreprise logistique', 'appel d offres transport'),
@@ -693,6 +690,96 @@ SEEDED_PUBLIC_CONTACTS = [
         "score": 82,
     },
 
+    {
+        "company": "CHOKR FOOD",
+        "email": "sales@chokrfood.com",
+        "domain": "chokrfood.com",
+        "url": "https://www.chokrfood.com/accueil",
+        "email_source_url": "https://www.chokrfood.com/accueil",
+        "need": "transport de produits alimentaires et non alimentaires, distribution régionale et nationale",
+        "sector_hint": "distribution FMCG / food & non-food",
+        "score": 82,
+    },
+    {
+        "company": "SMCPA",
+        "email": "info@smcpa.ma",
+        "domain": "smcpa.ma",
+        "url": "https://www.smcpa.ma/contact.html",
+        "email_source_url": "https://www.smcpa.ma/contact.html",
+        "need": "transport de produits alimentaires et approvisionnement du réseau de distribution national",
+        "sector_hint": "distribution alimentaire / FMCG",
+        "score": 80,
+    },
+    {
+        "company": "AL GHIDAIYA",
+        "email": "contact@alghidaiya.com",
+        "domain": "alghidaiya.com",
+        "url": "https://www.alghidaiya.com/",
+        "email_source_url": "https://www.alghidaiya.com/",
+        "need": "transport de produits alimentaires, commandes grossistes et distribution régionale",
+        "sector_hint": "distribution alimentaire / grossiste",
+        "score": 80,
+    },
+    {
+        "company": "Omnitrade Distribution",
+        "email": "contact@omnitrade.ma",
+        "domain": "omnitrade.ma",
+        "url": "https://omnitrade.ma/en/contact/",
+        "email_source_url": "https://omnitrade.ma/en/contact/",
+        "need": "transport de produits FMCG et foodservice vers les clients professionnels HORECA",
+        "sector_hint": "distribution FMCG / HORECA",
+        "score": 84,
+    },
+    {
+        "company": "Norgains",
+        "email": "admin@norgrains.com",
+        "domain": "norgrains.com",
+        "url": "https://norgrains.com/en/contact",
+        "email_source_url": "https://norgrains.com/en/contact",
+        "need": "transport de sacs tissés en polypropylène et emballages industriels",
+        "sector_hint": "fabrication / emballage industriel",
+        "score": 82,
+    },
+    {
+        "company": "MEA Distribution",
+        "email": "contact@meafoodservice.ma",
+        "domain": "meadistribution.ma",
+        "url": "https://meadistribution.ma/",
+        "email_source_url": "https://meadistribution.ma/",
+        "need": "transport et livraison de produits foodservice et HORECA avec couverture nationale",
+        "sector_hint": "distribution alimentaire / foodservice / HORECA",
+        "score": 84,
+    },
+    {
+        "company": "Alimentation Afnan",
+        "email": "contact@alimentation-afnan.com",
+        "domain": "alimentation-afnan.com",
+        "url": "https://alimentation-afnan.com/contact/",
+        "email_source_url": "https://alimentation-afnan.com/contact/",
+        "need": "transport de produits importés et distribution alimentaire en gros et semi-gros",
+        "sector_hint": "import-export / distribution alimentaire",
+        "score": 82,
+    },
+    {
+        "company": "Distribio",
+        "email": "infos@distribio.ma",
+        "domain": "distribio.ma",
+        "url": "https://distribio.ma/contact/",
+        "email_source_url": "https://distribio.ma/contact/",
+        "need": "transport de produits biologiques certifiés pour la distribution B2B",
+        "sector_hint": "distribution alimentaire B2B / produits bio",
+        "score": 78,
+    },
+    {
+        "company": "GECAM",
+        "email": "hanane@gecam.ma",
+        "domain": "gecam.ma",
+        "url": "https://www.gecam.ma/about-us/",
+        "email_source_url": "https://www.gecam.ma/about-us/",
+        "need": "transport d'articles manufacturés en polymère et flux entre sites industriels",
+        "sector_hint": "fabrication industrielle / polymères",
+        "score": 78,
+    },
 ]
 
 
@@ -742,7 +829,7 @@ def searxng_search(q):
             "categories": "general", "safesearch": 1,
         })
         try:
-            payload = json.loads(http_get(url, timeout=15))
+            payload = json.loads(http_get(url, timeout=8))
             results = []
             for item in payload.get("results", []):
                 link = str(item.get("url", "")).strip()
@@ -769,7 +856,7 @@ def ddgs_search(q):
         return []
 
     try:
-        ddgs = DDGS(timeout=12)
+        ddgs = DDGS(timeout=10)
         raw_results = ddgs.text(
             q,
             region="ma-fr",
@@ -795,7 +882,7 @@ def ddgs_search(q):
 
 def bing_rss_search(q):
     url = "https://www.bing.com/search?format=rss&q=" + quote_plus(q)
-    raw = http_get(url, timeout=20)
+    raw = http_get(url, timeout=12)
     root = ET.fromstring(raw)
     results = []
     for item in root.findall(".//item"):
@@ -810,7 +897,7 @@ def bing_rss_search(q):
 
 def ddg_html_search(q):
     url = "https://html.duckduckgo.com/html/?q=" + quote_plus(q)
-    raw = http_get(url, timeout=20)
+    raw = http_get(url, timeout=10)
     results = []
     pattern = r'<a[^>]+class=["\']result__a["\'][^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>'
     for m in re.finditer(pattern, raw, flags=re.I | re.S):
@@ -882,17 +969,18 @@ def search_web(q, require_morocco=True):
         if usable_here and source not in used_sources:
             used_sources.append(source)
 
-        # Always compare DDGS with Bing RSS. Call the remaining free indexes only
-        # when the merged results are still too thin after checking the official page hints.
+        # DDGS + Bing are the primary independent indexes. If they produced several
+        # usable companies, stop early; try HTML/SearX fallbacks only when results
+        # are sparse, keeping one cycle inside the workflow time budget.
         merged = list(candidates.values())
         high_quality = sum(
             1 for item in merged
             if is_morocco_candidate(item["title"], item["content"], item["url"])
             and has_real_sector_evidence(f'{item["title"]} {item["content"]}')
         )
-        if index >= 1 and high_quality >= 6:
+        if index >= 1 and (high_quality >= 2 or len(merged) >= 4):
             break
-        if index >= 2 and high_quality >= 4:
+        if index >= 2 and (high_quality >= 1 or len(merged) >= 2):
             break
 
     results = sorted(
