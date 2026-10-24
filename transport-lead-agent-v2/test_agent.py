@@ -1,3 +1,4 @@
+# [preview-v2] Trigger a fresh dry-run after threshold test-fixture correction.
 import sys
 import unittest
 from datetime import date, datetime, timedelta, timezone
