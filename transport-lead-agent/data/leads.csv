@@ -1,4 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T16:11:42.256993+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-24T16:13:18.099377+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-24T16:10:44.071044+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-24T16:15:10.763569+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-24T16:15:18.352263+00:00,ISIO LABORATOIRES | Maroc,,isiolaboratoires.com,http://isiolaboratoires.com/,transport et logistique,pharmaceutique,80,ddgs,,no_email,,
+2026-10-24T16:14:59.483423+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-24T16:14:49.659214+00:00,Maghrebsteel | LEADER MAROCAIN DE L’ACIER,mouna.zinoun@maghrebsteel.ma,maghrebsteel.ma,https://www.maghrebsteel.ma/,transport et logistique,industrie,20,bing-rss,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
+2026-10-24T16:15:34.501260+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
