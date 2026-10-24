@@ -1,8 +1,6 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T19:50:57.602312+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-24T19:51:01.487880+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-24T19:51:13.959668+00:00,ASMEX – Confédération Marocaine des Exportateurs,,asmex.org,https://asmex.org/,transport et logistique,importateur exportateur,80,ddgs,,no_email,,
-2026-10-24T19:51:25.581517+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-24T19:50:40.279796+00:00,Agrotrade,contact@agrotrade.ma,agrotrade.ma,https://agrotrade.ma/,transport et logistique,agroalimentaire industrie,40,ddgs,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
-2026-10-24T19:50:50.983973+00:00,AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,http://autoplus.net.ma/,transport et logistique,automobile industrie,20,ddgs,,no_email,,
-2026-10-24T19:51:36.714815+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-24T19:55:55.606713+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,bing-rss,,no_email,,
+2026-10-24T19:56:02.765303+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-24T19:56:21.118189+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-24T19:55:49.944119+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-24T19:56:33.972341+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,bing-rss,,no_email,,
