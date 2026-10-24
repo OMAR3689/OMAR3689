@@ -562,5 +562,72 @@ class AgentTests(unittest.TestCase):
             )
 
 
+    def test_search_web_merges_candidates_from_independent_indexes(self):
+        ddgs_result = [{
+            "title": "Alpha Food Industries",
+            "url": "https://alphafood.ma/contact",
+            "content": "Fabricant agroalimentaire et distribution au Maroc",
+        }]
+        bing_result = [{
+            "title": "Atlas Food Industries",
+            "url": "https://atlasfood.example.com/contact",
+            "content": "Moroccan manufacturer in Casablanca producing packaged foods for national distribution",
+        }]
+        with (
+            patch.object(agent, "ddgs_search", return_value=ddgs_result),
+            patch.object(agent, "bing_rss_search", return_value=bing_result),
+            patch.object(agent, "ddg_html_search", return_value=[]),
+            patch.object(agent, "searxng_search", return_value=[]),
+        ):
+            results, source = agent.search_web("fabricants agroalimentaires Maroc")
+
+        hosts = {agent.domain(item["url"]) for item in results}
+        self.assertIn("alphafood.ma", hosts)
+        self.assertIn("atlasfood.example.com", hosts)
+        self.assertIn("ddgs", source)
+        self.assertIn("bing-rss", source)
+
+    def test_unknown_com_geography_is_checked_after_candidate_page_fetch(self):
+        title = "Atlas Food Industries"
+        snippet = "Food manufacturer and national distribution"
+        url = "https://atlasfood.example.com/contact"
+        self.assertTrue(agent.should_fetch_candidate_page(title, snippet, url))
+        self.assertFalse(agent.is_morocco_candidate(title, snippet, url))
+        self.assertTrue(
+            agent.is_morocco_candidate(
+                title, snippet + " Casablanca, Morocco", url
+            )
+        )
+
+    def test_new_seed_contacts_use_official_company_pages(self):
+        by_name = {item["company"]: item for item in agent.SEEDED_PUBLIC_CONTACTS}
+        expected = {
+            "FRL Company": ("contact@frlcompany.ma", "https://frlcompany.ma/contact"),
+            "Novacim": ("contact@novacim.com", "https://www.novacim.com/accueil/"),
+            "AFE Distributions International": (
+                "contact@afe-distributions.com", "https://www.afe-distributions.com/en/"
+            ),
+            "SamiDia Group": (
+                "inquiries@samidia-group.com", "https://samidia-group.com/profile/"
+            ),
+            "Azelis Morocco": (
+                "info.maroc@azelis.com",
+                "https://www.azelis.com/en/regions-and-locations/emea/morocco",
+            ),
+        }
+        for company, (email, official_url) in expected.items():
+            with self.subTest(company=company):
+                self.assertIn(company, by_name)
+                record = by_name[company]
+                self.assertEqual(record["email"], email)
+                self.assertEqual(record["url"], official_url)
+                self.assertEqual(record["email_source_url"], official_url)
+                self.assertTrue(agent.is_sendable_contact({
+                    **record,
+                    "email_verified": True,
+                    "score": max(60, int(record.get("score", 0))),
+                }))
+
+
 if __name__ == "__main__":
     unittest.main()
