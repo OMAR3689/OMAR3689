@@ -1,5 +1,5 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T16:35:38.020639+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-24T16:35:56.305643+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-24T16:35:25.356728+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
-2026-10-24T16:36:05.511932+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-24T16:40:40.200558+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-24T16:40:58.337586+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-24T16:40:33.548151+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,bing-rss,,no_email,,
+2026-10-24T16:41:03.075275+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
