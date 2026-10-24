@@ -1,2 +1,8 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T06:22:40.088989+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
+2026-10-24T06:28:01.130955+00:00,Agroalimentaire - CCISCS,contact@cciscs.ma,cciscs.ma,https://cciscs.ma/agroalimentaire/,transport lié aux flux import/export,agroalimentaire industrie,100,ddgs,,sent,2026-10-24T06:29:40.104486+00:00,
+2026-10-24T06:28:24.447356+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-24T06:28:47.173563+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-24T06:28:53.400072+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-24T06:29:19.537180+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-24T06:28:37.756614+00:00,Servime - Leader pièces de rechange auto au Maroc,contact@myservime.com,myservime.com,https://myservime.com/,livraison / distribution,automobile industrie,55,ddgs,,sent,2026-10-24T06:29:45.183852+00:00,
+2026-10-24T06:28:35.110472+00:00,Contact | AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...,,autoplus.net.ma,https://www.autoplus.net.ma/nous-contacter,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
