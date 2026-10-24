@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-24T17:11:36.264036+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-24T17:26:57.310384+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "automobile industrie",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T17:11:59.494404+00:00",
+    "timestamp": "2026-10-24T17:27:27.745238+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -20,30 +20,18 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T17:11:27.849480+00:00",
+    "timestamp": "2026-10-24T17:26:46.291715+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T17:12:14.796531+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
+    "sector_hint": "automobile industrie",
+    "score": 40,
     "source": "ddgs",
     "status": "no_email"
   }
