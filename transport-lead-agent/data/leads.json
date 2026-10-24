@@ -1,6 +1,42 @@
 [
   {
-    "timestamp": "2026-10-24T04:14:24.711470+00:00",
+    "timestamp": "2026-10-24T04:19:32.114707+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T04:19:39.357818+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T04:19:53.596282+00:00",
+    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "email": "",
+    "domain": "maroc.welipro.com",
+    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
+    "need": "transport et logistique",
+    "sector_hint": "retail distribution",
+    "score": 60,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T04:19:27.076630+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -8,6 +44,18 @@
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T04:20:05.047429+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
