@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-24T16:30:37.350337+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-24T16:35:38.020639+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T16:31:04.299731+00:00",
+    "timestamp": "2026-10-24T16:35:56.305643+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T16:30:26.498606+00:00",
+    "timestamp": "2026-10-24T16:35:25.356728+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -36,7 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T16:31:15.739231+00:00",
+    "timestamp": "2026-10-24T16:36:05.511932+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -44,7 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
