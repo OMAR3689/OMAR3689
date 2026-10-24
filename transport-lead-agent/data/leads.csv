@@ -1,6 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T16:15:10.763569+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
-2026-10-24T16:15:18.352263+00:00,ISIO LABORATOIRES | Maroc,,isiolaboratoires.com,http://isiolaboratoires.com/,transport et logistique,pharmaceutique,80,ddgs,,no_email,,
-2026-10-24T16:14:59.483423+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,bing-rss,,no_email,,
-2026-10-24T16:14:49.659214+00:00,Maghrebsteel | LEADER MAROCAIN DE L’ACIER,mouna.zinoun@maghrebsteel.ma,maghrebsteel.ma,https://www.maghrebsteel.ma/,transport et logistique,industrie,20,bing-rss,,smtp_error,,Presentation PDF unavailable; message not sent: HTTP Error 415: Unsupported Media Type
-2026-10-24T16:15:34.501260+00:00,Kenzi Hotels Group,,kenzihotels.ma,http://www.kenzihotels.ma/,transport et logistique,hôtel tourisme,20,ddgs,,no_email,,
+2026-10-24T16:20:30.699379+00:00,3Sk Parts Auto - Distribution de pieces automobiles,,3skpartsauto.com,https://3skpartsauto.com/,livraison / distribution,automobile industrie,100,ddgs,,no_email,,
+2026-10-24T16:20:40.140481+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-24T16:20:45.816897+00:00,Globaldis – Grossiste Pharmaceutique,,globaldis.ma,https://www.globaldis.ma/,livraison / distribution,distribution grossiste,100,bing-rss,,no_email,,
+2026-10-24T16:21:10.331094+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,bing-rss,,no_email,,
+2026-10-24T16:20:05.864838+00:00,"Maroc Safran, leader du secteur aéronautique marocain",,safran-group.com,https://www.safran-group.com/fr/pays/maroc,transport et logistique,industrie,40,bing-rss,,no_email,,
+2026-10-24T16:20:19.337035+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
