@@ -574,5 +574,37 @@ class SourcesTests(unittest.TestCase):
         self.assertIn("transport de personnel", sources.MP_INDEX_EXTRA_KEYWORDS)
 
 
+    def test_indexed_tender_rejects_office_supplies_with_incidental_school_transport(self):
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/383969",
+            "content": (
+                "Objet : ** fourniture de bureau "
+                "( cartes adhérant au transport scolaire + cachets administratifs ) "
+                "Acheteur public : Commune rurale de OULAD ZBAIR "
+                "Date limite de remise des plis : 31/12/2099"
+            ),
+        }
+        self.assertFalse(sources._is_transport_service_tender({
+            "title": "** fourniture de bureau ( cartes adhérant au transport scolaire + cachets administratifs )"
+        }))
+        self.assertIsNone(sources._parse_indexed_tender(item, "transport scolaire"))
+
+    def test_primary_school_transport_service_is_still_accepted(self):
+        title = "Transport scolaire des élèves entre villages et établissements"
+        self.assertTrue(sources._is_transport_service_tender({"title": title}))
+        item = {
+            "title": "Marchés publics électroniques",
+            "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/383970",
+            "content": (
+                f"Objet : {title} Acheteur public : Commune Exemple "
+                "Date limite de remise des plis : 31/12/2099"
+            ),
+        }
+        tender = sources._parse_indexed_tender(item, "transport scolaire")
+        self.assertIsNotNone(tender)
+        self.assertIn("transport scolaire", tender["title"].lower())
+
+
 if __name__ == "__main__":
     unittest.main()
