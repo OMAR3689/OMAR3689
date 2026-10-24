@@ -47,7 +47,8 @@ jobs:
       MAX_EMAILS_PER_HOUR: '20'
       MIN_SENDABLE_LEADS: '1'
       MIN_PREVIEW_LEADS: '5'
-      MIN_LEAD_SCORE: '60'
+      MIN_LEAD_SCORE: '35'
+      MIN_SEND_SCORE: '60'
       PRESENTATION_URL: 'https://trmb.ma/'
       PRESENTATION_PDF_URL: 'https://trmb.ma/assets/documents/presentation-trmb-services.pdf?v=20261018'
       PRESENTATION_PDF_FILENAME: 'Presentation_TRMB_SERVICES_2026.pdf'
@@ -133,7 +134,7 @@ jobs:
           dry_run = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
           minimum = max(1, int(os.environ.get("MIN_SENDABLE_LEADS", "1")))
           preview_minimum = max(1, int(os.environ.get("MIN_PREVIEW_LEADS", "5")))
-          minimum_score = max(60, int(os.environ.get("MIN_LEAD_SCORE", "60")))
+          minimum_score = max(35, int(os.environ.get("MIN_LEAD_SCORE", "35"))) if dry_run else max(60, int(os.environ.get("MIN_SEND_SCORE", "60")))
           expected_status = "dry_run_preview" if dry_run else "sent"
           outcomes = [x for x in run_leads if x.get("status") == expected_status]
 
