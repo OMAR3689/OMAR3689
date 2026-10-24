@@ -642,6 +642,57 @@ SEEDED_PUBLIC_CONTACTS = [
         "sector_hint": "agro-industrie / production agricole / export",
         "score": 83,
     },
+    {
+        "company": "FRL Company",
+        "email": "contact@frlcompany.ma",
+        "domain": "frlcompany.ma",
+        "url": "https://frlcompany.ma/contact",
+        "email_source_url": "https://frlcompany.ma/contact",
+        "need": "transport de produits alimentaires, distribution B2B et approvisionnement national",
+        "sector_hint": "distribution alimentaire / FMCG / B2B",
+        "score": 82,
+    },
+    {
+        "company": "Novacim",
+        "email": "contact@novacim.com",
+        "domain": "novacim.com",
+        "url": "https://www.novacim.com/accueil/",
+        "email_source_url": "https://www.novacim.com/accueil/",
+        "need": "transport de ciment, acheminement vers plateformes et distribution de matériaux",
+        "sector_hint": "matériaux de construction / production industrielle",
+        "score": 84,
+    },
+    {
+        "company": "AFE Distributions International",
+        "email": "contact@afe-distributions.com",
+        "domain": "afe-distributions.com",
+        "url": "https://www.afe-distributions.com/en/",
+        "email_source_url": "https://www.afe-distributions.com/en/",
+        "need": "transport d'ingrédients alimentaires, approvisionnement et flux import-export",
+        "sector_hint": "agro-industrie / import-export / distribution",
+        "score": 80,
+    },
+    {
+        "company": "SamiDia Group",
+        "email": "inquiries@samidia-group.com",
+        "domain": "samidia-group.com",
+        "url": "https://samidia-group.com/profile/",
+        "email_source_url": "https://samidia-group.com/profile/",
+        "need": "transport de produits alimentaires, boissons et distribution multi-villes",
+        "sector_hint": "import-export / distribution FMCG",
+        "score": 80,
+    },
+    {
+        "company": "Azelis Morocco",
+        "email": "info.maroc@azelis.com",
+        "domain": "azelis.com",
+        "url": "https://www.azelis.com/en/regions-and-locations/emea/morocco",
+        "email_source_url": "https://www.azelis.com/en/regions-and-locations/emea/morocco",
+        "need": "transport d'ingrédients et produits chimiques, approvisionnement et distribution industrielle",
+        "sector_hint": "distribution chimique / entrepôt / industrie",
+        "score": 82,
+    },
+
 ]
 
 
@@ -772,48 +823,102 @@ def ddg_html_search(q):
 
 
 def search_web(q, require_morocco=True):
-    """Prefer usable company pages; retry another free index if the first is mostly junk."""
+    """Merge independent free search indexes and rank company-domain results first."""
     engines = (
         ("ddgs", ddgs_search),
         ("bing-rss", bing_rss_search),
         ("duckduckgo", ddg_html_search),
         ("searxng", searxng_search),
     )
-    for source, search_fn in engines:
+    candidates = {}
+    used_sources = []
+
+    for index, (source, search_fn) in enumerate(engines):
         try:
             raw_results = search_fn(q) or []
         except Exception as exc:
             print(f"⚠️ {source} unavailable: {exc}")
-            continue
-        if not raw_results:
-            continue
+            raw_results = []
 
-        usable = []
-        seen_urls = set()
+        usable_here = 0
         for item in raw_results:
             title = str(item.get("title", "") or "").strip()
             url = str(item.get("url", "") or item.get("href", "") or "").strip()
-            content = str(item.get("content", "") or item.get("body", "") or "").strip()
+            snippet = str(item.get("content", "") or item.get("body", "") or "").strip()
             if not title or not url or not url.startswith(("https://", "http://")):
                 continue
-            if is_non_prospect_source(title, content, url):
+            if is_non_prospect_source(title, snippet, url) or is_bad_prospect(title, snippet, url):
                 continue
-            if is_bad_prospect(title, content, url):
-                continue
-            # Search snippets frequently omit country context for Moroccan .com sites.
-            # Defer this decision until the official page is fetched under robots rules;
-            # main() still rejects the page unless its own content confirms Morocco.
-            parts = urlparse(url)
-            key = (parts.hostname or "").lower().removeprefix("www.") + parts.path.rstrip("/").lower()
-            if not key or key in seen_urls:
-                continue
-            seen_urls.add(key)
-            usable.append({**item, "title": title, "url": url, "content": content, "source": source})
 
-        if usable:
-            return usable[:12], source
-        print(f"⚠️ {source} returned results, but none passed the Morocco/company filters; trying next source")
-    return [], "none"
+            parts = urlparse(url)
+            host = (parts.hostname or "").lower().removeprefix("www.")
+            path = parts.path.rstrip("/").lower()
+            key = host + path
+            if not host or not key:
+                continue
+
+            evidence = f"{title} {snippet}".lower()
+            sector_hits = sum(1 for signal in TARGET_SECTOR_SIGNALS if signal in evidence)
+            buyer_hits = sum(1 for signal in BUYER_SIGNALS if signal in evidence)
+            intent_hits = sum(1 for signal in DIRECT_INTENT_SIGNALS if signal in evidence)
+            rank = (3 if host.endswith(".ma") else 0)
+            rank += min(6, sector_hits * 2) + min(4, buyer_hits * 2)
+            rank += 4 if intent_hits else 0
+            rank += 1 if any(part in path for part in ("contact", "about", "a-propos")) else 0
+
+            candidate = {
+                **item,
+                "title": title,
+                "url": url,
+                "content": snippet,
+                "source": source,
+                "_rank": rank,
+            }
+            previous = candidates.get(key)
+            if previous is None or rank > previous.get("_rank", 0):
+                candidates[key] = candidate
+            usable_here += 1
+
+        if usable_here and source not in used_sources:
+            used_sources.append(source)
+
+        # Always compare DDGS with Bing RSS. Call the remaining free indexes only
+        # when the merged results are still too thin after checking the official page hints.
+        merged = list(candidates.values())
+        high_quality = sum(
+            1 for item in merged
+            if is_morocco_candidate(item["title"], item["content"], item["url"])
+            and has_real_sector_evidence(f'{item["title"]} {item["content"]}')
+        )
+        if index >= 1 and high_quality >= 6:
+            break
+        if index >= 2 and high_quality >= 4:
+            break
+
+    results = sorted(
+        candidates.values(),
+        key=lambda item: (item.get("_rank", 0), item.get("title", "").lower()),
+        reverse=True,
+    )
+    # Main discovery deduplicates at company-domain level; avoid spending the
+    # small crawl budget on multiple URLs from the same company.
+    diversified = []
+    seen_hosts = set()
+    for item in results:
+        host = domain(item.get("url", ""))
+        if host in seen_hosts:
+            continue
+        seen_hosts.add(host)
+        item = dict(item)
+        item.pop("_rank", None)
+        diversified.append(item)
+        if len(diversified) >= 12:
+            break
+
+    source_label = "+".join(used_sources) if used_sources else "none"
+    if not diversified:
+        print(f"⚠️ No usable company-domain results from free indexes for query: {q}")
+    return diversified, source_label
 
 def strip_html(raw):
     text = re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>|<noscript[\s\S]*?</noscript>", " ", raw, flags=re.I)
@@ -1212,6 +1317,11 @@ def is_morocco_candidate(title, content, url):
         return True
     text = f"{title} {content} {url}".lower()
     return any(signal in text for signal in MOROCCO_SIGNALS)
+
+
+def should_fetch_candidate_page(title, content, url):
+    """Apply provider/directory blocks before crawl, but verify geography on the page itself."""
+    return not is_non_prospect_source(title, content, url) and not is_bad_prospect(title, content, url)
 
 
 def has_real_sector_evidence(text):
@@ -1953,7 +2063,9 @@ def main():
     for q, sector_hint in QUERIES:
         print(f"Searching: {q}")
         results, source = search_web(q)
-        source_counts[source] = source_counts.get(source, 0) + 1
+        for used_source in source.split("+"):
+            if used_source and used_source != "none":
+                source_counts[used_source] = source_counts.get(used_source, 0) + 1
         for item in results:
             url = item.get("url", "").strip()
             title = item.get("title", "").strip()
@@ -1965,13 +2077,11 @@ def main():
             if key in seen or was_contacted('', d, contacted, contacted_domains):
                 continue
 
-            # Search-engine RSS can return unrelated global results for Morocco queries.
-            # Filter known finance/media domains before visiting or contacting them.
-            if is_non_prospect_source(title, content, url):
-                print(f"⏭️ Rejected non-prospect/finance result: {title[:90]}")
-                continue
-            if not is_morocco_candidate(title, content, url):
-                print(f"⏭️ Rejected non-Morocco result: {title[:90]}")
+            # Queries are Morocco-targeted. Do not discard a potentially Moroccan .com
+            # from a short snippet; fetch politely first, then validate geography from
+            # the company's own page (or reject it if robots/network rules block access).
+            if not should_fetch_candidate_page(title, content, url):
+                print(f"⏭️ Rejected non-prospect/provider/directory result: {title[:90]}")
                 continue
 
             # Confirm actual page evidence; never use the query's sector hint as proof.
@@ -2009,7 +2119,7 @@ def main():
                 "score": s,
                 "direct_intent": has_direct_intent(evidence),
                 "priority": prospect_priority(evidence, s),
-                "source": source,
+                "source": item.get("source", source),
                 "email_source_url": email_source_url,
                 "email_verified": bool(email and email_source_url),
                 "status": "qualified" if email else "no_email",
