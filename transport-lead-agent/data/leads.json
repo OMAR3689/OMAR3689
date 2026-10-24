@@ -1,18 +1,18 @@
 [
   {
-    "timestamp": "2026-10-24T02:06:10.415570+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-24T02:11:20.248853+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
+    "sector_hint": "automobile industrie",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T02:06:51.548388+00:00",
+    "timestamp": "2026-10-24T02:12:04.911291+00:00",
     "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
     "email": "",
     "domain": "bau-industrie.com",
@@ -24,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T02:06:34.658415+00:00",
+    "timestamp": "2026-10-24T02:11:50.819249+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -32,11 +32,11 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T02:06:00.836409+00:00",
+    "timestamp": "2026-10-24T02:11:07.017483+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
@@ -45,18 +45,6 @@
     "sector_hint": "automobile industrie",
     "score": 40,
     "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T02:07:03.310682+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "bing-rss",
     "status": "no_email"
   }
 ]
