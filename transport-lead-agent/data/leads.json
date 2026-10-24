@@ -1,18 +1,19 @@
 [
   {
-    "timestamp": "2026-10-24T19:25:19.395720+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "bumageco.ma",
-    "url": "https://www.bumageco.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
+    "timestamp": "2026-10-24T19:31:02.838249+00:00",
+    "company": "Conception et installation d'usines au Maroc - ALAQ INDUSTRY",
+    "email": "contact@alaqindustry.com",
+    "domain": "alaqindustry.com",
+    "url": "https://alaqindustry.com/",
+    "need": "transport et logistique",
+    "sector_hint": "industrie",
+    "score": 60,
     "source": "ddgs",
-    "status": "no_email"
+    "status": "sent",
+    "sent_at": "2026-10-24T19:32:11.094301+00:00"
   },
   {
-    "timestamp": "2026-10-24T19:25:46.710498+00:00",
+    "timestamp": "2026-10-24T19:31:46.000676+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,26 +25,14 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T19:25:08.529503+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-24T19:31:13.528651+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T19:26:02.687035+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
