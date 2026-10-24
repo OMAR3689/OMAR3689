@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-10-24T02:52:15.006376+00:00",
+    "timestamp": "2026-10-24T02:57:28.860127+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -8,11 +8,23 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T02:58:18.575571+00:00",
+    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
+    "email": "",
+    "domain": "bau-industrie.com",
+    "url": "https://bau-industrie.com/services/industriel/",
+    "need": "transport et logistique",
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T02:52:43.177397+00:00",
+    "timestamp": "2026-10-24T02:58:00.178296+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,7 +36,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T02:52:54.407061+00:00",
+    "timestamp": "2026-10-24T02:57:19.874649+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T02:58:07.438858+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -32,7 +56,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
