@@ -629,5 +629,33 @@ class AgentTests(unittest.TestCase):
                 }))
 
 
+    def test_additional_official_moroccan_b2b_contacts_are_structurally_valid(self):
+        by_name = {item["company"]: item for item in agent.SEEDED_PUBLIC_CONTACTS}
+        expected = {
+            "CHOKR FOOD": ("sales@chokrfood.com", "chokrfood.com", "https://www.chokrfood.com/accueil"),
+            "SMCPA": ("info@smcpa.ma", "smcpa.ma", "https://www.smcpa.ma/contact.html"),
+            "AL GHIDAIYA": ("contact@alghidaiya.com", "alghidaiya.com", "https://www.alghidaiya.com/"),
+            "Omnitrade Distribution": ("contact@omnitrade.ma", "omnitrade.ma", "https://omnitrade.ma/en/contact/"),
+            "Norgains": ("admin@norgrains.com", "norgrains.com", "https://norgrains.com/en/contact"),
+            "MEA Distribution": ("contact@meafoodservice.ma", "meadistribution.ma", "https://meadistribution.ma/"),
+            "Alimentation Afnan": ("contact@alimentation-afnan.com", "alimentation-afnan.com", "https://alimentation-afnan.com/contact/"),
+            "Distribio": ("infos@distribio.ma", "distribio.ma", "https://distribio.ma/contact/"),
+            "GECAM": ("hanane@gecam.ma", "gecam.ma", "https://www.gecam.ma/about-us/"),
+        }
+        for company, (email, domain, official_url) in expected.items():
+            with self.subTest(company=company):
+                self.assertIn(company, by_name)
+                record = by_name[company]
+                self.assertEqual(record["email"], email)
+                self.assertEqual(record["domain"], domain)
+                self.assertEqual(record["url"], official_url)
+                self.assertEqual(record["email_source_url"], official_url)
+                self.assertTrue(agent.is_sendable_contact({
+                    **record,
+                    "email_verified": True,
+                    "score": max(60, int(record.get("score", 0))),
+                }))
+
+
 if __name__ == "__main__":
     unittest.main()
