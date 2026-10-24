@@ -30,16 +30,6 @@
     "index_engine": "DDGS"
   },
   {
-    "title": "location de véhicules pour transport du personnel de la commune",
-    "buyer": "Commune rurale de RAS EL OUED",
-    "status": "date_limite_inconnue_a_verifier",
-    "keyword": "transport de personnel",
-    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:10:12.142955+00:00",
-    "index_engine": "DDGS"
-  },
-  {
     "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
     "buyer": "POSTE MAROC",
     "deadline": "10/11/2026",
@@ -47,8 +37,8 @@
     "keyword": "transport de personnel",
     "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:10:12.145239+00:00",
-    "index_engine": "DDGS",
+    "retrieved_at": "2026-10-24T01:16:38.045496+00:00",
+    "index_engine": "Bing RSS",
     "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre"
   },
   {
@@ -57,7 +47,27 @@
     "keyword": "transport de personnel",
     "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1042002&orgAcronyme=o8p",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:10:12.145874+00:00",
-    "index_engine": "DDGS"
+    "retrieved_at": "2026-10-24T01:16:38.046268+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "location de véhicules pour transport du personnel de la commune",
+    "buyer": "Commune rurale de RAS EL OUED",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport de personnel",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-24T01:16:38.047031+00:00",
+    "index_engine": "Bing RSS"
+  },
+  {
+    "title": "** fourniture de bureau ( cartes adhérant au transport scolaire + cachets administratifs )",
+    "buyer": "Commune rurale de OULAD ZBAIR",
+    "status": "date_limite_inconnue_a_verifier",
+    "keyword": "transport scolaire",
+    "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/383969",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-24T01:16:47.659609+00:00",
+    "index_engine": "Bing RSS"
   }
 ]
