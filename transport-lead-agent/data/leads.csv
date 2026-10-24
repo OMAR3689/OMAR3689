@@ -1,4 +1,7 @@
 ﻿timestamp,company,email,domain,url,need,sector_hint,score,source,email_source_url,status,sent_at,smtp_error
-2026-10-24T14:12:22.936480+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
-2026-10-24T14:11:54.570296+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,livraison / distribution,automobile industrie,55,ddgs,,no_email,,
-2026-10-24T14:13:25.943136+00:00,"Maroc - logistique - Appels d'offres, marchés publics et privés",,j360.info,https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique,transport et logistique,transport marchandises,20,ddgs,,no_email,,
+2026-10-24T14:16:48.562118+00:00,Bumageco – Grossiste Pharmaceutique,,bumageco.ma,https://www.bumageco.ma/,livraison / distribution,distribution grossiste,100,ddgs,,no_email,,
+2026-10-24T14:16:56.484211+00:00,ISIO LABORATOIRES | Maroc,,isiolaboratoires.com,http://isiolaboratoires.com/,transport et logistique,pharmaceutique,80,ddgs,,no_email,,
+2026-10-24T14:17:07.263450+00:00,ASMEX – Confédération Marocaine des Exportateurs,,asmex.org,https://asmex.org/,transport et logistique,importateur exportateur,80,ddgs,,no_email,,
+2026-10-24T14:17:20.902978+00:00,"Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",,maroc.welipro.com,https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches,transport et logistique,retail distribution,60,ddgs,,no_email,,
+2026-10-24T14:16:38.080466+00:00,Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...,,ihssanpa.ma,https://ihssanpa.ma/,transport et logistique,automobile industrie,40,ddgs,,no_email,,
+2026-10-24T14:16:26.915499+00:00,Maghrebsteel | LEADER MAROCAIN DE L’ACIER,,maghrebsteel.ma,https://www.maghrebsteel.ma/,transport et logistique,industrie,20,bing-rss,,no_email,,
