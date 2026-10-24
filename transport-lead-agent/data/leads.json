@@ -1,18 +1,30 @@
 [
   {
-    "timestamp": "2026-10-24T01:35:54.272220+00:00",
-    "company": "Avenue du Bois de la Cambre 175, 1050 Ixelles - Realo",
+    "timestamp": "2026-10-24T01:40:29.036837+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
     "email": "",
-    "domain": "realo.be",
-    "url": "https://www.realo.be/fr/avenue-du-bois-de-la-cambre-175-1050-ixelles/5507405",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T01:41:29.563284+00:00",
+    "company": "Industriel — Construction & BTP au Maroc · BauIndustrie",
+    "email": "",
+    "domain": "bau-industrie.com",
+    "url": "https://bau-industrie.com/services/industriel/",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 80,
+    "sector_hint": "entrepôt logistique",
+    "score": 100,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T01:35:31.097966+00:00",
+    "timestamp": "2026-10-24T01:41:10.483879+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,15 +36,39 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T01:35:07.908135+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-24T01:40:39.388356+00:00",
+    "company": "Contact | AUTOPLUS | Leader du marché des pièces de rechange au Maroc ...",
     "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
+    "domain": "autoplus.net.ma",
+    "url": "https://www.autoplus.net.ma/nous-contacter",
     "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
     "score": 55,
     "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T01:40:17.292203+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T01:41:43.339875+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "email": "",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "need": "transport et logistique",
+    "sector_hint": "transport marchandises",
+    "score": 20,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
