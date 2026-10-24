@@ -488,6 +488,27 @@ def _tender_search_url(keyword):
 def _is_transport_service_tender(tender):
     """Reject unrelated goods, asset sales, and vehicle auctions from service-tender results."""
     title = _normal_text(str(tender.get("title", "") or ""))
+
+    # Reject procurement notices whose main object is office supplies and where
+    # transport appears only as an incidental item inside a parenthetical note.
+    # Example: office stationery plus "cartes adhérant au transport scolaire".
+    office_supply_primary = bool(re.search(
+        r"^\\**\\s*(?:fourniture|fournitures|acquisition|achat)\\s+"
+        r"(?:de\\s+)?(?:bureau|fournitures?\\s+de\\s+bureau)\\b",
+        title,
+    ))
+    parenthetical_transport = bool(re.search(r"\\([^)]*\\btransport(?:\\s+scolaire)?\\b[^)]*\\)", title))
+    primary_title = title.split("(", 1)[0].strip()
+    explicit_transport_service = any(signal in primary_title for signal in (
+        "prestation de transport", "transport du personnel", "transport de marchandises",
+        "transport de personnes", "transport routier", "transport scolaire des",
+        "transport scolaire par", "location de vehicule", "location de vehicules",
+        "transport collectif", "services de transport", "organisation logistique",
+        "convoyage", "affretement",
+    ))
+    if office_supply_primary and parenthetical_transport and not explicit_transport_service:
+        return False
+
     non_service_sale_signals = (
         "avis de vente publique", "vente publique des vehicules",
         "vente publique de vehicules", "vente aux encheres",
