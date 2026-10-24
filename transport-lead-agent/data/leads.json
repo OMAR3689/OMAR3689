@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-24T18:08:39.010399+00:00",
+    "timestamp": "2026-10-24T18:13:23.664685+00:00",
+    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "email": "",
+    "domain": "3skpartsauto.com",
+    "url": "https://3skpartsauto.com/",
+    "need": "livraison / distribution",
+    "sector_hint": "automobile industrie",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T18:13:47.380634+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -12,31 +24,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T18:08:12.222064+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "timestamp": "2026-10-24T18:13:13.503979+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T18:08:51.456722+00:00",
-    "company": "Hôtels et appartements à du Maroc, tous les hébergements à Maroc",
-    "email": "",
-    "domain": "allhotelsmorocco.com",
-    "url": "https://www.allhotelsmorocco.com/fr/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T18:08:57.497476+00:00",
+    "timestamp": "2026-10-24T18:13:57.620398+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -44,19 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T18:09:12.753539+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
