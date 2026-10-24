@@ -24,7 +24,7 @@ class AgentTests(unittest.TestCase):
             "url": "https://example.ma/",
             "email_source_url": "https://example.ma/contact/",
             "email_verified": True,
-            "score": 30,
+            "score": 55,
             "status": "qualified",
         }
         with patch.object(agent, "DRY_RUN", True):
@@ -46,7 +46,7 @@ class AgentTests(unittest.TestCase):
             "url": "https://example.ma/",
             "email_source_url": "https://example.ma/contact/",
             "email_verified": True,
-            "score": 55,
+            "score": 30,
             "status": "qualified",
         }
         self.assertEqual(
