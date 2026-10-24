@@ -1,42 +1,30 @@
 [
   {
-    "timestamp": "2026-10-24T13:35:24.917898+00:00",
-    "company": "Globaldis – Grossiste Pharmaceutique",
-    "email": "",
-    "domain": "globaldis.ma",
-    "url": "https://www.globaldis.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:35:29.065039+00:00",
-    "company": "Bumageco – Grossiste Pharmaceutique",
+    "timestamp": "2026-10-24T13:40:37.459958+00:00",
+    "company": "Bumageco - Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:35:40.637318+00:00",
-    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "timestamp": "2026-10-24T13:40:44.988294+00:00",
+    "company": "Globaldis - Grossiste Pharmaceutique",
     "email": "",
-    "domain": "banasenmaroc.site",
-    "url": "https://banasenmaroc.site/",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "importateur exportateur",
+    "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:35:49.544832+00:00",
+    "timestamp": "2026-10-24T13:41:06.515966+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -48,19 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:35:14.710610+00:00",
-    "company": "Maroc Safran, leader du secteur aéronautique marocain",
-    "email": "",
-    "domain": "safran-group.com",
-    "url": "https://www.safran-group.com/fr/pays/maroc",
-    "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:35:57.481022+00:00",
+    "timestamp": "2026-10-24T13:41:17.253762+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -68,7 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "hôtel tourisme",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
