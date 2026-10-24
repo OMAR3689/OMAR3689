@@ -30,18 +30,6 @@
     "index_engine": "DDGS"
   },
   {
-    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
-    "buyer": "POSTE MAROC",
-    "deadline": "10/11/2026",
-    "status": "date_limite_future_a_verifier",
-    "keyword": "transport de personnel",
-    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
-    "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:16:38.045496+00:00",
-    "index_engine": "Bing RSS",
-    "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre"
-  },
-  {
     "title": "Transport du personnel administratif et technique de l’Aéroport Errachidia Moulay Ali Chérif",
     "status": "date_limite_inconnue_a_verifier",
     "keyword": "transport de personnel",
@@ -57,8 +45,20 @@
     "keyword": "transport de personnel",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/392779",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:16:38.047031+00:00",
-    "index_engine": "Bing RSS"
+    "retrieved_at": "2026-10-24T01:22:43.581412+00:00",
+    "index_engine": "DDGS"
+  },
+  {
+    "title": "L’exécution de la prestation de transport du personnel de Barid Al Maghrib -04 Lots- (Marché cadre)",
+    "buyer": "POSTE MAROC",
+    "deadline": "10/11/2026",
+    "status": "date_limite_future_a_verifier",
+    "keyword": "transport de personnel",
+    "url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1049438&orgAcronyme=m1w",
+    "source": "Index public du Portail Marocain des Marchés Publics",
+    "retrieved_at": "2026-10-24T01:22:43.582737+00:00",
+    "index_engine": "DDGS",
+    "deadline_source_url": "https://marchefacile.ma/marches/42398-482026-lexecution-de-la-prestation-de-transport-du-personnel-de-barid-al-maghrib-04-lots-marche-cadre"
   },
   {
     "title": "** fourniture de bureau ( cartes adhérant au transport scolaire + cachets administratifs )",
@@ -67,7 +67,7 @@
     "keyword": "transport scolaire",
     "url": "https://www.marchespublics.gov.ma/bdc/entreprise/consultation/show/383969",
     "source": "Index public du Portail Marocain des Marchés Publics",
-    "retrieved_at": "2026-10-24T01:16:47.659609+00:00",
-    "index_engine": "Bing RSS"
+    "retrieved_at": "2026-10-24T01:22:54.059679+00:00",
+    "index_engine": "DDGS"
   }
 ]
