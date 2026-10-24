@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-24T14:32:33.097340+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T14:33:00.588874+00:00",
+    "timestamp": "2026-10-24T14:37:28.091941+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -20,23 +8,11 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T14:32:02.919765+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T14:33:11.574041+00:00",
+    "timestamp": "2026-10-24T14:37:40.828462+00:00",
     "company": "Kenzi Hotels Group",
     "email": "",
     "domain": "kenzihotels.ma",
@@ -48,7 +24,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T14:33:27.138049+00:00",
+    "timestamp": "2026-10-24T14:37:55.008591+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
