@@ -905,10 +905,12 @@ def _find_indexed_tenders(keywords):
     # Bing RSS has been the most reliable source in CI; retain free fallbacks.
     engines = (
         ("Bing RSS", _bing_rss_index_search),
-        ("DuckDuckGo HTML", _duckduckgo_html_index_search),
         ("DDGS", _ddgs_index_search),
+        ("DuckDuckGo HTML", _duckduckgo_html_index_search),
     )
-    query_variants = MP_INDEX_QUERY_VARIANTS
+    # Eight precise queries provide a bounded runtime. Bing + DDGS are the
+    # primary indexes; DuckDuckGo HTML is sampled only when a query group fails.
+    query_variants = MP_INDEX_QUERY_VARIANTS[:8]
     unique_keywords = list(dict.fromkeys(
         str(keyword).strip()
         for keyword in (*keywords, *MP_INDEX_EXTRA_KEYWORDS)
@@ -917,8 +919,12 @@ def _find_indexed_tenders(keywords):
 
     for query_index, query in enumerate(query_variants, start=1):
         query_had_valid_notice = False
-        # At most len(MP_INDEX_QUERY_VARIANTS) targeted queries x 3 public indexes, each bounded.
-        for engine_name, search_fn in engines:
+        # Prefer two indexes for most groups. Sample the HTML fallback on the first
+        # couple of searches and every fourth group to avoid multiplying network timeouts.
+        active_engines = engines[:2]
+        if query_index <= 2 or query_index % 4 == 0:
+            active_engines = engines
+        for engine_name, search_fn in active_engines:
             try:
                 items = search_fn(query)
             except Exception as exc:
