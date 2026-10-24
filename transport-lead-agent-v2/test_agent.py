@@ -10,10 +10,33 @@ import agent
 
 
 class AgentTests(unittest.TestCase):
-    def test_official_contact_score_threshold_excludes_weak_prospects(self):
-        self.assertGreaterEqual(agent.MIN_LEAD_SCORE, 60)
-        self.assertLess(50, agent.MIN_LEAD_SCORE)
-        self.assertLess(55, agent.MIN_LEAD_SCORE)
+    def test_preview_and_send_use_separate_quality_thresholds(self):
+        self.assertGreaterEqual(agent.MIN_LEAD_SCORE, 35)
+        self.assertGreaterEqual(agent.MIN_SEND_SCORE, 60)
+        self.assertLess(30, agent.MIN_LEAD_SCORE)
+        self.assertLess(55, agent.MIN_SEND_SCORE)
+
+    def test_preview_accepts_plausible_company_fit_but_send_requires_strong_intent(self):
+        contact = {
+            "company": "Example Manufacturer",
+            "email": "contact@example.ma",
+            "domain": "example.ma",
+            "url": "https://example.ma/",
+            "email_source_url": "https://example.ma/contact/",
+            "email_verified": True,
+            "score": 30,
+            "status": "qualified",
+        }
+        with patch.object(agent, "DRY_RUN", True):
+            self.assertEqual(agent.normalize_qualification_status(dict(contact), set()), "qualified")
+        with patch.object(agent, "DRY_RUN", False):
+            self.assertEqual(agent.normalize_qualification_status(dict(contact), set()), "below_quality_threshold")
+
+    def test_sector_fit_can_score_for_preview_without_claiming_direct_intent(self):
+        evidence = "usine agroalimentaire fabricant distribution livraison approvisionnement exportateur importateur"
+        value = agent.score(evidence)
+        self.assertGreaterEqual(value, agent.MIN_LEAD_SCORE)
+        self.assertFalse(agent.has_direct_intent(evidence))
 
     def test_lead_status_explains_threshold_bounces_and_unverified_contacts(self):
         contact = {
@@ -319,6 +342,19 @@ class AgentTests(unittest.TestCase):
                 self.assertGreaterEqual(contact.get("score", 0), 20)
                 self.assertTrue(agent.is_sendable_contact(contact), contact)
 
+
+
+    def test_duckduckgo_html_search_unwraps_redirect_to_company_url(self):
+        html = (
+            '<a class="result__a" href="https://duckduckgo.com/l/?uddg='
+            'https%3A%2F%2Falphafood.ma%2Fcontact">'
+            'Alpha Food official contact</a>'
+        )
+        with patch.object(agent, "http_get", return_value=html):
+            results = agent.ddg_html_search("Alpha Food Morocco")
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0]["url"], "https://alphafood.ma/contact")
+        self.assertEqual(results[0]["source"], "duckduckgo")
 
     def test_search_web_keeps_com_candidate_until_official_page_geography_check(self):
         candidate = [{
