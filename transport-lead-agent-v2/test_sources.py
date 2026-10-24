@@ -14,6 +14,17 @@ class SourcesTests(unittest.TestCase):
         sources._robots_cache.clear()
         sources._last_hit.clear()
 
+
+    def test_generic_email_extraction_decodes_html_entities(self):
+        html = (
+            '<a href="mailto:contact&#64;example.ma">'
+            'contact&#64;example.ma</a>'
+        )
+        self.assertEqual(
+            sources.extract_generic_emails(html, "example.ma"),
+            ["contact@example.ma"],
+        )
+
     def test_missing_robots_txt_does_not_block_all_crawling(self):
         error = urllib.error.HTTPError(
             "https://example.ma/robots.txt", 404, "Not Found", {}, None
