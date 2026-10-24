@@ -9,6 +9,7 @@ import time
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta, timezone
 from email.message import EmailMessage
+from html import unescape
 
 import sources
 from urllib.parse import quote_plus, unquote, urljoin, urlparse, urlencode
@@ -24,7 +25,8 @@ TENDERS_JSON = os.path.join(OUT_DIR, "tenders.json")
 TENDERS_CSV = os.path.join(OUT_DIR, "tenders.csv")
 MAX_EMAILS = int(os.environ.get("MAX_EMAILS_PER_RUN", "10"))
 MAX_EMAILS_PER_HOUR = int(os.environ.get("MAX_EMAILS_PER_HOUR", "20"))
-MIN_LEAD_SCORE = max(60, int(os.environ.get("MIN_LEAD_SCORE", "60")))
+MIN_LEAD_SCORE = max(35, int(os.environ.get("MIN_LEAD_SCORE", "35")))
+MIN_SEND_SCORE = max(60, int(os.environ.get("MIN_SEND_SCORE", "60")))
 # V2 safety default: preview only; workflow also omits SMTP credentials.
 DRY_RUN = os.environ.get("DRY_RUN", "true").strip().lower() in {"1", "true", "yes", "on"}
 V1_HISTORY_FILE = os.environ.get("V1_HISTORY_FILE", "").strip()
@@ -896,17 +898,16 @@ def bing_rss_search(q):
 
 
 def ddg_html_search(q):
+    """Search DuckDuckGo HTML and unwrap its redirect to the actual result URL."""
     url = "https://html.duckduckgo.com/html/?q=" + quote_plus(q)
     raw = http_get(url, timeout=10)
-    results = []
-    pattern = r'<a[^>]+class=["\']result__a["\'][^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>'
-    for m in re.finditer(pattern, raw, flags=re.I | re.S):
-        link = unquote(m.group(1))
-        title = re.sub(r"<[^>]+>", " ", m.group(2))
-        title = re.sub(r"\s+", " ", title).strip()
-        if link:
-            results.append({"title": title, "url": link, "content": "", "source": "duckduckgo"})
-    return results[:10]
+    parser = sources._SearchResultLinkParser()
+    parser.feed(raw)
+    return [
+        {**item, "source": "duckduckgo"}
+        for item in parser.results[:10]
+        if item.get("url", "").startswith(("https://", "http://"))
+    ]
 
 
 def search_web(q, require_morocco=True):
@@ -1136,7 +1137,7 @@ def public_email(title, url):
                 except Exception as exc:
                     print(f"⚠️ Official email evidence fetch failed for {source_url}: {exc}")
                     continue
-                if not source_html or email.lower() not in source_html.lower():
+                if not source_html or email.lower() not in unescape(source_html).lower():
                     continue
                 return email, source_url
     return "", ""
@@ -1171,7 +1172,7 @@ def verify_public_email_source(email, source_url, company_url):
     elif not any(path.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".gif", ".svg", ".css", ".js")):
         try:
             html = sources.polite_get(source_url)
-            if html and email in html.lower():
+            if html and email in unescape(html).lower():
                 return source_url
         except Exception as exc:
             print(f"⚠️ Official contact-source verification failed for {source_url}: {exc}")
@@ -1253,7 +1254,7 @@ def normalize_qualification_status(lead, permanently_rejected=None):
         lead["status"] = "smtp_rejected"
     elif lead.get("email_verified") is not True or not is_sendable_contact(lead):
         lead["status"] = "contact_not_verified"
-    elif int(lead.get("score", 0) or 0) < MIN_LEAD_SCORE:
+    elif int(lead.get("score", 0) or 0) < (MIN_LEAD_SCORE if DRY_RUN else MIN_SEND_SCORE):
         lead["status"] = "below_quality_threshold"
     else:
         lead["status"] = "qualified"
@@ -1329,7 +1330,7 @@ def has_direct_intent(text):
 def prospect_priority(text, value):
     if has_direct_intent(text):
         return "HOT"
-    if value >= 60:
+    if value >= MIN_LEAD_SCORE:
         return "WARM"
     return "STANDARD"
 
@@ -2300,7 +2301,7 @@ def main():
         if x.get("email")
         and x.get("email_verified") is True
         and str(x.get("email", "")).strip().lower() not in permanently_rejected
-        and int(x.get("score", 0) or 0) >= MIN_LEAD_SCORE
+        and int(x.get("score", 0) or 0) >= (MIN_LEAD_SCORE if DRY_RUN else MIN_SEND_SCORE)
         and x.get("status") != "smtp_retry_wait"
         and retry_is_due(x)
         and is_sendable_contact(x)
