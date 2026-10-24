@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-24T13:25:26.886287+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:25:40.291331+00:00",
+    "timestamp": "2026-10-24T13:30:14.392385+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:25:45.066176+00:00",
+    "timestamp": "2026-10-24T13:30:18.343261+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -36,7 +24,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:26:07.252572+00:00",
+    "timestamp": "2026-10-24T13:30:30.060174+00:00",
+    "company": "BANASEN MAROC — Importation et Exportation Internationale",
+    "email": "",
+    "domain": "banasenmaroc.site",
+    "url": "https://banasenmaroc.site/",
+    "need": "livraison / distribution",
+    "sector_hint": "importateur exportateur",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-24T13:30:41.614976+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -48,55 +48,19 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:25:09.628409+00:00",
-    "company": "Maroc Safran, leader du secteur aéronautique marocain",
-    "email": "",
-    "domain": "safran-group.com",
-    "url": "https://www.safran-group.com/fr/pays/maroc",
-    "need": "transport et logistique",
-    "sector_hint": "industrie",
-    "score": 40,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:25:16.353925+00:00",
+    "timestamp": "2026-10-24T13:30:08.134667+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:25:30.961494+00:00",
-    "company": "Piesa.ma | L'Expert en pièces détachées d'occasion pour ...",
-    "email": "",
-    "domain": "piesa.ma",
-    "url": "https://www.piesa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 20,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T13:26:16.094144+00:00",
-    "company": "Kenzi Hotels Group",
-    "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
+    "score": 55,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T13:26:30.138720+00:00",
+    "timestamp": "2026-10-24T13:30:59.706691+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -104,7 +68,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
