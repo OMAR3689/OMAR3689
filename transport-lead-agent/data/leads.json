@@ -1,49 +1,25 @@
 [
   {
-    "timestamp": "2026-10-24T05:32:43.377543+00:00",
+    "timestamp": "2026-10-24T05:36:42.020478+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
     "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
-    "score": 95,
+    "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-24T05:33:02.589139+00:00",
-    "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
+    "timestamp": "2026-10-24T05:36:48.911310+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "maroc.welipro.com",
-    "url": "https://maroc.welipro.com/activite/supermarches-libre-services-hypermarches",
-    "need": "transport et logistique",
-    "sector_hint": "retail distribution",
-    "score": 60,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T05:31:46.143207+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-24T05:33:31.939015+00:00",
-    "company": "Kenzi Hotels Group",
-    "email": "",
-    "domain": "kenzihotels.ma",
-    "url": "http://www.kenzihotels.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "hôtel tourisme",
-    "score": 20,
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
     "source": "ddgs",
     "status": "no_email"
   }
