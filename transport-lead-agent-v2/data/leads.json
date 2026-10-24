@@ -1369,23 +1369,6 @@
     "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T20:13:06.363026+00:00",
-    "company": "Accueil - Deliz food Processing",
-    "email": "",
-    "domain": "delizfood.ma",
-    "url": "https://delizfood.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "confiserie / agroalimentaire",
-    "score": 35,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39821112314"
-  },
-  {
     "timestamp": "2026-10-22T20:09:09.211189+00:00",
     "company": "Équipements Industriels Maroc | Fournisseur Industriel Maroc ...",
     "email": "",
@@ -1471,42 +1454,6 @@
     "run_id": "39821112314"
   },
   {
-    "timestamp": "2026-10-22T20:12:10.189115+00:00",
-    "company": "NSI - Producteur marocain de chocolats et de biscuits",
-    "email": "",
-    "domain": "nsi.ma",
-    "url": "https://nsi.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "confiserie / agroalimentaire",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "ddgs",
-    "email_source_url": "",
-    "email_verified": false,
-    "status": "no_email",
-    "run_id": "39821112314"
-  },
-  {
-    "timestamp": "2026-10-22T19:16:47.555778+00:00",
-    "company": "Contact – Biscoland",
-    "email": "contact@biscoland.ma",
-    "domain": "biscoland.ma",
-    "url": "https://biscoland.ma/contact/",
-    "need": "livraison / distribution",
-    "sector_hint": "confiserie / agroalimentaire",
-    "score": 20,
-    "direct_intent": false,
-    "priority": "STANDARD",
-    "source": "bing-rss",
-    "email_source_url": "https://biscoland.ma/wp-content/uploads/2024/04/Export.pdf",
-    "email_verified": true,
-    "status": "below_quality_threshold",
-    "run_id": "39818440613",
-    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
-    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
-  },
-  {
     "timestamp": "2026-10-22T20:08:07.503524+00:00",
     "company": "Maroc Emballage | Imprimeur cartonnier",
     "email": "commercial@marocemballage.ma",
@@ -1576,7 +1523,69 @@
     "sent_at": "2026-10-22T19:53:37.318240+00:00"
   },
   {
-    "timestamp": "2026-10-24T01:26:05.767792+00:00",
+    "timestamp": "2026-10-24T01:25:42.211224+00:00",
+    "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
+    "email": "commercial@bledconserves.ma",
+    "domain": "bledconserves.ma",
+    "url": "https://www.bledconserves.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "conserves / agroalimentaire",
+    "score": 55,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "https://www.bledconserves.ma/",
+    "email_verified": true,
+    "status": "qualified",
+    "run_id": "40049453674"
+  },
+  {
+    "company": "Hôtels au Maroc : réservez en ligne sur all.accor.com",
+    "email": "hb1e1@accor.com",
+    "domain": "all.accor.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-23T04:22:14.791867+00:00"
+  },
+  {
+    "company": "7AV Hotels",
+    "email": "info@7avhotels.com",
+    "domain": "7avhotels.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-23T07:48:19.060365+00:00"
+  },
+  {
+    "company": "Pièces Auto Maroc – Optiques, Rétroviseurs & Carrosserie ...",
+    "email": "contact@atlasauto.ma",
+    "domain": "atlasauto.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-23T08:31:08.050830+00:00"
+  },
+  {
+    "company": "MTIM - Mega Tours Industrie Maroc",
+    "email": "contact@mtim.ma",
+    "domain": "mtim.ma",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-23T09:56:32.790176+00:00"
+  },
+  {
+    "company": "Sarmaga - L'équipement pour l'industrie agro-alimentaire",
+    "email": "contact@sarmaga.com",
+    "domain": "sarmaga.com",
+    "url": "",
+    "source": "sent-history",
+    "status": "sent",
+    "sent_at": "2026-10-23T14:08:19.992382+00:00"
+  },
+  {
+    "timestamp": "2026-10-24T01:34:19.092023+00:00",
     "company": "Managem Group",
     "email": "procurement@managemgroup.com",
     "domain": "managemgroup.com",
@@ -1592,10 +1601,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:35.633244+00:00",
+    "timestamp": "2026-10-24T01:34:50.594649+00:00",
     "company": "Novacim",
     "email": "contact@novacim.com",
     "domain": "novacim.com",
@@ -1611,10 +1620,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:45.824309+00:00",
+    "timestamp": "2026-10-24T01:35:01.214385+00:00",
     "company": "Omnitrade Distribution",
     "email": "contact@omnitrade.ma",
     "domain": "omnitrade.ma",
@@ -1630,10 +1639,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:52.965901+00:00",
+    "timestamp": "2026-10-24T01:35:08.906588+00:00",
     "company": "MEA Distribution",
     "email": "contact@meafoodservice.ma",
     "domain": "meadistribution.ma",
@@ -1649,10 +1658,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:30.739057+00:00",
+    "timestamp": "2026-10-24T01:34:45.573970+00:00",
     "company": "Orbis Agro Industry",
     "email": "contact@orbisagroindustry.ma",
     "domain": "orbisagroindustry.ma",
@@ -1668,10 +1677,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:24:43.800350+00:00",
+    "timestamp": "2026-10-24T01:32:18.565827+00:00",
     "company": "Fandy",
     "email": "info@fandygroup.com",
     "domain": "fandy.ma",
@@ -1687,11 +1696,11 @@
     "status": "smtp_rejected",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674",
+    "run_id": "40050013354",
     "smtp_rejection": "{'info@fandygroup.com': (550, b'The mail server could not deliver mail to info@fandygroup.com.  The account\\nor domain may not exist, they may be blacklisted, or missing the proper dns\\nentries.')}"
   },
   {
-    "timestamp": "2026-10-24T01:26:31.993246+00:00",
+    "timestamp": "2026-10-24T01:34:46.797239+00:00",
     "company": "FRL Company",
     "email": "contact@frlcompany.ma",
     "domain": "frlcompany.ma",
@@ -1707,10 +1716,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:40.624948+00:00",
+    "timestamp": "2026-10-24T01:34:55.925298+00:00",
     "company": "Azelis Morocco",
     "email": "info.maroc@azelis.com",
     "domain": "azelis.com",
@@ -1726,10 +1735,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:41.348158+00:00",
+    "timestamp": "2026-10-24T01:34:56.688058+00:00",
     "company": "CHOKR FOOD",
     "email": "sales@chokrfood.com",
     "domain": "chokrfood.com",
@@ -1745,10 +1754,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:48.498363+00:00",
+    "timestamp": "2026-10-24T01:35:04.159958+00:00",
     "company": "Norgains",
     "email": "admin@norgrains.com",
     "domain": "norgrains.com",
@@ -1764,10 +1773,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:53.532627+00:00",
+    "timestamp": "2026-10-24T01:35:09.506602+00:00",
     "company": "Alimentation Afnan",
     "email": "contact@alimentation-afnan.com",
     "domain": "alimentation-afnan.com",
@@ -1783,10 +1792,10 @@
     "status": "dry_run_preview",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:36.969709+00:00",
+    "timestamp": "2026-10-24T01:34:52.082267+00:00",
     "company": "AFE Distributions International",
     "email": "contact@afe-distributions.com",
     "domain": "afe-distributions.com",
@@ -1800,10 +1809,10 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:39.036985+00:00",
+    "timestamp": "2026-10-24T01:34:54.519592+00:00",
     "company": "SamiDia Group",
     "email": "inquiries@samidia-group.com",
     "domain": "samidia-group.com",
@@ -1817,10 +1826,10 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:42.491773+00:00",
+    "timestamp": "2026-10-24T01:34:58.049309+00:00",
     "company": "SMCPA",
     "email": "info@smcpa.ma",
     "domain": "smcpa.ma",
@@ -1834,10 +1843,10 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:43.943920+00:00",
+    "timestamp": "2026-10-24T01:34:59.548285+00:00",
     "company": "AL GHIDAIYA",
     "email": "contact@alghidaiya.com",
     "domain": "alghidaiya.com",
@@ -1851,7 +1860,7 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
     "company": "Global Industrie",
@@ -1870,12 +1879,12 @@
     "email_verified": true,
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674",
+    "run_id": "40050013354",
     "retry_count": 2,
     "retry_after": "2026-10-22T15:35:01.433894+00:00"
   },
   {
-    "timestamp": "2026-10-24T01:26:06.985993+00:00",
+    "timestamp": "2026-10-24T01:34:20.441644+00:00",
     "company": "COLORADO S.A.",
     "email": "contact@colorado.ma",
     "domain": "colorado.ma",
@@ -1891,10 +1900,10 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:56.542008+00:00",
+    "timestamp": "2026-10-24T01:35:12.777618+00:00",
     "company": "Distribio",
     "email": "infos@distribio.ma",
     "domain": "distribio.ma",
@@ -1908,10 +1917,10 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:27:00.980099+00:00",
+    "timestamp": "2026-10-24T01:35:16.525269+00:00",
     "company": "GECAM",
     "email": "hanane@gecam.ma",
     "domain": "gecam.ma",
@@ -1925,10 +1934,10 @@
     "source": "verified-official-contact-fallback",
     "email_verified": true,
     "status": "qualified",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:00.025587+00:00",
+    "timestamp": "2026-10-24T01:34:13.086608+00:00",
     "company": "AMTI — Alfa Maroc Tech Industrie",
     "email": "contact@amti.ma",
     "domain": "alfa-mti.com",
@@ -1944,10 +1953,10 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:03.316071+00:00",
+    "timestamp": "2026-10-24T01:34:16.370469+00:00",
     "company": "MGM Industries",
     "email": "contact@mgmindustries.ma",
     "domain": "mgmindustries.ma",
@@ -1963,10 +1972,10 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:26:04.422815+00:00",
+    "timestamp": "2026-10-24T01:34:17.688206+00:00",
     "company": "Promachines",
     "email": "contact@promachines.ma",
     "domain": "promachines.ma",
@@ -1982,27 +1991,10 @@
     "status": "qualified",
     "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
     "preview_note": "Preview only; not sent. Activate sending only after V2 review.",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
   },
   {
-    "timestamp": "2026-10-24T01:25:42.211224+00:00",
-    "company": "Bled Conserves | Grossiste olives et conserves au Maroc ...",
-    "email": "commercial@bledconserves.ma",
-    "domain": "bledconserves.ma",
-    "url": "https://www.bledconserves.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "conserves / agroalimentaire",
-    "score": 55,
-    "direct_intent": false,
-    "priority": "WARM",
-    "source": "ddgs",
-    "email_source_url": "https://www.bledconserves.ma/",
-    "email_verified": true,
-    "status": "qualified",
-    "run_id": "40049453674"
-  },
-  {
-    "timestamp": "2026-10-24T01:25:14.040162+00:00",
+    "timestamp": "2026-10-24T01:34:04.912566+00:00",
     "company": "Rania Couspate — Couscous & pâtes du Maroc",
     "email": "",
     "domain": "rania-couspate.com",
@@ -2016,6 +2008,59 @@
     "email_source_url": "",
     "email_verified": false,
     "status": "no_email",
-    "run_id": "40049453674"
+    "run_id": "40050013354"
+  },
+  {
+    "timestamp": "2026-10-24T01:33:19.342497+00:00",
+    "company": "Accueil - Deliz food Processing",
+    "email": "",
+    "domain": "delizfood.ma",
+    "url": "https://delizfood.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 35,
+    "direct_intent": false,
+    "priority": "WARM",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "40050013354"
+  },
+  {
+    "timestamp": "2026-10-22T19:16:47.555778+00:00",
+    "company": "Contact – Biscoland",
+    "email": "contact@biscoland.ma",
+    "domain": "biscoland.ma",
+    "url": "https://biscoland.ma/contact/",
+    "need": "livraison / distribution",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "bing-rss",
+    "email_source_url": "https://biscoland.ma/wp-content/uploads/2024/04/Export.pdf",
+    "email_verified": true,
+    "status": "below_quality_threshold",
+    "run_id": "39818440613",
+    "preview_subject": "Proposition transport & logistique – TRMB SERVICES",
+    "preview_note": "Preview only; not sent. Activate sending only after V2 review."
+  },
+  {
+    "timestamp": "2026-10-24T01:33:42.420054+00:00",
+    "company": "NSI - Producteur marocain de chocolats et de biscuits",
+    "email": "",
+    "domain": "nsi.ma",
+    "url": "https://nsi.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "confiserie / agroalimentaire",
+    "score": 20,
+    "direct_intent": false,
+    "priority": "STANDARD",
+    "source": "ddgs",
+    "email_source_url": "",
+    "email_verified": false,
+    "status": "no_email",
+    "run_id": "40050013354"
   }
 ]
