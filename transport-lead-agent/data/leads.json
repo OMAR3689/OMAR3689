@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "timestamp": "2026-10-24T02:36:55.391017+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
+    "email": "",
+    "domain": "ihssanpa.ma",
+    "url": "https://ihssanpa.ma/",
+    "need": "transport et logistique",
+    "sector_hint": "automobile industrie",
+    "score": 40,
+    "source": "ddgs",
+    "status": "no_email"
+  }
+]
