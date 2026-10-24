@@ -646,5 +646,11 @@
     "domain": "alaqindustry.com",
     "sent_at": "2026-10-24T19:32:11.094301+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "m.industrie@mercuregroupe.com": {
+    "company": "Contact - Mercure Industrie",
+    "domain": "mercuregroupe.com",
+    "sent_at": "2026-10-24T20:17:33.184096+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
