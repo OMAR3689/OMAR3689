@@ -616,5 +616,23 @@
     "domain": "myservime.com",
     "sent_at": "2026-10-24T06:29:45.183852+00:00",
     "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@autops.ma": {
+    "company": "Pièces Auto au Maroc | Autops.ma - Magasin en ligne de pièces ...",
+    "domain": "autops.ma",
+    "sent_at": "2026-10-24T06:34:21.907049+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "loyalty@contact-hotel.com": {
+    "company": "Qui sommes-nous ?",
+    "domain": "contact-hotel.com",
+    "sent_at": "2026-10-24T06:34:27.481594+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
+  },
+  "contact@ghyar.ma": {
+    "company": "Ghyar — pièces détachées auto au Maroc",
+    "domain": "ghyar.ma",
+    "sent_at": "2026-10-24T06:34:33.427954+00:00",
+    "subject": "Proposition transport & logistique – TRMB SERVICES"
   }
 }
