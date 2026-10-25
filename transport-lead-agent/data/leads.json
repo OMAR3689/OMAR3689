@@ -1,18 +1,30 @@
 [
   {
-    "timestamp": "2026-10-25T03:44:59.978550+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-25T03:49:51.272491+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T03:45:31.115971+00:00",
+    "timestamp": "2026-10-25T03:49:54.817590+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-25T03:50:13.571010+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,27 +36,15 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T03:44:42.294877+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-25T03:49:44.466987+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
+    "need": "livraison / distribution",
     "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T03:45:52.639660+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "ddgs",
+    "score": 55,
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
