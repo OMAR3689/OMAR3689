@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-25T05:53:59.807006+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T05:54:14.789752+00:00",
+    "timestamp": "2026-10-25T05:58:59.515329+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -20,11 +8,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T05:54:20.178754+00:00",
+    "timestamp": "2026-10-25T05:59:04.235897+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -32,11 +20,11 @@
     "need": "livraison / distribution",
     "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T05:54:41.796489+00:00",
+    "timestamp": "2026-10-25T05:59:30.207599+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -48,19 +36,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T05:54:06.991152+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 55,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T05:55:00.616301+00:00",
+    "timestamp": "2026-10-25T05:59:44.970791+00:00",
     "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
     "domain": "j360.info",
@@ -68,7 +44,7 @@
     "need": "transport et logistique",
     "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "bing-rss",
+    "source": "ddgs",
     "status": "no_email"
   }
 ]
