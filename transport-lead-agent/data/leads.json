@@ -1,18 +1,30 @@
 [
   {
-    "timestamp": "2026-10-25T04:10:34.797963+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-25T04:15:40.776675+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
     "source": "ddgs",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T04:11:07.060682+00:00",
+    "timestamp": "2026-10-25T04:15:45.937748+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-25T04:16:08.815450+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -20,31 +32,7 @@
     "need": "transport et logistique",
     "sector_hint": "retail distribution",
     "score": 60,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T04:10:26.792593+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
-    "email": "",
-    "domain": "ihssanpa.ma",
-    "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T04:11:29.908705+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
