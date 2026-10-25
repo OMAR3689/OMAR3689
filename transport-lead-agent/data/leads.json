@@ -1,18 +1,30 @@
 [
   {
-    "timestamp": "2026-10-25T06:35:10.106387+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
+    "timestamp": "2026-10-25T06:40:09.813041+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
+    "sector_hint": "distribution grossiste",
     "score": 100,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T06:36:17.978492+00:00",
+    "timestamp": "2026-10-25T06:40:14.626887+00:00",
+    "company": "Globaldis – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "globaldis.ma",
+    "url": "https://www.globaldis.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "bing-rss",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-25T06:40:31.820318+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -24,39 +36,27 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T06:34:57.940239+00:00",
+    "timestamp": "2026-10-25T06:40:01.012014+00:00",
     "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
-    "need": "transport et logistique",
-    "sector_hint": "automobile industrie",
-    "score": 40,
-    "source": "ddgs",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T06:35:44.298598+00:00",
-    "company": "MADEC MAROC | CONSORTIUM MAROCAIN DE COMMERCIALISATION",
-    "email": "",
-    "domain": "madec.ma",
-    "url": "https://www.madec.ma/",
     "need": "livraison / distribution",
-    "sector_hint": "distribution grossiste",
-    "score": 35,
+    "sector_hint": "automobile industrie",
+    "score": 55,
     "source": "bing-rss",
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T06:36:08.335532+00:00",
-    "company": "Fadil Group - Entreprise de construction et BTP au Maroc",
+    "timestamp": "2026-10-25T06:40:46.294418+00:00",
+    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
     "email": "",
-    "domain": "fadilgroup.ma",
-    "url": "https://fadilgroup.ma/",
+    "domain": "j360.info",
+    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
     "need": "transport et logistique",
-    "sector_hint": "construction chantier",
+    "sector_hint": "transport marchandises",
     "score": 20,
-    "source": "ddgs",
+    "source": "bing-rss",
     "status": "no_email"
   }
 ]
