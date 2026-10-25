@@ -1,6 +1,18 @@
 [
   {
-    "timestamp": "2026-10-25T04:41:36.747479+00:00",
+    "timestamp": "2026-10-25T04:46:24.234620+00:00",
+    "company": "Bumageco – Grossiste Pharmaceutique",
+    "email": "",
+    "domain": "bumageco.ma",
+    "url": "https://www.bumageco.ma/",
+    "need": "livraison / distribution",
+    "sector_hint": "distribution grossiste",
+    "score": 100,
+    "source": "ddgs",
+    "status": "no_email"
+  },
+  {
+    "timestamp": "2026-10-25T04:46:41.737653+00:00",
     "company": "Supermarchés, libre-services, hypermarchés au Maroc : 54 ...",
     "email": "",
     "domain": "maroc.welipro.com",
@@ -12,8 +24,8 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T04:41:11.122930+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-25T04:46:16.757969+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
@@ -24,13 +36,13 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T04:41:53.402345+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
+    "timestamp": "2026-10-25T04:46:48.220901+00:00",
+    "company": "Kenzi Hotels Group",
     "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
+    "domain": "kenzihotels.ma",
+    "url": "http://www.kenzihotels.ma/",
     "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
+    "sector_hint": "hôtel tourisme",
     "score": 20,
     "source": "ddgs",
     "status": "no_email"
