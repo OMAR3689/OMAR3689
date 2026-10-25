@@ -1,18 +1,6 @@
 [
   {
-    "timestamp": "2026-10-25T06:45:28.743025+00:00",
-    "company": "3Sk Parts Auto - Distribution de pieces automobiles",
-    "email": "",
-    "domain": "3skpartsauto.com",
-    "url": "https://3skpartsauto.com/",
-    "need": "livraison / distribution",
-    "sector_hint": "automobile industrie",
-    "score": 100,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T06:45:38.426121+00:00",
+    "timestamp": "2026-10-25T06:50:35.282591+00:00",
     "company": "Bumageco – Grossiste Pharmaceutique",
     "email": "",
     "domain": "bumageco.ma",
@@ -24,7 +12,7 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T06:45:43.907857+00:00",
+    "timestamp": "2026-10-25T06:50:43.314445+00:00",
     "company": "Globaldis – Grossiste Pharmaceutique",
     "email": "",
     "domain": "globaldis.ma",
@@ -36,26 +24,14 @@
     "status": "no_email"
   },
   {
-    "timestamp": "2026-10-25T06:45:18.693020+00:00",
-    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées Automobiles",
+    "timestamp": "2026-10-25T06:50:22.924840+00:00",
+    "company": "Ihssan Pièces Auto | Leader Marocain en Pièces Détachées ...",
     "email": "",
     "domain": "ihssanpa.ma",
     "url": "https://ihssanpa.ma/",
     "need": "transport et logistique",
     "sector_hint": "automobile industrie",
     "score": 40,
-    "source": "bing-rss",
-    "status": "no_email"
-  },
-  {
-    "timestamp": "2026-10-25T06:46:15.659887+00:00",
-    "company": "Maroc - logistique - Appels d'offres, marchés publics et privés",
-    "email": "",
-    "domain": "j360.info",
-    "url": "https://www.j360.info/appels-d-offres/afrique/maroc/?q=logistique",
-    "need": "transport et logistique",
-    "sector_hint": "transport marchandises",
-    "score": 20,
     "source": "ddgs",
     "status": "no_email"
   }
